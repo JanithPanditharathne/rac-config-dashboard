@@ -1,0 +1,11 @@
+<div class="unauthorized-page">
+  <div class="middle-pane error-page">
+    <h1>{{ errorHeading }}</h1>
+    <div class="error-page-heading">
+      {{ errorMessage
+      }}<span
+        >{{ routeMessage }} <a class="pointer-link" (click)="navigateToLandingPage()">{{ redirectPath }}</a></span
+      >
+    </div>
+  </div>
+</div>

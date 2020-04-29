@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>RAC</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <style>
+      .loading-cover {
+        border-top: 0.05rem solid transparent;
+        align-items: center;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        opacity: 0.8;
+        overflow: hidden;
+        pointer-events: none;
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+      }
+
+      .loading-title {
+        color: #182d7a;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        font-size: 20px;
+        letter-spacing: 2px;
+        position: absolute;
+        top: 42%;
+      }
+      .loading-image {
+        position: absolute;
+        top: 32%;
+        width: auto;
+        height: auto;
+      }
+
+      .loading-animation-index {
+        height: 90px;
+        position: absolute;
+        top: 45%;
+        width: 90px;
+      }
+
+      @keyframes loading-animation {
+        0% {
+          -webkit-transform: translate(-50%, -50%) rotate(0deg);
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+          -webkit-transform: translate(-50%, -50%) rotate(360deg);
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+      @-webkit-keyframes loading-animation {
+        0% {
+          -webkit-transform: translate(-50%, -50%) rotate(0deg);
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+          -webkit-transform: translate(-50%, -50%) rotate(360deg);
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+      .loading-animation {
+        position: relative;
+      }
+      .loading-animation div,
+      .loading-animation div:after {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border: 3px solid #144067;
+        border-top-color: transparent;
+        border-radius: 50%;
+      }
+      .loading-animation div {
+        -webkit-animation: loading-animation 0.9s linear infinite;
+        animation: loading-animation 0.9s linear infinite;
+        top: 50px;
+        left: 40px;
+      }
+      .loading-animation div:after {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+      }
+      .loading-animation {
+        width: 60px;
+        height: 60px;
+        -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+        transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
+      }
+    </style>
+  </head>
+  <body class="theme-default">
+    <app-root>
+      <div class="loading-cover">
+        <div class="loading-image">
+          <img
+            width="75"
+            src="data:image/png;base64,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"
+          />
+        </div>
+        <div class="loading-title">RAC</div>
+        <div class="loading-animation-index">
+          <div class="loading-animation"><div></div></div>
+        </div>
+      </div>
+    </app-root>
+    <div id="client-error-message-holder" class="client-error-message" style="display: none;">
+      <div class="d-flex justify-content-between">
+        <div>
+          <i class="zmdi zmdi-alert-octagon zmdi-hc-1x"></i>
+          <span> Oops! Unexpected client side error occurred, please press reload button to recover.</span>
+          <span id="client-error-codes"></span>
+        </div>
+        <a id="btn-client-error-reload"><i class="zmdi zmdi-replay zmdi-hc-1x"></i><span>Reload</span></a>
+      </div>
+    </div>
+  </body>
+</html>

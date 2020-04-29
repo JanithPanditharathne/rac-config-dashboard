@@ -1,0 +1,96 @@
+<div class="page-content add-email-rec" *ngIf="algorithmForm">
+    <app-action-bar [breadcrumb]="actionBreadcrumb"></app-action-bar>
+    <div class="page-content-pane">
+        <div class="container-fluid relative-parent" #algorithmFormparent>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form [formGroup]="algorithmForm" novalidate>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-heading-container">
+                                    <h2>Algorithm Details</h2>
+                                    <span class="info-label">How would you like to define the new algorithm?</span>
+                                </div>
+                                <div class="form-container">
+                                    <div class="form-group" [class.input-error]="isInvalid('algorithmId')">
+                                        <label for="algorithmId"
+                                        >Algorithm ID<span class="required-label">*</span>
+                                            <input
+                                                    class="form-control"
+                                                    type="number"
+                                                    formControlName="algorithmId"
+                                                    placeholder="Algorithm ID"
+                                                    id="algorithmId"
+                                                    min="1"
+                                                    max="10000"
+                                            />
+                                        </label>
+                                        <app-range-error
+                                                [control]="algorithmForm.get('algorithmId')"
+                                                [minError]="'Algorithm ID should be greater than or equal to 1'"
+                                                [maxError]="'Algorithm ID should be less than or equal to 10000'"
+                                                [requiredError]="'Algorithm ID is required'"
+                                        >
+                                        </app-range-error>
+                                    </div>
+                                    <div class="form-group" [class.input-error]="isInvalid('algorithmName')">
+                                        <label for="algorithmName"
+                                        >Algorithm Name<span class="required-label">*</span>
+                                            <input class="form-control" type="text" formControlName="algorithmName"
+                                                   placeholder="Algorithm Name" id="algorithmName"/>
+                                        </label>
+                                        <app-character-length-range-error
+                                                [control]="algorithmForm.get('algorithmName')"
+                                                [lengthError]="'Algorithm name must not be greater than 200 characters long'"
+                                                [requiredError]="'Algorithm name is required'"
+                                        >
+                                        </app-character-length-range-error>
+                                    </div>
+                                    <div class="form-group" [class.input-error]="isInvalid('description')">
+                                        <label for="description"
+                                        >Description
+                                            <textarea
+                                                    class="form-control"
+                                                    formControlName="description"
+                                                    id="description"
+                                                    maxlength="2000"
+                                                    [rows]="4"
+                                                    [placeholder]="'Specify description here...'"
+                                            ></textarea>
+                                        </label>
+                                        <app-character-length-range-error
+                                                [control]="algorithmForm.get('description')"
+                                                [lengthError]="'Algorithm description must not be greater than 2000 characters long'"
+                                        >
+                                        </app-character-length-range-error>
+                                    </div>
+                                    <div class="form-group" [class.input-error]="isInvalid('displayText')">
+                                        <label for="displayText"
+                                        >Display Text
+                                            <input class="form-control" type="text" formControlName="displayText"
+                                                   placeholder="Display Text" id="displayText"/>
+                                        </label>
+                                        <app-character-length-range-error
+                                                [control]="algorithmForm.get('displayText')"
+                                                [lengthError]="'Algorithm display text must not be greater than 200 characters long'"
+                                        >
+                                        </app-character-length-range-error>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-button-container">
+            <app-action-button-strap>
+                <app-action [type]="ActionType.SAVE" [name]="formAction === FormAction.ADD ? 'Create': 'Save'"
+                            [autoResolve]="false"
+                            (actionClick)="onSaveClick($event)"></app-action>
+                <app-action [type]="ActionType.CANCEL" [name]="'Cancel'"
+                            (actionClick)="redirectToAlgorithmView()"></app-action>
+            </app-action-button-strap>
+        </div>
+    </div>
+</div>

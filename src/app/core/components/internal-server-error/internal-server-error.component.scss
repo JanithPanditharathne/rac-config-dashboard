@@ -1,0 +1,68 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.internal-server-error-page {
+  background-image: url($internal-server-error-image);
+  background-position: center;
+  background-size: cover;
+  font-family: $primary-font;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+
+  .error-page {
+    bottom: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+
+    h1 {
+      @include color-theme {
+        color: $internal-server-error-main-heading;
+      }
+
+      @include font-size(16, 12);
+      background: none;
+      display: inline-block;
+      padding: 2rem;
+    }
+
+    .error-page-message {
+      @include color-theme {
+        color: $internal-server-error-message;
+      }
+    }
+
+    .error-page-heading {
+      @include color-theme {
+        color: $internal-server-error-sub-heading;
+      }
+
+      @include font-size(2.2, 3.2);
+      margin: 0 auto;
+      width: 60%;
+
+      span {
+        @include font-size(1.2, 1.6);
+        display: block;
+        font-weight: 600;
+      }
+
+      a {
+        @include color-theme {
+          background: $internal-server-error-button-background;
+          color: $internal-server-error-button-color;
+        }
+
+        display: inline-block;
+        padding: .5rem 1rem;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

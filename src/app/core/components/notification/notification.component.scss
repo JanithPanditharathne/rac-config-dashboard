@@ -1,0 +1,18 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+app-alert {
+  display: block;
+  min-height: 3rem;
+  padding: .5rem 0 0;
+  transition: all 2s ease-in-out;
+}
+
+.page-notifications {
+  height: auto;
+  position: absolute;
+  right: 0;
+  top: 6rem;
+  width: 20rem;
+  z-index: 10001;
+}

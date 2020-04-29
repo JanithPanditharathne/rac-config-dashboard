@@ -1,0 +1,8 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.page-wrapper-content {
+  @include color-theme {
+    background: get-theme-variable('page-content-background');
+  }
+}

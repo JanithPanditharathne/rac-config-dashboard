@@ -1,0 +1,12 @@
+<div class="page-not-found-page">
+  <div class="middle-pane error-page">
+    <h1>{{ errorStatus }}</h1>
+    <div class="error-page-heading">
+      {{ errorHeading }}
+      <span
+        >{{ errorMessage }}
+        <a [routerLink]="['/']"> Home</a>
+      </span>
+    </div>
+  </div>
+</div>

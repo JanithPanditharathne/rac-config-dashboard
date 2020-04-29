@@ -1,0 +1,13 @@
+<ng-container *ngIf="actionTemplate" [ngTemplateOutlet]="actionTemplate"> </ng-container>
+<ng-container *ngIf="!actionTemplate">
+  <button
+    type="button"
+    class="action-button d-flex"
+    [class.updating]="isUpdating"
+    [disabled]="disable || isUpdating"
+    (click)="onActionClick()"
+    [ngClass]="actionParentCssClass">
+    <i class="zmdi" [ngClass]="actionIconCssClass"></i>
+    <span class="button-container-text">{{ name }}</span>
+  </button>
+</ng-container>

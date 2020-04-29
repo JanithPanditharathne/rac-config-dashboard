@@ -1,0 +1,55 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.action-button {
+  @include color-theme {
+    border-color: get-theme-variable('action-text');
+    color: get-theme-variable('action-text');
+  }
+
+  i {
+    @include font-size(1.1, 1.5);
+    padding-right: .5rem;
+  }
+
+  .button-container-text {
+    @include font-size(.8, 1.6);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  &.zmdi-power-parent {
+    @include color-theme {
+      background: get-theme-variable('action-text-delete-background');
+      border-color: get-theme-variable('action-text-delete-background');
+      color: get-theme-variable('action-text-delete');
+    }
+    border: .05rem solid;
+
+    &:hover {
+      @include color-theme {
+        background: get-theme-variable('action-text-delete');
+        border-color: get-theme-variable('action-text-delete-background');
+        color: get-theme-variable('action-text-delete-background');
+      }
+      box-shadow: 1px 2px 3px $box-shadow-color;
+    }
+  }
+
+  &.zmdi-close-parent {
+    @include color-theme {
+      background: get-theme-variable('action-text-cancel');
+      border-color: get-theme-variable('action');
+      color: get-theme-variable('action-text-cancel-hover');
+    }
+
+    &:hover {
+      @include color-theme {
+        background: get-theme-variable('action-text-cancel-hover');
+        border-color: get-theme-variable('action-text-cancel');
+        color: get-theme-variable('action-text-cancel');
+      }
+      box-shadow: 1px 2px 3px $box-shadow-color;
+    }
+  }
+}

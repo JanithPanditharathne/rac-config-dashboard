@@ -1,0 +1,35 @@
+<div class="container-fluid pd-login-container">
+    <div class="row">
+        <form [formGroup]="loginForm" class="pd-login-form">
+            <div class="pd-brand-logo"></div>
+            <div class="form-group pd-input-field-container">
+                <input class="form-control pd-input-field" type="text" formControlName="username" placeholder="Username"
+                       (keypress)="onKeyPress()" id="username" #username [appErrorFocus]="!isAuthorized"
+                       [focusElement]="username"/>
+                <span class="pd-input-username"></span>
+                <app-common-control-error-view [control]="loginForm.get('username')"
+                                               [requiredError]="'Username can not be blank'"
+                                               [lengthError]="'Username characters should between 4 and 128'">
+                </app-common-control-error-view>
+            </div>
+            <div class="form-group pd-input-field-container">
+                <input class="form-control pd-input-field" type="password" formControlName="password" placeholder="Password"
+                       (keypress)="onKeyPress()" id="password"/>
+                <span class="pd-input-password"></span>
+                <app-common-control-error-view [control]="loginForm.get('password')"
+                                               [requiredError]="'Password can not be blank'"
+                                               [lengthError]="'Password characters should between 8 and 40'">
+                </app-common-control-error-view>
+                <span *ngIf="!isAuthorized" class="errors input-error-label">Invalid username or password</span>
+            </div>
+            <app-action-button-strap>
+                <app-action [type]="ActionType.OK"
+                            [name]="'Login'"
+                            [autoResolve]="false"
+                            (actionClick)="onLoginClick($event)"
+                            [disable]="loginForm.invalid">
+                </app-action>
+            </app-action-button-strap>
+        </form>
+    </div>
+</div>

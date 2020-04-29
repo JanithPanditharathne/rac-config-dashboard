@@ -1,0 +1,10 @@
+<div class="page-content">
+    <app-loading-overlay *ngIf="isLoading"></app-loading-overlay>
+    <app-action-bar [breadcrumb]="actionBreadcrumb">
+        <ng-template>
+            <app-action-button-strap>
+<!--                <app-action [type]="ActionType.ADD" [name]="'Add New'" (actionClick)="onAddClick()"></app-action>-->
+            </app-action-button-strap>
+        </ng-template>
+    </app-action-bar>
+</div>

@@ -1,0 +1,147 @@
+@mixin clearfix {
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+// font-size use em as a unit and px as a fallback
+@mixin font-size($size: 1.6, $line: $size * 1.5) {
+  font-size: ($size * 10) + px;
+  font-size: $size + rem;
+  line-height: ($line * 10) + px;
+  line-height: $line + rem;
+}
+
+// Theming Mixin
+
+@function map-fetch($map, $keys) {
+  $key: nth($keys, 1);
+  $length: length($keys);
+  $value: map-get($map, $key);
+
+  @if $value != null {
+    @if $length > 1 {
+      $rest: ();
+
+      @for $i from 2 through $length {
+        $rest: append($rest, nth($keys, $i));
+      }
+
+      @return map-fetch($value, $rest);
+    } @else {
+      @return $value;
+    }
+  } @else {
+    @return false;
+  }
+}
+
+@function get-theme-variable($key) {
+  @return map-get($theme-map, $key);
+}
+
+@mixin color-theme($themes: $themes) {
+  @each $theme, $map in $themes {
+    :host-context(.#{$theme}) & {
+      // Define theme color
+      $theme-map: (
+        color-alpha: #00f
+      ) !global;
+
+      @each $key, $submap in $map {
+        $value: map-fetch($themes, $theme '#{$key}');
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value
+          )
+        ) !global;
+      }
+
+      @content;
+
+      // reset theme color to null
+      $theme-map: null !global;
+    }
+  }
+}
+
+@mixin breakpoint($point) {
+  @if $point == max640 {
+    @media only screen and (max-width: 640px) {
+      @content;
+    }
+  } @else if $point == max767 {
+    @media only screen and (max-width: 767px) {
+      @content;
+    }
+  } @else if $point == max480 {
+    @media only screen and (max-width: 480px) {
+      @content;
+    }
+  } @else if $point == min991 {
+    @media only screen and (min-width: 991px) {
+      @content;
+    }
+  } @else if $point == max991 {
+    @media only screen and (max-width: 991px) {
+      @content;
+    }
+  } @else if $point == max991 {
+    @media only screen and (max-width: 991px) {
+      @content;
+    }
+  }
+}
+
+
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  @return $string;
+}
+
+@function url-encode($string) {
+  $map: (
+    '%': '%25',
+    '<': '%3C',
+    '>': '%3E',
+    ' ': '%20',
+    '!': '%21',
+    '*': '%2A',
+    "'": '%27',
+    '"': '%22',
+    '(': '%28',
+    ')': '%29',
+    ';': '%3B',
+    ':': '%3A',
+    '@': '%40',
+    '&': '%26',
+    '=': '%3D',
+    '+': '%2B',
+    '$': '%24',
+    ',': '%2C',
+    '/': '%2F',
+    '?': '%3F',
+    '#': '%23',
+    '[': '%5B',
+    ']': '%5D'
+  );
+  $new: $string;
+  @each $search, $replace in $map {
+    $new: str-replace($new, $search, $replace);
+  }
+  @return $new;
+}
+
+@function inline-svg($string) {
+  @return url('data:image/svg+xml;charset=US-ASCII,#{url-encode($string)}');
+}

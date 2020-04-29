@@ -1,0 +1,91 @@
+@import '../../../../../../styles/variables';
+@import '../../../../../../styles/mixins';
+
+.action-button {
+  align-items: center;
+  background: none;
+  border-radius: .1rem;
+  color: $primary-button-background-color;
+  display: flex;
+  justify-content: center;
+  margin-right: .2rem;
+  padding: 0;
+  transition: .5s background ease, .5s color ease;
+  width: 1.5rem;
+
+  i {
+    @include font-size(1.1, 1.5);
+    padding-right: 0;
+  }
+
+  &.none-border {
+    background: none;
+    border: 0;
+  }
+
+  &.empty-label {
+    i {
+      padding-right: 0;
+    }
+  }
+
+  &.inactive {
+    color: $cancel-button-background-color;
+    opacity: .7;
+
+    &:hover {
+      background: none;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+  }
+
+  &.zmdi-floppy-parent,
+  &.zmdi-check-parent,
+  &.zmdi-download-parent {
+    border-radius: .1rem;
+    color: $save-button-background-color;
+
+    &:hover {
+      background: $save-button-hover-background-color;
+      color: $save-button-hover-icon-color;
+    }
+  }
+
+  &.zmdi-delete-parent,
+  &.zmdi-pause-parent {
+    color: $delete-button-background-color;
+
+    &:hover {
+      background: $delete-button-hover-background-color;
+      color: $delete-button-hover-icon-color;
+    }
+  }
+
+  &.zmdi-close-circle-parent,
+  &.zmdi-close-parent {
+    color: $cancel-button-background-color;
+
+    &:hover {
+      background: $cancel-button-hover-background-color;
+      color: $cancel-button-hover-icon-color;
+    }
+  }
+
+  &:hover {
+    background: $primary-button-hover-background-color;
+    color: $primary-button-hover-icon-color;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: .5;
+
+    &:hover {
+      background: none;
+      box-shadow: none;
+      color: $cancel-button-background-color;
+      cursor: not-allowed;
+    }
+  }
+}

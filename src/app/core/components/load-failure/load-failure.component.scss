@@ -1,0 +1,106 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.load-failure-page {
+  font-family: $primary-font;
+}
+
+.error-page {
+  height: 100%;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+
+  &::before {
+    background-image: url($load-failure-image);
+    background-position: center;
+    background-size: cover;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  h1 {
+    @include color-theme {
+      background: $load-failure-main-background;
+      color: $load-failure-main-heading;
+    }
+
+    @include font-size(6, 7);
+    bottom: 0;
+    display: inline-block;
+    height: 20rem;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 6rem 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
+
+    @media (max-width: 991px) {
+      @include font-size(3.5, 5);
+      padding: 7rem 0;
+    }
+  }
+
+  .error-page-heading {
+    @include color-theme {
+      color: $load-failure-sub-heading;
+    }
+
+    @include font-size(2.2, 3.8);
+    bottom: 10%;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    text-shadow: 1px 1px 1px $box-shadow-color;
+
+    @media (max-width: 991px) {
+      @include font-size(1.8, 2.4);
+    }
+
+    span {
+      @include color-theme {
+        color: $load-failure-message;
+      }
+
+      @include font-size(1.8, 2.8);
+      display: block;
+      font-weight: 300;
+
+      @media (max-width: 991px) {
+        @include font-size(1.6, 2.4);
+      }
+    }
+
+    a {
+      @include color-theme {
+        background: $load-failure-button-background;
+        color: $load-failure-button-color;
+      }
+      padding: .5rem 1rem;
+      text-transform: uppercase;
+
+      &:hover {
+        box-shadow: 5px 5px 2px $box-shadow-color;
+        transition: .5s box-shadow ease;
+      }
+    }
+  }
+}

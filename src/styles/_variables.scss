@@ -1,0 +1,292 @@
+//override the Bootstrap defaults
+$blue: #144067;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #c70808 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #28a745 !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+$enable-shadows: true;
+$enable-rounded: false;
+
+@import 'theme-default-variables';
+@import 'theme-green-variables';
+@import 'theme-blue-variables';
+
+$themes: (
+  theme-default: (
+    internal-server-error-main-heading: $internal-server-error-main-heading,
+    internal-server-error-sub-heading: $internal-server-error-sub-heading,
+    internal-server-error-message: $internal-server-error-message,
+    internal-server-error-button-background: $internal-server-error-button-background,
+    internal-server-error-button-color: $internal-server-error-button-color,
+    load-failure-main-background: $load-failure-main-background,
+    load-failure-main-heading: $load-failure-main-heading,
+    load-failure-sub-heading: $load-failure-sub-heading,
+    load-failure-message: $load-failure-message,
+    load-failure-button-background: $load-failure-button-background,
+    load-failure-button-color: $load-failure-button-color,
+    page-not-found-main-background: $page-not-found-main-background,
+    page-not-found-main-heading: $page-not-found-main-heading,
+    page-not-found-sub-heading: $page-not-found-sub-heading,
+    page-not-found-message: $page-not-found-message,
+    page-not-found-button-background: $page-not-found-button-background,
+    page-not-found-button-color: $page-not-found-button-color,
+    unauthorized-main-background: $unauthorized-main-background,
+    unauthorized-main-heading: $unauthorized-main-heading,
+    unauthorized-sub-heading: $unauthorized-sub-heading,
+    unauthorized-message: $unauthorized-message,
+    unauthorized-button-background: $unauthorized-button-background,
+    unauthorized-button-color: $unauthorized-button-color,
+    error-page-heading-background: $error-page-heading-background,
+    loading-background: $loading-background,
+    loading-border: $loading-border,
+    loading-animation-background: $loading-animation-background,
+    popup-label-color: $popup-label-color,
+    modal-border: $modal-border,
+    box-shadow-color: $box-shadow-color,
+    box-shadow-color-semi: $box-shadow-color-semi,
+    white-with-opacity: $white-with-opacity,
+    toggle-background: $toggle-background,
+    toggle-active-button-background: $toggle-active-button-background,
+    toggle-active-button-text: $toggle-active-button-text,
+    toggle-active-border: $toggle-active-border,
+    toggle-inactive-button-background: $toggle-inactive-button-background,
+    toggle-inactive-button-text: $toggle-inactive-button-text,
+    toggle-inactive-border: $toggle-inactive-border,
+    collapsible-background: $collapsible-background,
+    main-nav-bar-background: $main-nav-bar-background,
+    main-nav-bar-toggler-icon-color: $main-nav-bar-toggler-icon-color,
+    main-nav-bar-active-link-background: $main-nav-bar-active-link-background,
+    main-nav-bar-active-link-text: $main-nav-bar-active-link-text,
+    main-nav-bar-active-link-icon-background: $main-nav-bar-active-link-icon-background,
+    main-nav-bar-text: $main-nav-bar-text,
+    main-nav-bar-submenu-border: $main-nav-bar-submenu-border,
+    logout-button-background: $logout-button-background,
+    logout-button-border: $logout-button-border,
+    logout-button-color: $logout-button-color,
+    action-bar-background: $action-bar-background,
+    action-bar-title: $action-bar-title,
+    action-bar-title-hover: $action-bar-title-hover,
+    action-text-background: $action-text-background,
+    action-text-background-hover: $action-text-background-hover,
+    action-text: $action-text,
+    action-text-hover: $action-text-hover,
+    action-text-delete: $action-text-delete,
+    action-text-delete-background: $action-text-delete-background,
+    action-text-update: $action-text-update,
+    action-text-update-text-color: $action-text-update-text-color,
+    action-text-inactive: $action-text-inactive,
+    action-text-cancel: $action-text-cancel,
+    action-text-cancel-hover: $action-text-cancel-hover,
+    form-border-color: $form-border-color,
+    form-heading-text: $form-heading-text,
+    form-info-label-text: $form-info-label-text,
+    form-error-color: $form-error-color,
+    tab-content-color: $tab-content-color,
+    tab-heading-background: $tab-heading-background,
+    tab-heading-border: $tab-heading-background,
+    tab-content-active-color: $tab-content-color,
+    tab-heading-active-background: $tab-heading-background,
+    tab-heading-active-border: $tab-heading-active-border,
+    tab-content-background: $tab-content-background,
+    tab-content-border: $tab-content-border,
+    tab-left-pane-background: $tab-left-pane-background,
+    tab-left-pane-item-background: $tab-left-pane-item-background,
+    tab-left-pane-item-color: $tab-left-pane-item-color,
+    tab-left-pane-item-active-color: $tab-left-pane-item-active-color,
+    content-display-background: $content-display-background,
+    content-display-border: $content-display-border,
+    generated-context-background: $generated-context-background,
+    generated-context-border: $generated-context-border,
+    generated-context-colo: $generated-context-color,
+    generated-rule-criteria-color: $generated-rule-criteria-color,
+    generated-rule-selected-color: $generated-rule-selected-color,
+    expression-view-label: $expression-view-label,
+    expression-view-sub-label: $expression-view-sub-label,
+    expression-view-condition: $expression-view-condition,
+    expression-more-button: $expression-more-button,
+    expression-more-button-hover: $expression-more-button-hover,
+    alert-success-color: $alert-success-color,
+    alert-success-text-color: $alert-success-text-color,
+    alert-error-color: $alert-error-color,
+    alert-error-text-color: $alert-error-text-color,
+    alert-info-color: $alert-info-color,
+    alert-info-text-color: $alert-info-text-color,
+    alert-warning-color: $alert-warning-color,
+    alert-warning-text-color: $alert-warning-text-color,
+    data-table-border: $data-table-border,
+    data-table-top-header-background: $data-table-top-header-background,
+    data-table-top-header-text: $data-table-top-header-text,
+    data-table-header-background: $data-table-header-background,
+    data-table-header-secondary-background: $data-table-header-secondary-background,
+    data-table-odd-row-background: $data-table-odd-row-background,
+    highlighted-first-row: $highlighted-first-row,
+    highlighted-second-row: $highlighted-second-row,
+    highlighted-special-row: $highlighted-special-row,
+    data-table-header-text: $data-table-header-text,
+    data-table-header-border: $data-table-header-border,
+    accordion-menu-background: $accordion-menu-background,
+    accordion-menu-border: $accordion-menu-border,
+    primary-text-color: $primary-background-color,
+    primary-background-color: $primary-background-color,
+    secondary-background-color: $secondary-background-color,
+    success-color: $success-color,
+    page-content-background: $page-content-background
+  )
+);
+
+$loading-animation: '<svg enable-background="new 0 0 0 0" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><path d="m73 50c0-12.7-10.3-23-23-23s-23 10.3-23 23m3.9 0c0-10.5 8.5-19.1 19.1-19.1s19.1 8.6 19.1 19.1" fill="#144067"><animateTransform attributeName="transform" attributeType="XML" dur="1s" from="0 50 50" repeatCount="indefinite" to="360 50 50" type="rotate"/></path></svg>';
+
+$theme-blue-color: #2196f3;
+$theme-green-color: #40b30d;
+$theme-red-color: #d32f2f;
+
+$primary-font: 'Work Sans', sans-serif;
+
+$box-shadow-color: rgba(0, 0, 0, .2);
+$box-shadow-color-light: rgba(0, 0, 0, .09);
+
+//Client Error Message Colors
+$client-error-message-background: #c62026;
+$client-error-message-text: #fff;
+
+//Action Button Colors
+$action-button-color: #144067;
+$action-button-border: #144067;
+
+//Scrollbar Track Colors
+$scrollbar-track-background: #396996;
+$scrollbar-track-border: #f1f1f1;
+
+//Placeholder Colors
+$placeholder-text-color: #888;
+
+//Panel Styles
+$right-pane-background: #fff;
+$left-pane-background: #fff;
+
+//Collapsible Content Styles
+$collapsible-border: #ddd;
+$collapsible-border-left: #144067;
+
+//Modal Colors
+$modal-header-background: #2b4061;
+$modal-footer-background: #fff;
+$modal-header-text: #fff;
+$modal-close: #fff;
+$popup-warning-color: #e6520b;
+
+//Popover Styles
+$popover-color: #fff;
+$popover-background: #144067;
+$popup-error-color: #ca0808;
+
+//Form Styles
+$form-info-label-text: #aaa;
+$form-error-color: #c62026;
+$form-warning-color: #fd7e14;
+$form-main-heading-text-color: #444;
+$form-link-input-label-color: #396996;
+
+//Context Background
+$context-background-odd: #eaeaea;
+$context-background-even: #fff;
+$context-border: #c4c3c3;
+$context-color: #333;
+
+//Alert Styles
+$alert-success-background: #328b0b;
+$alert-success-border: #328b0b;
+$alert-success-text-color: #fff;
+
+$alert-error-background: #c62026;
+$alert-error-border: #c62026;
+$alert-error-text-color: #fff;
+
+$alert-warning-background: #e6520b;
+$alert-warning-border: #e6520b;
+$alert-warning-text-color: #fff;
+
+$alert-info-background: #47c5ff;
+$alert-info-border: #47c5ff;
+$alert-info-text-color: #fff;
+
+//Table Info Box Styles
+$info-box-text-color: #666;
+$info-box-border: #444;
+$highlighted-first-row: #799abb;
+$highlighted-second-row: #8bc5ce;
+$highlighted-special-row: #8bc5ce;
+
+//Dropdown Heading Colors
+$dropdown-heading-background: #ddd;
+$dropdown-heading-border: #ddd;
+$dropdown-text-color: #333;
+
+//Datepicker Styles
+$date-picker-background: #396996;
+$date-picker-text-color: #396996;
+
+//Data Table Styles
+$no-data-message-background: #fff;
+$no-data-button-background: #144067;
+$no-data-button-border: #144067;
+$no-data-button-text: #fff;
+$expand-row-heading-text: #396996;
+$expand-row-border: #396996;
+$expand-row-sub-heading: #919090;
+
+//Footer Styles
+$footer-border-styles: #ddd;
+
+// Check Box Styles
+$check-box-background-color: transparent;
+$check-box-box-shadow: none;
+$check-box-border-radius-value: 1px;
+$check-box-border-color: #344;
+$check-box-border-width: 2px;
+$check-box-width: 20px;
+$check-box-height: 20px;
+$check-box-label-left-padding: 5px;
+$check-box-label-vertical-align: center;
+
+// Selected Styles (Tick)
+$check-box-tick-color: #fff;
+$check-box-selected-background-color: #144067;
+$check-box-selected-border-color: #344;
+
+// Selected Styles (Box)
+$check-box-box-background: #fff;
+$check-box-box-border-color: #344;
+
+// Radio Styles
+$radio-background-color: #fff;
+$radio-box-shadow: none;
+$radio-border-radius-value: 1px;
+$radio-border-color: #344;
+$radio-border-width: 2px;
+$radio-width: 20px;
+$radio-height: 20px;
+$radio-label-left-padding: 10px;
+$radio-label-vertical-align: center;
+
+// Selected Styles (Box)
+$radio-selected-background-color: #144067;
+$radio-selected-border-color: #144067;
+
+// Selected Styles (Tick)
+$radio-tick-color: #fff;
+$radio-tick-selected-border-color: #344;
+$radio-tick-selected-background: #144067;
+
+//Link Color
+$link-color: #396996;
+
+//Row Highlights
+$highlighted-first-row: #799abb;
+$highlighted-second-row: #8bc5ce;
+$highlighted-text-color: #fff;

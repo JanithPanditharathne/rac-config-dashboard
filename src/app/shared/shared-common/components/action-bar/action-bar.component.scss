@@ -1,0 +1,50 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.action-bar {
+  @include color-theme {
+    background: get-theme-variable('action-bar-background');
+    border-color: get-theme-variable('data-table-border');
+  }
+  align-items: center;
+  border-bottom: .05rem solid;
+  box-shadow: .5rem 0 1rem $box-shadow-color;
+  padding: .3rem 1.2rem;
+  width: 100%;
+  z-index: 1001;
+
+  .back-link {
+    @include color-theme {
+      color: get-theme-variable('action-bar-title');
+    }
+
+    &:hover {
+      @include color-theme {
+        color: get-theme-variable('action-bar-title-hover');
+      }
+      cursor: pointer;
+
+      i {
+        @include color-theme {
+          color: get-theme-variable('action-bar-title');
+        }
+      }
+    }
+
+    .back-link-icon {
+      @include font-size(1.4, 2);
+      padding-right: .5rem;
+    }
+
+    .back-link-text {
+      @include font-size(.9, 2.1);
+      font-weight: 400;
+      text-transform: capitalize;
+    }
+
+    i {
+      @include font-size(.9, 2.1);
+      padding: 0 .5rem;
+    }
+  }
+}

@@ -1,0 +1,60 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.page-not-found-page {
+  background-image: url($page-not-found-image);
+  background-position: center;
+  background-size: cover;
+  font-family: $primary-font;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.error-page {
+  bottom: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+
+  h1 {
+    @include color-theme {
+      background: $page-not-found-main-background;
+      color: $page-not-found-main-heading;
+    }
+    @include font-size(16, 12);
+    display: inline-block;
+    padding: 2rem;
+  }
+
+  .error-page-heading {
+    @include color-theme {
+      color: $page-not-found-sub-heading;
+    }
+
+    @include font-size(2.2, 3.8);
+
+    span {
+      @include color-theme {
+        color: $page-not-found-message;
+      }
+      @include font-size(1.8, 2.8);
+      display: block;
+      font-weight: 600;
+    }
+
+    a {
+      @include color-theme {
+        background: $page-not-found-button-background;
+        color: $page-not-found-button-color;
+      }
+      padding: .5rem 1rem;
+      text-transform: uppercase;
+    }
+  }
+}

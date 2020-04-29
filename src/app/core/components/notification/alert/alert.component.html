@@ -1,0 +1,58 @@
+<span [ngSwitch]="notification.type">
+  <alert
+    class="alert-type"
+    type="success"
+    *ngSwitchCase="notificationType.SUCCESS"
+    [dismissOnTimeout]="timeOut"
+    [dismissible]="true"
+    (onClose)="onCloseClick($event)"
+    (onClosed)="onCloseClick($event)"
+  >
+    <span
+      ><i class="zmdi zmdi-check"></i>{{ notification.message }}
+      <ng-container *ngIf="notification.count">({{ notification.count }})</ng-container>
+    </span>
+  </alert>
+  <alert
+    class="alert-type"
+    type="danger"
+    *ngSwitchCase="notificationType.ERROR"
+    [dismissOnTimeout]="timeOut"
+    [dismissible]="true"
+    (onClose)="onCloseClick($event)"
+    (onClosed)="onCloseClick($event)"
+  >
+    <span
+      ><i class="zmdi zmdi-alert-triangle"></i>{{ notification.message }}
+      <ng-container *ngIf="notification.count">({{ notification.count }}) </ng-container>
+    </span>
+  </alert>
+  <alert
+    class="alert-type"
+    type="info"
+    *ngSwitchCase="notificationType.INFO"
+    [dismissOnTimeout]="timeOut"
+    [dismissible]="true"
+    (onClose)="onCloseClick($event)"
+    (onClosed)="onCloseClick($event)"
+  >
+    <span
+      ><i class="zmdi zmdi-info"></i>{{ notification.message }}
+      <ng-container *ngIf="notification.count">({{ notification.count }})</ng-container>
+    </span>
+  </alert>
+  <alert
+    class="alert-type"
+    type="warning"
+    *ngSwitchCase="notificationType.WARNING"
+    [dismissOnTimeout]="timeOut"
+    [dismissible]="true"
+    (onClose)="onCloseClick($event)"
+    (onClosed)="onCloseClick($event)"
+  >
+    <span
+      ><i class="zmdi zmdi-alert-circle"></i>{{ notification.message }}
+      <ng-container *ngIf="notification.count">({{ notification.count }})</ng-container>
+    </span>
+  </alert>
+</span>

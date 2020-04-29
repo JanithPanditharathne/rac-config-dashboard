@@ -1,0 +1,21 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.alert-type {
+  padding: 0;
+
+  .alert-dismissible {
+    padding: 0;
+  }
+
+  span {
+    @include font-size(.8, 1.2);
+    align-items: center;
+    display: flex;
+
+    i {
+      @include font-size(2.3, 2.4);
+      padding-right: 1rem;
+    }
+  }
+}
