@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BundleComponent } from './components';
+import { BundleComponent, BundleUpsertComponent } from './components';
+import { FormAction } from '../../shared/shared-common/enums';
+import { BundleResolver } from './resolvers';
 
 /**
  * Represent application bundle module routes.
@@ -16,6 +18,27 @@ const featureRoutes: Routes = [
     canActivate: [],
     component: BundleComponent,
     path: 'list'
+  },
+  {
+    canActivate: [],
+    canDeactivate: [],
+    component: BundleUpsertComponent,
+    path: 'add',
+    data: {
+      formAction: FormAction.ADD,
+    }
+  },
+  {
+    canActivate: [],
+    canDeactivate: [],
+    component: BundleUpsertComponent,
+    path: 'edit/:id',
+    resolve: {
+      bundle: BundleResolver
+    },
+    data: {
+      formAction: FormAction.EDIT,
+    }
   }
 ];
 

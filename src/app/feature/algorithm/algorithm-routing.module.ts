@@ -39,7 +39,7 @@ const featureRoutes: Routes = [
     data: {
       formAction: FormAction.EDIT,
     }
-  },
+  }
 ];
 
 /**

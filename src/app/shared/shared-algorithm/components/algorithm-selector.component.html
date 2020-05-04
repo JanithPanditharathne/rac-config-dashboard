@@ -1,0 +1,97 @@
+<div class="page-content add-algorithm" #algorithmSelectorFormParent>
+    <div class="row">
+        <div class="col-lg-12">
+            <form [formGroup]="algorithmsFormGroup">
+                <div class="form-container pt-0">
+                    <div class="form-group" [class.input-error]="isInvalid('selectedAlgorithm')">
+                        <label
+                        >Select Algorithm
+                            <ng-dropdown
+                                    *ngIf="algorithmDropdownData"
+                                    [id]="'algorithm-dropdown-data'"
+                                    [selectTrackBy]="'id'"
+                                    [displayTrackBy]="'name'"
+                                    [formControlName]="'selectedAlgorithm'"
+                                    [relativeParentElement]="algorithmSelectorFormParent"
+                                    [options]="algorithmDropdownData"
+                                    [menuWidth]="600"
+                                    [selectMode]="dropdownSelectMode"
+                                    [filterable]="true"
+                                    [closeMenuOnSelect]="true"
+                                    (selectChange)="onAlgorithmChange($event)"
+                            >
+                            </ng-dropdown>
+                        </label>
+                        <div class="errors input-error-label" [hidden]="!isInvalid('algorithms')">
+                            <span>Algorithm is required</span>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="algorithmsFormGroup.get('description').value">
+                        <label
+                        >Description:
+                            <!--                        <span class="algorithm-text form-control display-text">-->
+                            {{ algorithmsFormGroup.get('description').value || '-' }}
+                            <!--                      </span>-->
+                        </label>
+                    </div>
+                    <div class="button-container d-flex">
+                        <app-action-button-strap>
+                            <app-action
+                                    [hidden]="!algorithmsFormGroup.get('selectedAlgorithm').value"
+                                    [type]="ActionType.ADD"
+                                    [name]="'ADD ALGORITHM TO LIST'"
+                                    [autoResolve]="true"
+                                    (actionClick)="onAlgorithmAdd()">
+                            </app-action>
+                        </app-action-button-strap>
+                    </div>
+                    <ng-data-table
+                            [id]="'algorithm-selector'"
+                            [title]="'Algorithms'"
+                            [items]="algorithmsFormGroup.get('algorithms').value"
+                            [selectTrackBy]="'algorithmID'"
+                    >
+                        <ng-data-table-column [field]="'id'" [title]="'ID'" [width]="100"></ng-data-table-column>
+                        <ng-data-table-column [title]="'Algorithm Name'" [field]="'name'"></ng-data-table-column>
+                        <ng-data-table-column [title]="'Display Text'"
+                                              [field]="'defaultDisplayText'"></ng-data-table-column>
+                        <ng-data-table-column [title]="'Action'" [width]="120">
+                            <ng-template let-row="row" #ngDataTableCell>
+                                <td>
+                                    <app-table-actions-column>
+                                        <app-table-action
+                                                [type]="ColumnActionType.MOVE_UP"
+                                                [tooltip]="'Move Up'"
+                                                [disable]="isMoveUpButtonDisabled(row)"
+                                                (actionClick)="onAlgorithmOrderChange(row.index - 1, false)"
+                                        >
+                                        </app-table-action>
+                                        <app-table-action
+                                                [type]="ColumnActionType.MOVE_DOWN"
+                                                [tooltip]="'Move Down'"
+                                                [disable]="isMoveDownButtonDisabled(row)"
+                                                (actionClick)="onAlgorithmOrderChange(row.index - 1, true)"
+                                        >
+                                        </app-table-action>
+                                        <app-table-action
+                                                [type]="ColumnActionType.DELETE"
+                                                [tooltip]="'Delete Algorithm'"
+                                                (actionClick)="onAlgorithmDelete(row)"
+                                        >
+                                        </app-table-action>
+                                    </app-table-actions-column>
+                                </td>
+                            </ng-template>
+                        </ng-data-table-column>
+                        <ng-template #ngDataTableNoRecords>
+                            <div class="ng-data-table-no-records-message">
+                                <h1>No algorithm(s) have been added</h1>
+                                <h2>Please select algorithm(s).</h2>
+                            </div>
+                        </ng-template>
+                    </ng-data-table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

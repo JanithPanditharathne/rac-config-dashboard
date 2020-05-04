@@ -1,10 +1,11 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
-import { NumberRangeValidationArgs } from "../models";
+import { NumberRangeValidationArgs } from '../models';
 
 export class CustomFormValidator {
   // regex patterns
   public static username_regex: RegExp = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d]))*$/i;
+  public static integer_regex: RegExp = /^\d*$/;
   public static password_regex: RegExp = /^(?:[0-9a-zA-Z!@#$%^&*])*$/;
 
   public static arrayMinLength(length: number): ValidatorFn {

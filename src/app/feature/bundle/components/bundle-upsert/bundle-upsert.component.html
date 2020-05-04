@@ -1,0 +1,88 @@
+<div class="page-content add-bundles">
+    <app-action-bar [breadcrumb]="actionBreadcrumb"></app-action-bar>
+    <div class="page-content-pane" *ngIf="bundleForm">
+        <div class="container-fluid relative-parent" #bundleFormParent>
+            <div class="row">
+                <div class="col-lg-6">
+                    <form [formGroup]="bundleForm">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-heading-container">
+                                    <h2>Bundle Details</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-container">
+                            <div class="form-group" [class.input-error]="isInvalid('bundleName')">
+                                <label
+                                >Bundle Name <span class="required-label">*</span>
+                                    <input class="form-control" formControlName="bundleName" maxlength="100"/>
+                                </label>
+                                <app-required-error [control]="bundleForm.get('bundleName')"
+                                                    [requiredError]="'Bundle name is required'"
+                                                    [errorType]="'required'"></app-required-error>
+                            </div>
+                            <span>Combined Enabled
+                                <div class="form-check mt-1 d-inline">
+                                    <input
+                                            class="form-check-input checkbox-input"
+                                            type="checkbox"
+                                            id="combineEnabled"
+                                            formControlName="combineEnabled"
+                                            (change)="onCombinedEnabledChange()"/>
+                                    <label class="combined-enabled-label" for="combineEnabled"></label>
+                                </div>
+                            </span>
+                            <div [hidden]="!isCombineEnabled" class="form-group"
+                                 [class.input-error]="isInvalid('combineDisplayText')">
+                                <label for="combineDisplayText"
+                                >Combine Display Text<span class="required-label">*</span>
+                                    <textarea
+                                            class="form-control"
+                                            formControlName="combineDisplayText"
+                                            id="combineDisplayText"
+                                            maxlength="2000"
+                                            [rows]="4"
+                                            [placeholder]="'Specify Combine Display Text here...'"
+                                    ></textarea>
+                                </label>
+                                <app-character-length-range-error
+                                        [control]="bundleForm.get('combineDisplayText')"
+                                        [lengthError]="'Combine Display Text must not be greater than 2000 characters long'"
+                                        [requiredError]="'Combine Display Text is required'"
+                                >
+                                </app-character-length-range-error>
+                            </div>
+                            <div class="form-group" [class.input-error]="isInvalid('defaultLimit')">
+                                <label
+                                >Default limit <span class="required-label">*</span>
+                                    <input type="number" min="0" max="999" class="form-control"
+                                           formControlName="defaultLimit"/>
+                                </label>
+                                <app-range-error
+                                        [control]="bundleForm.get('defaultLimit')"
+                                        [minError]="'Default limit should be greater than or equal to 0'"
+                                        [maxError]="'Default limit should be less than or equal to 999'"
+                                        [requiredError]="'Default limit is required'"
+                                >
+                                </app-range-error>
+                            </div>
+                            <app-algorithm-selector
+                                    [algorithmsFormGroup]="bundleForm.get('algorithms')"
+                            ></app-algorithm-selector>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-button-container">
+            <app-action-button-strap>
+                <app-action [type]="ActionType.SAVE" [name]="formAction === FormAction.ADD ? 'Create': 'Save'"
+                            [autoResolve]="false"
+                            (actionClick)="onSaveClick($event)"></app-action>
+                <app-action [type]="ActionType.CANCEL" [name]="'Cancel'"
+                            (actionClick)="redirectToBundleView()"></app-action>
+            </app-action-button-strap>
+        </div>
+    </div>
+</div>

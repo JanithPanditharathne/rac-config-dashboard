@@ -5,6 +5,8 @@ import { SharedCommonModule } from '../../shared/shared-common/shared-common.mod
 import { COMPONENTS, ENTRY_COMPONENTS, SERVICES } from './index';
 import { DataTableModule, DropdownModule } from 'ornamentum';
 import { BundleRoutingModule } from './bundle-routing.module';
+import { SharedAlgorithmModule } from '../../shared/shared-algorithm/shared-algorithm.module';
+import { SharedBundleModule } from '../../shared/shared-bundle/shared-bundle.module';
 
 /**
  * Module class for containing bundle module.
@@ -18,7 +20,9 @@ import { BundleRoutingModule } from './bundle-routing.module';
     BundleRoutingModule,
     SharedCommonModule,
     DataTableModule.forRoot(),
-    DropdownModule.forRoot()
+    DropdownModule.forRoot(),
+    SharedAlgorithmModule.forRoot(),
+    SharedBundleModule.forRoot()
   ],
   providers: [...SERVICES]
 })

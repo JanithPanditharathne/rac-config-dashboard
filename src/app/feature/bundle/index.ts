@@ -1,10 +1,12 @@
-import { BundleComponent } from './components';
+import { BundleComponent, BundleUpsertComponent } from './components';
+import { BundleResolver } from './resolvers';
 
 /**
  * Export all bundle components.
  */
 export const COMPONENTS = [
-  BundleComponent
+  BundleComponent,
+  BundleUpsertComponent
 ];
 
 /**
@@ -15,4 +17,6 @@ export const ENTRY_COMPONENTS = [];
 /**
  * Export all bundle services.
  */
-export const SERVICES = [];
+export const SERVICES = [
+  BundleResolver
+];

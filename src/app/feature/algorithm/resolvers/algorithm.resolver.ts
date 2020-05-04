@@ -1,8 +1,8 @@
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Algorithm } from '../models/algorithm.model';
-import { AlgorithmService } from '../services';
 import { Observable } from 'rxjs';
+import { AlgorithmService } from '../../../shared/shared-algorithm/services';
 
 @Injectable()
 export class AlgorithmResolver implements Resolve<Algorithm> {

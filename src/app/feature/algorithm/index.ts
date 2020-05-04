@@ -3,8 +3,6 @@ import {
   AlgorithmUpsertComponent
 } from './components';
 
-import { AlgorithmService } from './services';
-
 import { AlgorithmResolver } from './resolvers';
 
 /**
@@ -24,4 +22,4 @@ export const ENTRY_COMPONENTS = [];
 /**
  * Export all algorithms services.
  */
-export const SERVICES = [AlgorithmService, AlgorithmResolver];
+export const SERVICES = [AlgorithmResolver];

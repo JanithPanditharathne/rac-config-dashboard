@@ -5,6 +5,7 @@ import { SharedCommonModule } from '../../shared/shared-common/shared-common.mod
 
 import { COMPONENTS, ENTRY_COMPONENTS, SERVICES } from './index';
 import { DataTableModule, DropdownModule } from 'ornamentum';
+import { SharedAlgorithmModule } from '../../shared/shared-algorithm/shared-algorithm.module';
 
 /**
  * Module class for containing algorithm module.
@@ -18,7 +19,8 @@ import { DataTableModule, DropdownModule } from 'ornamentum';
     AlgorithmRoutingModule,
     SharedCommonModule,
     DataTableModule.forRoot(),
-    DropdownModule.forRoot()
+    DropdownModule.forRoot(),
+    SharedAlgorithmModule.forRoot()
   ],
   providers: [...SERVICES]
 })

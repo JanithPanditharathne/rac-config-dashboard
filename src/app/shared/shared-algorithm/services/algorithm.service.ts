@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Algorithm } from '../models/algorithm.model';
-import { DisplayAlgorithm } from '../models/display-algorithm.model';
+import { Algorithm } from '../../../feature/algorithm/models/algorithm.model';
+import { DisplayAlgorithm } from '../../../feature/algorithm/models/display-algorithm.model';
 import { SuccessResponse } from '../../../core/models';
 
 /**
@@ -53,7 +53,7 @@ export class AlgorithmService {
 
   /**
    * Responsible for making a DELETE call to delete a selected algorithm.
-   * @param {string} algorithmId - Bundle id
+   * @param {string} algorithmId - Algorithm id
    * @returns {Observable<SuccessResponse>} Response
    */
   public deleteAlgorithm(algorithmId: string) {
