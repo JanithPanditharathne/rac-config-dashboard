@@ -8,8 +8,8 @@ import { Algorithm } from '../../models/algorithm.model';
 import { NotificationService } from '../../../../core/services';
 import { AlgorithmConstants } from '../../algorithm.constants';
 import { AlertType, SuccessStatus } from '../../../../core/enums';
-import { AlgorithmService } from '../../services';
 import { SuccessResponse } from '../../../../core/models';
+import { AlgorithmService } from '../../../../shared/shared-algorithm/services';
 
 /**
  * Component class for showing algorithm upsert view.

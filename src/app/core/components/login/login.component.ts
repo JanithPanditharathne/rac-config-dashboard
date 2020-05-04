@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
 
-  private isAuthorized = true;
+  public isAuthorized = true;
 
   constructor(
     private fb: FormBuilder,

@@ -57,13 +57,13 @@
                         <app-table-actions-column>
                             <app-table-action
                                     [type]="ColumnActionType.EDIT"
-                                    [tooltip]="'Edit Bundle'"
+                                    [tooltip]="'Edit Algorithm'"
                                     (actionClick)="onEditClick(row.item.id)"
                             >
                             </app-table-action>
                             <app-table-action
                                     [type]="ColumnActionType.DELETE"
-                                    [tooltip]="'Delete Bundle'"
+                                    [tooltip]="'Delete Algorithm'"
                                     (actionClick)="openDeleteConfirmModal(row.item.id, row.item.name)"
                             >
                             </app-table-action>

@@ -35,7 +35,7 @@
                                     </div>
                                     <div class="form-group" [class.input-error]="isInvalid('algorithmName')">
                                         <label for="algorithmName"
-                                        >Algorithm Name<span class="required-label">*</span>
+                                        >Name<span class="required-label">*</span>
                                             <input class="form-control" type="text" formControlName="algorithmName"
                                                    placeholder="Algorithm Name" id="algorithmName"/>
                                         </label>
@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="form-group" [class.input-error]="isInvalid('description')">
                                         <label for="description"
-                                        >Description
+                                        >Description<span class="required-label">*</span>
                                             <textarea
                                                     class="form-control"
                                                     formControlName="description"
@@ -61,18 +61,20 @@
                                         <app-character-length-range-error
                                                 [control]="algorithmForm.get('description')"
                                                 [lengthError]="'Algorithm description must not be greater than 2000 characters long'"
+                                                [requiredError]="'Algorithm description is required'"
                                         >
                                         </app-character-length-range-error>
                                     </div>
                                     <div class="form-group" [class.input-error]="isInvalid('displayText')">
                                         <label for="displayText"
-                                        >Display Text
+                                        >Default Display Text<span class="required-label">*</span>
                                             <input class="form-control" type="text" formControlName="displayText"
                                                    placeholder="Display Text" id="displayText"/>
                                         </label>
                                         <app-character-length-range-error
                                                 [control]="algorithmForm.get('displayText')"
                                                 [lengthError]="'Algorithm display text must not be greater than 200 characters long'"
+                                                [requiredError]="'Algorithm default display text is required'"
                                         >
                                         </app-character-length-range-error>
                                     </div>

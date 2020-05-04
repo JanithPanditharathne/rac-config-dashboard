@@ -8,12 +8,12 @@ import { DataFetchMode, DataTableComponent } from 'ornamentum';
 import { Observable } from 'rxjs';
 import { Algorithm } from '../models/algorithm.model';
 import { map } from 'rxjs/operators';
-import { AlgorithmService } from '../services';
 import { DisplayAlgorithm } from '../models/display-algorithm.model';
 import { Router } from '@angular/router';
 import { AlertType, SuccessStatus } from '../../../core/enums';
 import { NotificationService } from '../../../core/services';
 import { SuccessResponse } from '../../../core/models';
+import { AlgorithmService } from '../../../shared/shared-algorithm/services';
 
 /**
  * Class representing algorithm component.
