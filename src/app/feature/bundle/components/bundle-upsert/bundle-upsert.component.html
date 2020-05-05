@@ -33,7 +33,7 @@
                                     <label class="combined-enabled-label" for="combineEnabled"></label>
                                 </div>
                             </span>
-                            <div [hidden]="!isCombineEnabled" class="form-group"
+                            <div [hidden]="!bundleForm.get('combineEnabled').value" class="form-group"
                                  [class.input-error]="isInvalid('combineDisplayText')">
                                 <label for="combineDisplayText"
                                 >Combine Display Text<span class="required-label">*</span>
@@ -54,14 +54,24 @@
                                 </app-character-length-range-error>
                             </div>
                             <div class="form-group" [class.input-error]="isInvalid('defaultLimit')">
-                                <label
-                                >Default limit <span class="required-label">*</span>
-                                    <input type="number" min="0" max="999" class="form-control"
+                                <span> Default limit
+                                    <div class="form-check mt-1 d-inline">
+                                        <input
+                                                class="form-check-input checkbox-input"
+                                                type="checkbox"
+                                                id="defaultLimitEnabled"
+                                                formControlName="defaultLimitEnabled"
+                                                (change)="onDefaultLimitEnabledChange()"/>
+                                        <label class="default-limit-enabled-label" for="defaultLimitEnabled"></label>
+                                    </div>
+                                </span>
+                                <div [hidden]="!bundleForm.get('defaultLimitEnabled').value">
+                                    <input type="number" min="1" max="999" class="form-control"
                                            formControlName="defaultLimit"/>
-                                </label>
+                                </div>
                                 <app-range-error
                                         [control]="bundleForm.get('defaultLimit')"
-                                        [minError]="'Default limit should be greater than or equal to 0'"
+                                        [minError]="'Default limit should be greater than or equal to 1'"
                                         [maxError]="'Default limit should be less than or equal to 999'"
                                         [requiredError]="'Default limit is required'"
                                 >

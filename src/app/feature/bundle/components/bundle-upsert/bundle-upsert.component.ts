@@ -26,13 +26,11 @@ import { AlgorithmUtilityService } from '../../../../shared/shared-algorithm/ser
 export class BundleUpsertComponent implements OnInit {
   public ActionType = ActionType;
   public FormAction = FormAction;
+  public actionBreadcrumb: ActionBreadcrumb[];
 
   private bundle: Bundle;
   private formAction: FormAction;
   public bundleForm: FormGroup;
-
-  public actionBreadcrumb: ActionBreadcrumb[];
-  public isCombineEnabled = false;
 
   constructor(
     protected fb: FormBuilder,
@@ -53,7 +51,6 @@ export class BundleUpsertComponent implements OnInit {
     this.route.data.subscribe((data: { bundle: Bundle; formAction: FormAction }) => {
       if (data.bundle) {
         this.bundle = data.bundle;
-        this.isCombineEnabled = data.bundle.combineEnabled;
       }
 
       this.formAction = data.formAction;
@@ -78,6 +75,7 @@ export class BundleUpsertComponent implements OnInit {
 
     this.buildFormGroup();
     this.onCombinedEnabledChange();
+    this.onDefaultLimitEnabledChange();
   }
 
   private buildFormGroup() {
@@ -86,10 +84,11 @@ export class BundleUpsertComponent implements OnInit {
         bundleName: [this.bundle.name, Validators.required],
         combineEnabled: [this.bundle.combineEnabled],
         combineDisplayText: [this.bundle.combineDisplayText],
+        defaultLimitEnabled: [this.bundle.defaultLimit > 0],
         defaultLimit: [
           this.bundle.defaultLimit,
           Validators.compose([
-            Validators.min(0),
+            Validators.min(1),
             Validators.max(999),
             CustomFormValidator.regexPattern(CustomFormValidator.integer_regex)
           ])
@@ -104,10 +103,11 @@ export class BundleUpsertComponent implements OnInit {
       bundleName: [null, Validators.required],
       combineEnabled: [null],
       combineDisplayText: [null],
+      defaultLimitEnabled: [false],
       defaultLimit: [
-        0,
+        5,
         Validators.compose([
-          Validators.min(0),
+          Validators.min(1),
           Validators.max(999),
           CustomFormValidator.regexPattern(CustomFormValidator.integer_regex)
         ])
@@ -122,12 +122,21 @@ export class BundleUpsertComponent implements OnInit {
     return FormValidator.isInvalidControl(this.bundleForm.get(controlName));
   }
 
-  public onCombinedEnabledChange() {
-    this.isCombineEnabled = this.bundleForm.get('combineEnabled').value;
-    if (this.isCombineEnabled) {
+  public onCombinedEnabledChange(): void {
+    const isCombineEnabled = this.bundleForm.get('combineEnabled').value;
+    if (isCombineEnabled) {
       FormValidator.setControlValidators(this.bundleForm.get('combineDisplayText'), Validators.required);
     } else {
       FormValidator.clearControlValidators(this.bundleForm.get('combineDisplayText'));
+    }
+  }
+
+  public onDefaultLimitEnabledChange(): void {
+    const isDefaultLimitEnabled = this.bundleForm.get('defaultLimitEnabled').value;
+    if (isDefaultLimitEnabled) {
+      FormValidator.setControlValidators(this.bundleForm.get('defaultLimit'), Validators.required);
+    } else {
+      FormValidator.clearControlValidators(this.bundleForm.get('defaultLimit'));
     }
   }
 
@@ -143,7 +152,7 @@ export class BundleUpsertComponent implements OnInit {
     const formValue = this.bundleForm.value;
     const bundle: Bundle = {
       name: formValue.bundleName,
-      defaultLimit: formValue.defaultLimit,
+      defaultLimit: formValue.defaultLimitEnabled ? formValue.defaultLimit : 0,
       algorithms: AlgorithmUtilityService.mapAlgorithmList(formValue.algorithms.algorithms),
       combineEnabled: formValue.combineEnabled || false,
       combineDisplayText: formValue.combineEnabled ? formValue.combineDisplayText : null,

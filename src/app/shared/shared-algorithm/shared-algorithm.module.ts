@@ -8,6 +8,7 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
 import { COMPONENTS, DIRECTIVES, ENTRY_COMPONENTS, PIPES, SERVICES } from './index';
 import { DataTableModule, DropdownModule } from 'ornamentum';
 import { SharedCommonModule } from '../shared-common/shared-common.module';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 /**
  * Application shared algorithm module (contains all shared algorithm components, directives, pipes, models and services).
@@ -24,6 +25,7 @@ import { SharedCommonModule } from '../shared-common/shared-common.module';
     ReactiveFormsModule,
     SharedCommonModule.forRoot(),
     PopoverModule.forRoot(),
+    ModalModule.forRoot(),
     DataTableModule.forRoot(),
     DropdownModule.forRoot(),
   ]

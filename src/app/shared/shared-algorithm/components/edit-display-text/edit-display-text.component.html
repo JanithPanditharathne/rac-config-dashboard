@@ -1,0 +1,34 @@
+<form class="form-wrapper algorithm-edit-modal" *ngIf="displayTextForm" [formGroup]="displayTextForm" novalidate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Edit Algorithm Display Text</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancelClick()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row form-container pt-0">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label
+                    >Default display text:
+                        <input class="form-control" formControlName="defaultText" maxlength="200"
+                               [placeholder]="'Specify default display text...'"/>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer button-container justify-content-end">
+        <app-action-button-strap>
+            <app-action
+                    [type]="ActionType.SAVE"
+                    [name]="'Update'"
+                    [disable]="displayTextForm.pristine"
+                    [autoResolve]="false"
+                    (actionClick)="onSaveClick($event)"
+            >
+            </app-action>
+            <app-action [type]="ActionType.CANCEL" [name]="'Cancel'" (actionClick)="onCancelClick()"></app-action>
+        </app-action-button-strap>
+    </div>
+</form>

@@ -7,6 +7,8 @@ import { DataTableRow, DropdownSelectMode } from 'ornamentum';
 import { Algorithm } from '../../../feature/algorithm/models/algorithm.model';
 import { DisplayAlgorithm } from '../../../feature/algorithm/models/display-algorithm.model';
 import { AlgorithmService } from '../services';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { EditDisplayTextComponent } from './edit-display-text/edit-display-text.component';
 
 /**
  * Class representing algorithm selector component.
@@ -25,7 +27,8 @@ export class AlgorithmSelectorComponent {
   public algorithmDropdownData: Algorithm[];
 
   constructor(
-    private algorithmService: AlgorithmService
+    private algorithmService: AlgorithmService,
+    private modalService: BsModalService
   ) {
     this.algorithmService.getAlgorithms().subscribe((displayAlgorithm: DisplayAlgorithm) => {
       this.algorithmDropdownData = displayAlgorithm.algorithms;
@@ -122,4 +125,18 @@ export class AlgorithmSelectorComponent {
     return !!currentAlgorithms.find((algorithm: Algorithm) => algorithm.id === newAlgorithm.id);
   }
 
+  public onEditDisplayText(row: DataTableRow<Algorithm>) {
+    let modalRef: BsModalRef;
+
+    modalRef = this.modalService.show(EditDisplayTextComponent, {class: 'display-text-edit-confirm-popup', ignoreBackdropClick: true});
+    modalRef.content.setDisplayTextFormData(row.item.defaultDisplayText);
+    modalRef.content.autoResolve = false;
+    modalRef.content.saveClick.subscribe((text: string) => {
+      row.item.customDisplayText = text;
+    });
+  }
+
+  public renderDisplayText(algorithm: Algorithm) {
+    return algorithm.customDisplayText ? algorithm.customDisplayText : algorithm.defaultDisplayText;
+  }
 }

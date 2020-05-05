@@ -1,5 +1,5 @@
 // components
-import { AlgorithmSelectorComponent } from './components';
+import { AlgorithmSelectorComponent, EditDisplayTextComponent } from './components';
 
 // services
 import { AlgorithmService, AlgorithmUtilityService } from './services';
@@ -12,13 +12,14 @@ import { AlgorithmService, AlgorithmUtilityService } from './services';
 /**
  * Export all shared entry components.
  */
-export const ENTRY_COMPONENTS = [];
+export const ENTRY_COMPONENTS = [EditDisplayTextComponent];
 
 /**
  * Export all shared components.
  */
 export const COMPONENTS = [
-  AlgorithmSelectorComponent
+  AlgorithmSelectorComponent,
+  EditDisplayTextComponent
 ];
 
 /**

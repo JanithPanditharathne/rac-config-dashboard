@@ -11,7 +11,7 @@ export class AlgorithmUtilityService {
         id: algorithm.id,
         name: algorithm.name,
         defaultDisplayText: algorithm.defaultDisplayText,
-        customDisplayText: algorithm.defaultDisplayText
+        customDisplayText: algorithm.customDisplayText || null
       } as Algorithm;
     });
   }
