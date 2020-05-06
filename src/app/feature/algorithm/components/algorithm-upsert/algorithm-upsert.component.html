@@ -23,6 +23,7 @@
                                                     id="algorithmId"
                                                     min="1"
                                                     max="10000"
+                                                    [attr.disabled]="isEdit || null"
                                             />
                                         </label>
                                         <app-range-error
@@ -87,7 +88,7 @@
         </div>
         <div class="footer-button-container">
             <app-action-button-strap>
-                <app-action [type]="ActionType.SAVE" [name]="formAction === FormAction.ADD ? 'Create': 'Save'"
+                <app-action [type]="ActionType.SAVE" [name]="isEdit ? 'Save' : 'Create'"
                             [autoResolve]="false"
                             (actionClick)="onSaveClick($event)"></app-action>
                 <app-action [type]="ActionType.CANCEL" [name]="'Cancel'"

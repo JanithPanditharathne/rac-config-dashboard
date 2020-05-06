@@ -22,11 +22,11 @@ import { AlgorithmService } from '../../../../shared/shared-algorithm/services';
 })
 export class AlgorithmUpsertComponent implements OnInit {
   public ActionType = ActionType;
-  public FormAction = FormAction;
 
   public algorithmForm: FormGroup;
   public algorithm: Algorithm;
   public formAction: FormAction;
+  public isEdit = false;
 
   public actionBreadcrumb: ActionBreadcrumb[];
 
@@ -57,6 +57,7 @@ export class AlgorithmUpsertComponent implements OnInit {
       this.formAction = data.formAction;
       switch (this.formAction) {
         case FormAction.EDIT:
+          this.isEdit = true;
           if (!this.algorithm) {
             break;
           }

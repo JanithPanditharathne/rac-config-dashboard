@@ -48,7 +48,7 @@ export class AlgorithmService {
    * @returns {Observable<SuccessResponse>} Response.
    */
   public updateAlgorithm(algorithm: Algorithm) {
-    return this.http.put<SuccessResponse>(`${AlgorithmService.algorithms_url}`, algorithm);
+    return this.http.put<SuccessResponse>(`${AlgorithmService.algorithms_url}/${algorithm.id}`, algorithm);
   }
 
   /**
