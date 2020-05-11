@@ -1,10 +1,70 @@
 <div class="page-content">
     <app-loading-overlay *ngIf="isLoading"></app-loading-overlay>
     <app-action-bar [breadcrumb]="actionBreadcrumb">
-        <ng-template>
+        <ng-template #actionButtonStrap>
             <app-action-button-strap>
-<!--                <app-action [type]="ActionType.ADD" [name]="'Add New'" (actionClick)="onAddClick()"></app-action>-->
+                <app-action [type]="ActionType.ADD" [name]="'Add New'" (actionClick)="onAddClick()"></app-action>
             </app-action-button-strap>
         </ng-template>
     </app-action-bar>
+    <div class="page-content-pane" (appContainerResponsive)="containerResponsive($event)" [deltaHeight]="290">
+        <ng-data-table
+                [id]="'recs_data_summary'"
+                [title]="'Recommendations'"
+                [contentHeight]="height"
+                [limit]="30"
+                [dataSource]="dataSource"
+                [showHeader]="true"
+                [showColumnSelector]="true"
+                [showRefreshButton]="true"
+                [showSubstituteRows]="true"
+                [pageable]="true"
+                [persistTableState]="false"
+                [showLoadingSpinner]="true"
+                (init)="onDataTableInit($event)"
+        >
+            <ng-data-table-column
+                    [field]="'id'"
+                    [title]="'ID'"
+                    [filterPlaceholder]="'Filter'"
+                    [sortable]="true"
+                    [filterable]="true"
+                    [showInColumnSelector]="false"
+                    [width]="100"
+            >
+            </ng-data-table-column>
+            <ng-data-table-column
+                    [field]="'name'"
+                    [title]="'Rec Name'"
+                    [filterPlaceholder]="'Filter'"
+                    [filterable]="true">
+            </ng-data-table-column>
+            <ng-data-table-column
+                    [field]="'bundle.name'"
+                    [title]="'Bundle Name'"
+                    [filterPlaceholder]="'Filter'"
+                    [filterable]="true">
+            </ng-data-table-column>
+            <ng-data-table-column [title]="'Action'" [showInColumnSelector]="false" [width]="100">
+                <ng-template #ngDataTableCell let-row="row" let-rowSpan="rowSpan" let-spanIndex="spanIndex">
+                    <td [attr.rowspan]="rowSpan" *ngIf="!spanIndex" (click)="$event.stopPropagation()">
+                        <app-table-actions-column>
+                            <app-table-action
+                                    [type]="ColumnActionType.EDIT"
+                                    [tooltip]="'Edit Recommendation'"
+                                    (actionClick)="onEditClick(row.item.id)"
+                            >
+                            </app-table-action>
+                            <app-table-action
+                                    [type]="ColumnActionType.DELETE"
+                                    [tooltip]="'Delete Recommendation'"
+                                    (actionClick)="openDeleteConfirmModal(row.item.id, row.item.name)"
+                            >
+                            </app-table-action>
+                        </app-table-actions-column>
+                    </td>
+                </ng-template>
+            </ng-data-table-column>
+        </ng-data-table>
+    </div>
 </div>

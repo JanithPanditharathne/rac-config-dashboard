@@ -21,7 +21,7 @@ const featureRoutes: Routes = [
   },
   {
     loadChildren: () => import('./recommendation/recommendation.module').then(m => m.RecommendationModule),
-    path: 'recommendation'
+    path: 'recommendations'
   },
   {
     loadChildren: () => import('./algorithm/algorithm.module').then(m => m.AlgorithmModule),

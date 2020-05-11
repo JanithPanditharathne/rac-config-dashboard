@@ -17,6 +17,9 @@ import {
   CharacterLengthRangeErrorComponent,
 } from './components';
 
+// services
+import { ConfirmDialogService } from './services/confirm-dialog.service';
+
 // directives
 import { ContainerResponsiveDirective, ErrorFocusDirective } from './directives';
 
@@ -58,6 +61,7 @@ export const DIRECTIVES = [ContainerResponsiveDirective, ErrorFocusDirective];
  * Export all shared services.
  */
 export const SERVICES = [
+  ConfirmDialogService
 ];
 
 /**

@@ -1,18 +1,29 @@
-/**
- * Export all bundle components.
- */
-import { RecommendationComponent } from './components';
+// components
+import { RecommendationComponent, RecommendationUpsertComponent } from './components';
 
+// services
+import { RecommendationService } from './services';
+
+// resolvers
+import { RecommendationResolver } from './resolvers';
+
+/**
+ * Export all recommendation components.
+ */
 export const COMPONENTS = [
-  RecommendationComponent
+  RecommendationComponent,
+  RecommendationUpsertComponent
 ];
 
 /**
- * Export all bundle entry components.
+ * Export all recommendation entry components.
  */
 export const ENTRY_COMPONENTS = [];
 
 /**
- * Export all bundle services.
+ * Export all recommendation services.
  */
-export const SERVICES = [];
+export const SERVICES = [
+  RecommendationService,
+  RecommendationResolver
+];

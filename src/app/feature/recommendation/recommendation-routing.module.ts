@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RecommendationComponent } from './components';
+import { RecommendationComponent, RecommendationUpsertComponent } from './components';
+import { CanDeactivateGuard } from '../../shared/shared-common/services';
+import { FormAction } from '../../shared/shared-common/enums';
+import { RecommendationResolver } from './resolvers';
 
 /**
  * Represent application recommendation module routes.
@@ -16,6 +19,27 @@ const featureRoutes: Routes = [
     canActivate: [],
     component: RecommendationComponent,
     path: 'list'
+  },
+  {
+    canActivate: [],
+    canDeactivate: [CanDeactivateGuard],
+    component: RecommendationUpsertComponent,
+    path: 'add',
+    data: {
+      formAction: FormAction.ADD,
+    }
+  },
+  {
+    canActivate: [],
+    canDeactivate: [CanDeactivateGuard],
+    component: RecommendationUpsertComponent,
+    path: 'edit/:id',
+    resolve: {
+      rec: RecommendationResolver
+    },
+    data: {
+      formAction: FormAction.EDIT,
+    }
   }
 ];
 

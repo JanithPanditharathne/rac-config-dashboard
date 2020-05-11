@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AlgorithmSelector } from '../models/algorithm-selector.model';
 import { CustomFormValidator, FormValidator } from '../../shared-common/services';
@@ -59,7 +59,7 @@ export class AlgorithmSelectorComponent {
 
   public isMoveDownButtonDisabled(row: DataTableRow<Algorithm>): boolean {
     const selectedAlgorithms: Algorithm[] = this.algorithmsFormGroup.get('algorithms').value;
-    return row.index === selectedAlgorithms.length;
+    return selectedAlgorithms && row.index === selectedAlgorithms.length;
   }
 
   public onAlgorithmOrderChange(index: number, up: boolean): void {

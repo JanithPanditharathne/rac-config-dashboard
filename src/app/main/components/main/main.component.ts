@@ -34,8 +34,8 @@ export class AppMainComponent implements OnInit {
       {
         access: [],
         iconClasses: ['zmdi', 'zmdi zmdi-layers', 'menu-icon'],
-        routePath: 'recommendation',
-        title: 'Recommendation'
+        routePath: 'recommendations',
+        title: 'Recommendations'
       },
       {
         access: [],

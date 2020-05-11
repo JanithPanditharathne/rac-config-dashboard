@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AlgorithmComponent, AlgorithmUpsertComponent } from './components';
 import { FormAction } from '../../shared/shared-common/enums';
 import { AlgorithmResolver } from './resolvers';
+import { CanDeactivateGuard } from '../../shared/shared-common/services';
 
 /**
  * Represent application algorithm module routes.
@@ -21,7 +22,7 @@ const featureRoutes: Routes = [
   },
   {
     canActivate: [],
-    canDeactivate: [],
+    canDeactivate: [CanDeactivateGuard],
     component: AlgorithmUpsertComponent,
     path: 'add',
     data: {
@@ -30,7 +31,7 @@ const featureRoutes: Routes = [
   },
   {
     canActivate: [],
-    canDeactivate: [],
+    canDeactivate: [CanDeactivateGuard],
     component: AlgorithmUpsertComponent,
     path: 'edit/:id',
     resolve: {

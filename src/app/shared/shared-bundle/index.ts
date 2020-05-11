@@ -1,4 +1,5 @@
 // components
+import { BundleFormComponent } from './components';
 
 // directives
 
@@ -16,6 +17,7 @@ export const ENTRY_COMPONENTS = [];
  * Export all shared components.
  */
 export const COMPONENTS = [
+  BundleFormComponent
 ];
 
 /**

@@ -27,7 +27,7 @@ export class AlgorithmService {
   /**
    * Responsible for making a GET call to get algorithm details.
    * @param {string} algorithmId Algorithm id
-   * @returns {Observable<Algorithm>} Bundle details.
+   * @returns {Observable<Algorithm>} Algorithm details.
    */
   public getAlgorithmDetails(algorithmId: number): Observable<Algorithm> {
     return this.http.get<Algorithm>(`${AlgorithmService.algorithms_url}/${algorithmId}`);

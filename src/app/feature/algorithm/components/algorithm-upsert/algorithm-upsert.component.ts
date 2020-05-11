@@ -10,6 +10,8 @@ import { AlgorithmConstants } from '../../algorithm.constants';
 import { AlertType, SuccessStatus } from '../../../../core/enums';
 import { SuccessResponse } from '../../../../core/models';
 import { AlgorithmService } from '../../../../shared/shared-algorithm/services';
+import { Observable } from 'rxjs';
+import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
 
 /**
  * Component class for showing algorithm upsert view.
@@ -35,6 +37,7 @@ export class AlgorithmUpsertComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private dialogService: ConfirmDialogService,
     private notificationService: NotificationService
   ) {
     this.actionBreadcrumb = [
@@ -169,5 +172,17 @@ export class AlgorithmUpsertComponent implements OnInit {
 
   public redirectToAlgorithmView(): void {
     this.router.navigate(['algorithms']);
+  }
+
+  /**
+   * The method to get dialog confirmation will be called by CanDeactivateGuard
+   * @return {Observable<boolean> | boolean}
+   */
+  public canDeactivate(): Observable<boolean> | boolean {
+    if (this.algorithmForm.dirty) {
+      return this.dialogService.routeDiscardConfirm();
+    }
+
+    return true;
   }
 }
