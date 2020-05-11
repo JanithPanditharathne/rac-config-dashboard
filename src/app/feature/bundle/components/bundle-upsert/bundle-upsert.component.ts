@@ -188,6 +188,7 @@ export class BundleUpsertComponent implements OnInit {
   }
 
   public editBundle(bundle: Bundle, actionClickArgs: ActionClickEventArgs) {
+    bundle.id = this.bundle.id;
     this.bundleService.updateBundle(bundle).subscribe(
       (response: SuccessResponse) => {
         actionClickArgs.resolve();

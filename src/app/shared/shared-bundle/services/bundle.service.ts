@@ -48,7 +48,7 @@ export class BundleService {
    * @returns {Observable<SuccessResponse>} Response.
    */
   public updateBundle(bundle: Bundle) {
-    return this.http.put<SuccessResponse>(`${BundleService.bundles_url}`, bundle);
+    return this.http.put<SuccessResponse>(`${BundleService.bundles_url}/${bundle.id}`, bundle);
   }
 
   /**
