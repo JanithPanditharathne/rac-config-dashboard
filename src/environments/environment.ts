@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  baseUrl: window['baseUrl']
+  baseUrl: window['baseUrl'] || 'http://localhost:3334'
 };
