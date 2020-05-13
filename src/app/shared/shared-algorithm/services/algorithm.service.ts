@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Algorithm } from '../../../feature/algorithm/models/algorithm.model';
 import { DisplayAlgorithm } from '../../../feature/algorithm/models/display-algorithm.model';
 import { SuccessResponse } from '../../../core/models';
+import { environment } from '../../../../environments/environment';
 
 /**
  * Class representing algorithms service.
@@ -21,7 +22,7 @@ export class AlgorithmService {
    * @returns {Observable<Algorithm[]>} - algorithms array.
    */
   public getAlgorithms(): Observable<DisplayAlgorithm> {
-    return this.http.get<DisplayAlgorithm>(`${AlgorithmService.algorithms_url}`);
+    return this.http.get<DisplayAlgorithm>(`${environment.baseUrl}${AlgorithmService.algorithms_url}`);
   }
 
   /**
@@ -30,7 +31,7 @@ export class AlgorithmService {
    * @returns {Observable<Algorithm>} Algorithm details.
    */
   public getAlgorithmDetails(algorithmId: number): Observable<Algorithm> {
-    return this.http.get<Algorithm>(`${AlgorithmService.algorithms_url}/${algorithmId}`);
+    return this.http.get<Algorithm>(`${environment.baseUrl}${AlgorithmService.algorithms_url}/${algorithmId}`);
   }
 
   /**
@@ -39,7 +40,7 @@ export class AlgorithmService {
    * @returns {Observable<SuccessResponse>} Response.
    */
   public createAlgorithm(algorithm: Algorithm) {
-    return this.http.post<SuccessResponse>(`${AlgorithmService.algorithms_url}`, algorithm);
+    return this.http.post<SuccessResponse>(`${environment.baseUrl}${AlgorithmService.algorithms_url}`, algorithm);
   }
 
   /**
@@ -48,7 +49,7 @@ export class AlgorithmService {
    * @returns {Observable<SuccessResponse>} Response.
    */
   public updateAlgorithm(algorithm: Algorithm) {
-    return this.http.put<SuccessResponse>(`${AlgorithmService.algorithms_url}/${algorithm.id}`, algorithm);
+    return this.http.put<SuccessResponse>(`${environment.baseUrl}${AlgorithmService.algorithms_url}/${algorithm.id}`, algorithm);
   }
 
   /**
@@ -57,6 +58,6 @@ export class AlgorithmService {
    * @returns {Observable<SuccessResponse>} Response
    */
   public deleteAlgorithm(algorithmId: string) {
-    return this.http.delete<SuccessResponse>(`${AlgorithmService.algorithms_url}/${algorithmId}`);
+    return this.http.delete<SuccessResponse>(`${environment.baseUrl}${AlgorithmService.algorithms_url}/${algorithmId}`);
   }
 }

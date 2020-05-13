@@ -7,7 +7,7 @@
     "lint:script": "ng lint",
     "lint:style": "sass-lint --config src/.scss-lint.yml --no-exit --verbose",
     "lint": "npm run lint:script && npm run lint:style",
-    "start": "ng serve --open --proxy-config src/proxy.conf.js ",
+    "start": "ng serve --open",
     "test": "ng test",
     "test:ci": "ng test --watch=false",
     "test:coverage": "ng test --code-coverage=true",
