@@ -15,15 +15,15 @@ import {
 } from './components';
 
 // Guards
-import { AuthGuard } from './guards';
+import { AuthGuard, LoginGuard } from './guards';
 // services
 import {
   AppHttpInterceptorService,
   AuthErrorHandlerService,
   AuthService,
   ClientErrorInterceptorService,
+  CookieStorageService,
   NotificationService,
-  RoleBaseDefaultRouteService,
   UserProfileService
 } from './services';
 
@@ -49,7 +49,8 @@ export const SERVICES = [
   AuthGuard,
   AuthService,
   AuthErrorHandlerService,
-  RoleBaseDefaultRouteService,
+  CookieStorageService,
+  LoginGuard,
   {
     provide: ErrorHandler,
     useClass: ClientErrorInterceptorService

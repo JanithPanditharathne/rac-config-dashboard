@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     const profile = this.authService.currentUserProfile || null;
 
-    if (!!profile && profile.username && profile.password) {
+    if (!!profile && profile.username) {
       return of(true);
     }
 

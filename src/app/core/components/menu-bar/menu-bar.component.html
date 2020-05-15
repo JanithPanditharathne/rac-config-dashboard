@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg sticky-top" (ngClickOutside)="hideCollapsibleMenu()">
-  <a class="navbar-brand nav-brand-lg app-name-lg pointer-link" (click)="setIndexLinkActiveState()">{{ appName }}</a>
+  <a class="navbar-brand nav-brand-lg app-name-lg pointer-link" (click)="goToHomePage()">{{ appName }}</a>
   <div class="user-menu-container-sm">
     <button class="navbar-toggler" type="button" (click)="toggleMenuCollapse()">
       <i class="zmdi zmdi-menu"></i>
@@ -7,7 +7,7 @@
     <a class="navbar-brand app-name">{{ appName }}</a>
     <ul class="navbar-nav user-menu">
       <li class="profile-name">
-        <span *ngIf="profile">{{ profile.userId }}</span>
+        <span *ngIf="profile">{{ profile.username }}</span>
       </li>
       <li class="button-container">
         <button
@@ -99,7 +99,7 @@
     </ul>
     <ul class="navbar-nav user-menu user-menu-container-lg">
       <li class="profile-name">
-        <span *ngIf="profile">{{ profile.userId }}</span>
+        <span *ngIf="profile">{{ profile.username }}</span>
       </li>
       <li class="button-container">
         <button

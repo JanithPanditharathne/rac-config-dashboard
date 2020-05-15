@@ -7,7 +7,7 @@ import { MenuItem, UserProfile } from '../../../core/models';
 
 import { LogoutConfirmPopupComponent } from '../logout-confirm-popup/logout-confirm-popup.component';
 
-import { Animation } from '../../../core/services';
+import { Animation, AuthService } from '../../../core/services';
 
 /**
  * Component class for showing main view.
@@ -23,7 +23,11 @@ export class AppMainComponent implements OnInit {
   public profile: UserProfile;
   public menuItems: MenuItem[] = [];
 
-  constructor(private modalService: BsModalService, private router: Router, private route: ActivatedRoute) {
+  constructor(
+    private authService: AuthService,
+    private modalService: BsModalService,
+    private router: Router
+  ) {
     this.menuItems = [
       {
         access: [],
@@ -67,10 +71,6 @@ export class AppMainComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.route.data.subscribe((data: { profile: UserProfile }) => {
-      if (data && data.profile) {
-        this.profile = data.profile;
-      }
-    });
+    this.profile = this.authService.currentUserProfile;
   }
 }

@@ -1,14 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import {ActionClickEventArgs} from '../../../shared/shared-common/models';
+import { ActionClickEventArgs } from '../../../shared/shared-common/models';
 
-import {ActionType} from 'src/app/shared/shared-common/enums';
+import { ActionType } from 'src/app/shared/shared-common/enums';
 
-import {CustomFormValidator} from '../../../shared/shared-common/services';
-import {Router} from '@angular/router';
-import {AuthService, NotificationService} from '../../services';
-import {AlertType} from "../../enums";
+import { CustomFormValidator } from '../../../shared/shared-common/services';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services';
 
 /**
  * Component class for showing login view.
@@ -29,8 +28,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService,
-    private notificationService:NotificationService
+    private authService: AuthService
   ) {
   }
 
@@ -51,7 +49,7 @@ export class LoginComponent implements OnInit {
         Validators.minLength(8),
         Validators.maxLength(40)
       ])],
-    })
+    });
   }
 
   /**
@@ -71,10 +69,11 @@ export class LoginComponent implements OnInit {
       this.authService.authenticate({
         username: userData.username,
         password: userData.password
-      });
-      this.router.navigate(['/']).then((e) => {
-      }).catch((e) => {
-        console.error(e);
+      }).then(() => {
+        this.router.navigate(['/']).then((e) => {
+        }).catch((e) => {
+          console.error(e);
+        });
       });
       return;
     }

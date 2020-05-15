@@ -4,9 +4,10 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import { GlobalRefService } from 'ornamentum';
 
-import { UserProfileService } from '../../../core/services';
+import { AuthService, UserProfileService } from '../../../core/services';
 
 import { MainConstants } from '../../main.constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logout-confirm-popup',
@@ -17,14 +18,23 @@ export class LogoutConfirmPopupComponent {
   public title = MainConstants.popup_title;
   public message = MainConstants.popup_confirmation_message;
 
-  constructor(public modalRef: BsModalRef, private globalRefService: GlobalRefService, private userProfileService: UserProfileService) {}
+  constructor(
+    private authService: AuthService,
+    public modalRef: BsModalRef,
+    private router: Router,
+    private globalRefService: GlobalRefService,
+    private userProfileService: UserProfileService
+  ) {
+  }
 
   ngOnInit(): void {
     this.userProfileService.setLogoutPopupStatus(true);
   }
 
   public onSubmitClick(): void {
-    this.globalRefService.window.location.href = '/login';
+    this.authService.logout();
+    this.router.navigate(['login']);
+    this.modalRef.hide();
   }
 
   public onCloseClick(): void {

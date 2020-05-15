@@ -36,10 +36,10 @@ export class UnauthorizedComponent implements OnInit {
   }
 
   public navigateToLandingPage(): void {
-    if (this.profile.userGroupId === UserPermissionLevel.CONFIGURATION) {
-      this.router.navigateByUrl('/manage/sku-assortments');
-    } else {
-      this.router.navigate(['/']);
-    }
+    // if (this.profile.userGroupId === UserPermissionLevel.CONFIGURATION) {
+    //   this.router.navigateByUrl('/manage/sku-assortments');
+    // } else {
+    //   this.router.navigate(['/']);
+    // }
   }
 }

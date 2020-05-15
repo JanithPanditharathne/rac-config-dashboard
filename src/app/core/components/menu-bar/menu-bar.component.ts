@@ -45,21 +45,21 @@ export class MenuBarComponent implements AfterContentInit, OnInit {
     }
   }
 
-  public setIndexLinkActiveState(): void {
-    if (this.profile.userGroupId === UserPermissionLevel.CONFIGURATION) {
-      this.router.navigateByUrl('/manage/sku-assortments').then((data: boolean) => {
-        if (data) {
-          this.setActiveConfigUserMenuItem(this.menuItems);
-        }
-      });
-    } else {
-      this.router.navigate(['/']).then((data: boolean) => {
-        if(data) {
-          this.resetState(this.menuItems, true, false);
-        }
-      });
-    }
-  }
+  // public setIndexLinkActiveState(): void {
+  //   if (this.profile.userGroupId === UserPermissionLevel.CONFIGURATION) {
+  //     this.router.navigateByUrl('/manage/sku-assortments').then((data: boolean) => {
+  //       if (data) {
+  //         this.setActiveConfigUserMenuItem(this.menuItems);
+  //       }
+  //     });
+  //   } else {
+  //     this.router.navigate(['/']).then((data: boolean) => {
+  //       if(data) {
+  //         this.resetState(this.menuItems, true, false);
+  //       }
+  //     });
+  //   }
+  // }
 
   public resetState(menuItems: MenuItem[], active: boolean, expand: boolean): void {
     menuItems.forEach((item: MenuItem) => {
@@ -183,5 +183,9 @@ export class MenuBarComponent implements AfterContentInit, OnInit {
         this.setVisibleState(item.items);
       }
     });
+  }
+
+  public goToHomePage() {
+    this.router.navigate(['/']);
   }
 }
