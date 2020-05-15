@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { SuccessResponse } from '../../../core/models';
 import { DisplayBundle } from '../../../feature/bundle/models/display-bundle.model';
 import { Bundle } from '../../../feature/bundle/models/bundle.model';
+import { environment } from '../../../../environments/environment';
 
 /**
  * Class representing bundle service.
@@ -21,7 +22,7 @@ export class BundleService {
    * @returns {Observable<DisplayBundle[]>} - bundles array.
    */
   public getBundles(): Observable<DisplayBundle> {
-    return this.http.get<DisplayBundle>(`${BundleService.bundles_url}`);
+    return this.http.get<DisplayBundle>(`${environment.baseUrl}${BundleService.bundles_url}`);
   }
 
   /**
@@ -30,7 +31,7 @@ export class BundleService {
    * @returns {Observable<Bundle>} Bundle details.
    */
   public getBundleDetails(bundleId: number): Observable<Bundle> {
-    return this.http.get<Bundle>(`${BundleService.bundles_url}/${bundleId}`);
+    return this.http.get<Bundle>(`${environment.baseUrl}${BundleService.bundles_url}/${bundleId}`);
   }
 
   /**
@@ -39,7 +40,7 @@ export class BundleService {
    * @returns {Observable<SuccessResponse>} Response.
    */
   public createBundle(bundle: Bundle) {
-    return this.http.post<SuccessResponse>(`${BundleService.bundles_url}`, bundle);
+    return this.http.post<SuccessResponse>(`${environment.baseUrl}${BundleService.bundles_url}`, bundle);
   }
 
   /**
@@ -48,7 +49,7 @@ export class BundleService {
    * @returns {Observable<SuccessResponse>} Response.
    */
   public updateBundle(bundle: Bundle) {
-    return this.http.put<SuccessResponse>(`${BundleService.bundles_url}/${bundle.id}`, bundle);
+    return this.http.put<SuccessResponse>(`${environment.baseUrl}${BundleService.bundles_url}/${bundle.id}`, bundle);
   }
 
   /**

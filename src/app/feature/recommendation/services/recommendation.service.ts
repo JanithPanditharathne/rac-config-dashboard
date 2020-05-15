@@ -5,6 +5,7 @@ import { Recommendation } from '../models/recommendation.model';
 import { DisplayRecommendation } from '../models/display-recommendation.model';
 import { Injectable } from '@angular/core';
 import { RecommendationSave } from '../models/recommendation-save.model';
+import { environment } from '../../../../environments/environment';
 
 /**
  * Class representing rec service.
@@ -22,7 +23,7 @@ export class RecommendationService {
    * @returns {Observable<DisplayRecommendation[]>} - algorithms array.
    */
   public getRecs(): Observable<DisplayRecommendation> {
-    return this.http.get<DisplayRecommendation>(`${RecommendationService.recs_url}`);
+    return this.http.get<DisplayRecommendation>(`${environment.baseUrl}${RecommendationService.recs_url}`);
   }
 
   /**
@@ -31,7 +32,7 @@ export class RecommendationService {
    * @returns {Observable<Recommendation>} Rec details.
    */
   public getRecDetails(recId: number): Observable<Recommendation> {
-    return this.http.get<Recommendation>(`${RecommendationService.recs_url}/${recId}`);
+    return this.http.get<Recommendation>(`${environment.baseUrl}${RecommendationService.recs_url}/${recId}`);
   }
 
   /**
@@ -40,7 +41,7 @@ export class RecommendationService {
    * @returns {Observable<SuccessResponse>} Response.
    */
   public createRec(rec: RecommendationSave) {
-    return this.http.post<SuccessResponse>(`${RecommendationService.recs_url}`, rec);
+    return this.http.post<SuccessResponse>(`${environment.baseUrl}${RecommendationService.recs_url}`, rec);
   }
 
   /**
@@ -49,7 +50,7 @@ export class RecommendationService {
    * @returns {Observable<SuccessResponse>} Response.
    */
   public updateRec(rec: RecommendationSave) {
-    return this.http.put<SuccessResponse>(`${RecommendationService.recs_url}/${rec.recId}`, rec);
+    return this.http.put<SuccessResponse>(`${environment.baseUrl}${RecommendationService.recs_url}/${rec.recId}`, rec);
   }
 
   /**
@@ -58,6 +59,6 @@ export class RecommendationService {
    * @returns {Observable<SuccessResponse>} Response
    */
   public deleteRec(recId: string) {
-    return this.http.delete<SuccessResponse>(`${RecommendationService.recs_url}/${recId}`);
+    return this.http.delete<SuccessResponse>(`${environment.baseUrl}${RecommendationService.recs_url}/${recId}`);
   }
 }

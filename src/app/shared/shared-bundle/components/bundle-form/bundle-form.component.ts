@@ -140,7 +140,12 @@ export class BundleFormComponent implements OnInit {
   public onDefaultLimitEnabledChange(): void {
     const isDefaultLimitEnabled = this.bundleFormGroup.get('defaultLimitEnabled').value;
     if (isDefaultLimitEnabled) {
-      FormValidator.setControlValidators(this.bundleFormGroup.get('defaultLimit'), Validators.required);
+      FormValidator.setControlValidators(this.bundleFormGroup.get('defaultLimit'),
+        Validators.compose([
+          Validators.required,
+          Validators.min(1),
+          Validators.max(999)]
+        ));
     } else {
       FormValidator.clearControlValidators(this.bundleFormGroup.get('defaultLimit'));
     }
