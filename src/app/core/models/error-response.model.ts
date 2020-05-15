@@ -3,8 +3,7 @@
  * @interface ErrorResponse.
  */
 export interface ErrorResponse {
-  error: {
+    status: string;
     code: string;
     message: string;
-  };
 }

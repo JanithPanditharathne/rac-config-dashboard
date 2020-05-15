@@ -144,7 +144,6 @@ export class AlgorithmUpsertComponent implements OnInit {
         this.redirectToAlgorithmView();
       },
       (error) => {
-        this.notificationService.showNotification(error.error.message, AlertType.ERROR);
         actionClickArgs.resolve();
       }
     );
@@ -164,7 +163,6 @@ export class AlgorithmUpsertComponent implements OnInit {
         this.redirectToAlgorithmView();
       },
       (error) => {
-        this.notificationService.showNotification(error.error.message, AlertType.ERROR);
         actionClickArgs.resolve();
       }
     );
