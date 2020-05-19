@@ -58,6 +58,6 @@ export class BundleService {
    * @returns {Observable<SuccessResponse>} Response
    */
   public deleteBundle(bundleId: string) {
-    return this.http.delete<SuccessResponse>(`${BundleService.bundles_url}/${bundleId}`);
+    return this.http.delete<SuccessResponse>(`${environment.baseUrl}${BundleService.bundles_url}/${bundleId}`);
   }
 }
