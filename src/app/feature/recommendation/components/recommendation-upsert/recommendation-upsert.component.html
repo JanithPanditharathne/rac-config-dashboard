@@ -65,7 +65,7 @@
             <div class="right-pane" [class.active]="isBundleAdd">
                 <ng-container>
                     <app-bundle-form [bundle]="null"
-                                     [formAction]="formAction"
+                                     [formAction]="FormAction.ADD"
                                      (saveBundle)="onBundleSaveClick($event)"
                                      (cancelBundle)="switchSidePaneVisibility()">
                     </app-bundle-form>
