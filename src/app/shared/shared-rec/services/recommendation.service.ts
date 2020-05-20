@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SuccessResponse } from '../../../core/models';
-import { Recommendation } from '../models/recommendation.model';
-import { DisplayRecommendation } from '../models/display-recommendation.model';
 import { Injectable } from '@angular/core';
-import { RecommendationSave } from '../models/recommendation-save.model';
 import { environment } from '../../../../environments/environment';
+import { DisplayRecommendation } from '../../../feature/recommendation/models/display-recommendation.model';
+import { RecommendationSave } from '../../../feature/recommendation/models/recommendation-save.model';
+import { Recommendation } from '../../../feature/recommendation/models/recommendation.model';
 
 /**
  * Class representing rec service.
@@ -20,7 +20,7 @@ export class RecommendationService {
 
   /**
    * Responsible for making a GET api call to get all the recs.
-   * @returns {Observable<DisplayRecommendation[]>} - algorithms array.
+   * @returns {Observable<DisplayRecommendation[]>} - recommendations array.
    */
   public getRecs(): Observable<DisplayRecommendation> {
     return this.http.get<DisplayRecommendation>(`${environment.baseUrl}${RecommendationService.recs_url}`);

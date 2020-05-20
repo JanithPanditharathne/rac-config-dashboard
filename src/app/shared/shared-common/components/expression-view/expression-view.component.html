@@ -1,0 +1,26 @@
+<div class="row" *ngIf="showTitle && sectionTitle">
+    <div class="col-lg-12">
+        <h4>{{ sectionTitle }}</h4>
+    </div>
+</div>
+<ng-container *ngIf="ruleData?.length > 0">
+    <div class="row table-expander rule-expression-view">
+        <div class="col-lg-12">
+            <ng-container *ngFor="let item of ruleData; let i = index">
+                <ng-container>
+                    <app-price-detail-view *ngIf="isPriceType(item.type)" [priceItem]="item"></app-price-detail-view>
+
+                    <app-additional-detail-view *ngIf="!isPriceType(item.type)" [data]="item">
+                    </app-additional-detail-view>
+
+                    <ng-container *ngIf="i < ruleData.length - 1">
+                        <label class="expression-view-condition">{{ item.condition }} </label>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="ruleData?.length === 0">
+    <span>N/A</span>
+</ng-container>

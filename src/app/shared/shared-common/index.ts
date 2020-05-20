@@ -15,6 +15,10 @@ import {
   RequiredErrorComponent,
   CommonControlErrorViewComponent,
   CharacterLengthRangeErrorComponent,
+  ExpressionViewComponent,
+  PriceDetailViewComponent,
+  MathOperatorDetailViewComponent,
+  AdditionalDetailViewComponent,
 } from './components';
 
 // services
@@ -25,6 +29,7 @@ import { ContainerResponsiveDirective, ErrorFocusDirective } from './directives'
 
 // pipes
 import { DateFormatPipe } from './pipes';
+import { MetaDataService } from './services';
 
 /**
  * Export all shared entry components.
@@ -45,6 +50,10 @@ export const COMPONENTS = [
   TableActionComponent,
   ActionComponent,
   TabComponent,
+  ExpressionViewComponent,
+  PriceDetailViewComponent,
+  MathOperatorDetailViewComponent,
+  AdditionalDetailViewComponent,
   AlertPopupComponent,
   ConfirmPopupComponent,
   ActionButtonStrapComponent,
@@ -61,7 +70,8 @@ export const DIRECTIVES = [ContainerResponsiveDirective, ErrorFocusDirective];
  * Export all shared services.
  */
 export const SERVICES = [
-  ConfirmDialogService
+  ConfirmDialogService,
+  MetaDataService
 ];
 
 /**

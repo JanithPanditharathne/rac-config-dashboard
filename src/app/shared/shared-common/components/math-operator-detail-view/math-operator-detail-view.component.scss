@@ -1,0 +1,11 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.expression-view-label {
+  @include color-theme {
+    color: get-theme-variable('expression-view-label');
+  }
+  @include font-size(.8, 1.1);
+  font-weight: 600;
+  padding-right: .5rem;
+}

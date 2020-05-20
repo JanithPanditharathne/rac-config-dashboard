@@ -4,7 +4,6 @@ import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums
 import { DataFetchMode, DataTableComponent } from 'ornamentum';
 import { Observable } from 'rxjs';
 import { Recommendation } from '../models/recommendation.model';
-import { RecommendationService } from '../services/recommendation.service';
 import { map } from 'rxjs/operators';
 import { DisplayRecommendation } from '../models/display-recommendation.model';
 import { AlertType, SuccessStatus } from '../../../core/enums';
@@ -14,6 +13,7 @@ import { RecommendationConstants } from '../recommendation.constants';
 import { ConfirmPopupComponent } from '../../../shared/shared-common/components';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { SuccessResponse } from '../../../core/models';
+import { RecommendationService } from '../../../shared/shared-rec/services';
 
 /**
  * Class representing the Recommendation component.

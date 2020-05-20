@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RecSlotComponent } from './components';
+import { RecSlotComponent, RecSlotUpsertComponent } from './components';
+import { CanDeactivateGuard } from '../../shared/shared-common/services';
+import { FormAction } from '../../shared/shared-common/enums';
+import { RecSlotResolver } from './resolver';
 
 /**
  * Represent application rec-slot module routes.
@@ -16,6 +19,27 @@ const featureRoutes: Routes = [
     canActivate: [],
     component: RecSlotComponent,
     path: 'list'
+  },
+  {
+    canActivate: [],
+    canDeactivate: [CanDeactivateGuard],
+    component: RecSlotUpsertComponent,
+    path: 'add',
+    data: {
+      formAction: FormAction.ADD,
+    }
+  },
+  {
+    canActivate: [],
+    canDeactivate: [CanDeactivateGuard],
+    component: RecSlotUpsertComponent,
+    path: 'edit/:id',
+    resolve: {
+      recSlot: RecSlotResolver
+    },
+    data: {
+      formAction: FormAction.EDIT,
+    }
   }
 ];
 

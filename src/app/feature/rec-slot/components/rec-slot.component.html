@@ -1,10 +1,95 @@
 <div class="page-content">
     <app-loading-overlay *ngIf="isLoading"></app-loading-overlay>
     <app-action-bar [breadcrumb]="actionBreadcrumb">
-        <ng-template>
+        <ng-template #actionButtonStrap>
             <app-action-button-strap>
-<!--                <app-action [type]="ActionType.ADD" [name]="'Add New'" (actionClick)="onAddClick()"></app-action>-->
+                <app-action [type]="ActionType.ADD" [name]="'Add New'" (actionClick)="onAddClick()"></app-action>
             </app-action-button-strap>
         </ng-template>
     </app-action-bar>
+    <div class="page-content-pane" (appContainerResponsive)="containerResponsive($event)" [deltaHeight]="290">
+        <ng-data-table
+                [id]="'rec_slots_data_summary'"
+                [title]="'Rec Slots'"
+                [contentHeight]="height"
+                [limit]="30"
+                [dataSource]="dataSource"
+                [showHeader]="true"
+                [showColumnSelector]="true"
+                [showRefreshButton]="true"
+                [showSubstituteRows]="true"
+                [pageable]="true"
+                [persistTableState]="false"
+                [showLoadingSpinner]="true"
+                (init)="onDataTableInit($event)"
+                [onDynamicRowSpanExtract]="onDynamicRowSpanExtract"
+        >
+            <ng-data-table-column
+                    [field]="'id'"
+                    [title]="'ID'"
+                    [filterPlaceholder]="'Filter'"
+                    [sortable]="true"
+                    [filterable]="true"
+                    [showInColumnSelector]="false"
+                    [width]="100"
+            >
+            </ng-data-table-column>
+            <ng-data-table-column
+                    [field]="'channel.name'"
+                    [title]="'Channel'"
+                    [filterPlaceholder]="'Filter'"
+                    [filterable]="true"
+                    [showDropdownFilter]="true">
+            </ng-data-table-column>
+            <ng-data-table-column
+                    [field]="'page.name'"
+                    [title]="'Page'"
+                    [filterPlaceholder]="'Filter'"
+                    [filterable]="true"
+                    [showDropdownFilter]="true">
+            </ng-data-table-column>
+            <ng-data-table-column
+                    [field]="'placeholder.name'"
+                    [title]="'Placeholder'"
+                    [filterPlaceholder]="'Filter'"
+                    [filterable]="true"
+                    [showDropdownFilter]="true">
+            </ng-data-table-column>
+            <ng-data-table-column
+                    [field]="'rec.name'"
+                    [title]="'Rec Name'"
+                    [filterPlaceholder]="'Filter'"
+                    [filterable]="true">
+            </ng-data-table-column>
+            <ng-data-table-column
+                    [field]="'rules'"
+                    [title]="'Rules'">
+                <ng-template #ngDataTableCell let-row="row" let-spanIndex="spanIndex">
+                    <td>
+                        <span>{{ getRuleName(row.item, spanIndex, 'name') }}</span>
+                    </td>
+                </ng-template>
+            </ng-data-table-column>
+            <ng-data-table-column [title]="'Action'" [showInColumnSelector]="false" [width]="100">
+                <ng-template #ngDataTableCell let-row="row" let-rowSpan="rowSpan" let-spanIndex="spanIndex">
+                    <td [attr.rowspan]="rowSpan" *ngIf="!spanIndex" (click)="$event.stopPropagation()">
+                        <app-table-actions-column>
+                            <app-table-action
+                                    [type]="ColumnActionType.EDIT"
+                                    [tooltip]="'Edit Rec Slot'"
+                                    (actionClick)="onEditClick(row.item.id)"
+                            >
+                            </app-table-action>
+                            <app-table-action
+                                    [type]="ColumnActionType.DELETE"
+                                    [tooltip]="'Delete Rec Slot'"
+                                    (actionClick)="openDeleteConfirmModal(row.item.id)"
+                            >
+                            </app-table-action>
+                        </app-table-actions-column>
+                    </td>
+                </ng-template>
+            </ng-data-table-column>
+        </ng-data-table>
+    </div>
 </div>

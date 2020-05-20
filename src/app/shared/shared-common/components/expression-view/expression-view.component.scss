@@ -1,0 +1,57 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.rule-expression-view {
+  span {
+    @include font-size(.7, 1);
+  }
+
+  .expression-view-label {
+    @include color-theme {
+      color: get-theme-variable('expression-view-label');
+    }
+    @include font-size(.8, 1);
+    font-weight: 600;
+    padding-right: .3rem;
+  }
+
+  .expression-view-sub-label {
+    @include color-theme {
+      color: get-theme-variable('expression-view-sub-label');
+    }
+    @include font-size(.7, 1);
+    font-weight: 500;
+  }
+}
+
+.expression-view-condition {
+  @include color-theme {
+    color: get-theme-variable('expression-view-condition');
+  }
+  @include font-size(.7, 1);
+  cursor: pointer;
+  display: block;
+  font-weight: 600;
+  margin: .2rem 0;
+}
+
+.expression-more-button {
+  @include color-theme {
+    color: get-theme-variable('expression-more-button');
+  }
+
+  bottom: 0;
+  position: absolute;
+  right: .5rem;
+  transition: 1s color ease;
+
+  i {
+    padding-right: .3rem;
+  }
+
+  &:hover {
+    @include color-theme {
+      color: get-theme-variable('expression-more-button-hover');
+    }
+  }
+}

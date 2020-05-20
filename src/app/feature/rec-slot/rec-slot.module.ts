@@ -5,6 +5,8 @@ import { SharedCommonModule } from '../../shared/shared-common/shared-common.mod
 import { COMPONENTS, ENTRY_COMPONENTS, SERVICES } from './index';
 import { DataTableModule, DropdownModule } from 'ornamentum';
 import { RecSlotRoutingModule } from './rec-slot-routing.module';
+import { SharedRecModule } from '../../shared/shared-rec/shared-rec.module';
+import { SharedRulesModule } from '../../shared/shared-rules/shared-rules.module';
 
 /**
  * Module class for containing rec-slot module.
@@ -16,9 +18,11 @@ import { RecSlotRoutingModule } from './rec-slot-routing.module';
   exports: [],
   imports: [
     RecSlotRoutingModule,
-    SharedCommonModule,
+    SharedCommonModule.forRoot(),
     DataTableModule.forRoot(),
-    DropdownModule.forRoot()
+    DropdownModule.forRoot(),
+    SharedRecModule.forRoot(),
+    SharedRulesModule.forRoot()
   ],
   providers: [...SERVICES]
 })

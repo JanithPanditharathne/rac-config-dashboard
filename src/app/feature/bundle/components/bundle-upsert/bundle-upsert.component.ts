@@ -24,14 +24,14 @@ export class BundleUpsertComponent implements OnInit {
   public FormAction = FormAction;
   public actionBreadcrumb: ActionBreadcrumb[];
 
-  private bundle: Bundle;
-  private bundleFormAction: FormAction;
+  public bundle: Bundle;
+  public bundleFormAction: FormAction;
 
   @ViewChild(BundleFormComponent, {static: true})
   public bundleFormComponent: BundleFormComponent;
 
   constructor(
-    protected fb: FormBuilder,
+    private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private dialogService: ConfirmDialogService

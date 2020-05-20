@@ -1,0 +1,175 @@
+<div class="page-content add-email-rec">
+    <app-action-bar [breadcrumb]="actionBreadcrumb"></app-action-bar>
+    <div class="page-content-pane">
+        <div class="container-fluid relative-parent" #algorithmFormparent>
+            <div class="row">
+                <div class="col-lg-10">
+                    <form [formGroup]="recSlotFormGroup">
+                        <div class="form-container pt-0">
+                            <div class="form-group" [class.input-error]="isInvalid('channel')">
+                                <label>Channel <span class="required-label">*</span>
+                                    <ng-dropdown
+                                            [id]="'channel-select-options'"
+                                            [dataSource]="metaDataService.channels"
+                                            [selectTrackBy]="'id'"
+                                            [displayTrackBy]="'name'"
+                                            [filterable]="true"
+                                            [closeMenuOnSelect]="true"
+                                            [selectMode]="dropdownSelectMode"
+                                            [showClearSelectionButton]="true"
+                                            formControlName="channel">
+                                    </ng-dropdown>
+                                </label>
+                                <app-required-error [control]="recSlotFormGroup.get('channel')"
+                                                    [requiredError]="'Channel is required'"
+                                                    [errorType]="'required'">
+                                </app-required-error>
+                            </div>
+                            <div class="form-group" [class.input-error]="isInvalid('page')">
+                                <label>Page <span class="required-label">*</span>
+                                    <ng-dropdown
+                                            [id]="'page-select-options'"
+                                            [dataSource]="metaDataService.pages"
+                                            [selectTrackBy]="'id'"
+                                            [displayTrackBy]="'name'"
+                                            [filterable]="true"
+                                            [closeMenuOnSelect]="true"
+                                            [selectMode]="dropdownSelectMode"
+                                            [showClearSelectionButton]="true"
+                                            formControlName="page">
+                                    </ng-dropdown>
+                                </label>
+                                <app-required-error [control]="recSlotFormGroup.get('page')"
+                                                    [requiredError]="'Page is required'"
+                                                    [errorType]="'required'">
+                                </app-required-error>
+                            </div>
+                            <div class="form-group" [class.input-error]="isInvalid('placeholder')">
+                                <label>Placeholder <span class="required-label">*</span>
+                                    <ng-dropdown
+                                            [id]="'placeholder-select-options'"
+                                            [dataSource]="metaDataService.placeholders"
+                                            [selectTrackBy]="'id'"
+                                            [displayTrackBy]="'name'"
+                                            [filterable]="true"
+                                            [closeMenuOnSelect]="true"
+                                            [selectMode]="dropdownSelectMode"
+                                            [showClearSelectionButton]="true"
+                                            formControlName="placeholder">
+                                    </ng-dropdown>
+                                </label>
+                                <app-required-error [control]="recSlotFormGroup.get('placeholder')"
+                                                    [requiredError]="'Placeholder is required'"
+                                                    [errorType]="'required'">
+                                </app-required-error>
+                            </div>
+                            <div class="form-group" [class.input-error]="isInvalid('recommendation')">
+                                <label>Recommendation <span class="required-label">*</span>
+                                    <ng-dropdown
+                                            [id]="'recommendation-select-options'"
+                                            [dataSource]="recommendationDataSource"
+                                            [selectTrackBy]="'id'"
+                                            [displayTrackBy]="'name'"
+                                            [filterable]="true"
+                                            [closeMenuOnSelect]="true"
+                                            [selectMode]="dropdownSelectMode"
+                                            [showClearSelectionButton]="true"
+                                            formControlName="recommendation">
+                                    </ng-dropdown>
+                                </label>
+                                <app-required-error [control]="recSlotFormGroup.get('recommendation')"
+                                                    [requiredError]="'Recommendation is required'"
+                                                    [errorType]="'required'">
+                                </app-required-error>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-heading-container">
+                        <h2>Rules</h2>
+                    </div>
+                    <div class="page-content-pane">
+                        <ng-data-table
+                                [id]="'recs_data_summary'"
+                                [title]="'Rules'"
+                                [limit]="10"
+                                [contentHeight]="250"
+                                [dataSource]="rulesDataSource"
+                                [selectMode]="selectMode"
+                                [selectOnRowClick]="true"
+                                [showHeader]="true"
+                                [rowSelectable]="true"
+                                [showColumnSelector]="true"
+                                [showRowSelectCheckbox]="true"
+                                [showRefreshButton]="true"
+                                [pageable]="true"
+                                [persistTableState]="false"
+                                [showLoadingSpinner]="true"
+                                [(ngModel)]="currentSelected"
+                                (selectstart)="onRuleSelect()"
+                        >
+                            <ng-data-table-column
+                                    [field]="'id'"
+                                    [title]="'ID'"
+                                    [filterPlaceholder]="'Filter'"
+                                    [sortable]="true"
+                                    [filterable]="true"
+                                    [showInColumnSelector]="false"
+                                    [width]="100"
+                            >
+                            </ng-data-table-column>
+                            <ng-data-table-column
+                                    [field]="'name'"
+                                    [title]="'Name'"
+                                    [filterPlaceholder]="'Filter'"
+                                    [filterable]="true">
+                            </ng-data-table-column>
+                            <ng-data-table-column
+                                    [field]="'type'"
+                                    [title]="'Type'"
+                                    [filterPlaceholder]="'Filter'"
+                                    [filterable]="true"
+                                    [showDropdownFilter]="true">
+                            </ng-data-table-column>
+                            <ng-data-table-column [field]="'matchingConditionJson'" [title]="'If(matching) condition'"
+                                                  [width]="180">
+                                <ng-template #ngDataTableCell let-row="row" let-spanIndex="spanIndex"
+                                             let-rowSpan="rowSpan">
+                                    <td *ngIf="spanIndex === 0" [attr.rowspan]="rowSpan">
+                                        <app-expression-view [expressionData]="row.item.matchingConditionJson">
+                                        </app-expression-view>
+                                    </td>
+                                </ng-template>
+                            </ng-data-table-column>
+                            <ng-data-table-column [field]="'actionConditionJson'" [title]="'Then(action) condition'"
+                                                  [width]="180">
+                                <ng-template #ngDataTableCell let-row="row" let-spanIndex="spanIndex"
+                                             let-rowSpan="rowSpan">
+                                    <td *ngIf="spanIndex === 0" [attr.rowspan]="rowSpan">
+                                        <app-expression-view [expressionData]="row.item.actionConditionJson">
+                                        </app-expression-view>
+                                    </td>
+                                </ng-template>
+                            </ng-data-table-column>
+                            <ng-data-table-column [title]="'Is Global'">
+                                <ng-template #ngDataTableCell let-row="row">
+                                    <td>
+                                        {{renderIsGlobal(row.item)}}
+                                    </td>
+                                </ng-template>
+                            </ng-data-table-column>
+                        </ng-data-table>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-button-container">
+                <app-action-button-strap>
+                    <app-action [type]="ActionType.SAVE" [name]="formAction === FormAction.EDIT ? 'Save' : 'Create'"
+                                [autoResolve]="false"
+                                (actionClick)="onSaveClick($event)"></app-action>
+                    <app-action [type]="ActionType.CANCEL" [name]="'Cancel'"
+                                (actionClick)="redirectToRecSlots()"></app-action>
+                </app-action-button-strap>
+            </div>
+        </div>
+    </div>
+</div>

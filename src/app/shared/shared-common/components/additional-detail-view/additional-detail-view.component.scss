@@ -1,0 +1,43 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.context-pane-wrapper {
+  &:nth-child(odd) {
+    @include color-theme {
+      background: get-theme-variable('generated-context-background');
+    }
+  }
+
+  &:nth-child(even) {
+    @include color-theme {
+      background: get-theme-variable('content-display-background');
+    }
+  }
+
+  &:first-child {
+    border-radius: .2rem .2rem 0 0;
+  }
+
+  &:last-child {
+    border-radius: 0 0 .2rem .2rem;
+  }
+
+  &:only-child {
+    border-radius: .2rem;
+  }
+}
+
+.expression-view-label {
+  @include color-theme {
+    color: get-theme-variable('expression-view-label');
+  }
+  @include font-size(.8, 1.1);
+  font-weight: 600;
+  padding-right: .5rem;
+}
+
+.expand-view-value,
+.expression-view-sub-label {
+  font-weight: 400;
+  padding-left: 0;
+}

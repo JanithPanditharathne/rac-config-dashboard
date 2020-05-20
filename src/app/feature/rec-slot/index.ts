@@ -1,10 +1,15 @@
+import { RecSlotComponent, RecSlotUpsertComponent } from './components';
+
+import { RecSlotsService } from './services';
+
+import { RecSlotResolver } from './resolver';
+
 /**
  * Export all rec-slot components.
  */
-import { RecSlotComponent } from './components';
-
 export const COMPONENTS = [
-  RecSlotComponent
+  RecSlotComponent,
+  RecSlotUpsertComponent
 ];
 
 /**
@@ -15,4 +20,7 @@ export const ENTRY_COMPONENTS = [];
 /**
  * Export all rec-slot services.
  */
-export const SERVICES = [];
+export const SERVICES = [
+  RecSlotsService,
+  RecSlotResolver
+];

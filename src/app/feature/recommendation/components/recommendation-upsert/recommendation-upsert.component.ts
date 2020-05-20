@@ -15,10 +15,10 @@ import { NotificationService } from '../../../../core/services';
 import { RecommendationConstants } from '../../recommendation.constants';
 import { RecommendationSave } from '../../models/recommendation-save.model';
 import { SuccessResponse } from '../../../../core/models';
-import { RecommendationService } from '../../services';
 import { Observable } from 'rxjs';
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
 import { BundleFormComponent } from '../../../../shared/shared-bundle/components';
+import { RecommendationService } from '../../../../shared/shared-rec/services';
 
 /**
  * Class representing the Recommendation upsert component.
@@ -36,7 +36,7 @@ export class RecommendationUpsertComponent implements OnInit {
   public actionBreadcrumb: ActionBreadcrumb[];
 
   public recForm: FormGroup;
-  private formAction: FormAction;
+  public formAction: FormAction;
   public selectedBundle: Bundle;
 
   public recommendation: Recommendation;

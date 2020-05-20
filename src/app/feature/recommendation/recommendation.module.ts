@@ -6,6 +6,7 @@ import { COMPONENTS, ENTRY_COMPONENTS, SERVICES } from './index';
 import { DataTableModule, DropdownModule } from 'ornamentum';
 import { RecommendationRoutingModule } from './recommendation-routing.module';
 import { SharedBundleModule } from '../../shared/shared-bundle/shared-bundle.module';
+import { SharedRecModule } from '../../shared/shared-rec/shared-rec.module';
 
 /**
  * Module class for containing recommendation module.
@@ -20,7 +21,8 @@ import { SharedBundleModule } from '../../shared/shared-bundle/shared-bundle.mod
     SharedCommonModule,
     DataTableModule.forRoot(),
     DropdownModule.forRoot(),
-    SharedBundleModule
+    SharedBundleModule.forRoot(),
+    SharedRecModule.forRoot()
   ],
   providers: [...SERVICES]
 })

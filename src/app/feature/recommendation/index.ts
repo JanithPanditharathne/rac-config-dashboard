@@ -1,9 +1,6 @@
 // components
 import { RecommendationComponent, RecommendationUpsertComponent } from './components';
 
-// services
-import { RecommendationService } from './services';
-
 // resolvers
 import { RecommendationResolver } from './resolvers';
 
@@ -24,6 +21,5 @@ export const ENTRY_COMPONENTS = [];
  * Export all recommendation services.
  */
 export const SERVICES = [
-  RecommendationService,
   RecommendationResolver
 ];
