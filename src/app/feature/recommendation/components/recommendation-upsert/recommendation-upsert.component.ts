@@ -108,6 +108,7 @@ export class RecommendationUpsertComponent implements OnInit {
 
   public onBundleSaveClick(saveEventArgs: BundleSaveEventArgs) {
     if (saveEventArgs.isSuccess) {
+      this.recForm.get('selectedBundle').reset();
       this.fetchBundles();
       this.isBundleAdd = !this.isBundleAdd;
     }
