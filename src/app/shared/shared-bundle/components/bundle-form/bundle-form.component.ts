@@ -68,7 +68,7 @@ export class BundleFormComponent implements OnInit {
         combineDisplayText: [this.bundle.combineDisplayText],
         defaultLimitEnabled: [this.bundle.defaultLimit > 0],
         defaultLimit: [
-          this.bundle.defaultLimit,
+          this.bundle.defaultLimit ? this.bundle.defaultLimit : 5,
           Validators.compose([
             Validators.min(1),
             Validators.max(999),
