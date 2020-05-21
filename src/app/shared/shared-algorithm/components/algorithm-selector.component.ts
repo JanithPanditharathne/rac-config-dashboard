@@ -129,7 +129,7 @@ export class AlgorithmSelectorComponent {
     let modalRef: BsModalRef;
 
     modalRef = this.modalService.show(EditDisplayTextComponent, {class: 'display-text-edit-confirm-popup', ignoreBackdropClick: true});
-    modalRef.content.setDisplayTextFormData(row.item.defaultDisplayText);
+    modalRef.content.setDisplayTextFormData(row.item.customDisplayText || row.item.defaultDisplayText);
     modalRef.content.autoResolve = false;
     modalRef.content.saveClick.subscribe((text: string) => {
       row.item.customDisplayText = text;
