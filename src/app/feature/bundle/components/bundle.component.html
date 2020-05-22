@@ -21,6 +21,9 @@
                 [pageable]="true"
                 [persistTableState]="false"
                 [showLoadingSpinner]="true"
+                [showRowExpandLoadingSpinner]="true"
+                [expandableRows]="true"
+                [expandOnRowClick]="true"
                 (init)="onDataTableInit($event)"
         >
             <ng-data-table-column
@@ -59,6 +62,10 @@
                     </td>
                 </ng-template>
             </ng-data-table-column>
+            <ng-template #ngDataTableRowExpand let-row="row">
+                <app-bundle-detail-view *ngIf="row.expanded || row.dataLoaded" [dataRow]="row" [bundleID]="row.item.id">
+                </app-bundle-detail-view>
+            </ng-template>
         </ng-data-table>
     </div>
 </div>

@@ -6,6 +6,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 
 import { COMPONENTS, DIRECTIVES, ENTRY_COMPONENTS, PIPES, SERVICES } from './index';
+import { DataTableModule } from 'ornamentum';
 import { SharedCommonModule } from '../shared-common/shared-common.module';
 import { SharedAlgorithmModule } from '../shared-algorithm/shared-algorithm.module';
 import { DropdownModule } from 'ornamentum';
@@ -22,6 +23,7 @@ import { DropdownModule } from 'ornamentum';
     BsDatepickerModule.forRoot(),
     CommonModule,
     FormsModule,
+    DataTableModule,
     ReactiveFormsModule,
     PopoverModule.forRoot(),
     SharedCommonModule.forRoot(),

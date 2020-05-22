@@ -1,0 +1,48 @@
+<app-loading-overlay *ngIf="isLoading"></app-loading-overlay>
+<div class="table-expand-details" *ngIf="bundle">
+    <div class="row">
+        <div class="col-lg-12" *ngIf="dataRow">
+            <h4>Bundle Details</h4>
+        </div>
+        <div class="col-lg-12">
+            <div class="sub-heading">Bundle Name</div>
+            <div class="expand-detail-value">{{ bundle.name }}</div>
+            <div class="sub-heading">Combine Display Text</div>
+            <div class="expand-detail-value">{{ bundle.combineDisplayText || 'N/A' }}</div>
+            <div class="sub-heading">Default Limit</div>
+            <div class="expand-detail-value">{{ bundle.defaultLimit || 'N/A' }}</div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4>Algorithms <span class="small">(Following algorithms are included in this Bundle)</span></h4>
+            </div>
+        </div>
+
+        <ng-data-table [id]="'algorithms-'+ bundle?.id" [items]="bundle.algorithms" [minContentHeight]="5">
+            <ng-data-table-column [field]="'id'"
+                                  [sortable]="true"
+                                  [title]="'ID'"
+                                  [width]="100">
+            </ng-data-table-column>
+            <ng-data-table-column [field]="'name'"
+                                  [title]="'Name'">
+            </ng-data-table-column>
+            <ng-data-table-column [title]="'Default Display Text'">
+                <ng-template #ngDataTableCell let-row="row">
+                    <td>
+                        {{row.item.defaultDisplayText ? row.item.defaultDisplayText : 'N/A'}}
+                    </td>
+                </ng-template>
+            </ng-data-table-column>
+            <ng-data-table-column [title]="'Custom Display Text'">
+                <ng-template #ngDataTableCell let-row="row">
+                    <td>
+                        {{row.item.customDisplayText ? row.item.customDisplayText : 'N/A'}}
+                    </td>
+                </ng-template>
+            </ng-data-table-column>
+        </ng-data-table>
+    </div>
+</div>
