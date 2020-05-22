@@ -159,7 +159,9 @@ export class RecommendationUpsertComponent implements OnInit {
     const formValue = this.recForm.value;
     const recommendation: RecommendationSave = {
       name: formValue.recName,
-      bundleId: formValue.selectedBundle.id
+      bundle: {
+        id: formValue.selectedBundle.id
+      }
     };
 
     switch (this.formAction) {
