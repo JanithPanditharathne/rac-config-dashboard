@@ -5,7 +5,7 @@ import { ActionClickEventArgs } from '../../../shared/shared-common/models';
 
 import { ActionType } from 'src/app/shared/shared-common/enums';
 
-import { CustomFormValidator } from '../../../shared/shared-common/services';
+import { CustomFormValidator, FormValidator } from '../../../shared/shared-common/services';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services';
 
@@ -50,6 +50,10 @@ export class LoginComponent implements OnInit {
         Validators.maxLength(40)
       ])],
     });
+  }
+
+  public isInvalid(controlName: string): boolean {
+    return FormValidator.isInvalidControl(this.loginForm.get(controlName));
   }
 
   /**

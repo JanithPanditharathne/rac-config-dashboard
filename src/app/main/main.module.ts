@@ -10,6 +10,7 @@ import { BaseComponent } from './components';
 import { COMPONENTS, ENTRY_COMPONENTS } from './index';
 
 import { MainResolver } from './resolvers';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 /**
  * Module class for containing main module.
@@ -19,7 +20,7 @@ import { MainResolver } from './resolvers';
   declarations: [...COMPONENTS],
   entryComponents: [...ENTRY_COMPONENTS],
   exports: [BaseComponent],
-  imports: [AppCoreModule, RouterModule, CommonModule, ModalModule.forRoot()],
+  imports: [AppCoreModule, RouterModule, CommonModule, ModalModule.forRoot(), AngularSvgIconModule.forRoot()],
   providers: [MainResolver]
 })
 export class AppMainModule {}

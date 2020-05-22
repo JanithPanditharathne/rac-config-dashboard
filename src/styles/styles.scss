@@ -4,6 +4,8 @@
 @import '../../node_modules/bootstrap/scss/bootstrap';
 // Dependency import - end
 @import 'mixins';
+@import 'icons';
+@import 'table-styles';
 @import '~ornamentum/themes/aegean.theme';
 
 // Body Styles
@@ -135,8 +137,8 @@ body {
     }
 
     .input-error-label {
-      @include font-size(.7, 1);
-      bottom: -1.1rem;
+      @include font-size(.8, 1);
+      bottom: -1.4rem;
       color: $form-error-color;
       font-style: italic;
       font-weight: 400;
@@ -175,6 +177,313 @@ body {
   }
 }
 
+
+//Action Button Styles
+.rac-action-button {
+  align-items: center;
+  background: $primary-btn-background;
+  border: 0;
+  border-radius: .5rem;
+  box-shadow: 0 3px 6px $box-shadow-color-light;
+  cursor: pointer;
+  display: flex;
+  margin-right: .5rem;
+  padding: .35rem 1rem;
+  transform: scale(.95);
+  transition: .2s background ease, .2s box-shadow ease, .2s transform ease;
+
+  i {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  .rac-button-container-text {
+    @include font-size(.9, 1.6);
+    color: $primary-btn-text-color;
+    font-weight: 500;
+    padding-left: .5rem;
+    text-transform: uppercase;
+
+    &:empty {
+      padding: 0;
+    }
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: .5;
+  }
+
+  &:hover {
+    background: $primary-btn-hover-background-color;
+    box-shadow: $box-shadow-color;
+    transform: scale(1);
+
+    i {
+      color: $primary-btn-hover-icon-color;
+    }
+
+    .rac-button-container-text {
+      color: $primary-btn-hover-text-color;
+    }
+  }
+
+  &.rac-add-icon-parent {
+    i {
+      background-image: svg-url-icon($add-icon, '#000000', $primary-btn-icon-color);
+    }
+
+    &:hover {
+      i {
+        background-image: svg-url-icon($add-icon, '#000000', $primary-btn-hover-icon-color);
+      }
+    }
+  }
+
+  &.rac-apply-icon-parent {
+    i {
+      background-image: svg-url-icon($apply-icon, '#000000', $primary-btn-icon-color);
+    }
+
+    &:hover {
+      i {
+        background-image: svg-url-icon($apply-icon, '#000000', $primary-btn-hover-icon-color);
+      }
+    }
+  }
+
+  &.rac-refresh-icon-parent {
+    i {
+      background-image: svg-url-icon($refresh-icon, '#000000', $primary-btn-icon-color);
+    }
+
+    &:hover {
+      i {
+        background-image: svg-url-icon($refresh-icon, '#000000', $primary-btn-hover-icon-color);
+      }
+    }
+  }
+
+  &.rac-edit-icon-parent {
+    i {
+      background-image: svg-url-icon($edit-icon, '#000000', $primary-btn-icon-color);
+    }
+
+    &:hover {
+      i {
+        background-image: svg-url-icon($edit-icon, '#000000', $primary-btn-hover-icon-color);
+      }
+    }
+  }
+
+  &.rac-download-icon-parent {
+    i {
+      background-image: svg-url-icon($download-icon, '#000000', $primary-btn-icon-color);
+    }
+
+    &:hover {
+      i {
+        background-image: svg-url-icon($download-icon, '#000000', $primary-btn-hover-icon-color);
+      }
+    }
+  }
+
+
+
+  &.rac-ok-icon-parent {
+    background: $save-btn-background;
+
+    i {
+      background-image: svg-url-icon($ok-icon, '#000000', $save-btn-icon-color);
+    }
+
+    .rac-button-container-text {
+      color: $save-btn-text-color;
+    }
+
+
+    &:hover {
+      background: $save-btn-hover-background-color;
+      box-shadow: $box-shadow-color;
+
+      i {
+        background-image: svg-url-icon($ok-icon, '#000000', $save-btn-hover-icon-color);
+      }
+
+      .rac-button-container-text {
+        color: $save-btn-hover-text-color;
+      }
+    }
+  }
+
+  &.rac-save-icon-parent {
+    background: $save-btn-background;
+
+    i {
+      background-image: svg-url-icon($save-icon, '#000000', $save-btn-icon-color);
+    }
+
+    .rac-button-container-text {
+      color: $save-btn-text-color;
+    }
+
+
+    &:hover {
+      background: $save-btn-hover-background-color;
+      box-shadow: $box-shadow-color;
+
+      i {
+        background-image: svg-url-icon($save-icon, '#000000', $save-btn-hover-icon-color);
+      }
+
+      .rac-button-container-text {
+        color: $save-btn-hover-text-color;
+      }
+    }
+  }
+
+  &.rac-delete-icon-parent {
+    background: $delete-btn-background;
+
+    i {
+      background-image: svg-url-icon($delete-icon, '#000000', $delete-btn-icon-color);
+    }
+
+    .rac-button-container-text {
+      color: $delete-btn-text-color;
+    }
+
+    &:hover {
+      background: $delete-btn-hover-background-color;
+
+      i {
+        background-image: svg-url-icon($delete-icon, '#000000', $delete-btn-hover-icon-color);
+      }
+
+      .rac-button-container-text {
+        color: $delete-btn-hover-text-color;
+      }
+    }
+  }
+
+  &.rac-deactivate-icon-parent {
+    background: $delete-btn-background;
+
+    i {
+      background-image: svg-url-icon($deactivate-icon, '#000000', $delete-btn-icon-color);
+    }
+
+    .rac-button-container-text {
+      color: $delete-btn-text-color;
+    }
+
+    &:hover {
+      background: $delete-btn-hover-background-color;
+
+      i {
+        background-image: svg-url-icon($deactivate-icon, '#000000', $delete-btn-hover-icon-color);
+      }
+
+      .rac-button-container-text {
+        color: $delete-btn-hover-text-color;
+      }
+    }
+  }
+
+
+
+
+  &.rac-close-icon-parent {
+    background: $cancel-btn-background;
+
+    i {
+      background-image: svg-url-icon($close-icon, '#000000', $cancel-btn-icon-color);
+    }
+
+    .button-container-text {
+      color: $cancel-btn-text-color;
+    }
+
+    &:hover {
+      background: $cancel-btn-hover-background-color;
+
+      i {
+        background-image: svg-url-icon($close-icon, '#000000', $cancel-btn-hover-icon-color);
+      }
+
+      .button-container-text {
+        color: $cancel-btn-hover-text-color;
+      }
+    }
+  }
+
+  &.rac-cancel-icon-parent {
+    background: $cancel-btn-background;
+
+    i {
+      background-image: svg-url-icon($cancel-icon, '#000000', $cancel-btn-icon-color);
+    }
+
+    .button-container-text {
+      color: $cancel-btn-text-color;
+    }
+
+    &:hover {
+      background: $cancel-btn-hover-background-color;
+
+      i {
+        background-image: svg-url-icon($cancel-icon, '#000000', $cancel-btn-hover-icon-color);
+      }
+
+      .button-container-text {
+        color: $cancel-btn-hover-text-color;
+      }
+    }
+  }
+
+  &.rac-spinner-icon-parent {
+    background: $updating-btn-background;
+
+    i {
+      background-image: svg-url-icon($spinner-icon, '#000000', $updating-btn-icon-color);
+    }
+
+    .button-container-text {
+      color: $updating-btn-text-color;
+    }
+
+
+    &:hover {
+      background: $updating-btn-hover-background-color;
+
+      i {
+        background-image: svg-url-icon($spinner-icon, '#000000', $updating-btn-hover-icon-color);
+      }
+
+      .button-container-text {
+        color: $updating-btn-hover-text-color;
+      }
+    }
+
+    span {
+      padding-left: .5rem;
+    }
+
+    .rac-spinner-icon {
+      animation: rotating 2s linear infinite;
+      display: block;
+      padding: 0;
+    }
+  }
+}
+
+
+
+
+// New
 .price-container {
   .form-group {
     .ng-dropdown {
@@ -509,11 +818,15 @@ select {
     width: 100%;
   }
 
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
   .form-control {
     @include font-size(.8, 1.2);
-    border-radius: .2rem;
-    box-shadow: none;
-    height: 2.15rem;
+    border-radius: .5rem;
+    box-shadow: 0 1px 6px $box-shadow-color-light;
+    height: 2.5rem;
     padding: .45rem .75rem;
 
     &.display-text {
@@ -950,7 +1263,7 @@ bs-datepicker-container {
   }
 
   .modal-header {
-    background-color: $modal-header-background;
+    background: $modal-header-background;
     border-radius: 0;
     color: $modal-header-text;
     padding: 1rem;

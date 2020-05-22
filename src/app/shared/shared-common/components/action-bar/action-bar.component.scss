@@ -2,32 +2,23 @@
 @import '../../../../../styles/mixins';
 
 .action-bar {
-  @include color-theme {
-    background: get-theme-variable('action-bar-background');
-    border-color: get-theme-variable('data-table-border');
-  }
   align-items: center;
-  border-bottom: .05rem solid;
+  background: $action-bar-background;
+  border-bottom: .05rem solid $light-border;
   box-shadow: .5rem 0 1rem $box-shadow-color;
   padding: .3rem 1.2rem;
   width: 100%;
   z-index: 1001;
 
   .back-link {
-    @include color-theme {
-      color: get-theme-variable('action-bar-title');
-    }
+    color: $action-bar-title;
 
     &:hover {
-      @include color-theme {
-        color: get-theme-variable('action-bar-title-hover');
-      }
+      color: $action-bar-title-hover;
       cursor: pointer;
 
       i {
-        @include color-theme {
-          color: get-theme-variable('action-bar-title');
-        }
+        color: $action-bar-title;
       }
     }
 

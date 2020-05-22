@@ -58,7 +58,6 @@ $themes: (
     toggle-inactive-button-text: $toggle-inactive-button-text,
     toggle-inactive-border: $toggle-inactive-border,
     collapsible-background: $collapsible-background,
-    main-nav-bar-background: $main-nav-bar-background,
     main-nav-bar-toggler-icon-color: $main-nav-bar-toggler-icon-color,
     main-nav-bar-active-link-background: $main-nav-bar-active-link-background,
     main-nav-bar-active-link-text: $main-nav-bar-active-link-text,
@@ -118,17 +117,17 @@ $themes: (
     alert-info-text-color: $alert-info-text-color,
     alert-warning-color: $alert-warning-color,
     alert-warning-text-color: $alert-warning-text-color,
-    data-table-border: $data-table-border,
-    data-table-top-header-background: $data-table-top-header-background,
-    data-table-top-header-text: $data-table-top-header-text,
-    data-table-header-background: $data-table-header-background,
-    data-table-header-secondary-background: $data-table-header-secondary-background,
-    data-table-odd-row-background: $data-table-odd-row-background,
-    highlighted-first-row: $highlighted-first-row,
-    highlighted-second-row: $highlighted-second-row,
-    highlighted-special-row: $highlighted-special-row,
-    data-table-header-text: $data-table-header-text,
-    data-table-header-border: $data-table-header-border,
+    //data-table-border: $data-table-border,
+    //data-table-top-header-background: $data-table-top-header-background,
+    //data-table-top-header-text: $data-table-top-header-text,
+    //data-table-header-background: $data-table-header-background,
+    //data-table-header-secondary-background: $data-table-header-secondary-background,
+    //data-table-odd-row-background: $data-table-odd-row-background,
+    //highlighted-first-row: $highlighted-first-row,
+    //highlighted-second-row: $highlighted-second-row,
+    //highlighted-special-row: $highlighted-special-row,
+    //data-table-header-text: $data-table-header-text,
+    //data-table-header-border: $data-table-header-border,
     accordion-menu-background: $accordion-menu-background,
     accordion-menu-border: $accordion-menu-border,
     primary-text-color: $primary-background-color,
@@ -147,8 +146,8 @@ $theme-red-color: #d32f2f;
 
 $primary-font: 'Work Sans', sans-serif;
 
-$box-shadow-color: rgba(0, 0, 0, .2);
-$box-shadow-color-light: rgba(0, 0, 0, .09);
+
+
 
 //Client Error Message Colors
 $client-error-message-background: #c62026;
@@ -159,7 +158,7 @@ $action-button-color: #144067;
 $action-button-border: #144067;
 
 //Scrollbar Track Colors
-$scrollbar-track-background: #396996;
+$scrollbar-track-background: #02122b;
 $scrollbar-track-border: #f1f1f1;
 
 //Placeholder Colors
@@ -174,10 +173,6 @@ $collapsible-border: #ddd;
 $collapsible-border-left: #144067;
 
 //Modal Colors
-$modal-header-background: #2b4061;
-$modal-footer-background: #fff;
-$modal-header-text: #fff;
-$modal-close: #fff;
 $popup-warning-color: #e6520b;
 
 //Popover Styles
@@ -290,3 +285,78 @@ $link-color: #396996;
 $highlighted-first-row: #799abb;
 $highlighted-second-row: #8bc5ce;
 $highlighted-text-color: #fff;
+
+
+
+// New Variables
+$animation-color: #0f428d;
+$light-border: #ddd;
+$primary-text-color: #444;
+$primary-link-color: #1e58a8;
+$box-shadow-color: rgba(0, 0, 0, .2);
+$box-shadow-color-light: rgba(0, 0, 0, .09);
+
+//Modal Colors
+$modal-header-background: linear-gradient(to left, #02122b, #011e42, #012a5a, #053673, #0f428d);
+$modal-footer-background: #fff;
+$modal-header-text: #fff;
+$modal-close: #fff;
+
+//Main Navigation Styles
+$main-nav-bar-background: linear-gradient(to left, #02122b, #011e42, #012a5a, #053673, #0f428d);
+$logout-button-background: #c62026;
+
+//Action Bar Styles
+$action-bar-background: #fff;
+$action-bar-title: $primary-text-color;
+$action-bar-title-hover: $primary-link-color;
+
+//Action Buttons
+//Primary Button
+$primary-btn-background: linear-gradient(to left, #02122b, #011e42, #012a5a, #053673, #0f428d);
+$primary-btn-hover-background-color: linear-gradient(to left, #02122b, #062852, #10407c, #1e58a8, #2e72d7);
+$primary-btn-icon-color: #fff;
+$primary-btn-hover-icon-color: #fff;
+$primary-btn-text-color: #fff;
+$primary-btn-hover-text-color: #fff;
+
+//Save & Ok Button
+$save-btn-background: linear-gradient(to left, #0a4e04, #166716, #208027, #289b3a, #2eb74e);
+$save-btn-hover-background-color: linear-gradient(to left, #0a4e04, #236d22, #398e3f, #4eb05d, #63d47d);
+$save-btn-icon-color: #fff;
+$save-btn-hover-icon-color: #fff;
+$save-btn-text-color: #fff;
+$save-btn-hover-text-color: #fff;
+
+//Delete & Deactivate Button
+$delete-btn-background: linear-gradient(to left, #93181c, #93181c, #af1c21, #cc2026, #ea252b);
+$delete-btn-hover-background-color: linear-gradient(to left, #93181c, #952829, #b33c3d, #d14f51, #f06367);
+$delete-btn-icon-color: #fff;
+$delete-btn-hover-icon-color: #fff;
+$delete-btn-text-color: #fff;
+$delete-btn-hover-text-color: #fff;
+
+
+//Close & Cancel Button
+$cancel-btn-background: linear-gradient(to left, #3e3d3e, #3e3d3e, #4b4a4b, #595757, #686464);
+$cancel-btn-hover-background-color: linear-gradient(to left, #3e3d3e, #474747, #5e5e5e, #767676, #8f8f8f);
+$cancel-btn-icon-color: #fff;
+$cancel-btn-hover-icon-color: #fff;
+$cancel-btn-text-color: #fff;
+$cancel-btn-hover-text-color: #fff;
+
+//Updating Button
+$updating-btn-background: linear-gradient(to left, #166716, #166716, #208027, #289b3a, #2eb74e);
+$updating-btn-hover-background-color: linear-gradient(to left, #166716, #236d22, #398e3f, #4eb05d, #63d47d);
+$updating-btn-icon-color: #fff;
+$updating-btn-hover-icon-color: #fff;
+$updating-btn-text-color: #fff;
+$updating-btn-hover-text-color: #fff;
+
+
+
+$login-background: radial-gradient(circle, #02122b, #011e42, #012a5a, #053673, #0f428d);
+$login-box-background: #f1f1f1;
+$login-heading-color: #053673;
+$login-sub-heading-color: #999;
+

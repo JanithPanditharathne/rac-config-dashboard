@@ -41,7 +41,7 @@ export class ActionComponent {
   }
 
   public get actionIconCssClass(): string {
-    return this.isUpdating ? 'zmdi-spinner' : this.type;
+    return this.isUpdating ? 'rac-spinner-icon' : this.type;
   }
 
   public onActionClick(): void {

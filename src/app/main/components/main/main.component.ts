@@ -31,31 +31,31 @@ export class AppMainComponent implements OnInit {
     this.menuItems = [
       {
         access: [],
-        iconClasses: ['zmdi', 'zmdi zmdi-layers', 'menu-icon'],
+        iconClasses: ['rac-rec-slot-icon', 'menu-icon'],
         routePath: 'rec-slots',
         title: 'Rec Slots'
       },
       {
         access: [],
-        iconClasses: ['zmdi', 'zmdi zmdi-layers', 'menu-icon'],
+        iconClasses: ['recommendation-icon', 'menu-icon'],
         routePath: 'recommendations',
         title: 'Recommendations'
       },
       {
         access: [],
-        iconClasses: ['zmdi', 'zmdi zmdi-layers', 'menu-icon'],
+        iconClasses: ['bundle-icon', 'menu-icon'],
         routePath: 'bundles',
         title: 'Bundles'
       },
       {
         access: [],
-        iconClasses: ['zmdi', 'zmdi zmdi-layers', 'menu-icon'],
+        iconClasses: ['algorithm-icon', 'menu-icon'],
         routePath: 'algorithms',
         title: 'Algorithms'
       },
       {
         access: [],
-        iconClasses: ['zmdi', 'zmdi zmdi-layers', 'menu-icon'],
+        iconClasses: ['rule-icon', 'menu-icon'],
         routePath: 'rules',
         title: 'Rules'
       }

@@ -80,8 +80,7 @@ $box-shadow-color: rgba(0, 0, 0, .2);
 $box-shadow-color-semi: rgba(0, 0, 0, .5);
 $white-with-opacity: rgba(250, 250, 250, .5);
 
-//Main Navigation Styles
-$main-nav-bar-background: $primary-background-color;
+
 $main-nav-bar-text: $secondary-text-color;
 $main-nav-bar-toggler-icon-color: $secondary-text-color;
 $main-nav-bar-active-link-background: #f7f7f7;
@@ -215,17 +214,17 @@ $alert-warning-color: $warning-color;
 $alert-warning-text-color: darken($success-color, 100%);
 
 //Data Table Style
-$data-table-border: lighten($primary-text-color, 60%);
-$data-table-top-header-background: #2b4061;
-$data-table-top-header-text: #fff;
-$data-table-header-background: lighten($primary-text-color, 80%);
-$data-table-header-secondary-background: lighten($primary-text-color, 68%);
-$data-table-odd-row-background: lighten($primary-text-color, 90%);
-$data-table-header-text: $primary-text-color;
-$data-table-header-border: lighten($primary-text-color, 60%);
-$highlighted-first-row: #799abb;
-$highlighted-second-row: #8bc5ce;
-$highlighted-special-row: #8bc5ce;
+//$data-table-border: lighten($primary-text-color, 60%);
+//$data-table-top-header-background: #2b4061;
+//$data-table-top-header-text: #fff;
+//$data-table-header-background: lighten($primary-text-color, 80%);
+//$data-table-header-secondary-background: lighten($primary-text-color, 68%);
+//$data-table-odd-row-background: lighten($primary-text-color, 90%);
+//$data-table-header-text: $primary-text-color;
+//$data-table-header-border: lighten($primary-text-color, 60%);
+//$highlighted-first-row: #799abb;
+//$highlighted-second-row: #8bc5ce;
+//$highlighted-special-row: #8bc5ce;
 
 //Accordion Menu Styles
 $accordion-menu-background: lighten($primary-text-color, 70%);
