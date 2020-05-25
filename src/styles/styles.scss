@@ -131,10 +131,16 @@ body {
       color: $form-error-color;
     }
 
-    .form-control,
-    .ng-dropdown-toggle {
+    .form-control {
       border-color: $form-error-color;
     }
+
+    .ng-dropdown {
+      .ng-dropdown-toggle {
+        border-color: $form-error-color;
+      }
+    }
+
 
     .input-error-label {
       @include font-size(.8, 1);
@@ -501,8 +507,14 @@ body {
     @include font-size(.8, 1.8);
 
     .ng-dropdown-toggle {
+      align-items: center;
+      border: 1px solid $input-border-color;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 6px $box-shadow-color-light;
+      display: flex;
       font-weight: normal;
-      height: 34px;
+      height: 2.5rem;
+      padding: 0.45rem 0.75rem;
     }
   }
 
@@ -586,7 +598,7 @@ select {
 }
 
 // Headings Label Styles
-.form-heading-container {
+.rac-form-heading-container {
   h2 {
     @include font-size(1.1, 1.2);
     color: $form-main-heading-text-color;
@@ -812,18 +824,29 @@ select {
 .form-container {
   padding: 1rem 0;
 
+  .form-check {
+    padding: .5rem 0;
+  }
+
   label {
     @include font-size(.8, 1.2);
     font-weight: 500;
+    margin: 0;
     width: 100%;
   }
 
   .form-group {
     margin-bottom: 1.5rem;
+
+    &.disabled {
+      opacity: .6;
+      pointer-events: none;
+    }
   }
 
   .form-control {
     @include font-size(.8, 1.2);
+    border: 1px solid $input-border-color;
     border-radius: .5rem;
     box-shadow: 0 1px 6px $box-shadow-color-light;
     height: 2.5rem;
@@ -831,10 +854,10 @@ select {
 
     &.display-text {
       @include font-size(.8, 1.2);
-      background: none;
-      border: 0;
+      align-items: center;
+      display: flex;
       font-weight: normal;
-      padding: .45rem 0;
+      padding: .45rem .75rem;
     }
   }
 
@@ -1284,9 +1307,9 @@ bs-datepicker-container {
     margin: 2rem;
     padding: 0;
 
-    .form-heading-container {
-      padding-bottom: 1rem;
-    }
+    //.rac-form-heading-container {
+    //  padding-bottom: 1rem;
+    //}
 
     .form-container {
       &.confirmation-window {
@@ -1439,10 +1462,10 @@ app-placement-select-options {
   }
 }
 
-.page-content {
+.rac-page-content {
   position: relative;
 
-  .page-content-pane {
+  .rac-page-content-pane {
     height: calc(100vh - 4.8rem);
     overflow-y: auto;
     padding: 1.4rem;
@@ -1522,7 +1545,7 @@ app-placement-select-options {
     }
   }
 
-  .page-content-pane {
+  .rac-page-content-pane {
     background: $left-pane-background;
     height: calc(100vh - 3rem);
     overflow-x: hidden;
@@ -1633,15 +1656,15 @@ app-algorithm-mix-mode {
 
 // Bundle Picker Styles
 app-bundle-picker {
-  .form-heading-container {
-    .form-group {
-      &.input-error {
-        .input-error-label {
-          padding-left: 0;
-        }
-      }
-    }
-  }
+  //.rac-form-heading-container {
+  //  .form-group {
+  //    &.input-error {
+  //      .input-error-label {
+  //        padding-left: 0;
+  //      }
+  //    }
+  //  }
+  //}
 }
 
 .context-generator {

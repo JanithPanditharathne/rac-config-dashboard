@@ -18,29 +18,29 @@ $enable-rounded: false;
 
 $themes: (
   theme-default: (
-    internal-server-error-main-heading: $internal-server-error-main-heading,
-    internal-server-error-sub-heading: $internal-server-error-sub-heading,
-    internal-server-error-message: $internal-server-error-message,
-    internal-server-error-button-background: $internal-server-error-button-background,
-    internal-server-error-button-color: $internal-server-error-button-color,
-    load-failure-main-background: $load-failure-main-background,
-    load-failure-main-heading: $load-failure-main-heading,
-    load-failure-sub-heading: $load-failure-sub-heading,
-    load-failure-message: $load-failure-message,
-    load-failure-button-background: $load-failure-button-background,
-    load-failure-button-color: $load-failure-button-color,
-    page-not-found-main-background: $page-not-found-main-background,
-    page-not-found-main-heading: $page-not-found-main-heading,
-    page-not-found-sub-heading: $page-not-found-sub-heading,
-    page-not-found-message: $page-not-found-message,
-    page-not-found-button-background: $page-not-found-button-background,
-    page-not-found-button-color: $page-not-found-button-color,
-    unauthorized-main-background: $unauthorized-main-background,
-    unauthorized-main-heading: $unauthorized-main-heading,
-    unauthorized-sub-heading: $unauthorized-sub-heading,
-    unauthorized-message: $unauthorized-message,
-    unauthorized-button-background: $unauthorized-button-background,
-    unauthorized-button-color: $unauthorized-button-color,
+    //internal-server-error-main-heading: $internal-server-error-main-heading,
+    //internal-server-error-sub-heading: $internal-server-error-sub-heading,
+    //internal-server-error-message: $internal-server-error-message,
+    //internal-server-error-button-background: $internal-server-error-button-background,
+    //internal-server-error-button-color: $internal-server-error-button-color,
+    //load-failure-main-background: $load-failure-main-background,
+    //load-failure-main-heading: $load-failure-main-heading,
+    //load-failure-sub-heading: $load-failure-sub-heading,
+    //load-failure-message: $load-failure-message,
+    //load-failure-button-background: $load-failure-button-background,
+    //load-failure-button-color: $load-failure-button-color,
+    //page-not-found-main-background: $page-not-found-main-background,
+    //page-not-found-main-heading: $page-not-found-main-heading,
+    //page-not-found-sub-heading: $page-not-found-sub-heading,
+    //page-not-found-message: $page-not-found-message,
+    //page-not-found-button-background: $page-not-found-button-background,
+    //page-not-found-button-color: $page-not-found-button-color,
+    //unauthorized-main-background: $unauthorized-main-background,
+    //unauthorized-main-heading: $unauthorized-main-heading,
+    //unauthorized-sub-heading: $unauthorized-sub-heading,
+    //unauthorized-message: $unauthorized-message,
+    //unauthorized-button-background: $unauthorized-button-background,
+    //unauthorized-button-color: $unauthorized-button-color,
     error-page-heading-background: $error-page-heading-background,
     loading-background: $loading-background,
     loading-border: $loading-border,
@@ -296,6 +296,37 @@ $primary-link-color: #1e58a8;
 $box-shadow-color: rgba(0, 0, 0, .2);
 $box-shadow-color-light: rgba(0, 0, 0, .09);
 
+//Internal Server Error Page Styles
+$internal-server-error-main-heading: #fff;
+$internal-server-error-sub-heading: #fff;
+$internal-server-error-message: #fff;
+$internal-server-error-button-background: #c62026;
+$internal-server-error-button-color: #fff;
+
+//Load Failure Page Styles
+$load-failure-main-background: #c62026;
+$load-failure-main-heading: #fff;
+$load-failure-sub-heading: #222;
+$load-failure-message: #333;
+$load-failure-button-background: #c62026;
+$load-failure-button-color: #fff;
+
+//404 Page Styles
+$page-not-found-main-background: #c62026;
+$page-not-found-main-heading: #fff;
+$page-not-found-sub-heading: #222;
+$page-not-found-message: #333;
+$page-not-found-button-background: #c62026;
+$page-not-found-button-color: #fff;
+
+//Unauthorized Page Styles
+$unauthorized-main-background: #c62026;
+$unauthorized-main-heading: #fff;
+$unauthorized-sub-heading: #fff;
+$unauthorized-message: #fff;
+$unauthorized-button-background: #fff;
+$unauthorized-button-color: #c62026;
+
 //Modal Colors
 $modal-header-background: linear-gradient(to left, #02122b, #011e42, #012a5a, #053673, #0f428d);
 $modal-footer-background: #fff;
@@ -304,12 +335,27 @@ $modal-close: #fff;
 
 //Main Navigation Styles
 $main-nav-bar-background: linear-gradient(to left, #02122b, #011e42, #012a5a, #053673, #0f428d);
+$navigation-item-border-color: #0f428d;
+$navigation-item-text-color: #fff;
+$navigation-item-active-background-color: #ddd;
+$navigation-item-active-text-color: #02122b;
+$navigation-item-icon-color: #fff;
+$navigation-item-active-icon-color: #02122b;
+$menu-icon-color: #fff;
+$logo-icon-color: #fff;
+$logo-text-color: #fff;
+$logo-height: 35px;
+$logo-width: 50px;;
 $logout-button-background: #c62026;
 
 //Action Bar Styles
 $action-bar-background: #fff;
 $action-bar-title: $primary-text-color;
 $action-bar-title-hover: $primary-link-color;
+
+
+//Form Styles
+$input-border-color: #ced4da;
 
 //Action Buttons
 //Primary Button

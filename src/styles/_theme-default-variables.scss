@@ -22,36 +22,36 @@ $load-failure-image: '../../../../assets/img/bg-fail.png';
 $page-not-found-image: '../../../../assets/img/bg-404.jpg';
 $unauthorized-image: '../../../../assets/img/bg-unauth.jpg';
 
-//Internal Server Error Page Styles
-$internal-server-error-main-heading: #fff;
-$internal-server-error-sub-heading: #fff;
-$internal-server-error-message: #fff;
-$internal-server-error-button-background: #c62026;
-$internal-server-error-button-color: #fff;
-
-//Load Failure Page Styles
-$load-failure-main-background: #c62026;
-$load-failure-main-heading: #fff;
-$load-failure-sub-heading: #222;
-$load-failure-message: #333;
-$load-failure-button-background: #c62026;
-$load-failure-button-color: #fff;
-
-//Load Failure Page Styles
-$page-not-found-main-background: #c62026;
-$page-not-found-main-heading: #fff;
-$page-not-found-sub-heading: #222;
-$page-not-found-message: #333;
-$page-not-found-button-background: #c62026;
-$page-not-found-button-color: #fff;
-
-//Unauthorized Page Styles
-$unauthorized-main-background: #c62026;
-$unauthorized-main-heading: #fff;
-$unauthorized-sub-heading: #fff;
-$unauthorized-message: #fff;
-$unauthorized-button-background: #fff;
-$unauthorized-button-color: #c62026;
+////Internal Server Error Page Styles
+//$internal-server-error-main-heading: #fff;
+//$internal-server-error-sub-heading: #fff;
+//$internal-server-error-message: #fff;
+//$internal-server-error-button-background: #c62026;
+//$internal-server-error-button-color: #fff;
+//
+////Load Failure Page Styles
+//$load-failure-main-background: #c62026;
+//$load-failure-main-heading: #fff;
+//$load-failure-sub-heading: #222;
+//$load-failure-message: #333;
+//$load-failure-button-background: #c62026;
+//$load-failure-button-color: #fff;
+//
+////Load Failure Page Styles
+//$page-not-found-main-background: #c62026;
+//$page-not-found-main-heading: #fff;
+//$page-not-found-sub-heading: #222;
+//$page-not-found-message: #333;
+//$page-not-found-button-background: #c62026;
+//$page-not-found-button-color: #fff;
+//
+////Unauthorized Page Styles
+//$unauthorized-main-background: #c62026;
+//$unauthorized-main-heading: #fff;
+//$unauthorized-sub-heading: #fff;
+//$unauthorized-message: #fff;
+//$unauthorized-button-background: #fff;
+//$unauthorized-button-color: #c62026;
 
 //Error Pages Colors
 $error-page-heading-background: #c62026;

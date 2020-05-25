@@ -13,25 +13,22 @@
   z-index: 1049;
 
   .navbar-brand {
-    @include color-theme {
-      color: get-theme-variable('main-nav-bar-text');
-    }
-
-    @include font-size(1.2, 1.6);
+    @include font-size(1, 1.6);
+    color: $logo-text-color;
     font-weight: 500;
     padding-left: 55px;
     position: relative;
     text-transform: uppercase;
 
     &::before {
-      background: url('../../../../assets/img/logo-white.svg');
+      background-image: svg-url-icon($logo-icon, '#000000', $logo-icon-color);
       background-size: cover;
       bottom: 0;
       content: '';
-      height: 35px;
+      height: $logo-height;
       left: 0;
       position: absolute;
-      width: 50px;
+      width: $logo-width;
     }
   }
 
@@ -42,10 +39,14 @@
   }
 
   .navbar-toggler {
-    i {
-      @include color-theme {
-        color: get-theme-variable('main-nav-bar-toggler-icon-color');
-      }
+    padding: 0 0.75rem;
+
+    .rac-menu-icon {
+      background-image: svg-url-icon($menu-icon, '#000000', $menu-icon-color);
+      background-size: contain;
+      display: block;
+      height: 1.5rem;
+      width: 1.5rem;
     }
   }
 
@@ -96,28 +97,23 @@
   .navbar-nav {
     > .nav-item {
       @include breakpoint(max991) {
-        @include color-theme {
-          border-color: get-theme-variable('main-nav-bar-submenu-border');
-        }
-        border-top: .05rem solid;
+        border-top: .05rem solid $navigation-item-border-color;
         padding: .3rem 0;
       }
+      padding: 0 .3rem;
       position: relative;
 
       > .nav-link {
         @include breakpoint(max991) {
           margin: 0 .5rem;
-          padding: 0;
-        }
-        @include color-theme {
-          color: get-theme-variable('main-nav-bar-text');
         }
 
         @include font-size(.8, 2);
+        color: $navigation-item-text-color;
         cursor: pointer;
         font-weight: 300;
         letter-spacing: .03rem;
-        padding: 0 .5rem 0 0;
+        padding: 0 .5rem;
         text-transform: uppercase;
 
         .main-nav-label {
@@ -132,23 +128,23 @@
           width: 1.5rem;
 
             &.rac-rec-slot-icon {
-              background-image: svg-url-icon($rec-slot-icon, '#000000', $main-nav-bar-text);
+              background-image: svg-url-icon($rec-slot-icon, '#000000', $navigation-item-icon-color);
             }
 
             &.recommendation-icon {
-              background-image: svg-url-icon($recommend-icon, '#000000', $main-nav-bar-text);
+              background-image: svg-url-icon($recommend-icon, '#000000', $navigation-item-icon-color);
             }
 
             &.algorithm-icon {
-              background-image: svg-url-icon($algorithm-icon, '#000000', $main-nav-bar-text);
+              background-image: svg-url-icon($algorithm-icon, '#000000', $navigation-item-icon-color);
             }
 
             &.bundle-icon {
-              background-image: svg-url-icon($bundle-icon, '#000000', $main-nav-bar-text);
+              background-image: svg-url-icon($bundle-icon, '#000000', $navigation-item-icon-color);
             }
 
             &.rule-icon {
-              background-image: svg-url-icon($rule-icon, '#000000', $main-nav-bar-text);
+              background-image: svg-url-icon($rule-icon, '#000000', $navigation-item-icon-color);
             }
         }
 
@@ -159,26 +155,38 @@
 
       &.active {
         > .nav-link {
-          &.dropdown-toggle {
             @include breakpoint(max991) {
               margin: 0 .5rem;
             }
-            @include color-theme {
-              background: get-theme-variable('main-nav-bar-active-link-background');
-              color: get-theme-variable('main-nav-bar-active-link-text');
-            }
-            box-shadow: inset 0 1px 2px $box-shadow-color;
+            color: $navigation-item-active-text-color;
+            background: $navigation-item-active-background-color;
+            border-radius: 0.5rem;
             display: block;
 
 
 
             .menu-icon {
-              @include color-theme {
-                background: get-theme-variable('main-nav-bar-active-link-icon-background');
+              &.rac-rec-slot-icon {
+                background-image: svg-url-icon($rec-slot-icon, '#000000', $navigation-item-active-icon-color);
               }
-              box-shadow: inset 0 1px 5px $box-shadow-color;
+
+              &.recommendation-icon {
+                background-image: svg-url-icon($recommend-icon, '#000000', $navigation-item-active-icon-color);
+              }
+
+              &.algorithm-icon {
+                background-image: svg-url-icon($algorithm-icon, '#000000', $navigation-item-active-icon-color);
+              }
+
+              &.bundle-icon {
+                background-image: svg-url-icon($bundle-icon, '#000000', $navigation-item-active-icon-color);
+              }
+
+              &.rule-icon {
+                background-image: svg-url-icon($rule-icon, '#000000', $navigation-item-active-icon-color);
+              }
             }
-          }
+
         }
       }
 
@@ -203,11 +211,8 @@
               padding: 0 .5rem;
             }
 
-            @include color-theme {
-              background: get-theme-variable('main-nav-bar-background');
-            }
-
             border: 0;
+            background: $main-nav-bar-background;
             margin: 0;
             padding: 0 .5rem .5rem;
             z-index: 1048;
@@ -230,10 +235,8 @@
               }
 
               > .nav-link {
-                @include color-theme {
-                  color: get-theme-variable('main-nav-bar-text');
-                }
                 @include font-size(.8, 2);
+                color: $navigation-item-text-color;;
                 cursor: pointer;
                 font-weight: 300;
                 letter-spacing: .03rem;
@@ -272,10 +275,8 @@
                 background: none;
 
                 > .nav-link {
-                  @include color-theme {
-                    background: get-theme-variable('main-nav-bar-active-link-background');
-                    color: get-theme-variable('main-nav-bar-active-link-text');
-                  }
+                  color: $navigation-item-active-text-color;
+                  background: $navigation-item-active-background-color;
                   box-shadow: inset 0 1px 2px $box-shadow-color;
                 }
               }
@@ -298,10 +299,7 @@
 
             .dropdown-item {
               @include breakpoint(max991) {
-                @include color-theme {
-                  border-color: get-theme-variable('main-nav-bar-submenu-border');
-                }
-                border-top: .05rem solid;
+                border-top: .05rem solid $navigation-item-border-color;
                 margin: 0;
                 padding: .3rem 0 .2rem;
               }
@@ -332,9 +330,6 @@
                 > .nav-link {
                   > .main-nav-label {
                     .menu-icon {
-                      @include color-theme {
-                        background: get-theme-variable('main-nav-bar-active-link-icon-background');
-                      }
                       box-shadow: inset 0 1px 5px $box-shadow-color;
                     }
                   }
@@ -359,13 +354,9 @@
 
       li {
         &.profile-name {
-          @include color-theme {
-            border-color: get-theme-variable('main-nav-bar-text');
-            color: get-theme-variable('main-nav-bar-text');
-          }
-
           @include font-size(.9, 1.2);
-          border-right: .05rem solid ;
+          border-right: .05rem solid  $navigation-item-text-color;
+          color: $navigation-item-text-color;
           display: block;
           font-weight: 500;
           padding: .3rem 1rem;
@@ -395,6 +386,7 @@
   display: flex;
   flex-grow: 2;
   justify-content: space-between;
+  padding-bottom: .5rem;
 }
 
 .pointer-link {
