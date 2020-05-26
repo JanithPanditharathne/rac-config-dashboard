@@ -1,0 +1,27 @@
+<div class="context-generator">
+    <app-additional-detail-view *ngIf="formGroupData?.value?.length" [viewType]="AdditionalDataViewType.INLINE"
+                                [data]="formGroupData">
+        <ng-template #actionTemplate let-value="value">
+            <div class="tab-content-action-button-container">
+                <app-action-button-strap>
+                    <app-action [type]="ActionType.DELETE" (actionClick)="onRemoveItem(value)"></app-action>
+                </app-action-button-strap>
+            </div>
+        </ng-template>
+    </app-additional-detail-view>
+    <ng-container *ngIf="formArrayData">
+        <ng-container *ngFor="let item of formArrayData">
+            <ng-container *ngIf="displayType === RuleTabInlineDataGeneratorType.PRICE && isPriceType(item.type)">
+                <app-price-detail-view [priceItem]="item">
+                    <ng-template #actionTemplate>
+                        <div class="tab-content-action-button-container">
+                            <app-action-button-strap>
+                                <app-action [type]="ActionType.DELETE" (click)="onRemoveItem(item)"></app-action>
+                            </app-action-button-strap>
+                        </div>
+                    </ng-template>
+                </app-price-detail-view>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</div>

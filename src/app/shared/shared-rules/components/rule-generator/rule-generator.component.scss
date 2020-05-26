@@ -1,0 +1,49 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.rule-generator {
+  @include color-theme {
+    background: get-theme-variable('content-display-background');
+    border-color: get-theme-variable('content-display-border');
+  }
+  @include font-size(.8, 1.1);
+  border: .05rem solid;
+  border-radius: .2rem;
+  box-shadow: 0 .2rem 1rem $box-shadow-color-light;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  padding: 1rem;
+
+  .generated-rule {
+    padding: .5rem;
+
+    .criteria {
+      @include color-theme {
+        color: get-theme-variable('generated-rule-criteria-color');
+      }
+
+      @include font-size(.9, 1.1);
+      font-weight: 700;
+      padding-right: .2rem;
+    }
+
+    .selected-value {
+      @include color-theme {
+        color: get-theme-variable('generated-rule-selected-color');
+      }
+
+      @include font-size(.9, 1.1);
+      font-weight: 500;
+      padding: 0 .5rem;
+    }
+
+    .sub-condition {
+      @include color-theme {
+        color: get-theme-variable('generated-rule-condition-color');
+      }
+
+      font-weight: 300;
+      padding: 0 .5rem;
+    }
+  }
+}

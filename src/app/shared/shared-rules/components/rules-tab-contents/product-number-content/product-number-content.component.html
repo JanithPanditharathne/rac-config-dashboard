@@ -1,0 +1,28 @@
+<form [formGroup]="baseFormGroup" novalidate>
+    <div class="row">
+        <div class="col-12">
+            <div class="context-select-wrapper">
+                <div class="form-group product-number-selector" [class.input-error]="isInvalid('productNumber')">
+                    <label
+                    >Product Number
+                        <input class="form-control" type="text" placeholder="Enter Product Number" name="ProductNumber"
+                               formControlName="productNumber"/>
+                        <app-character-length-range-error
+                                [control]="baseFormGroup.get('productNumber')"
+                                [lengthError]="'Product number must not be greater than 20 characters long'"
+                        >
+                        </app-character-length-range-error>
+                    </label>
+                </div>
+                <div class="tab-content-action-button-container">
+                    <app-action-button-strap>
+                        <app-action [type]="ActionType.APPLY" [disable]="isDisabled()"
+                                    (actionClick)="onApply()"></app-action>
+                    </app-action-button-strap>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-rules-tab-content-inline-detail-view [formGroupData]="productNumberGroup.value" (onRemoved)="onRemove($event)">
+    </app-rules-tab-content-inline-detail-view>
+</form>

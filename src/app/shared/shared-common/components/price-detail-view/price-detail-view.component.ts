@@ -1,7 +1,5 @@
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 
-import { SalePriceStatus } from '../../enums/rules/sale-price-status.enum';
-
 /**
  * Component class to represent price rule details.
  * @class PriceDetailViewComponent
@@ -12,7 +10,6 @@ import { SalePriceStatus } from '../../enums/rules/sale-price-status.enum';
   templateUrl: './price-detail-view.component.html'
 })
 export class PriceDetailViewComponent {
-  public SalePriceStatus = SalePriceStatus;
 
   /**
    * Input to represent the rule price data in a grid row.

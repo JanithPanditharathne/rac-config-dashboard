@@ -7,6 +7,8 @@ export class CustomFormValidator {
   public static username_regex: RegExp = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d]))*$/i;
   public static integer_regex: RegExp = /^\d*$/;
   public static password_regex: RegExp = /^(?:[0-9a-zA-Z!@#$%^&*])*$/;
+  public static alphanumeric_regex: RegExp = /^[a-zA-Z0-9]+$/;
+  public static integer_with_two_decimal_regex: RegExp = /^\d*(\.\d{0,2})?$/;
 
   public static arrayMinLength(length: number): ValidatorFn {
     return (control: AbstractControl) => {

@@ -14,3 +14,5 @@ export { RuleBrandDataItem } from './rule/rule-brand-data-item.model';
 export { RuleIfExpressionDataItem } from './rule/rule-if-expression-data-item.model';
 export { RuleProductNumberDataItem } from './rule/rule-product-number-data-item.model';
 export { RuleThenExpressionDataItem } from './rule/rule-then-expression-data-item.model';
+export { RuleContextOperatorData } from './rule/rule-context-operator-data.model';
+export { RuleExactPriceDataItem } from './rule/rule-exact-price-data-item.model';

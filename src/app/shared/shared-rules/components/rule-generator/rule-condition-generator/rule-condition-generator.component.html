@@ -1,0 +1,12 @@
+<div class="main-condition" [formGroup]="formGroup">
+    <div class="btn-group form-radio">
+        <input class="form-check-input radio-input" type="radio" formControlName="condition"
+               id="toggle-on-{{identifier}}" value="AND"/>
+        <label for="toggle-on-{{identifier}}" class="form-check-label">and</label>
+    </div>
+    <div class="btn-group form-radio">
+        <input class="form-check-input radio-input" type="radio" formControlName="condition"
+               id="toggle-off-{{identifier}}" value="OR"/>
+        <label for="toggle-off-{{identifier}}" class="form-check-label">or</label>
+    </div>
+</div>

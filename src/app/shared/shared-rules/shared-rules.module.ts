@@ -6,6 +6,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 
 import { COMPONENTS, DIRECTIVES, ENTRY_COMPONENTS, PIPES, SERVICES } from './index';
+import { SharedCommonModule } from '../shared-common/shared-common.module';
+import { DropdownModule } from 'ornamentum';
 
 /**
  * Application shared rules module (contains all shared common components, directives, pipes, models and services).
@@ -15,7 +17,7 @@ import { COMPONENTS, DIRECTIVES, ENTRY_COMPONENTS, PIPES, SERVICES } from './ind
   declarations: [...COMPONENTS, ...DIRECTIVES, ...PIPES],
   entryComponents: [...ENTRY_COMPONENTS],
   exports: [CommonModule, FormsModule, ReactiveFormsModule, ...COMPONENTS, ...DIRECTIVES, ...PIPES],
-  imports: [BsDatepickerModule.forRoot(), CommonModule, FormsModule, ReactiveFormsModule, PopoverModule.forRoot()]
+  imports: [BsDatepickerModule.forRoot(), CommonModule, FormsModule, ReactiveFormsModule, PopoverModule.forRoot(), SharedCommonModule.forRoot(), DropdownModule]
 })
 export class SharedRulesModule {
   static forRoot(): ModuleWithProviders {

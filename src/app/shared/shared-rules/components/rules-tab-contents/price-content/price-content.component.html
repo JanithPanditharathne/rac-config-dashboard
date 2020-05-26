@@ -1,0 +1,47 @@
+<div class="context-generator price-content-wrapper" [formGroup]="priceGroup" novalidate>
+    <div class="context-pane dropdown-container">
+        <div class="price-container d-flex" formGroupName="exactPrice">
+            <label class="form-check-label">Price</label>
+            <div class="price-operator">
+                <div class="form-group">
+                    <ng-dropdown
+                            [id]="'exact-price-options'"
+                            [options]="operators"
+                            [selectTrackBy]="'type'"
+                            [displayTrackBy]="'name'"
+                            [setFirstOptionSelected]="true"
+                            [closeMenuOnSelect]="true"
+                            [menuWidth]="100"
+                            [menuHeight]="180"
+                            [selectMode]="dropdownSelectMode"
+                            [relativeParentElement]="parentElement"
+                            [formControlName]="'operator'"
+                    >
+                    </ng-dropdown>
+                </div>
+            </div>
+            <div class="form-group" [class.input-error]="isInvalid('exactPrice.price')">
+                <input type="number" class="form-control" placeholder="Price" step="0.01" formControlName="price"/>
+                <app-range-error
+                        [control]="priceGroup.get('exactPrice.price')"
+                        [minError]="'Price should be greater than 0'"
+                        [maxError]="'Price should be less than or equal to 1000000'"
+                >
+                </app-range-error>
+            </div>
+            <div class="tab-content-action-button-container">
+                <app-action-button-strap>
+                    <app-action [type]="ActionType.APPLY" [disable]="isDisabled('exactPrice.price')"
+                                (actionClick)="onApplyExactPrice()"></app-action>
+                </app-action-button-strap>
+            </div>
+        </div>
+
+        <app-rules-tab-content-inline-detail-view
+                [formArrayData]="formDataArray.value"
+                [displayType]="RuleTabInlineDataGeneratorType.PRICE"
+                (onRemoved)="onRemove($event)"
+        >
+        </app-rules-tab-content-inline-detail-view>
+    </div>
+</div>

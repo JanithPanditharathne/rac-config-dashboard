@@ -1,10 +1,13 @@
-import { RuleComponent } from './components';
+import { RuleComponent, RuleUpsertComponent } from './components';
+
+import { RuleResolver } from './resolvers';
 
 /**
  * Export all rule components.
  */
 export const COMPONENTS = [
-  RuleComponent
+  RuleComponent,
+  RuleUpsertComponent
 ];
 
 /**
@@ -15,4 +18,7 @@ export const ENTRY_COMPONENTS = [];
 /**
  * Export all rule services.
  */
-export const SERVICES = [];
+export const SERVICES = [
+  RuleResolver
+];
+
