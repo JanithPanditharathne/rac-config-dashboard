@@ -1,99 +1,95 @@
-<div class="page-content add-bundles">
-    <div class="page-content-pane" *ngIf="bundleFormGroup">
-        <div class="container-fluid relative-parent" #bundleFormParent>
-            <div class="row">
-                <div class="col-lg-6">
-                    <form [formGroup]="bundleFormGroup">
+<div class="rac-page-content">
+    <div class="rac-page-content-pane" *ngIf="bundleFormGroup">
+        <form [formGroup]="bundleFormGroup">
+            <div class="container-fluid" #bundleFormGroupParent>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="rac-form-heading-container">
+                            <h2>Bundle Details</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-container row">
+                    <div class="col-lg-4">
                         <div class="row">
-                            <div class="col-lg-4">
-                                <div class="form-heading-container">
-                                    <h2>Bundle Details</h2>
+                            <div class="col-lg-12">
+                                <div class="form-group" [class.input-error]="isInvalid('bundleName')">
+                                    <label>Bundle Name <span class="required-label">*</span>
+                                        <input class="form-control"
+                                               formControlName="bundleName"
+                                               maxlength="100"
+                                               placeholder="Bundle Name"
+                                        />
+                                    </label>
+                                    <app-required-error [control]="bundleFormGroup.get('bundleName')"
+                                                        [requiredError]="'Bundle name is required'"
+                                                        [errorType]="'required'"></app-required-error>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-container">
-                            <div class="form-group" [class.input-error]="isInvalid('bundleName')">
-                                <label
-                                >Bundle Name <span class="required-label">*</span>
-                                    <input class="form-control"
-                                           formControlName="bundleName"
-                                           maxlength="100"
-                                           placeholder="Bundle Name"
-                                    />
-                                </label>
-                                <app-required-error [control]="bundleFormGroup.get('bundleName')"
-                                                    [requiredError]="'Bundle name is required'"
-                                                    [errorType]="'required'">
-                                </app-required-error>
-                            </div>
-                            <app-algorithm-selector
-                                    [algorithmsFormGroup]="bundleFormGroup.get('algorithms')"
-                            ></app-algorithm-selector>
-                            <span>Combined Enabled
-                                <div class="form-check mt-1 d-inline">
-                                    <input
-                                            class="form-check-input checkbox-input"
-                                            type="checkbox"
-                                            id="combineEnabled"
-                                            formControlName="combineEnabled"
-                                            (change)="onCombinedEnabledChange()"/>
-                                    <label class="combined-enabled-label" for="combineEnabled"></label>
-                                </div>
-                            </span>
-                            <div [hidden]="!bundleFormGroup.get('combineEnabled').value" class="form-group"
-                                 [class.input-error]="isInvalid('combineDisplayText')">
-                                <label for="combineDisplayText"
-                                >Combine Display Text<span class="required-label">*</span>
-                                    <textarea
-                                            class="form-control"
-                                            formControlName="combineDisplayText"
-                                            id="combineDisplayText"
-                                            maxlength="2000"
-                                            [rows]="4"
-                                            [placeholder]="'Specify Combine Display Text here...'"
-                                    ></textarea>
-                                </label>
-                                <app-character-length-range-error
-                                        [control]="bundleFormGroup.get('combineDisplayText')"
-                                        [lengthError]="'Combine Display Text must not be greater than 2000 characters long'"
-                                        [requiredError]="'Combine Display Text is required'"
-                                >
-                                </app-character-length-range-error>
-                            </div>
-                            <div class="form-group" [class.input-error]="isInvalid('defaultLimit')">
-                                <span> Default limit
-                                    <div class="form-check mt-1 d-inline">
-                                        <input
-                                                class="form-check-input checkbox-input"
-                                                type="checkbox"
-                                                id="defaultLimitEnabled"
-                                                formControlName="defaultLimitEnabled"
-                                                (change)="onDefaultLimitEnabledChange()"/>
-                                        <label class="default-limit-enabled-label" for="defaultLimitEnabled"></label>
-                                    </div>
-                                </span>
-                                <div [hidden]="!bundleFormGroup.get('defaultLimitEnabled').value">
-                                    <div class="form-group" [class.input-error]="isInvalid('defaultLimit')">
-                                        <input type="number"
-                                               min="1"
-                                               max="999"
-                                               class="form-control"
-                                               formControlName="defaultLimit"/>
-                                    </div>
-                                </div>
-                                <app-range-error
-                                        [control]="bundleFormGroup.get('defaultLimit')"
-                                        [minError]="'Default limit should be greater than or equal to 1'"
-                                        [maxError]="'Default limit should be less than or equal to 999'"
-                                        [requiredError]="'Default limit is required'"
-                                >
-                                </app-range-error>
-                            </div>
+                        <div class="form-check">
+                            <input
+                                    class="form-check-input checkbox-input"
+                                    type="checkbox"
+                                    id="combineEnabled"
+                                    formControlName="combineEnabled"
+                                    (change)="onCombinedEnabledChange()"/>
+                            <label class="combined-enabled-label" for="combineEnabled">Combined Enabled</label>
                         </div>
-                    </form>
+                        <div [class.disabled]="!bundleFormGroup.get('combineEnabled').value" class="form-group"
+                             [class.input-error]="isInvalid('combineDisplayText')">
+                            <label for="combineDisplayText"
+                            >Combine Display Text<span class="required-label">*</span>
+                                <textarea
+                                        class="form-control"
+                                        formControlName="combineDisplayText"
+                                        id="combineDisplayText"
+                                        maxlength="2000"
+                                        [rows]="4"
+                                        [placeholder]="'Specify Combine Display Text here...'"
+                                ></textarea>
+                            </label>
+                            <app-character-length-range-error
+                                    [control]="bundleFormGroup.get('combineDisplayText')"
+                                    [lengthError]="'Combine Display Text must not be greater than 2000 characters long'"
+                                    [requiredError]="'Combine Display Text is required'"
+                            >
+                            </app-character-length-range-error>
+                        </div>
+                        <div class="form-check">
+                            <input
+                                    class="form-check-input checkbox-input"
+                                    type="checkbox"
+                                    id="defaultLimitEnabled"
+                                    formControlName="defaultLimitEnabled"
+                                    (change)="onDefaultLimitEnabledChange()"/>
+                            <label class="default-limit-enabled-label" for="defaultLimitEnabled">Default limit</label>
+                        </div>
+                        <div  class="form-group" [class.disabled]="!bundleFormGroup.get('defaultLimitEnabled').value" [class.input-error]="isInvalid('defaultLimit')">
+                            <input type="number"
+                                   min="1"
+                                   max="999"
+                                   class="form-control"
+                                   formControlName="defaultLimit"/>
+                            <app-range-error
+                                    [control]="bundleFormGroup.get('defaultLimit')"
+                                    [minError]="'Default limit should be greater than or equal to 1'"
+                                    [maxError]="'Default limit should be less than or equal to 999'"
+                                    [requiredError]="'Default limit is required'"
+                            >
+                            </app-range-error>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-8">
+                        <app-algorithm-selector
+                                [algorithmsFormGroup]="bundleFormGroup.get('algorithms')"
+                        ></app-algorithm-selector>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
         <div class="footer-button-container">
             <app-action-button-strap>
                 <app-action [type]="ActionType.SAVE" [name]="formAction === FormAction.ADD ? 'Create': 'Save'"
@@ -105,3 +101,5 @@
         </div>
     </div>
 </div>
+
+
