@@ -4,7 +4,6 @@ import { SuccessResponse } from '../../../core/models';
 import { Injectable } from '@angular/core';
 import { DisplayRecSlots } from '../models/display-rec-slots.model';
 import { RecSlot } from '../models/rec-slot.model';
-import { RecSlotSave } from '../models/rec-slot-save.model';
 import { environment } from '../../../../environments/environment';
 
 /**
@@ -37,20 +36,20 @@ export class RecSlotsService {
 
   /**
    * Responsible for making a POST call to create new rec slot.
-   * @param {RecSlotSave} recSlot Recommendation slot details.
+   * @param {RecSlot} recSlot Recommendation slot details.
    * @returns {Observable<SuccessResponse>} Response.
    */
-  public createRecSlot(recSlot: RecSlotSave) {
+  public createRecSlot(recSlot: RecSlot) {
     return this.http.post<SuccessResponse>(`${environment.baseUrl}${RecSlotsService.rec_slots_url}`, recSlot);
   }
 
   /**
    * Responsible for making a POST call to edit rec slot.
-   * @param {RecSlotSave} recSlot Recommendation slot details.
+   * @param {RecSlot} recSlot Recommendation slot details.
    * @returns {Observable<SuccessResponse>} Response.
    */
-  public updateRecSlot(recSlot: RecSlotSave) {
-    return this.http.put<SuccessResponse>(`${environment.baseUrl}${RecSlotsService.rec_slots_url}/${recSlot.recId}`, recSlot);
+  public updateRecSlot(recSlot: RecSlot) {
+    return this.http.put<SuccessResponse>(`${environment.baseUrl}${RecSlotsService.rec_slots_url}/${recSlot.id}`, recSlot);
   }
 
   /**

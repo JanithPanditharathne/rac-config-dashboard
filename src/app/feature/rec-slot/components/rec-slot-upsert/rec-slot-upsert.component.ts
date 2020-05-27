@@ -14,13 +14,13 @@ import { RecommendationService } from '../../../../shared/shared-rec/services';
 import { Rule } from '../../../rule/models/rule.model';
 import { RuleService } from '../../../../shared/shared-rules/services';
 import { DisplayRule } from '../../../rule/models/display-rule.model';
-import { RecSlotSave } from '../../models/rec-slot-save.model';
 import { AlertType, SuccessStatus } from '../../../../core/enums';
 import { NotificationService } from '../../../../core/services';
 import { RecSlotConstants } from '../../rec-slot.constants';
 import { SuccessResponse } from '../../../../core/models';
 import { RecSlotsService } from '../../services';
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
+import { RecSlotUtilityService } from '../../services';
 
 /**
  * Class representing the Rec slot upsert component.
@@ -44,7 +44,7 @@ export class RecSlotUpsertComponent implements OnInit {
   public formAction: FormAction;
   public recommendationDataSource: Observable<Recommendation[]>;
   public rulesDataSource: Observable<Rule[]>;
-  public currentSelected: any;
+  public currentSelected: any[];
 
   constructor(
     private fb: FormBuilder,
@@ -140,13 +140,7 @@ export class RecSlotUpsertComponent implements OnInit {
 
     const formData = this.recSlotFormGroup.value;
 
-    const recSlotData: RecSlotSave = {
-      channelId: formData.channel.id,
-      pageId: formData.page.id,
-      placeholderId: formData.placeholder.id,
-      recId: formData.recommendation.id,
-      ruleIds: this.currentSelected.map((id: string) => Number(id))
-    };
+    const recSlotData: RecSlot = RecSlotUtilityService.mapRecSlotValues(formData, this.currentSelected);
 
     switch (this.formAction) {
       case FormAction.ADD:
@@ -190,7 +184,7 @@ export class RecSlotUpsertComponent implements OnInit {
     }
   }
 
-  private addNewRecSlot(recSlotData: RecSlotSave, clickEventArgs: ActionClickEventArgs): void {
+  private addNewRecSlot(recSlotData: RecSlot, clickEventArgs: ActionClickEventArgs): void {
     this.recSlotsService.createRecSlot(recSlotData).subscribe(
       (response: SuccessResponse) => {
         clickEventArgs.resolve();
@@ -209,7 +203,8 @@ export class RecSlotUpsertComponent implements OnInit {
     );
   }
 
-  private editRecSlot(recSlotData: RecSlotSave, clickEventArgs: ActionClickEventArgs): void {
+  private editRecSlot(recSlotData: RecSlot, clickEventArgs: ActionClickEventArgs): void {
+    recSlotData.id = this.recSlot.id;
     this.recSlotsService.updateRecSlot(recSlotData).subscribe(
       (response: SuccessResponse) => {
         clickEventArgs.resolve();
