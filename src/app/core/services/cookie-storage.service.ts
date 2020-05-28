@@ -16,9 +16,7 @@ export class CookieStorageService {
     const cookieList: string[] = document.cookie.split(';');
 
     for (let cookieVal of cookieList) {
-      while (cookieVal.charAt(0) === ' ') {
-        cookieVal = cookieVal.substring(1);
-      }
+      cookieVal = cookieVal.trimLeft();
 
       if (cookieVal.indexOf(cookieName) === 0) {
         return cookieVal.substring(cookieName.length, cookieVal.length);
@@ -28,14 +26,27 @@ export class CookieStorageService {
   }
 
   /**
-   * Responsible for set cookie.
+   * Responsible for set cookie in days.
    * @param cookieName name for the cookie
    * @param cookieValue specific value field
    * @param expireDates duration of expiry (in dates)
    */
-  public setCookie(cookieName: string, cookieValue: string, expireDates: number): void {
+  public setCookieInDays(cookieName: string, cookieValue: string, expireDates: number): void {
     const date = new Date();
     date.setTime(date.getTime() + (expireDates * 24 * 60 * 60 * 1000));
+    const expires = 'expires=' + date.toUTCString();
+    document.cookie = cookieName + '=' + cookieValue + ';' + expires + ';path=/';
+  }
+
+  /**
+   * Responsible for set cookie in milliseconds.
+   * @param cookieName name for the cookie
+   * @param cookieValue specific value field
+   * @param milliseconds duration of expiry (in milliseconds)
+   */
+  public setCookieInMilliseconds(cookieName: string, cookieValue: string, milliseconds: number): void {
+    const date = new Date();
+    date.setTime(date.getTime() + milliseconds);
     const expires = 'expires=' + date.toUTCString();
     document.cookie = cookieName + '=' + cookieValue + ';' + expires + ';path=/';
   }
@@ -45,7 +56,7 @@ export class CookieStorageService {
    * @param cookieName name for the cookie
    */
   public deleteCookie(cookieName: string): void {
-    this.setCookie(cookieName, '', -1);
+    this.setCookieInMilliseconds(cookieName, '', -1);
   }
 }
 

@@ -33,7 +33,7 @@ export class AuthService {
       username: userDetails.username,
       password: userDetails.password,
     };
-    await this.cookieStorageService.setCookie(CoreConstants.app_username, this.userProfile.username, 0.0104167);
+    await this.cookieStorageService.setCookieInMilliseconds(CoreConstants.app_username, this.userProfile.username, 900002.88);
   }
 
   /**
