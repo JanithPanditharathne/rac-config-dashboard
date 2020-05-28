@@ -49,9 +49,7 @@ export class RecSlotComponent {
 
     this.dataSource = this.recSlotsService.getRecSlots().pipe(
       map((data: DisplayRecSlots) => {
-        return data.recSlots.map((recSlot: RecSlot) => {
-          return recSlot;
-        });
+        return data.recSlots;
       })
     );
   }

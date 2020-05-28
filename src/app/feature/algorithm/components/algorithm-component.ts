@@ -51,9 +51,7 @@ export class AlgorithmComponent {
 
     this.dataSource = this.algorithmService.getAlgorithms().pipe(
       map((data: DisplayAlgorithm) => {
-        return data.algorithms.map((algorithm: Algorithm) => {
-          return algorithm;
-        })
+          return data.algorithms;
       })
     );
   }

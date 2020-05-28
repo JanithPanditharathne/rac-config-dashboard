@@ -49,9 +49,7 @@ export class RecommendationComponent {
 
     this.dataSource = this.recommendationService.getRecs().pipe(
       map((data: DisplayRecommendation) => {
-        return data.recs.map((recommendation: Recommendation) => {
-          return recommendation;
-        });
+        return data.recs;
       })
     );
   }

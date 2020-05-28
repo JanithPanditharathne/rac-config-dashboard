@@ -159,9 +159,7 @@ export class RecSlotUpsertComponent implements OnInit {
   private fetchRuleData(): void {
     this.rulesDataSource = this.ruleService.getRules().pipe(
       map((data: DisplayRule) => {
-        return data.rules.map((rule: Rule) => {
-          return rule;
-        });
+        return data.rules;
       })
     );
   }
@@ -169,9 +167,7 @@ export class RecSlotUpsertComponent implements OnInit {
   private fetchRecData(): void {
     this.recommendationDataSource = this.recommendationService.getRecs().pipe(
       map((data: DisplayRecommendation) => {
-        return data.recs.map((recommendation: Recommendation) => {
-          return recommendation;
-        });
+        return data.recs;
       })
     );
   }

@@ -49,9 +49,7 @@ export class RuleComponent {
 
     this.rulesDataSource = this.ruleService.getRules().pipe(
       map((data: DisplayRule) => {
-        return data.rules.map((rule: Rule) => {
-          return rule;
-        });
+        return data.rules;
       })
     );
   }

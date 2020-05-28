@@ -51,9 +51,7 @@ export class BundleComponent {
 
     this.dataSource = this.bundleService.getBundles().pipe(
       map((data: DisplayBundle) => {
-        return data.bundles.map((bundle: Bundle) => {
-          return bundle;
-        });
+        return data.bundles;
       })
     );
   }

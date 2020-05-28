@@ -12,7 +12,7 @@ import { NotificationService } from '../../../../core/services';
 import { RuleConstants } from '../../rule.constants';
 import { SuccessResponse } from '../../../../core/models';
 import { RuleService } from '../../../../shared/shared-rules/services';
-import { RuleUtilityService } from '../../../../shared/shared-rules/services/rule-utility.service';
+import { RuleUtilityService } from '../../../../shared/shared-rules/services';
 import { Observable } from 'rxjs';
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
 
