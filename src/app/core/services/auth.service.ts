@@ -16,7 +16,6 @@ export class AuthService {
     };
   }
 
-
   /**
    * Responsible for return value of userProfile.
    */
@@ -28,12 +27,12 @@ export class AuthService {
    * Responsible for making http POST call to user login.
    * @param userDetails
    */
-  public async authenticate(userDetails: any): Promise<any> {
+  public authenticate(userDetails: any): void {
     this.userProfile = {
       username: userDetails.username,
       password: userDetails.password,
     };
-    await this.cookieStorageService.setCookieInMilliseconds(CoreConstants.app_username, this.userProfile.username, 900002.88);
+    this.cookieStorageService.setCookieInMilliseconds(CoreConstants.app_username, this.userProfile.username, 900002.88);
   }
 
   /**

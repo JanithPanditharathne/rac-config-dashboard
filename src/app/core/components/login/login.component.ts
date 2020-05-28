@@ -73,11 +73,10 @@ export class LoginComponent implements OnInit {
       this.authService.authenticate({
         username: userData.username,
         password: userData.password
-      }).then(() => {
-        this.router.navigate(['/']).then((e) => {
-        }).catch((e) => {
-          console.error(e);
-        });
+      });
+      this.router.navigate(['/']).then((e) => {
+      }).catch((e) => {
+        console.error(e);
       });
       return;
     }
