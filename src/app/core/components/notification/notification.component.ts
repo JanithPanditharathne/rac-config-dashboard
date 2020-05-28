@@ -66,11 +66,9 @@ export class NotificationComponent implements OnDestroy {
 
     if (existingNotification) {
       !existingNotification.count ? (existingNotification.count = 2) : existingNotification.count++;
-      this.showNotifications = this.isNotificationsListValid();
       return;
     }
 
     this.notificationsList.unshift(notification);
-    this.showNotifications = this.isNotificationsListValid();
   }
 }
