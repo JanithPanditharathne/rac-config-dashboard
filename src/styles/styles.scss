@@ -685,107 +685,111 @@ select {
 }
 
 // Data Table Style
-.ng-data-table {
-  tbody {
-    > tr {
-      > td {
-        // Status Column Styles
+.ng-data-table-container {
+  .ng-data-table {
+    tbody {
+      > tr {
+        cursor: default;
 
-        &.ng-data-table-select-column {
-          padding: .3rem;
-        }
+        > td {
+          // Status Column Styles
 
-        .status-container {
-          i {
-            @include font-size(1.3, 1.4);
-            padding-right: .3rem;
+          &.ng-data-table-select-column {
+            padding: .3rem;
           }
-        }
 
-        .state-active {
-          color: $success-color;
-        }
-
-        .state-upcoming {
-          color: $info-color;
-        }
-
-        .state-expired {
-          color: $placeholder-text-color;
-        }
-
-        .state-deactivated {
-          color: $warning-color;
-        }
-
-        // No Data available state
-        .no-data-available {
-          @include font-size(.9, 1.6);
-          color: $expand-row-heading-text;
-          display: block;
-          padding: .5rem;
-          text-align: center;
-        }
-
-        // When What Columns Styles
-        .rule-expression-view {
-          .expression-view-label {
-            @include font-size(.7, 1);
-            color: $expand-row-heading-text;
-            font-weight: bolder;
-            padding-right: .3rem;
-          }
-        }
-
-        .expression-view-condition {
-          @include font-size(.6, 1);
-          font-weight: bolder;
-        }
-      }
-
-      // Expanded Table Row Styles
-      &.ng-data-table-row-expansion {
-        .table-expand-details {
-          padding: 1rem;
-
-          h4 {
-
-            &:not(.ng-data-table-top-header-title) {
-              @include font-size(1.1, 1.2);
-              border-bottom: .05rem solid $expand-row-border;
-              color: $expand-row-heading-text;
-              font-weight: 500;
-              margin-top: .5rem;
-              padding: .3rem 0 .5rem;
+          .status-container {
+            i {
+              @include font-size(1.3, 1.4);
+              padding-right: .3rem;
             }
           }
 
-          h5 {
-            @include font-size(.9, 1.2);
+          .state-active {
+            color: $success-color;
+          }
+
+          .state-upcoming {
+            color: $info-color;
+          }
+
+          .state-expired {
+            color: $placeholder-text-color;
+          }
+
+          .state-deactivated {
+            color: $warning-color;
+          }
+
+          // No Data available state
+          .no-data-available {
+            @include font-size(.9, 1.6);
             color: $expand-row-heading-text;
-            font-weight: 500;
-            margin-top: 1rem;
-            padding: 0;
-          }
-
-          .sub-heading {
-            @include font-size(.8, 1.2);
-            color: $expand-row-sub-heading;
-            font-weight: 400;
-          }
-
-          .expand-detail-value {
-            @include font-size(.7, 1.2);
             display: block;
-            padding-bottom: 1rem;
+            padding: .5rem;
+            text-align: center;
+          }
+
+          // When What Columns Styles
+          .rule-expression-view {
+            .expression-view-label {
+              @include font-size(.7, 1);
+              color: $expand-row-heading-text;
+              font-weight: bolder;
+              padding-right: .3rem;
+            }
+          }
+
+          .expression-view-condition {
+            @include font-size(.6, 1);
+            font-weight: bolder;
           }
         }
 
-        > td {
-          @include box-shadow(inset 0 0 50px 10px rgba(0, 0, 0, .11));
+        // Expanded Table Row Styles
+        &.ng-data-table-row-expansion {
+          .table-expand-details {
+            padding: 1rem;
 
-          &:hover {
-            background: none;
+            h4 {
+
+              &:not(.ng-data-table-top-header-title) {
+                @include font-size(1.1, 1.2);
+                border-bottom: .05rem solid $expand-row-border;
+                color: $expand-row-heading-text;
+                font-weight: 500;
+                margin-top: .5rem;
+                padding: .3rem 0 .5rem;
+              }
+            }
+
+            h5 {
+              @include font-size(.9, 1.2);
+              color: $expand-row-heading-text;
+              font-weight: 500;
+              margin-top: 1rem;
+              padding: 0;
+            }
+
+            .sub-heading {
+              @include font-size(.8, 1.2);
+              color: $expand-row-sub-heading;
+              font-weight: 400;
+            }
+
+            .expand-detail-value {
+              @include font-size(.7, 1.2);
+              display: block;
+              padding-bottom: 1rem;
+            }
+          }
+
+          > td {
+            @include box-shadow(inset 0 0 50px 10px rgba(0, 0, 0, .11));
+
+            &:hover {
+              background: none;
+            }
           }
         }
       }
@@ -858,6 +862,11 @@ select {
       display: flex;
       font-weight: normal;
       padding: .45rem .75rem;
+
+      &.algorithm-text {
+        background: none;
+        box-shadow: none;
+      }
     }
   }
 
