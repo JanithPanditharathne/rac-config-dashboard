@@ -1,19 +1,27 @@
 import { Component } from '@angular/core';
-import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions } from '../../../shared/shared-common/models';
-import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums';
-import { DataFetchMode, DataTableComponent, DataTableRow } from 'ornamentum';
-import { Observable } from 'rxjs';
-import { RecSlot } from '../models/rec-slot.model';
-import { map } from 'rxjs/operators';
-import { RecSlotsService } from '../services';
-import { DisplayRecSlots } from '../models/display-rec-slots.model';
-import { AlertType, SuccessStatus } from '../../../core/enums';
 import { Router } from '@angular/router';
-import { NotificationService } from '../../../core/services';
-import { RecSlotConstants } from '../rec-slot.constants';
-import { ConfirmPopupComponent } from '../../../shared/shared-common/components';
+
+import { Observable } from 'rxjs';
+
+import { map } from 'rxjs/operators';
+
 import { BsModalService } from 'ngx-bootstrap/modal';
+
+import { DataFetchMode, DataTableComponent, DataTableRow } from 'ornamentum';
+
+import { RecSlot, DisplayRecSlot } from '../models';
 import { SuccessResponse } from '../../../core/models';
+import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions } from '../../../shared/shared-common/models';
+
+import { AlertType, SuccessStatus } from '../../../core/enums';
+import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums';
+
+import { ConfirmPopupComponent } from '../../../shared/shared-common/components';
+
+import { RecSlotsService } from '../services';
+import { NotificationService } from '../../../core/services';
+
+import { RecSlotConstants } from '../rec-slot.constants';
 
 /**
  * Class representing the Rec slot component.
@@ -29,8 +37,8 @@ export class RecSlotComponent {
   public ColumnActionType = ColumnActionType;
   public actionBreadcrumb: ActionBreadcrumb[];
 
-  public isLoading = false;
   public height: number;
+  public isLoading = false;
   public dataTable: DataTableComponent;
   public dataSource: Observable<RecSlot[]>;
 
@@ -48,7 +56,7 @@ export class RecSlotComponent {
     ];
 
     this.dataSource = this.recSlotsService.getRecSlots().pipe(
-      map((data: DisplayRecSlots) => {
+      map((data: DisplayRecSlot) => {
         return data.recSlots;
       })
     );
@@ -57,7 +65,7 @@ export class RecSlotComponent {
   /**
    * Algorithm add new event handler.
    */
-  public onAddClick() {
+  public onAddClick(): void {
     this.router.navigate(['rec-slots/add']).catch((e) => {
       this.notificationService.showNotification(RecSlotConstants.navigation_failure, AlertType.ERROR);
     });
@@ -71,6 +79,10 @@ export class RecSlotComponent {
     this.height = dimensions.height;
   }
 
+  /**
+   * Set on dynamic row span extract event handler.
+   * @param {DataTableRow<any>} row data row
+   */
   public onDynamicRowSpanExtract(row: DataTableRow<any>): number {
     if (row.item.rules && row.item.rules.length) {
       return row.item.rules.length;
@@ -79,11 +91,19 @@ export class RecSlotComponent {
     return 1;
   }
 
-  public onDataTableInit(dataTableComponent: DataTableComponent) {
+  /**
+   * Data table init event handler.
+   * @param {DataTableComponent} dataTableComponent
+   */
+  public onDataTableInit(dataTableComponent: DataTableComponent): void {
     this.dataTable = dataTableComponent;
   }
 
-  public onEditClick(recSlotId: string) {
+  /**
+   * On edit click event handler.
+   * @param {string} recSlotId rec slot id.
+   */
+  public onEditClick(recSlotId: string): void {
     this.isLoading = true;
     this.router
       .navigate(['rec-slots/edit', recSlotId])
@@ -101,7 +121,11 @@ export class RecSlotComponent {
       });
   }
 
-  public openDeleteConfirmModal(recSlotId: string) {
+  /**
+   * Responsible for open delete confirmation popup.
+   * @param {string} recSlotId rec slot id.
+   */
+  public openDeleteConfirmModal(recSlotId: string): void {
     const modalRef = this.modalService.show(ConfirmPopupComponent, {
       class: 'rec-slot-delete-confirm-popup confirmation-popup',
       ignoreBackdropClick: true
@@ -117,10 +141,21 @@ export class RecSlotComponent {
     });
   }
 
+  /**
+   * Responsible to find and return rule name.
+   * @param {any} item
+   * @param {number} index
+   * @param {field} field name
+   */
   public getRuleName(item: any, index: number, field: string) {
     return item.rules && item.rules[index] ? item.rules[index][field] : '-';
   }
 
+  /**
+   * Rec slot delete event handler.
+   * @param {string} recSlotId rec slot id.
+   * @param {ActionClickEventArgs} actionClickEventArgs click event arguments.
+   */
   private deleteRecSlot(recSlotId: string, actionClickEventArgs: ActionClickEventArgs): void {
     this.recSlotsService.deleteRecSlot(recSlotId).subscribe(
       (response: SuccessResponse) => {

@@ -5,12 +5,11 @@ import { DropdownSelectMode } from 'ornamentum';
 
 import { DropDownDataItem, RuleBrandDataItem } from '../../../../shared-common/models';
 
-import { RuleGeneratorType, RuleTabDisplayDataType } from '../../../enums';
 import { ActionType } from '../../../../shared-common/enums';
-
-import { RuleContextDataService } from '../../../services';
+import { RuleGeneratorType, RuleTabDisplayDataType } from '../../../enums';
 
 import { RuleContextFormUtility } from '../../../services';
+import { RuleContextDataService } from '../../../services';
 import { FormValidator } from '../../../../shared-common/services';
 
 /**
@@ -76,6 +75,11 @@ export class BrandContentComponent implements OnInit {
     this.ruleContextDataService.removeFacetDropDownData(this.formDataArray, this.brandFormGroup, data);
   }
 
+  /**
+   * Responsible for check validity of given form control.
+   * @param {string} controlName control name
+   * @returns {boolean} true or false.
+   */
   public isInvalid(controlName: string): boolean {
     return FormValidator.isInvalidControl(this.baseFormGroup.get(controlName));
   }

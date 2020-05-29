@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
-import { Algorithm } from '../../../feature/algorithm/models/algorithm.model';
-import { DisplayAlgorithm } from '../../../feature/algorithm/models/display-algorithm.model';
+
 import { SuccessResponse } from '../../../core/models';
+import { Algorithm, DisplayAlgorithm } from '../../../feature/algorithm/models';
+
 import { environment } from '../../../../environments/environment';
 
 /**

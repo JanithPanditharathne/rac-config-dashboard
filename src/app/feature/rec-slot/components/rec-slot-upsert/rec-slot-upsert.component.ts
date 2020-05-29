@@ -1,26 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormValidator, MetaDataService } from '../../../../shared/shared-common/services';
-import { DataTableSelectMode, DropdownSelectMode } from 'ornamentum';
-import { FormAction, ActionType } from '../../../../shared/shared-common/enums';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RecSlot } from '../../models/rec-slot.model';
-import { ActionBreadcrumb, ActionClickEventArgs, DropDownDataItem } from '../../../../shared/shared-common/models';
-import { map } from 'rxjs/operators';
-import { DisplayRecommendation } from '../../../recommendation/models/display-recommendation.model';
-import { Recommendation } from '../../../recommendation/models/recommendation.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { Observable } from 'rxjs';
-import { RecommendationService } from '../../../../shared/shared-rec/services';
+import { map } from 'rxjs/operators';
+
+import { DataTableSelectMode, DropdownSelectMode } from 'ornamentum';
+
+import { RecSlot } from '../../models';
 import { Rule } from '../../../rule/models/rule.model';
-import { RuleService } from '../../../../shared/shared-rules/services';
-import { DisplayRule } from '../../../rule/models/display-rule.model';
-import { AlertType, SuccessStatus } from '../../../../core/enums';
-import { NotificationService } from '../../../../core/services';
-import { RecSlotConstants } from '../../rec-slot.constants';
 import { SuccessResponse } from '../../../../core/models';
+import { DisplayRule } from '../../../rule/models/display-rule.model';
+import { Recommendation } from '../../../recommendation/models/recommendation.model';
+import { DisplayRecommendation } from '../../../recommendation/models/display-recommendation.model';
+import { ActionBreadcrumb, ActionClickEventArgs, DropDownDataItem } from '../../../../shared/shared-common/models';
+
+import { AlertType, SuccessStatus } from '../../../../core/enums';
+import { FormAction, ActionType } from '../../../../shared/shared-common/enums';
+
 import { RecSlotsService } from '../../services';
-import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
 import { RecSlotUtilityService } from '../../services';
+import { NotificationService } from '../../../../core/services';
+import { RuleService } from '../../../../shared/shared-rules/services';
+import { RecommendationService } from '../../../../shared/shared-rec/services';
+import { FormValidator, MetaDataService } from '../../../../shared/shared-common/services';
+import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
+
+import { RecSlotConstants } from '../../rec-slot.constants';
 
 /**
  * Class representing the Rec slot upsert component.
@@ -35,21 +41,20 @@ export class RecSlotUpsertComponent implements OnInit {
   public dropdownSelectMode: DropdownSelectMode = 'single';
   public selectMode: DataTableSelectMode = 'multi';
   public actionBreadcrumb: ActionBreadcrumb[];
-  public MetaDataService = MetaDataService;
   public ActionType = ActionType;
   public FormAction = FormAction;
 
   public recSlotFormGroup: FormGroup;
-  public recSlot: RecSlot;
   public formAction: FormAction;
+  public recSlot: RecSlot;
+  public currentSelected: any[];
   public recommendationDataSource: Observable<Recommendation[]>;
   public rulesDataSource: Observable<Rule[]>;
-  public currentSelected: any[];
 
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router,
     private ruleService: RuleService,
     private recSlotsService: RecSlotsService,
     private metaDataService: MetaDataService,
@@ -63,13 +68,8 @@ export class RecSlotUpsertComponent implements OnInit {
         title: 'Rec Slots'
       }
     ];
-
     this.fetchRecData();
     this.fetchRuleData();
-  }
-
-  public isInvalid(controlName: string): boolean {
-    return FormValidator.isInvalidControl(this.recSlotFormGroup.get(controlName));
   }
 
   /**
@@ -105,31 +105,27 @@ export class RecSlotUpsertComponent implements OnInit {
     this.setSelectedRules();
   }
 
-  private buildFormGroup() {
-    if (this.recSlot) {
-      this.recSlotFormGroup = this.fb.group({
-        channel: [this.recSlot.channel, Validators.required],
-        page: [this.recSlot.page, Validators.required],
-        placeholder: [this.recSlot.placeholder, Validators.required],
-        recommendation: [this.recSlot.rec, Validators.required],
-        rules: [this.recSlot.rules]
-      });
-    } else {
-      this.recSlotFormGroup = this.fb.group({
-        channel: [null, Validators.required],
-        page: [null, Validators.required],
-        placeholder: [null, Validators.required],
-        recommendation: [null, Validators.required],
-        rules: []
-      });
-    }
+  /**
+   * Responsible for check validity of given form control.
+   * @param {string} controlName control name
+   * @returns {boolean} true or false.
+   */
+  public isInvalid(controlName: string): boolean {
+    return FormValidator.isInvalidControl(this.recSlotFormGroup.get(controlName));
   }
 
-  public redirectToRecSlots() {
+  /**
+   * Responsible for redirect to rec slots view page.
+   */
+  public redirectToRecSlots(): void {
     this.router.navigate(['rec-slots']);
   }
 
-  public onSaveClick(clickEventArgs: ActionClickEventArgs) {
+  /**
+   * On save click event handler.
+   * @param {ActionClickEventArgs} clickEventArgs click event arguments.
+   */
+  public onSaveClick(clickEventArgs: ActionClickEventArgs): void {
     FormValidator.validateAllFormFields(this.recSlotFormGroup);
 
     if (this.recSlotFormGroup.invalid) {
@@ -152,10 +148,9 @@ export class RecSlotUpsertComponent implements OnInit {
     }
   }
 
-  public renderIsGlobal(item: Rule): string {
-    return item.isGlobal ? 'Yes' : 'No';
-  }
-
+  /**
+   * Responsible for fetch rule data.
+   */
   private fetchRuleData(): void {
     this.rulesDataSource = this.ruleService.getRules().pipe(
       map((data: DisplayRule) => {
@@ -164,6 +159,9 @@ export class RecSlotUpsertComponent implements OnInit {
     );
   }
 
+  /**
+   * Responsible for fetch rule data.
+   */
   private fetchRecData(): void {
     this.recommendationDataSource = this.recommendationService.getRecs().pipe(
       map((data: DisplayRecommendation) => {
@@ -172,6 +170,9 @@ export class RecSlotUpsertComponent implements OnInit {
     );
   }
 
+  /**
+   * Responsible for set selected rules on data table.
+   */
   private setSelectedRules(): void {
     if (this.recSlot && this.recSlot.rules.length) {
       this.currentSelected = this.recSlot.rules.map((rule: DropDownDataItem) => {
@@ -180,6 +181,30 @@ export class RecSlotUpsertComponent implements OnInit {
     }
   }
 
+  /**
+   * The method to get dialog confirmation will be called by CanDeactivateGuard
+   * @return {Observable<boolean> | boolean}
+   */
+  public canDeactivate(): Observable<boolean> | boolean {
+    if (this.recSlotFormGroup.dirty) {
+      return this.dialogService.routeDiscardConfirm();
+    }
+
+    return true;
+  }
+
+  /**
+   * Rule select event handler.
+   */
+  public onRuleSelect(): void {
+    this.recSlotFormGroup.markAsDirty();
+  }
+
+  /**
+   * Responsible for add new rec slot.
+   * @param {RecSlot} recSlotData details
+   * @param {ActionClickEventArgs} clickEventArgs click event arguments.
+   */
   private addNewRecSlot(recSlotData: RecSlot, clickEventArgs: ActionClickEventArgs): void {
     this.recSlotsService.createRecSlot(recSlotData).subscribe(
       (response: SuccessResponse) => {
@@ -199,6 +224,11 @@ export class RecSlotUpsertComponent implements OnInit {
     );
   }
 
+  /**
+   * Responsible for edit a rec slot.
+   * @param {RecSlot} recSlotData details
+   * @param {ActionClickEventArgs} clickEventArgs click event arguments.
+   */
   private editRecSlot(recSlotData: RecSlot, clickEventArgs: ActionClickEventArgs): void {
     recSlotData.id = this.recSlot.id;
     this.recSlotsService.updateRecSlot(recSlotData).subscribe(
@@ -220,18 +250,25 @@ export class RecSlotUpsertComponent implements OnInit {
   }
 
   /**
-   * The method to get dialog confirmation will be called by CanDeactivateGuard
-   * @return {Observable<boolean> | boolean}
+   * Responsible for build form group.
    */
-  public canDeactivate(): Observable<boolean> | boolean {
-    if (this.recSlotFormGroup.dirty) {
-      return this.dialogService.routeDiscardConfirm();
+  private buildFormGroup(): void {
+    if (this.recSlot) {
+      this.recSlotFormGroup = this.fb.group({
+        channel: [this.recSlot.channel, Validators.required],
+        page: [this.recSlot.page, Validators.required],
+        placeholder: [this.recSlot.placeholder, Validators.required],
+        recommendation: [this.recSlot.rec, Validators.required],
+        rules: [this.recSlot.rules]
+      });
+    } else {
+      this.recSlotFormGroup = this.fb.group({
+        channel: [null, Validators.required],
+        page: [null, Validators.required],
+        placeholder: [null, Validators.required],
+        recommendation: [null, Validators.required],
+        rules: []
+      });
     }
-
-    return true;
-  }
-
-  public onRuleSelect(): void {
-    this.recSlotFormGroup.markAsDirty();
   }
 }

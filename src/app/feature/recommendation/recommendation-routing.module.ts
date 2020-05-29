@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { RecommendationComponent, RecommendationUpsertComponent } from './components';
+
 import { CanDeactivateGuard } from '../../shared/shared-common/services';
+
 import { FormAction } from '../../shared/shared-common/enums';
+
 import { RecommendationResolver } from './resolvers';
 
 /**

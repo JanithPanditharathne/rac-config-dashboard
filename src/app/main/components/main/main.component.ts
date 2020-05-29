@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
 
@@ -24,9 +24,9 @@ export class AppMainComponent implements OnInit {
   public menuItems: MenuItem[] = [];
 
   constructor(
+    private router: Router,
     private authService: AuthService,
-    private modalService: BsModalService,
-    private router: Router
+    private modalService: BsModalService
   ) {
     this.menuItems = [
       {
@@ -62,14 +62,23 @@ export class AppMainComponent implements OnInit {
     ];
   }
 
+  /**
+   * Logout event handler.
+   */
   public onLogout(): void {
     this.modalService.show(LogoutConfirmPopupComponent, {class: 'logout-popup confirmation-popup', ignoreBackdropClick: true});
   }
 
+  /**
+   * Responsible for return current router state.
+   */
   public getState(): string {
     return this.router.url;
   }
 
+  /**
+   * OnInit event handler.
+   */
   public ngOnInit(): void {
     this.profile = this.authService.currentUserProfile;
   }

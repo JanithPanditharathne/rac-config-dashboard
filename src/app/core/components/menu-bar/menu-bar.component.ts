@@ -5,8 +5,6 @@ import { UserProfileService } from '../../services';
 
 import { MenuItem, UserProfile } from '../../models';
 
-import { UserPermissionLevel } from '../../enums';
-
 @Component({
   selector: 'app-menu-bar',
   styleUrls: ['./menu-bar.component.scss'],
@@ -44,22 +42,6 @@ export class MenuBarComponent implements AfterContentInit, OnInit {
       this.logout.emit();
     }
   }
-
-  // public setIndexLinkActiveState(): void {
-  //   if (this.profile.userGroupId === UserPermissionLevel.CONFIGURATION) {
-  //     this.router.navigateByUrl('/manage/sku-assortments').then((data: boolean) => {
-  //       if (data) {
-  //         this.setActiveConfigUserMenuItem(this.menuItems);
-  //       }
-  //     });
-  //   } else {
-  //     this.router.navigate(['/']).then((data: boolean) => {
-  //       if(data) {
-  //         this.resetState(this.menuItems, true, false);
-  //       }
-  //     });
-  //   }
-  // }
 
   public resetState(menuItems: MenuItem[], active: boolean, expand: boolean): void {
     menuItems.forEach((item: MenuItem) => {
@@ -153,26 +135,6 @@ export class MenuBarComponent implements AfterContentInit, OnInit {
 
   public hasChildren(menuItem: MenuItem): boolean {
     return !!(menuItem.items && menuItem.items.length);
-  }
-
-  private setActiveConfigUserMenuItem(menuItems: MenuItem[]): void {
-    menuItems.forEach((item: MenuItem) => {
-      item.active = item.routePath === 'manage' || item.routePath === 'sku-assortments';
-
-      if (item.items) {
-        this.setActiveConfigUserMenuItem(item.items);
-      }
-    });
-  }
-
-  private setActiveMenuItem(menuItems: MenuItem[]): void {
-    menuItems.forEach((item: MenuItem) => {
-      item.active = item.routePath === 'recommendation' || item.routePath === 'channel-rules' || item.routePath === 'placement-rules';
-
-      if (item.items) {
-        this.setActiveMenuItem(item.items);
-      }
-    });
   }
 
   private setVisibleState(menuItems: MenuItem[]): void {

@@ -80,7 +80,6 @@ export class AppHttpInterceptorService implements HttpInterceptor {
       const code = errorResponse.code;
       if (code === CoreConstants.kira_unauthorized_status_code) {
         this.globalRefService.window.location.reload();
-        // this.authErrorHandlerService.handleError(HttpStatus.UNAUTHORIZED);
         return;
       }
 

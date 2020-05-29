@@ -7,9 +7,8 @@ import { RuleTabDisplayDataType } from '../../../enums';
 import { ActionType } from '../../../../shared-common/enums';
 
 import { RuleContextDataService } from '../../../services';
-
-import { FormValidator, CustomFormValidator } from '../../../../shared-common/services';
 import { RuleContextFormUtility } from '../../../services';
+import { FormValidator, CustomFormValidator } from '../../../../shared-common/services';
 
 /**
  * Component class to represent tab product number content.
@@ -70,11 +69,20 @@ export class ProductNumberContentComponent implements OnInit {
     this.ruleContextDataService.applyTextFieldData(this.formDataArray, this.productNumberGroup, this.baseFormGroup, 'productNumber');
   }
 
+  /**
+   * Responsible for check validity of given form control.
+   * @param {string} controlName control name
+   * @returns {boolean} true or false.
+   */
   public isInvalid(controlName: string): boolean {
     const formControl = this.baseFormGroup.get(controlName);
     return formControl.value && FormValidator.isInvalidControl(formControl);
   }
 
+  /**
+   * Check whether productNumber field empty or invalid.
+   * @returns {boolean} true or false.
+   */
   public isDisabled(): boolean {
     const formControl = this.baseFormGroup.get('productNumber');
     return !formControl.value || formControl.invalid;

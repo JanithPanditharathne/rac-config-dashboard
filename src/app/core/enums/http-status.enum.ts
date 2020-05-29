@@ -1,3 +1,7 @@
+/**
+ * Enum to represent http status.
+ * @Enum HttpStatus
+ */
 export enum HttpStatus {
   NO_INTERNET_CONNECTION = 0,
   UNAUTHORIZED = 401,

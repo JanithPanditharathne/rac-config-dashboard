@@ -1,20 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActionBreadcrumb, ActionClickEventArgs, DropDownDataItem } from '../../../../shared/shared-common/models';
-import { CustomFormValidator, FormValidator } from '../../../../shared/shared-common/services';
-import { DropdownSelectMode } from 'ornamentum';
-import { ActionType, FormAction } from 'src/app/shared/shared-common/enums';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Rule } from '../../models/rule.model';
-import { RuleGeneratorType } from 'src/app/shared/shared-rules/enums';
-import { AlertType, SuccessStatus } from '../../../../core/enums';
-import { NotificationService } from '../../../../core/services';
-import { RuleConstants } from '../../rule.constants';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { DropdownSelectMode } from 'ornamentum';
+
+import { Observable } from 'rxjs';
+
+import { Rule } from '../../models';
 import { SuccessResponse } from '../../../../core/models';
+import { ActionBreadcrumb, ActionClickEventArgs, DropDownDataItem } from '../../../../shared/shared-common/models';
+
+import { AlertType, SuccessStatus } from '../../../../core/enums';
+import { RuleGeneratorType } from 'src/app/shared/shared-rules/enums';
+import { ActionType, FormAction } from 'src/app/shared/shared-common/enums';
+
+import { NotificationService } from '../../../../core/services';
 import { RuleService } from '../../../../shared/shared-rules/services';
 import { RuleUtilityService } from '../../../../shared/shared-rules/services';
-import { Observable } from 'rxjs';
+import { CustomFormValidator, FormValidator } from '../../../../shared/shared-common/services';
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
+
+import { RuleConstants } from '../../rule.constants';
 
 /**
  * Class representing the Rule component.
@@ -28,15 +34,15 @@ import { ConfirmDialogService } from '../../../../shared/shared-common/services/
 })
 export class RuleUpsertComponent implements OnInit {
   public dropdownSelectMode: DropdownSelectMode = 'single';
+  public RuleGeneratorType = RuleGeneratorType;
   public ActionType = ActionType;
   public FormAction = FormAction;
-  public RuleGeneratorType = RuleGeneratorType;
+
+  public rule: Rule;
   public ruleForm: FormGroup;
+  public formAction: FormAction;
   public actionBreadcrumb: ActionBreadcrumb[];
   public ruleTypeDropdownData: DropDownDataItem[];
-
-  public formAction: FormAction;
-  private rule: Rule;
 
   constructor(
     private router: Router,
@@ -57,6 +63,9 @@ export class RuleUpsertComponent implements OnInit {
     this.ruleTypeDropdownData = ruleUtilityService.ruleTypes;
   }
 
+  /**
+   * OnInit event handler.
+   */
   public ngOnInit(): void {
     this.route.data.subscribe((data: { rule: Rule; formAction: FormAction }) => {
       if (data.rule) {
@@ -85,11 +94,20 @@ export class RuleUpsertComponent implements OnInit {
     this.buildFormGroup();
   }
 
+  /**
+   * Responsible for check validity of given form control.
+   * @param {string} controlName control name
+   * @returns {boolean} true or false.
+   */
   public isInvalid(controlName: string): boolean {
     return FormValidator.isInvalidControl(this.ruleForm.get(controlName));
   }
 
-  public onRecSaveClick(clickEventArgs: ActionClickEventArgs) {
+  /**
+   * On save click event handler.
+   * @param {ActionClickEventArgs} clickEventArgs click event arguments.
+   */
+  public onRecSaveClick(clickEventArgs: ActionClickEventArgs): void {
     FormValidator.validateAllFormFields(this.ruleForm);
 
     if (this.ruleForm.invalid) {
@@ -117,31 +135,31 @@ export class RuleUpsertComponent implements OnInit {
     }
   }
 
-  public redirectToRulesView() {
+  /**
+   * Responsible for redirect to rules view page.
+   */
+  public redirectToRulesView(): void {
     this.router.navigate(['rules']);
   }
 
-  private buildFormGroup() {
-    if (this.rule) {
-      this.ruleForm = this.fb.group({
-        ruleName: [this.rule.name, Validators.required],
-        ruleType: [this.ruleUtilityService.mapRuleTypeDropdownData(this.rule.type), Validators.required],
-        isGlobal: [this.rule.isGlobal],
-        matching: this.fb.array([]),
-        action: this.fb.array([], CustomFormValidator.arrayMinLength(1)),
-      });
-    } else {
-      this.ruleForm = this.fb.group({
-        ruleName: [null, Validators.required],
-        ruleType: [null, Validators.required],
-        isGlobal: [false],
-        matching: this.fb.array([]),
-        action: this.fb.array([], CustomFormValidator.arrayMinLength(1))
-      });
+  /**
+   * The method to get dialog confirmation will be called by CanDeactivateGuard
+   * @return {Observable<boolean> | boolean}
+   */
+  public canDeactivate(): Observable<boolean> | boolean {
+    if (this.ruleForm.dirty) {
+      return this.dialogService.routeDiscardConfirm();
     }
+
+    return true;
   }
 
-  private addNewRule(rule: Rule, clickEventArgs: ActionClickEventArgs) {
+  /**
+   * Responsible for add new rule.
+   * @param {Rule} rule details
+   * @param {ActionClickEventArgs} clickEventArgs click event arguments.
+   */
+  private addNewRule(rule: Rule, clickEventArgs: ActionClickEventArgs): void {
     this.ruleService.createRule(rule).subscribe(
       (response: SuccessResponse) => {
         clickEventArgs.resolve();
@@ -160,7 +178,12 @@ export class RuleUpsertComponent implements OnInit {
     );
   }
 
-  private editRule(rule: Rule, clickEventArgs: ActionClickEventArgs) {
+  /**
+   * Responsible for edit a rule.
+   * @param {Rule} rule details
+   * @param {ActionClickEventArgs} clickEventArgs click event arguments.
+   */
+  private editRule(rule: Rule, clickEventArgs: ActionClickEventArgs): void {
     this.ruleService.updateRule(rule).subscribe(
       (response: SuccessResponse) => {
         clickEventArgs.resolve();
@@ -180,14 +203,25 @@ export class RuleUpsertComponent implements OnInit {
   }
 
   /**
-   * The method to get dialog confirmation will be called by CanDeactivateGuard
-   * @return {Observable<boolean> | boolean}
+   * Responsible for build form group.
    */
-  public canDeactivate(): Observable<boolean> | boolean {
-    if (this.ruleForm.dirty) {
-      return this.dialogService.routeDiscardConfirm();
+  private buildFormGroup(): void {
+    if (this.rule) {
+      this.ruleForm = this.fb.group({
+        ruleName: [this.rule.name, Validators.required],
+        ruleType: [this.ruleUtilityService.mapRuleTypeDropdownData(this.rule.type), Validators.required],
+        isGlobal: [this.rule.isGlobal],
+        matching: this.fb.array([]),
+        action: this.fb.array([], CustomFormValidator.arrayMinLength(1)),
+      });
+    } else {
+      this.ruleForm = this.fb.group({
+        ruleName: [null, Validators.required],
+        ruleType: [null, Validators.required],
+        isGlobal: [false],
+        matching: this.fb.array([]),
+        action: this.fb.array([], CustomFormValidator.arrayMinLength(1))
+      });
     }
-
-    return true;
   }
 }

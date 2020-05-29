@@ -4,12 +4,12 @@ import { Subscription } from 'rxjs';
 
 import { DataTableRow } from 'ornamentum';
 
-import { BundleService } from '../../services';
 import { Bundle } from '../../../../feature/bundle/models/bundle.model';
+
+import { BundleService } from '../../services';
 
 /**
  * Class representing the Bundle detail view component.
- * @implements OnInit, OnDestroy
  * @class BundleDetailViewComponent.
  */
 @Component({
@@ -19,9 +19,7 @@ import { Bundle } from '../../../../feature/bundle/models/bundle.model';
 })
 export class BundleDetailViewComponent implements OnInit, OnDestroy {
   public bundle: Bundle;
-
   public isLoading = true;
-
   private bundleServiceSubscription: Subscription;
 
   @Input()

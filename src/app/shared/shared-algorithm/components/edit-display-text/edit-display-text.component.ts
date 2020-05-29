@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
-import { ActionType } from 'src/app/shared/shared-common/enums';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActionClickEventArgs } from '../../../shared-common/models';
+
 import { Subject } from 'rxjs';
+
 import { BsModalRef } from 'ngx-bootstrap/modal';
+
+import { ActionClickEventArgs } from '../../../shared-common/models';
+
+import { ActionType } from 'src/app/shared/shared-common/enums';
 
 /**
  * Class representing edit display text component.
  * @class EditDisplayTextComponent
  */
-
 @Component({
   selector: 'app-edit-display-text',
   styleUrls: ['./edit-display-text.component.scss'],
@@ -18,9 +21,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 export class EditDisplayTextComponent {
   public ActionType = ActionType;
 
-  public displayTextForm: FormGroup;
-
   public saveClick = new Subject();
+  public displayTextForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -35,7 +37,11 @@ export class EditDisplayTextComponent {
     this.modalRef.hide();
   }
 
-  public onSaveClick(actionClickEventArgs: ActionClickEventArgs) {
+  /**
+   * Save click event handler.
+   * @param {ActionClickEventArgs} actionClickEventArgs click event arguments.
+   */
+  public onSaveClick(actionClickEventArgs: ActionClickEventArgs): void {
     const displayText = this.displayTextForm.value.defaultText;
     this.saveClick.next(displayText);
     actionClickEventArgs.resolve();

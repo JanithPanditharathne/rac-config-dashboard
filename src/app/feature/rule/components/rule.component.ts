@@ -1,19 +1,26 @@
 import { Component } from '@angular/core';
-import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions } from '../../../shared/shared-common/models';
-import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums';
-import { Rule } from '../models/rule.model';
-import { map } from 'rxjs/operators';
-import { DisplayRule } from '../models/display-rule.model';
-import { Observable } from 'rxjs';
-import { RuleService } from '../../../shared/shared-rules/services';
-import { AlertType, SuccessStatus } from '../../../core/enums';
 import { Router } from '@angular/router';
-import { NotificationService } from '../../../core/services';
-import { RuleConstants } from '../rule.constants';
-import { ConfirmPopupComponent } from '../../../shared/shared-common/components';
-import { SuccessResponse } from '../../../core/models';
-import { DataFetchMode, DataTableComponent } from 'ornamentum';
+
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { BsModalService } from 'ngx-bootstrap/modal';
+
+import { DataFetchMode, DataTableComponent } from 'ornamentum';
+
+import { Rule, DisplayRule } from '../models';
+import { SuccessResponse } from '../../../core/models';
+import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions } from '../../../shared/shared-common/models';
+
+import { AlertType, SuccessStatus } from '../../../core/enums';
+import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums';
+
+import { ConfirmPopupComponent } from '../../../shared/shared-common/components';
+
+import { NotificationService } from '../../../core/services';
+import { RuleService } from '../../../shared/shared-rules/services';
+
+import { RuleConstants } from '../rule.constants';
 
 /**
  * Class representing the Rule component.
@@ -27,12 +34,12 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 export class RuleComponent {
   public ActionType = ActionType;
   public ColumnActionType = ColumnActionType;
-  public isLoading = false;
 
+  public height: number;
+  public isLoading = false;
+  public dataTable: DataTableComponent;
+  public rulesDataSource: Observable<Rule[]>;
   public actionBreadcrumb: ActionBreadcrumb[];
-  private rulesDataSource: Observable<Rule[]>;
-  private height: number;
-  private dataTable: DataTableComponent;
 
   constructor(
     private router: Router,
@@ -62,16 +69,19 @@ export class RuleComponent {
     this.height = dimensions.height;
   }
 
-  public onAddClick() {
+  /**
+   * Algorithm add new event handler.
+   */
+  public onAddClick(): void {
     this.router.navigate(['rules/add']).catch((e) => {
       this.notificationService.showNotification(RuleConstants.navigation_failure, AlertType.ERROR);
     });
   }
 
-  public renderIsGlobal(item: Rule): string {
-    return item.isGlobal ? 'Yes' : 'No';
-  }
-
+  /**
+   * On edit click event handler.
+   * @param {string} ruleId rule id.
+   */
   public onEditClick(ruleId: string) {
     this.isLoading = true;
     this.router
@@ -90,6 +100,11 @@ export class RuleComponent {
       });
   }
 
+  /**
+   * Responsible for open delete confirmation popup.
+   * @param {string} ruleId rule id.
+   * @param {string} ruleName rule name.
+   */
   public openDeleteConfirmModal(ruleId: string, ruleName: string) {
     const modalRef = this.modalService.show(ConfirmPopupComponent, {
       class: 'rule-delete-confirm-popup confirmation-popup',
@@ -102,14 +117,24 @@ export class RuleComponent {
     modalRef.content.actionName = RuleConstants.rule_delete_action;
     modalRef.content.autoResolve = false;
     modalRef.content.onSubmit.subscribe((actionClickEventArgs: ActionClickEventArgs) => {
-      this.deleteAlgorithm(ruleId, actionClickEventArgs);
+      this.deleteRule(ruleId, actionClickEventArgs);
     });
   }
 
   /**
-   * Rule delete event handler.
+   * Data table init event handler.
+   * @param {DataTableComponent} dataTable
    */
-  private deleteAlgorithm(ruleId: string, actionClickEventArgs: ActionClickEventArgs): void {
+  public onDataTableInit(dataTable: DataTableComponent) {
+    this.dataTable = dataTable;
+  }
+
+  /**
+   * Rule delete event handler.
+   * @param {string} ruleId rule id.
+   * @param {ActionClickEventArgs} actionClickEventArgs click event arguments.
+   */
+  private deleteRule(ruleId: string, actionClickEventArgs: ActionClickEventArgs): void {
     this.ruleService.deleteRule(ruleId).subscribe(
       (response: SuccessResponse) => {
         actionClickEventArgs.resolve();
@@ -125,9 +150,5 @@ export class RuleComponent {
         actionClickEventArgs.resolve();
       }
     );
-  }
-
-  public onDataTableInit(dataTable: DataTableComponent) {
-    this.dataTable = dataTable;
   }
 }

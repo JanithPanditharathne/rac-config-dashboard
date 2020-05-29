@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AlgorithmComponent, AlgorithmUpsertComponent } from './components';
+
 import { FormAction } from '../../shared/shared-common/enums';
+
+import { AlgorithmComponent, AlgorithmUpsertComponent } from './components';
+
 import { AlgorithmResolver } from './resolvers';
+
 import { CanDeactivateGuard } from '../../shared/shared-common/services';
 
 /**

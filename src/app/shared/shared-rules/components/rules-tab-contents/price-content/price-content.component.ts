@@ -7,8 +7,8 @@ import {
   RuleContextOperatorData, RuleExactPriceDataItem,
 } from '../../../../shared-common/models';
 
-import { RuleGeneratorType, RuleTabDisplayDataType, RuleTabInlineDataGeneratorType } from '../../../enums';
 import { ActionType } from '../../../../shared-common/enums';
+import { RuleGeneratorType, RuleTabDisplayDataType, RuleTabInlineDataGeneratorType } from '../../../enums';
 
 import { RuleContextFormUtility } from '../../../services';
 import { FormValidator, CustomFormValidator } from '../../../../shared-common/services';
@@ -41,7 +41,9 @@ export class PriceContentComponent implements OnInit {
   @Input()
   public formDataArray: FormArray;
 
-
+  /**
+   * Responsible for build form group.
+   */
   public static buildExactPriceGroup(fb: FormBuilder, exactPriceData?: RuleExactPriceDataItem): FormGroup {
     return RuleContextFormUtility.buildFormGroup(fb, RuleTabDisplayDataType.Price, exactPriceData);
   }
@@ -92,11 +94,21 @@ export class PriceContentComponent implements OnInit {
     this.formDataArray.markAsDirty();
   }
 
+  /**
+   * Responsible for check validity of given form control.
+   * @param {string} controlName control name
+   * @returns {boolean} true or false.
+   */
   public isInvalid(controlName: string): boolean {
     const formControl = this.priceGroup.get(controlName);
     return formControl.value && FormValidator.isInvalidControl(formControl);
   }
 
+  /**
+   * Responsible for check availability of given form control.
+   * @param {string} controlName control name
+   * @returns {boolean} true or false.
+   */
   public isDisabled(controlName: string): boolean {
     const formControl = this.priceGroup.get(controlName);
     return !formControl.value || formControl.invalid;

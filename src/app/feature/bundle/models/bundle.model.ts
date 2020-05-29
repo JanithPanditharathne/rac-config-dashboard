@@ -1,5 +1,9 @@
-import { Algorithm } from '../../algorithm/models/algorithm.model';
+import { Algorithm } from '../../algorithm/models';
 
+/**
+ * Interface representing bundle model.
+ * @interface Bundle.
+ */
 export interface Bundle {
   id?: string;
   name?: string;

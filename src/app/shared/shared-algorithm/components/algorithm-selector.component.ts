@@ -1,20 +1,24 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AlgorithmSelector } from '../models/algorithm-selector.model';
-import { CustomFormValidator, FormValidator } from '../../shared-common/services';
-import { ColumnActionType, ActionType } from '../../shared-common/enums';
-import { DataTableRow, DropdownSelectMode } from 'ornamentum';
-import { Algorithm } from '../../../feature/algorithm/models/algorithm.model';
-import { DisplayAlgorithm } from '../../../feature/algorithm/models/display-algorithm.model';
-import { AlgorithmService } from '../services';
+
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
+import { DataTableRow, DropdownSelectMode } from 'ornamentum';
+
+import { AlgorithmSelector } from '../models';
+import { Algorithm, DisplayAlgorithm } from '../../../feature/algorithm/models';
+
+import { ColumnActionType, ActionType } from '../../shared-common/enums';
+
 import { EditDisplayTextComponent } from './edit-display-text/edit-display-text.component';
+
+import { AlgorithmService } from '../services';
+import { CustomFormValidator, FormValidator } from '../../shared-common/services';
 
 /**
  * Class representing algorithm selector component.
  * @class AlgorithmSelectorComponent
  */
-
 @Component({
   selector: 'app-algorithm-selector',
   styleUrls: ['./algorithm-selector.component.scss'],
@@ -26,18 +30,22 @@ export class AlgorithmSelectorComponent {
   public ColumnActionType = ColumnActionType;
   public algorithmDropdownData: Algorithm[];
 
+  @Input()
+  public algorithmsFormGroup: FormGroup;
+
   constructor(
-    private algorithmService: AlgorithmService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private algorithmService: AlgorithmService
   ) {
     this.algorithmService.getAlgorithms().subscribe((displayAlgorithm: DisplayAlgorithm) => {
       this.algorithmDropdownData = displayAlgorithm.algorithms;
     });
   }
 
-  @Input()
-  public algorithmsFormGroup: FormGroup;
-
+  /**
+   * Responsible for build form group.
+   * @return {FormGroup} form group
+   */
   public static buildFormGroup(fb: FormBuilder, algorithmSelector?: AlgorithmSelector): FormGroup {
     if (algorithmSelector) {
       return fb.group({
@@ -53,15 +61,30 @@ export class AlgorithmSelectorComponent {
     });
   }
 
+  /**
+   * Responsible for disable move up button.
+   * @param {DataTableRow<Algorithm>} row table row
+   * @return {boolean} true or false
+   */
   public isMoveUpButtonDisabled(row: DataTableRow<Algorithm>): boolean {
     return row.index === 1;
   }
 
+  /**
+   * Responsible for disable move down button.
+   * @param {DataTableRow<Algorithm>} row table row
+   * @return {boolean} true or false
+   */
   public isMoveDownButtonDisabled(row: DataTableRow<Algorithm>): boolean {
     const selectedAlgorithms: Algorithm[] = this.algorithmsFormGroup.get('algorithms').value;
     return selectedAlgorithms && row.index === selectedAlgorithms.length;
   }
 
+  /**
+   * Algorithm order change event handler.
+   * @param {number} index
+   * @param {boolean} up
+   */
   public onAlgorithmOrderChange(index: number, up: boolean): void {
     const selectedAlgorithms = this.algorithmsFormGroup.get('algorithms').value;
     const selectedItemsCopy = [...selectedAlgorithms];
@@ -78,6 +101,10 @@ export class AlgorithmSelectorComponent {
     FormValidator.markFormArrayDirty(this.algorithmsFormGroup);
   }
 
+  /**
+   * Delete algorithm from table event listener.
+   * @param {DataTableRow<Algorithm>} row data table row
+   */
   public onAlgorithmDelete(row: DataTableRow<Algorithm>): void {
     const selectedAlgorithms: Algorithm[] = this.algorithmsFormGroup.get('algorithms').value;
     const selectedItemsCopy = [...selectedAlgorithms];
@@ -91,10 +118,19 @@ export class AlgorithmSelectorComponent {
     FormValidator.markFormArrayDirty(this.algorithmsFormGroup);
   }
 
+  /**
+   * Responsible for check validity of given form control.
+   * @param {string} controlName control name
+   * @returns {boolean} true or false.
+   */
   public isInvalid(controlName: string): boolean {
     return FormValidator.isInvalidControl(this.algorithmsFormGroup.get(controlName));
   }
 
+  /**
+   * Algorithm change evenet listner.
+   * @param {Algorithm} selectedAlgorithm
+   */
   public onAlgorithmChange(selectedAlgorithm: Algorithm): void {
     if (!selectedAlgorithm) {
       return;
@@ -106,7 +142,10 @@ export class AlgorithmSelectorComponent {
     });
   }
 
-  public onAlgorithmAdd() {
+  /**
+   * Algorithm add event listener.
+   */
+  public onAlgorithmAdd(): void {
     const currentAlgorithms: Algorithm[] = this.algorithmsFormGroup.get('algorithms').value;
     const newAlgorithm: Algorithm = this.algorithmsFormGroup.get('selectedAlgorithm').value;
 
@@ -121,11 +160,11 @@ export class AlgorithmSelectorComponent {
     }
   }
 
-  private hasSameAlgorithm(currentAlgorithms: Algorithm[], newAlgorithm: Algorithm) {
-    return !!currentAlgorithms.find((algorithm: Algorithm) => algorithm.id === newAlgorithm.id);
-  }
-
-  public onEditDisplayText(row: DataTableRow<Algorithm>) {
+  /**
+   * Edit display text event handler.
+   * @param {DataTableRow<Algorithm>} row data table row
+   */
+  public onEditDisplayText(row: DataTableRow<Algorithm>): void {
     let modalRef: BsModalRef;
 
     modalRef = this.modalService.show(EditDisplayTextComponent, {class: 'display-text-edit-confirm-popup', ignoreBackdropClick: true});
@@ -136,7 +175,22 @@ export class AlgorithmSelectorComponent {
     });
   }
 
-  public renderDisplayText(algorithm: Algorithm) {
+  /**
+   * Responsible for render algorithm display text.
+   * @param {Algorithm} algorithm
+   * @return {string} display text
+   */
+  public renderDisplayText(algorithm: Algorithm): string {
     return algorithm.customDisplayText ? algorithm.customDisplayText : algorithm.defaultDisplayText;
+  }
+
+  /**
+   * Check whether algorithm already exists in list.
+   * @param {Algorithm[]} currentAlgorithms list of algorithms
+   * @param {Algorithm} newAlgorithm algorithm to add
+   * @return {boolean} true or false
+   */
+  private hasSameAlgorithm(currentAlgorithms: Algorithm[], newAlgorithm: Algorithm): boolean {
+    return !!currentAlgorithms.find((algorithm: Algorithm) => algorithm.id === newAlgorithm.id);
   }
 }

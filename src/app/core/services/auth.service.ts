@@ -3,6 +3,10 @@ import { CookieStorageService } from './cookie-storage.service';
 import { CoreConstants } from '../core.constants';
 import { UserProfile } from '../models';
 
+/**
+ * Class representing auth service.
+ * @class AuthService
+ */
 @Injectable()
 export class AuthService {
 
@@ -18,14 +22,15 @@ export class AuthService {
 
   /**
    * Responsible for return value of userProfile.
+   * @return {UserProfile} userProfile
    */
-  public get currentUserProfile(): any {
+  public get currentUserProfile(): UserProfile {
     return this.userProfile;
   }
 
   /**
    * Responsible for making http POST call to user login.
-   * @param userDetails
+   * @param {any} userDetails data
    */
   public authenticate(userDetails: any): void {
     this.userProfile = {
@@ -38,7 +43,7 @@ export class AuthService {
   /**
    * Responsible for logout the current user.
    */
-  public logout() {
+  public logout(): void {
     this.cookieStorageService.deleteCookie(CoreConstants.app_username);
   }
 }

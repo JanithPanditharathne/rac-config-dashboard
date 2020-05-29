@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
+
 import { SuccessResponse } from '../../../core/models';
-import { DisplayBundle } from '../../../feature/bundle/models/display-bundle.model';
 import { Bundle } from '../../../feature/bundle/models/bundle.model';
+import { DisplayBundle } from '../../../feature/bundle/models/display-bundle.model';
+
 import { environment } from '../../../../environments/environment';
 
 /**

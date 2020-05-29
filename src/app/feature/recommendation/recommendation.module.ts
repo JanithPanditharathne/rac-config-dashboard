@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 
+import { DataTableModule, DropdownModule } from 'ornamentum';
+
+import { SharedRecModule } from '../../shared/shared-rec/shared-rec.module';
+import { RecommendationRoutingModule } from './recommendation-routing.module';
 import { SharedCommonModule } from '../../shared/shared-common/shared-common.module';
+import { SharedBundleModule } from '../../shared/shared-bundle/shared-bundle.module';
 
 import { COMPONENTS, ENTRY_COMPONENTS, SERVICES } from './index';
-import { DataTableModule, DropdownModule } from 'ornamentum';
-import { RecommendationRoutingModule } from './recommendation-routing.module';
-import { SharedBundleModule } from '../../shared/shared-bundle/shared-bundle.module';
-import { SharedRecModule } from '../../shared/shared-rec/shared-rec.module';
 
 /**
  * Module class for containing recommendation module.

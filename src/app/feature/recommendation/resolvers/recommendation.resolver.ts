@@ -1,9 +1,16 @@
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs';
-import { Recommendation } from '../models/recommendation.model';
+
+import { Recommendation } from '../models';
+
 import { RecommendationService } from '../../../shared/shared-rec/services';
 
+/**
+ * Class representing recommendation resolver.
+ * @class RecommendationResolver
+ */
 @Injectable()
 export class RecommendationResolver implements Resolve<Recommendation> {
   constructor(private recommendationService: RecommendationService) {

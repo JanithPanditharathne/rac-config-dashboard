@@ -1,19 +1,25 @@
 import { Component } from '@angular/core';
-import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions } from '../../../shared/shared-common/models';
-import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums';
-import { DataFetchMode, DataTableComponent } from 'ornamentum';
-import { Observable } from 'rxjs';
-import { Recommendation } from '../models/recommendation.model';
-import { map } from 'rxjs/operators';
-import { DisplayRecommendation } from '../models/display-recommendation.model';
-import { AlertType, SuccessStatus } from '../../../core/enums';
 import { Router } from '@angular/router';
-import { NotificationService } from '../../../core/services';
-import { RecommendationConstants } from '../recommendation.constants';
-import { ConfirmPopupComponent } from '../../../shared/shared-common/components';
+
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { DataFetchMode, DataTableComponent } from 'ornamentum';
+
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { SuccessResponse } from '../../../core/models';
+import { Recommendation, DisplayRecommendation } from '../models';
+import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions } from '../../../shared/shared-common/models';
+
+import { AlertType, SuccessStatus } from '../../../core/enums';
+import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums';
+
+import { ConfirmPopupComponent } from '../../../shared/shared-common/components';
+
+import { NotificationService } from '../../../core/services';
 import { RecommendationService } from '../../../shared/shared-rec/services';
+
+import { RecommendationConstants } from '../recommendation.constants';
 
 /**
  * Class representing the Recommendation component.
@@ -27,18 +33,18 @@ import { RecommendationService } from '../../../shared/shared-rec/services';
 export class RecommendationComponent {
   public ActionType = ActionType;
   public ColumnActionType = ColumnActionType;
+
   public isLoading = false;
   public height: number;
+  public dataTable: DataTableComponent;
+  public actionBreadcrumb: ActionBreadcrumb[];
   public dataSource: Observable<Recommendation[]>;
 
-  public actionBreadcrumb: ActionBreadcrumb[];
-  private dataTable: DataTableComponent;
-
   constructor(
-    private recommendationService: RecommendationService,
     private router: Router,
     private modalService: BsModalService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private recommendationService: RecommendationService,
   ) {
     this.actionBreadcrumb = [
       {
@@ -62,16 +68,27 @@ export class RecommendationComponent {
     this.height = dimensions.height;
   }
 
+  /**
+   * Recommendation add new event handler.
+   */
   public onAddClick(): void {
     this.router.navigate(['recommendations/add']).catch((e) => {
       this.notificationService.showNotification(RecommendationConstants.navigation_failure, AlertType.ERROR);
     });
   }
 
-  public onDataTableInit(dataTableComponent: DataTableComponent) {
+  /**
+   * Data table init event handler.
+   * @param {DataTableComponent} dataTableComponent
+   */
+  public onDataTableInit(dataTableComponent: DataTableComponent): void {
     this.dataTable = dataTableComponent;
   }
 
+  /**
+   * On edit click event handler.
+   * @param {string} recId rec id.
+   */
   public onEditClick(recId: string): void {
     this.isLoading = true;
     this.router
@@ -90,6 +107,11 @@ export class RecommendationComponent {
       });
   }
 
+  /**
+   * Responsible for open delete confirmation popup.
+   * @param {string} recId rec id.
+   * @param {string} recName rec name.
+   */
   public openDeleteConfirmModal(recId: string, recName: string): void {
     const modalRef = this.modalService.show(ConfirmPopupComponent, {
       class: 'recommendation-delete-confirm-popup confirmation-popup',
@@ -106,7 +128,12 @@ export class RecommendationComponent {
     });
   }
 
-  private deleteRecommendation(recId: string, actionClickEventArgs: ActionClickEventArgs) {
+  /**
+   * Recommendation delete event handler.
+   * @param {string} recId rec id.
+   * @param {ActionClickEventArgs} actionClickEventArgs click event arguments.
+   */
+  private deleteRecommendation(recId: string, actionClickEventArgs: ActionClickEventArgs): void {
     this.recommendationService.deleteRec(recId).subscribe(
       (response: SuccessResponse) => {
         actionClickEventArgs.resolve();

@@ -1,9 +1,16 @@
-import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+
 import { Observable } from 'rxjs';
+
 import { Bundle } from '../models/bundle.model';
+
 import { BundleService } from '../../../shared/shared-bundle/services';
 
+/**
+ * Class representing bundle resolver.
+ * @class BundleResolver
+ */
 @Injectable()
 export class BundleResolver implements Resolve<Bundle> {
   constructor(private bundleService: BundleService) {

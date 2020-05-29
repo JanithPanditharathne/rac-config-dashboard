@@ -5,8 +5,6 @@ import { CoreConstants } from '../../core.constants';
 
 import { UserProfile } from '../../models';
 
-import { UserPermissionLevel } from '../../enums';
-
 import { UserProfileService } from '../../services';
 
 /**
@@ -26,20 +24,25 @@ export class UnauthorizedComponent implements OnInit {
 
   public profile: UserProfile;
 
-  constructor(private router: Router, private userProfileService: UserProfileService) {
+  constructor(
+    private router: Router,
+    private userProfileService: UserProfileService
+  ) {
   }
 
+  /**
+   * OnInit event handler.
+   */
   public ngOnInit(): void {
     this.userProfileService.getUserProfile().subscribe((user: UserProfile) => {
       this.profile = user;
     });
   }
 
+  /**
+   * Responsible for navigate to landing page.
+   */
   public navigateToLandingPage(): void {
-    // if (this.profile.userGroupId === UserPermissionLevel.CONFIGURATION) {
-    //   this.router.navigateByUrl('/manage/sku-assortments');
-    // } else {
-    //   this.router.navigate(['/']);
-    // }
+    this.router.navigate(['/']);
   }
 }

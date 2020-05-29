@@ -1,16 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
+import { RuleIfExpressionDataItem } from '../../../shared-common/models';
+
+import { RuleGeneratorType, RuleTabDisplayDataType, RulesTabTitle } from '../../enums';
+
+import { FormValidator } from '../../../shared-common/services';
+
 import {
   BrandContentComponent,
   PriceContentComponent,
   ProductNumberContentComponent,
 } from '../rules-tab-contents';
-
-import { RuleIfExpressionDataItem } from '../../../shared-common/models';
-
-import { RuleGeneratorType, RuleTabDisplayDataType, RulesTabTitle } from '../../enums';
-import { FormValidator } from '../../../shared-common/services';
 
 /**
  * Component class to represent application rule context.
@@ -73,6 +74,11 @@ export class RuleContextComponent implements OnInit {
     });
   }
 
+  /**
+   * Responsible for check validity of given form control.
+   * @param {string} controlName control name
+   * @returns {boolean} true or false.
+   */
   public isInvalid(controlName: string): boolean {
     return FormValidator.isInvalidControl(this.parentFormGroup.get(controlName));
   }

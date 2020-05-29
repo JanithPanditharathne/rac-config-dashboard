@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { SuccessResponse } from '../../../core/models';
 import { Injectable } from '@angular/core';
+
+import { Observable } from 'rxjs';
+
+import { SuccessResponse } from '../../../core/models';
+import { DisplayRecommendation, Recommendation } from '../../../feature/recommendation/models';
+
 import { environment } from '../../../../environments/environment';
-import { DisplayRecommendation } from '../../../feature/recommendation/models/display-recommendation.model';
-import { RecommendationSave } from '../../../feature/recommendation/models/recommendation-save.model';
-import { Recommendation } from '../../../feature/recommendation/models/recommendation.model';
 
 /**
  * Class representing rec service.
@@ -37,20 +38,20 @@ export class RecommendationService {
 
   /**
    * Responsible for making a POST call to create new rec.
-   * @param {RecommendationSave} rec Recommendation details.
+   * @param {Recommendation} rec Recommendation details.
    * @returns {Observable<SuccessResponse>} Response.
    */
-  public createRec(rec: RecommendationSave) {
+  public createRec(rec: Recommendation) {
     return this.http.post<SuccessResponse>(`${environment.baseUrl}${RecommendationService.recs_url}`, rec);
   }
 
   /**
    * Responsible for making a POST call to edit rec.
-   * @param {RecommendationSave} rec Recommendation details.
+   * @param {Recommendation} rec Recommendation details.
    * @returns {Observable<SuccessResponse>} Response.
    */
-  public updateRec(rec: RecommendationSave) {
-    return this.http.put<SuccessResponse>(`${environment.baseUrl}${RecommendationService.recs_url}/${rec.recId}`, rec);
+  public updateRec(rec: Recommendation) {
+    return this.http.put<SuccessResponse>(`${environment.baseUrl}${RecommendationService.recs_url}/${rec.id}`, rec);
   }
 
   /**

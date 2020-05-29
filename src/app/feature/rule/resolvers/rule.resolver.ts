@@ -1,9 +1,16 @@
-import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+
 import { Observable } from 'rxjs';
-import { Rule } from '../models/rule.model';
+
+import { Rule } from '../models';
+
 import { RuleService } from '../../../shared/shared-rules/services';
 
+/**
+ * Class representing rule resolver.
+ * @class RuleResolver
+ */
 @Injectable()
 export class RuleResolver implements Resolve<Rule> {
   constructor(private ruleService: RuleService) {

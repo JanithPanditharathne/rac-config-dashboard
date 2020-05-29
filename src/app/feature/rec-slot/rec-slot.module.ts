@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 
-import { SharedCommonModule } from '../../shared/shared-common/shared-common.module';
-
-import { COMPONENTS, ENTRY_COMPONENTS, SERVICES } from './index';
 import { DataTableModule, DropdownModule } from 'ornamentum';
+
 import { RecSlotRoutingModule } from './rec-slot-routing.module';
 import { SharedRecModule } from '../../shared/shared-rec/shared-rec.module';
 import { SharedRulesModule } from '../../shared/shared-rules/shared-rules.module';
+import { SharedCommonModule } from '../../shared/shared-common/shared-common.module';
+
+import { COMPONENTS, ENTRY_COMPONENTS, SERVICES } from './index';
 
 /**
  * Module class for containing rec-slot module.

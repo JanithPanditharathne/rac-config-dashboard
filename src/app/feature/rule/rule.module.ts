@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 
+import { DataTableModule, DropdownModule } from 'ornamentum';
+
+import { RuleRoutingModule } from './rule-routing.module';
+import { SharedRulesModule } from '../../shared/shared-rules/shared-rules.module';
 import { SharedCommonModule } from '../../shared/shared-common/shared-common.module';
 
 import { COMPONENTS, ENTRY_COMPONENTS, SERVICES } from './index';
-import { DataTableModule, DropdownModule } from 'ornamentum';
-import { RuleRoutingModule } from './rule-routing.module';
-import { SharedRulesModule } from '../../shared/shared-rules/shared-rules.module';
 
 /**
  * Module class for containing rule module.

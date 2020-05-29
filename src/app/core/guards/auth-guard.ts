@@ -4,7 +4,7 @@ import { CanActivate, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { AuthService, UserProfileService } from '../services';
+import { AuthService } from '../services';
 
 /**
  * Class representing auth guard service.

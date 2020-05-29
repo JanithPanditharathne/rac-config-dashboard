@@ -1,3 +1,7 @@
+/**
+ * Interface representing algorithm model.
+ * @interface Algorithm.
+ */
 export interface Algorithm {
   id: string;
   name: string;

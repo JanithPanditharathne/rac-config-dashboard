@@ -1,7 +1,7 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { RuleTabDisplayDataType } from '../enums';
-import { OperatorType } from '../../shared-common/enums/rules/operator-type.enum';
+import { OperatorType } from '../../shared-common/enums';
 
 /**
  * Rule based tab content form utility class.

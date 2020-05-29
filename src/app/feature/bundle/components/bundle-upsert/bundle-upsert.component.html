@@ -1,5 +1,5 @@
 <app-action-bar [breadcrumb]="actionBreadcrumb"></app-action-bar>
 
 <app-bundle-form [bundle]="bundle" [formAction]="bundleFormAction" (saveBundle)="onSaveClick($event)"
-                 (cancelBundle)="onCancelClick()">
+                 (cancelBundle)="redirectToBundlePage()">
 </app-bundle-form>

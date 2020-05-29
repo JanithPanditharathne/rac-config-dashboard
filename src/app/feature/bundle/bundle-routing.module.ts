@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BundleComponent, BundleUpsertComponent } from './components';
+
 import { FormAction } from '../../shared/shared-common/enums';
+
+import { BundleComponent, BundleUpsertComponent } from './components';
+
 import { BundleResolver } from './resolvers';
+
 import { CanDeactivateGuard } from '../../shared/shared-common/services';
 
 /**

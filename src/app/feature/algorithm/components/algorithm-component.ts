@@ -1,25 +1,32 @@
 import { Component } from '@angular/core';
-import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { ConfirmPopupComponent } from '../../../shared/shared-common/components';
-import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions } from '../../../shared/shared-common/models';
-import { AlgorithmConstants } from '../algorithm.constants';
-import { DataFetchMode, DataTableComponent } from 'ornamentum';
-import { Observable } from 'rxjs';
-import { Algorithm } from '../models/algorithm.model';
-import { map } from 'rxjs/operators';
-import { DisplayAlgorithm } from '../models/display-algorithm.model';
 import { Router } from '@angular/router';
-import { AlertType, SuccessStatus } from '../../../core/enums';
-import { NotificationService } from '../../../core/services';
+
+import { Observable } from 'rxjs';
+
+import { map } from 'rxjs/operators';
+
+import { DataFetchMode, DataTableComponent } from 'ornamentum';
+
+import { BsModalService } from 'ngx-bootstrap/modal';
+
 import { SuccessResponse } from '../../../core/models';
+import { Algorithm, DisplayAlgorithm } from '../models';
+import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions } from '../../../shared/shared-common/models';
+
+import { AlertType, SuccessStatus } from '../../../core/enums';
+import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums';
+
+import { ConfirmPopupComponent } from '../../../shared/shared-common/components';
+
+import { NotificationService } from '../../../core/services';
 import { AlgorithmService } from '../../../shared/shared-algorithm/services';
+
+import { AlgorithmConstants } from '../algorithm.constants';
 
 /**
  * Class representing algorithm component.
  * @class AlgorithmComponent
  */
-
 @Component({
   selector: 'app-algorithm',
   styleUrls: ['./algorithm-component.scss'],
@@ -28,18 +35,17 @@ import { AlgorithmService } from '../../../shared/shared-algorithm/services';
 export class AlgorithmComponent {
   public ActionType = ActionType;
   public ColumnActionType = ColumnActionType;
-
   public actionBreadcrumb: ActionBreadcrumb[];
+
+  public dataSource: Observable<Algorithm[]>;
+  private dataTable: DataTableComponent;
   public isLoading = false;
   public height: number;
-  public dataSource: Observable<Algorithm[]>;
-
-  private dataTable: DataTableComponent;
 
   constructor(
+    private router: Router,
     private modalService: BsModalService,
     private algorithmService: AlgorithmService,
-    private router: Router,
     private notificationService: NotificationService
   ) {
     this.actionBreadcrumb = [
@@ -51,12 +57,16 @@ export class AlgorithmComponent {
 
     this.dataSource = this.algorithmService.getAlgorithms().pipe(
       map((data: DisplayAlgorithm) => {
-          return data.algorithms;
+        return data.algorithms;
       })
     );
   }
 
-  public onEditClick(algorithmId: any): void {
+  /**
+   * On edit click event handler.
+   * @param {string} algorithmId algorithm id.
+   */
+  public onEditClick(algorithmId: string): void {
     this.isLoading = true;
     this.router
       .navigate(['algorithms/edit', algorithmId])
@@ -74,7 +84,12 @@ export class AlgorithmComponent {
       });
   }
 
-  public openDeleteConfirmModal(algorithmId: string, algorithmName: string) {
+  /**
+   * Responsible for open delete confirmation popup.
+   * @param {string} algorithmId algorithm id.
+   * @param {string} algorithmName algorithm name.
+   */
+  public openDeleteConfirmModal(algorithmId: string, algorithmName: string): void {
     const modalRef = this.modalService.show(ConfirmPopupComponent, {
       class: 'algorithm-delete-confirm-popup confirmation-popup',
       ignoreBackdropClick: true
@@ -91,7 +106,34 @@ export class AlgorithmComponent {
   }
 
   /**
+   * Algorithm add new event handler.
+   */
+  public onAddClick(): void {
+    this.router.navigate(['algorithms/add']).catch(() => {
+      this.notificationService.showNotification(AlgorithmConstants.navigation_failure, AlertType.ERROR);
+    });
+  }
+
+  /**
+   * Responsive data table height event handler.
+   * @param {ContainerDimensions} dimensions Table container dimensions.
+   */
+  public containerResponsive(dimensions: ContainerDimensions): void {
+    this.height = dimensions.height;
+  }
+
+  /**
+   * Data table init event handler.
+   * @param {DataTableComponent} dataTableComponent
+   */
+  public onDataTableInit(dataTableComponent: DataTableComponent): void {
+    this.dataTable = dataTableComponent;
+  }
+
+  /**
    * Algorithm delete event handler.
+   * @param {string} algorithmId algorithm id.
+   * @param {ActionClickEventArgs} actionClickEventArgs click event arguments.
    */
   private deleteAlgorithm(algorithmId: string, actionClickEventArgs: ActionClickEventArgs): void {
     this.algorithmService.deleteAlgorithm(algorithmId).subscribe(
@@ -111,24 +153,4 @@ export class AlgorithmComponent {
     );
   }
 
-  /**
-   * Algorithm add new event handler.
-   */
-  public onAddClick() {
-    this.router.navigate(['algorithms/add']).catch(() => {
-      this.notificationService.showNotification(AlgorithmConstants.navigation_failure, AlertType.ERROR);
-    });
-  }
-
-  /**
-   * Responsive data table height event handler.
-   * @param {ContainerDimensions} dimensions Table container dimensions.
-   */
-  public containerResponsive(dimensions: ContainerDimensions): void {
-    this.height = dimensions.height;
-  }
-
-  public onDataTableInit(dataTableComponent: DataTableComponent) {
-    this.dataTable = dataTableComponent;
-  }
 }

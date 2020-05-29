@@ -1,8 +1,6 @@
-import { UserPermissionLevel } from '../enums';
-
 export interface MenuItem {
   title: string;
-  access: UserPermissionLevel[];
+  access: any[];
   listItemClasses?: string[];
   iconClasses?: string[];
   routePath: string;

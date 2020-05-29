@@ -2,14 +2,16 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PopoverModule } from 'ngx-bootstrap/popover';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
-import { COMPONENTS, DIRECTIVES, ENTRY_COMPONENTS, PIPES, SERVICES } from './index';
+import { DropdownModule } from 'ornamentum';
 import { DataTableModule } from 'ornamentum';
+
 import { SharedCommonModule } from '../shared-common/shared-common.module';
 import { SharedAlgorithmModule } from '../shared-algorithm/shared-algorithm.module';
-import { DropdownModule } from 'ornamentum';
+
+import { COMPONENTS, DIRECTIVES, ENTRY_COMPONENTS, PIPES, SERVICES } from './index';
 
 /**
  * Application shared bundle module (contains all shared bundle components, directives, pipes, models and services).

@@ -8,7 +8,6 @@ import {
   PageNotFoundComponent,
   UnauthorizedComponent
 } from './core/components';
-
 import { AppMainComponent } from './main/components';
 
 import { CanDeactivateGuard } from './shared/shared-common/services';

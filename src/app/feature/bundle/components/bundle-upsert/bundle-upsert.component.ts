@@ -1,17 +1,21 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormAction, ActionType } from '../../../../shared/shared-common/enums';
-import { Bundle } from '../../models/bundle.model';
-import { ActionBreadcrumb } from '../../../../shared/shared-common/models';
 import { FormBuilder } from '@angular/forms';
-import { BundleSaveEventArgs } from '../../models/bundle-save-event-args.model';
-import { BundleFormComponent } from '../../../../shared/shared-bundle/components';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { Observable } from 'rxjs';
+
+import { Bundle } from '../../models/bundle.model';
+import { BundleSaveEventArgs } from '../../models/bundle-save-event-args.model';
+import { ActionBreadcrumb } from '../../../../shared/shared-common/models';
+
+import { FormAction, ActionType } from '../../../../shared/shared-common/enums';
+
+import { BundleFormComponent } from '../../../../shared/shared-bundle/components';
+
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
 
 /**
  * Class representing bundle add new and edit components.
- * @implements OnInit
  * @class BundleUpsertComponent.
  */
 @Component({
@@ -31,9 +35,9 @@ export class BundleUpsertComponent implements OnInit {
   public bundleFormComponent: BundleFormComponent;
 
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router,
     private dialogService: ConfirmDialogService
   ) {
     this.actionBreadcrumb = [
@@ -45,7 +49,7 @@ export class BundleUpsertComponent implements OnInit {
   }
 
   /**
-   * On component init.
+   * OnInit event handler.
    */
   public ngOnInit(): void {
     this.route.data.subscribe((data: { bundle: Bundle; formAction: FormAction }) => {
@@ -74,22 +78,18 @@ export class BundleUpsertComponent implements OnInit {
     });
   }
 
+  /**
+   * Responsible for redirect to bundles view page.
+   */
   public redirectToBundlePage(): void {
     this.router.navigate(['bundles']);
   }
 
   /**
-   * Event handler for cancel button click.
-   */
-  public onCancelClick(): void {
-    this.redirectToBundlePage();
-  }
-
-  /**
    * Event handler for save button click.
-   * @param {boolean} saveArgs Action arguments.
+   * @param {BundleSaveEventArgs} saveArgs action arguments.
    */
-  public onSaveClick(saveArgs: BundleSaveEventArgs) {
+  public onSaveClick(saveArgs: BundleSaveEventArgs): void {
     if (saveArgs.isSuccess) {
       this.redirectToBundlePage();
     }

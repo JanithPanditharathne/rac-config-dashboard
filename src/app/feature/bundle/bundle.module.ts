@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 
+import { DataTableModule, DropdownModule } from 'ornamentum';
+
+import { BundleRoutingModule } from './bundle-routing.module';
+import { SharedBundleModule } from '../../shared/shared-bundle/shared-bundle.module';
 import { SharedCommonModule } from '../../shared/shared-common/shared-common.module';
+import { SharedAlgorithmModule } from '../../shared/shared-algorithm/shared-algorithm.module';
 
 import { COMPONENTS, ENTRY_COMPONENTS, SERVICES } from './index';
-import { DataTableModule, DropdownModule } from 'ornamentum';
-import { BundleRoutingModule } from './bundle-routing.module';
-import { SharedAlgorithmModule } from '../../shared/shared-algorithm/shared-algorithm.module';
-import { SharedBundleModule } from '../../shared/shared-bundle/shared-bundle.module';
 
 /**
  * Module class for containing bundle module.

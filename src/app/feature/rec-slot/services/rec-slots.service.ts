@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { SuccessResponse } from '../../../core/models';
 import { Injectable } from '@angular/core';
-import { DisplayRecSlots } from '../models/display-rec-slots.model';
-import { RecSlot } from '../models/rec-slot.model';
+
+import { Observable } from 'rxjs';
+
+import { SuccessResponse } from '../../../core/models';
+import { DisplayRecSlot } from '../models';
+import { RecSlot } from '../models';
+
 import { environment } from '../../../../environments/environment';
 
 /**
@@ -19,10 +22,10 @@ export class RecSlotsService {
 
   /**
    * Responsible for making a GET api call to get all the rec slots.
-   * @returns {Observable<DisplayRecSlots[]>} - rec slots array.
+   * @returns {Observable<DisplayRecSlot[]>} - rec slots array.
    */
-  public getRecSlots(): Observable<DisplayRecSlots> {
-    return this.http.get<DisplayRecSlots>(`${environment.baseUrl}${RecSlotsService.rec_slots_url}`);
+  public getRecSlots(): Observable<DisplayRecSlot> {
+    return this.http.get<DisplayRecSlot>(`${environment.baseUrl}${RecSlotsService.rec_slots_url}`);
   }
 
   /**

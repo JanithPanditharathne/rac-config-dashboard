@@ -73,7 +73,7 @@
             >
                 <ng-template #ngDataTableCell let-row="row">
                     <td>
-                        {{renderIsGlobal(row.item)}}
+                        {{ row.item.isGlobal ? 'Yes' : 'No' }}
                     </td>
                 </ng-template>
             </ng-data-table-column>

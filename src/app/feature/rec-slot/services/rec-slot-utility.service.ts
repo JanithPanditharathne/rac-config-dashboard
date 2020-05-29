@@ -1,10 +1,16 @@
-import { RecSlot } from '../models/rec-slot.model';
 import { Injectable } from '@angular/core';
+
+import { RecSlot } from '../models';
 
 @Injectable()
 export class RecSlotUtilityService {
 
-  public static mapRecSlotValues(formData: any, rulesList: any): RecSlot {
+  /**
+   * Responsible for map form data into rec slot.
+   * @param {any} formData data
+   * @param {any[]} rulesList rules
+   */
+  public static mapRecSlotValues(formData: any, rulesList: any[]): RecSlot {
     return {
       channel: {
         id: formData.channel.id,

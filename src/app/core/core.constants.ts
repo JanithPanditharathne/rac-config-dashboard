@@ -28,4 +28,6 @@ export class CoreConstants {
 
   // authentication
   public static app_username = 'username';
+  public static admin_username = 'admin';
+  public static admin_pw = 'admin1234';
 }

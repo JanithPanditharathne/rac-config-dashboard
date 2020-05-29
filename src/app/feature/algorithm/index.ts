@@ -8,7 +8,6 @@ import { AlgorithmResolver } from './resolvers';
 /**
  * Export all algorithms components.
  */
-
 export const COMPONENTS = [
   AlgorithmComponent,
   AlgorithmUpsertComponent

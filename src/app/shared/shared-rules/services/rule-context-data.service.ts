@@ -14,7 +14,6 @@ export class RuleContextDataService {
   constructor() {
   }
 
-
   /**
    * Returns true if the current context child's type item is matched to the Price type.
    * @param {string} ruleDisplayType The rule display type.
@@ -26,12 +25,24 @@ export class RuleContextDataService {
     );
   }
 
+  /**
+   * Responsible for find and return facet form group.
+   * @param {FormArray} formDataArray
+   * @param {RuleTabDisplayDataType} type
+   * @return {FormGroup} form group
+   */
   public findFacetFormGroup(formDataArray: FormArray, type: RuleTabDisplayDataType): FormGroup {
     return formDataArray.controls.find((item: AbstractControl) => {
       return item.value.type === type;
     }) as FormGroup;
   }
 
+  /**
+   * Responsible for apply facet dropdown data.
+   * @param {FormArray} formDataArray
+   * @param {FormGroup} facetFormGroup
+   * @param {FormGroup} baseFormGroup
+   */
   public applyFacetDropDownData(formDataArray: FormArray, facetFormGroup: FormGroup, baseFormGroup: FormGroup): void {
     const index = formDataArray.controls.indexOf(facetFormGroup);
 
@@ -49,21 +60,12 @@ export class RuleContextDataService {
     baseFormGroup.reset();
   }
 
-  public applySeedProductData(formDataArray: FormArray, facetFormGroup: FormGroup, seedData: DropDownDataItem): void {
-    const index = formDataArray.controls.indexOf(facetFormGroup);
-
-    if (index === -1) {
-      formDataArray.push(facetFormGroup);
-    }
-
-    formDataArray.markAsDirty();
-    const facetData = facetFormGroup.value.value || [];
-
-    facetFormGroup.patchValue({
-      value: [...facetData, ...[seedData]]
-    });
-  }
-
+  /**
+   * Responsible for remove facet dropdown data.
+   * @param {FormArray} formDataArray
+   * @param {FormGroup} group
+   * @param {DropDownDataItem} data
+   */
   public removeFacetDropDownData(formDataArray: FormArray, group: FormGroup, data: DropDownDataItem): void {
     const dropDownData: DropDownDataItem[] = [...group.value.value];
 
@@ -84,6 +86,12 @@ export class RuleContextDataService {
     });
   }
 
+  /**
+   * Responsible for remove text field data.
+   * @param {FormArray} formDataArray
+   * @param {FormGroup} formGroup
+   * @param {string} data
+   */
   public removeTextFieldData(formDataArray: FormArray, formGroup: FormGroup, data: string): void {
     const formGroupValue = formGroup.value;
 
@@ -103,6 +111,13 @@ export class RuleContextDataService {
     });
   }
 
+  /**
+   * Responsible for apply text field data.
+   * @param {FormArray} formDataArray
+   * @param {FormGroup} group
+   * @param {string} baseFormGroup
+   * @param {string} type
+   */
   public applyTextFieldData(formDataArray: FormArray, group: FormGroup, baseFormGroup: FormGroup, type: string): void {
     const index = formDataArray.controls.indexOf(group);
 
@@ -118,25 +133,5 @@ export class RuleContextDataService {
     formGroupValueFormControl.setValue([...formGroupValue, baseFormGroup.value[type]]);
 
     baseFormGroup.get(type).reset();
-  }
-
-  public isSeedDataAvailable(data: any): boolean {
-    if (!data.value) {
-      return false;
-    }
-
-    return data.value.find((item) => {
-      return item.id === -1;
-    });
-  }
-
-  public isPageDataAvailable(data: any): boolean {
-    if (!data.value) {
-      return false;
-    }
-
-    return data.value.find((item) => {
-      return item.id === -2;
-    });
   }
 }

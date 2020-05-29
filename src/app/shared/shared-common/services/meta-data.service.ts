@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 
 import { ReplaySubject } from 'rxjs';
 import { retry } from 'rxjs/operators';
+
 import { DropDownDataItem } from '../models';
+import { ChannelData, PageData, PlaceholderData } from '../../shared-rec/models';
+
 import { environment } from '../../../../environments/environment';
-import { ChannelData } from '../../shared-rec/models/channel-data.model';
-import { PageData } from '../../shared-rec/models/page-data.model';
-import { PlaceholderData } from '../../shared-rec/models/placeholder-data.model';
 
 
 /**

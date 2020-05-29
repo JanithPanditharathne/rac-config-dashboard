@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
+
 import { SuccessResponse } from '../../../core/models';
-import { Bundle } from '../../../feature/bundle/models/bundle.model';
+import { Rule, DisplayRule } from '../../../feature/rule/models';
+
 import { environment } from '../../../../environments/environment';
-import { Rule } from '../../../feature/rule/models/rule.model';
-import { DisplayRule } from '../../../feature/rule/models/display-rule.model';
 
 /**
  * Class representing rule service.

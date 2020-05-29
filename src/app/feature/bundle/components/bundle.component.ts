@@ -1,23 +1,31 @@
 import { Component } from '@angular/core';
-import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions } from '../../../shared/shared-common/models';
-import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums';
-import { DataFetchMode, DataTableComponent } from 'ornamentum';
-import { Observable } from 'rxjs';
-import { Bundle } from '../models/bundle.model';
-import { map } from 'rxjs/operators';
-import { DisplayBundle } from '../models/display-bundle.model';
-import { BundleService } from '../../../shared/shared-bundle/services';
-import { AlgorithmConstants } from '../../algorithm/algorithm.constants';
-import { AlertType, SuccessStatus } from '../../../core/enums';
 import { Router } from '@angular/router';
-import { NotificationService } from '../../../core/services';
-import { BundleConstants } from '../bundle.constants';
-import { ConfirmPopupComponent } from '../../../shared/shared-common/components';
-import { SuccessResponse } from '../../../core/models';
+
+import { DataFetchMode, DataTableComponent } from 'ornamentum';
+
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { BsModalService } from 'ngx-bootstrap/modal';
 
+import { Bundle } from '../models/bundle.model';
+import { SuccessResponse } from '../../../core/models';
+import { DisplayBundle } from '../models/display-bundle.model';
+import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions } from '../../../shared/shared-common/models';
+
+import { AlertType, SuccessStatus } from '../../../core/enums';
+import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums';
+
+import { ConfirmPopupComponent } from '../../../shared/shared-common/components';
+
+import { NotificationService } from '../../../core/services';
+import { BundleService } from '../../../shared/shared-bundle/services';
+
+import { BundleConstants } from '../bundle.constants';
+import { AlgorithmConstants } from '../../algorithm/algorithm.constants';
+
 /**
- * Class representing the Bundles component.
+ * Class representing the Bundle component.
  * @implements OnDestroy
  * @class BundleComponent.
  */
@@ -29,11 +37,11 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 export class BundleComponent {
   public ActionType = ActionType;
   public ColumnActionType = ColumnActionType;
-
   public actionBreadcrumb: ActionBreadcrumb[];
-  public isLoading = false;
+
   public height: number;
-  private dataTable: DataTableComponent;
+  public isLoading = false;
+  public dataTable: DataTableComponent;
   public dataSource: Observable<Bundle[]>;
 
   constructor(
@@ -64,7 +72,11 @@ export class BundleComponent {
     this.height = dimensions.height;
   }
 
-  public onEditClick(bundleId: string) {
+  /**
+   * On edit click event handler.
+   * @param {string} bundleId bundle id.
+   */
+  public onEditClick(bundleId: string): void {
     this.isLoading = true;
     this.router
       .navigate(['bundles/edit', bundleId])
@@ -82,11 +94,20 @@ export class BundleComponent {
       });
   }
 
-  public onDataTableInit(dataTableComponent: DataTableComponent) {
+  /**
+   * Data table init event handler.
+   * @param {DataTableComponent} dataTableComponent
+   */
+  public onDataTableInit(dataTableComponent: DataTableComponent): void {
     this.dataTable = dataTableComponent;
   }
 
-  public openDeleteConfirmModal(bundleId: string, bundleName: string) {
+  /**
+   * Responsible for open delete confirmation popup.
+   * @param {string} bundleId bundle id.
+   * @param {string} bundleName bundle name.
+   */
+  public openDeleteConfirmModal(bundleId: string, bundleName: string): void {
     const modalRef = this.modalService.show(ConfirmPopupComponent, {
       class: 'bundle-delete-confirm-popup confirmation-popup',
       ignoreBackdropClick: true
@@ -103,7 +124,18 @@ export class BundleComponent {
   }
 
   /**
+   * Bundle add new event handler.
+   */
+  public onAddClick(): void {
+    this.router.navigate(['bundles/add']).catch(() => {
+      this.notificationService.showNotification(AlgorithmConstants.navigation_failure, AlertType.ERROR);
+    });
+  }
+
+  /**
    * Bundle delete event handler.
+   * @param {string} bundleId bundle id.
+   * @param {ActionClickEventArgs} actionClickEventArgs click event arguments.
    */
   private deleteAlgorithm(bundleId: string, actionClickEventArgs: ActionClickEventArgs): void {
     this.bundleService.deleteBundle(bundleId).subscribe(
@@ -114,21 +146,11 @@ export class BundleComponent {
           this.notificationService.showNotification(response.message, AlertType.ERROR);
           return;
         }
-
         this.notificationService.showNotification(response.message, AlertType.SUCCESS);
       },
       () => {
         actionClickEventArgs.resolve();
       }
     );
-  }
-
-  /**
-   * Bundle add new event handler.
-   */
-  public onAddClick() {
-    this.router.navigate(['bundles/add']).catch(() => {
-      this.notificationService.showNotification(AlgorithmConstants.navigation_failure, AlertType.ERROR);
-    });
   }
 }

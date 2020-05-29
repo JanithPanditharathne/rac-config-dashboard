@@ -5,9 +5,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 
-import { COMPONENTS, DIRECTIVES, ENTRY_COMPONENTS, PIPES, SERVICES } from './index';
-import { SharedCommonModule } from '../shared-common/shared-common.module';
 import { DropdownModule } from 'ornamentum';
+
+import { SharedCommonModule } from '../shared-common/shared-common.module';
+
+import { COMPONENTS, DIRECTIVES, ENTRY_COMPONENTS, PIPES, SERVICES } from './index';
 
 /**
  * Application shared rules module (contains all shared common components, directives, pipes, models and services).

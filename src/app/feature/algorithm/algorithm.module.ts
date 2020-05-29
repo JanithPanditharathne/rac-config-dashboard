@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 
+import { DataTableModule, DropdownModule } from 'ornamentum';
+
 import { AlgorithmRoutingModule } from './algorithm-routing.module';
 import { SharedCommonModule } from '../../shared/shared-common/shared-common.module';
+import { SharedAlgorithmModule } from '../../shared/shared-algorithm/shared-algorithm.module';
 
 import { COMPONENTS, ENTRY_COMPONENTS, SERVICES } from './index';
-import { DataTableModule, DropdownModule } from 'ornamentum';
-import { SharedAlgorithmModule } from '../../shared/shared-algorithm/shared-algorithm.module';
 
 /**
  * Module class for containing algorithm module.

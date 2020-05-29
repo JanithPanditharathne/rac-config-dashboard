@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RecSlotComponent, RecSlotUpsertComponent } from './components';
-import { CanDeactivateGuard } from '../../shared/shared-common/services';
+
 import { FormAction } from '../../shared/shared-common/enums';
+
+import { RecSlotComponent, RecSlotUpsertComponent } from './components';
+
 import { RecSlotResolver } from './resolver';
+
+import { CanDeactivateGuard } from '../../shared/shared-common/services';
 
 /**
  * Represent application rec-slot module routes.

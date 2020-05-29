@@ -8,10 +8,11 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 
 import { UtilityModule } from 'ornamentum';
 
-import { COMPONENTS, SERVICES } from './index';
+import { SharedCommonModule } from '../shared/shared-common/shared-common.module';
 
 import { throwIfAlreadyLoaded } from './module-import.guard';
-import { SharedCommonModule } from '../shared/shared-common/shared-common.module';
+
+import { COMPONENTS, SERVICES } from './index';
 
 /**
  * Module class for containing core module.

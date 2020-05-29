@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { ActionClickEventArgs } from '../../../shared/shared-common/models';
 
 import { ActionType } from 'src/app/shared/shared-common/enums';
 
-import { CustomFormValidator, FormValidator } from '../../../shared/shared-common/services';
-import { Router } from '@angular/router';
 import { AuthService } from '../../services';
+import { CustomFormValidator, FormValidator } from '../../../shared/shared-common/services';
+
+import { CoreConstants } from '../../core.constants';
 
 /**
  * Component class for showing login view.
@@ -21,9 +23,8 @@ import { AuthService } from '../../services';
 export class LoginComponent implements OnInit {
   public ActionType = ActionType;
 
-  public loginForm: FormGroup;
-
   public isAuthorized = true;
+  public loginForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -52,12 +53,17 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /**
+   * Responsible for check validity of given form control.
+   * @param {string} controlName control name
+   * @returns {boolean} true or false.
+   */
   public isInvalid(controlName: string): boolean {
     return FormValidator.isInvalidControl(this.loginForm.get(controlName));
   }
 
   /**
-   * On key up event.
+   * On key press event handler.
    */
   public onKeyPress(): void {
     this.isAuthorized = true;
@@ -65,11 +71,11 @@ export class LoginComponent implements OnInit {
 
   /**
    * Login event handler.
+   * @param {ActionClickEventArgs} actionClickArgs click event arguments.
    */
   public onLoginClick(actionClickArgs: ActionClickEventArgs): void {
-    actionClickArgs.resolve();
     const userData = this.loginForm.value;
-    if (userData.username === 'admin' && userData.password === 'admin1234') {
+    if (userData.username === CoreConstants.admin_username && userData.password === CoreConstants.admin_pw) {
       this.authService.authenticate({
         username: userData.username,
         password: userData.password
@@ -82,5 +88,6 @@ export class LoginComponent implements OnInit {
     }
     this.loginForm.reset();
     this.isAuthorized = false;
+    actionClickArgs.resolve();
   }
 }

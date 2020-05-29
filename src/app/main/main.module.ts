@@ -9,8 +9,6 @@ import { AppCoreModule } from '../core/core.module';
 import { BaseComponent } from './components';
 import { COMPONENTS, ENTRY_COMPONENTS } from './index';
 
-import { MainResolver } from './resolvers';
-
 /**
  * Module class for containing main module.
  * @class AppMainModule
@@ -20,6 +18,6 @@ import { MainResolver } from './resolvers';
   entryComponents: [...ENTRY_COMPONENTS],
   exports: [BaseComponent],
   imports: [AppCoreModule, RouterModule, CommonModule, ModalModule.forRoot()],
-  providers: [MainResolver]
+  providers: []
 })
 export class AppMainModule {}

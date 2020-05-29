@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActionBreadcrumb, ActionClickEventArgs } from '../../../../shared/shared-common/models';
-import { FormValidator } from '../../../../shared/shared-common/services';
-import { ActionType, FormAction } from 'src/app/shared/shared-common/enums';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Algorithm } from '../../models/algorithm.model';
-import { NotificationService } from '../../../../core/services';
-import { AlgorithmConstants } from '../../algorithm.constants';
-import { AlertType, SuccessStatus } from '../../../../core/enums';
-import { SuccessResponse } from '../../../../core/models';
-import { AlgorithmService } from '../../../../shared/shared-algorithm/services';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { Observable } from 'rxjs';
+
+import { Algorithm } from '../../models';
+import { SuccessResponse } from '../../../../core/models';
+import { ActionBreadcrumb, ActionClickEventArgs } from '../../../../shared/shared-common/models';
+
+import { AlertType, SuccessStatus } from '../../../../core/enums';
+import { ActionType, FormAction } from 'src/app/shared/shared-common/enums';
+
+import { NotificationService } from '../../../../core/services';
+import { FormValidator } from '../../../../shared/shared-common/services';
+import { AlgorithmService } from '../../../../shared/shared-algorithm/services';
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
+
+import { AlgorithmConstants } from '../../algorithm.constants';
 
 /**
  * Component class for showing algorithm upsert view.
@@ -24,19 +29,18 @@ import { ConfirmDialogService } from '../../../../shared/shared-common/services/
 })
 export class AlgorithmUpsertComponent implements OnInit {
   public ActionType = ActionType;
+  public actionBreadcrumb: ActionBreadcrumb[];
 
   public algorithmForm: FormGroup;
   public algorithm: Algorithm;
   public formAction: FormAction;
   public isEdit = false;
 
-  public actionBreadcrumb: ActionBreadcrumb[];
-
   constructor(
-    private algorithmService: AlgorithmService,
+    private router: Router,
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router,
+    private algorithmService: AlgorithmService,
     private dialogService: ConfirmDialogService,
     private notificationService: NotificationService
   ) {
@@ -77,33 +81,23 @@ export class AlgorithmUpsertComponent implements OnInit {
           break;
       }
     });
-
     this.buildFormGroup();
   }
 
-  private buildFormGroup(): void {
-    if (this.algorithm) {
-      this.algorithmForm = this.fb.group({
-        algorithmId: [this.algorithm.id, Validators.required],
-        algorithmName: [this.algorithm.name, Validators.required],
-        description: [this.algorithm.description, Validators.required],
-        displayText: [this.algorithm.defaultDisplayText, Validators.required]
-      });
-      return;
-    }
-    this.algorithmForm = this.fb.group({
-      algorithmId: [null, Validators.required],
-      algorithmName: [null, Validators.required],
-      description: [null, Validators.required],
-      displayText: [null, Validators.required]
-    });
-  }
-
+  /**
+   * Responsible for check validity of given form control.
+   * @param {string} controlName control name
+   * @returns {boolean} true or false.
+   */
   public isInvalid(controlName: string): boolean {
     return FormValidator.isInvalidControl(this.algorithmForm.get(controlName));
   }
 
-  public onSaveClick(actionClickArgs: ActionClickEventArgs) {
+  /**
+   * On save click event handler.
+   * @param {ActionClickEventArgs} actionClickArgs click event arguments.
+   */
+  public onSaveClick(actionClickArgs: ActionClickEventArgs): void {
     FormValidator.validateAllFormFields(this.algorithmForm);
 
     if (this.algorithmForm.invalid) {
@@ -130,7 +124,31 @@ export class AlgorithmUpsertComponent implements OnInit {
     }
   }
 
-  public addNewAlgorithm(algorithm: Algorithm, actionClickArgs: ActionClickEventArgs): void {
+  /**
+   * Responsible for redirect to algorithms view page.
+   */
+  public redirectToAlgorithmView(): void {
+    this.router.navigate(['algorithms']);
+  }
+
+  /**
+   * The method to get dialog confirmation will be called by CanDeactivateGuard
+   * @return {Observable<boolean> | boolean}
+   */
+  public canDeactivate(): Observable<boolean> | boolean {
+    if (this.algorithmForm.dirty) {
+      return this.dialogService.routeDiscardConfirm();
+    }
+
+    return true;
+  }
+
+  /**
+   * Responsible for add new algorithm.
+   * @param {Algorithm} algorithm details
+   * @param {ActionClickEventArgs} actionClickArgs click event arguments.
+   */
+  private addNewAlgorithm(algorithm: Algorithm, actionClickArgs: ActionClickEventArgs): void {
     this.algorithmService.createAlgorithm(algorithm).subscribe(
       (response: SuccessResponse) => {
         actionClickArgs.resolve();
@@ -149,7 +167,12 @@ export class AlgorithmUpsertComponent implements OnInit {
     );
   }
 
-  public editAlgorithm(algorithm: Algorithm, actionClickArgs: ActionClickEventArgs): void {
+  /**
+   * Responsible for edit an algorithm.
+   * @param {Algorithm} algorithm details
+   * @param {ActionClickEventArgs} actionClickArgs click event arguments.
+   */
+  private editAlgorithm(algorithm: Algorithm, actionClickArgs: ActionClickEventArgs): void {
     this.algorithmService.updateAlgorithm(algorithm).subscribe(
       (response: SuccessResponse) => {
         actionClickArgs.resolve();
@@ -168,19 +191,24 @@ export class AlgorithmUpsertComponent implements OnInit {
     );
   }
 
-  public redirectToAlgorithmView(): void {
-    this.router.navigate(['algorithms']);
-  }
-
   /**
-   * The method to get dialog confirmation will be called by CanDeactivateGuard
-   * @return {Observable<boolean> | boolean}
+   * Responsible for build form group.
    */
-  public canDeactivate(): Observable<boolean> | boolean {
-    if (this.algorithmForm.dirty) {
-      return this.dialogService.routeDiscardConfirm();
+  private buildFormGroup(): void {
+    if (this.algorithm) {
+      this.algorithmForm = this.fb.group({
+        algorithmId: [this.algorithm.id, Validators.required],
+        algorithmName: [this.algorithm.name, Validators.required],
+        description: [this.algorithm.description, Validators.required],
+        displayText: [this.algorithm.defaultDisplayText, Validators.required]
+      });
+      return;
     }
-
-    return true;
+    this.algorithmForm = this.fb.group({
+      algorithmId: [null, Validators.required],
+      algorithmName: [null, Validators.required],
+      description: [null, Validators.required],
+      displayText: [null, Validators.required]
+    });
   }
 }
