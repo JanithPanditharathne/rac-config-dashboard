@@ -2,7 +2,7 @@ import { Component, ContentChild, EventEmitter, Input, Output, TemplateRef } fro
 
 import { ActionClickEventArgs } from '../../../models';
 
-import { ActionType } from '../../../enums';
+import { ActionType, ActionButtonType } from '../../../enums';
 
 @Component({
   selector: 'app-action',
@@ -22,6 +22,9 @@ export class ActionComponent {
 
   @Input()
   public name: string;
+
+  @Input()
+  public buttonType: ActionButtonType;
 
   @Input()
   public disable: boolean;

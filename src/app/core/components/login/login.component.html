@@ -8,7 +8,8 @@
                        (keypress)="onKeyPress()" id="username" #username [appErrorFocus]="!isAuthorized"
                        [focusElement]="username"/>
                 <span class="rac-input-username"></span>
-                <app-common-control-error-view [control]="loginForm.get('username')"
+                <app-common-control-error-view *ngIf="isAuthorized"
+                                               [control]="loginForm.get('username')"
                                                [requiredError]="'Username can not be blank'"
                                                [lengthError]="'Username characters should between 4 and 128'">
                 </app-common-control-error-view>
@@ -17,7 +18,8 @@
                 <input class="form-control rac-input-field" type="password" formControlName="password" placeholder="Password"
                        (keypress)="onKeyPress()" id="password"/>
                 <span class="rac-input-password"></span>
-                <app-common-control-error-view [control]="loginForm.get('password')"
+                <app-common-control-error-view *ngIf="isAuthorized"
+                                               [control]="loginForm.get('password')"
                                                [requiredError]="'Password can not be blank'"
                                                [lengthError]="'Password characters should between 8 and 40'">
                 </app-common-control-error-view>
@@ -25,6 +27,7 @@
             </div>
             <app-action-button-strap>
                 <app-action [type]="ActionType.OK"
+                            [buttonType]="ActionButtonType.SUBMIT"
                             [name]="'Login'"
                             [autoResolve]="false"
                             (actionClick)="onLoginClick($event)"

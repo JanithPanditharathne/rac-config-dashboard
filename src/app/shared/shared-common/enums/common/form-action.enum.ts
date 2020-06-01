@@ -1,6 +1,6 @@
 /**
  * Enum representing the constants for form action.
- * @enum Move.
+ * @enum FormAction.
  */
 export enum FormAction {
   ADD = 1,

@@ -1,5 +1,6 @@
 // common
 export { ActionType } from './common/action-type.enum';
+export { ActionButtonType } from './common/action-button-type.enum';
 export { ColumnActionType } from './common/column-action-type.enum';
 export { FormAction } from './common/form-action.enum';
 export { SaveActionType } from './common/save-action.enum';

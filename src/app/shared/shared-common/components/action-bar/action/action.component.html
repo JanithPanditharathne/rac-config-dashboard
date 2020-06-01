@@ -1,8 +1,8 @@
 <ng-container *ngIf="actionTemplate" [ngTemplateOutlet]="actionTemplate"> </ng-container>
 <ng-container *ngIf="!actionTemplate">
   <button
-    type="button"
     class="rac-action-button"
+    [type]="buttonType"
     [class.updating]="isUpdating"
     [disabled]="disable || isUpdating"
     (click)="onActionClick()"

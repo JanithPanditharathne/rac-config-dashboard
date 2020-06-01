@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { ActionClickEventArgs } from '../../../shared/shared-common/models';
 
-import { ActionType } from 'src/app/shared/shared-common/enums';
+import { ActionType, ActionButtonType } from 'src/app/shared/shared-common/enums';
 
 import { AuthService } from '../../services';
 import { CustomFormValidator, FormValidator } from '../../../shared/shared-common/services';
@@ -22,6 +22,7 @@ import { CoreConstants } from '../../core.constants';
 })
 export class LoginComponent implements OnInit {
   public ActionType = ActionType;
+  public ActionButtonType = ActionButtonType;
 
   public isAuthorized = true;
   public loginForm: FormGroup;
