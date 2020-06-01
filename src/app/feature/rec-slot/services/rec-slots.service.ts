@@ -15,7 +15,7 @@ import { environment } from '../../../../environments/environment';
  */
 @Injectable()
 export class RecSlotsService {
-  private static rec_slots_url = '/v1/recSlots';
+  private static rec_slots_url = '/v1/rec-slots';
 
   constructor(private http: HttpClient) {
   }
