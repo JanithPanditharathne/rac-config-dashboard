@@ -8,11 +8,9 @@ import { map } from 'rxjs/operators';
 import { DataTableSelectMode, DropdownSelectMode } from 'ornamentum';
 
 import { RecSlot } from '../../models';
-import { Rule } from '../../../rule/models/rule.model';
+import { Rule, DisplayRule } from '../../../rule/models';
 import { SuccessResponse } from '../../../../core/models';
-import { DisplayRule } from '../../../rule/models/display-rule.model';
-import { Recommendation } from '../../../recommendation/models/recommendation.model';
-import { DisplayRecommendation } from '../../../recommendation/models/display-recommendation.model';
+import { Recommendation, DisplayRecommendation } from '../../../recommendation/models';
 import { ActionBreadcrumb, ActionClickEventArgs, DropDownDataItem } from '../../../../shared/shared-common/models';
 
 import { AlertType, SuccessStatus } from '../../../../core/enums';
