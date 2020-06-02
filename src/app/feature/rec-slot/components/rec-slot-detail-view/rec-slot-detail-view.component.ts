@@ -4,11 +4,11 @@ import { Subscription } from 'rxjs';
 
 import { DataTableRow } from 'ornamentum';
 
-import { RecSlot } from '../../../models';
-import { DisplayRule, Rule } from '../../../../rule/models';
-import { DropDownDataItem } from '../../../../../shared/shared-common/models';
+import { RecSlot } from '../../models';
+import { DisplayRule, Rule } from '../../../rule/models';
+import { DropDownDataItem } from '../../../../shared/shared-common/models';
 
-import { RuleService } from '../../../../../shared/shared-rules/services';
+import { RuleService } from '../../../../shared/shared-rules/services';
 
 /**
  * Class representing the Rec slot detail view component.
