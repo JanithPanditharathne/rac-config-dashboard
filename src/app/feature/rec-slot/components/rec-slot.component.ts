@@ -11,7 +11,7 @@ import { DataFetchMode, DataTableComponent, DataTableRow } from 'ornamentum';
 
 import { RecSlot, DisplayRecSlot } from '../models';
 import { SuccessResponse } from '../../../core/models';
-import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions } from '../../../shared/shared-common/models';
+import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions, DropDownDataItem } from '../../../shared/shared-common/models';
 
 import { AlertType, SuccessStatus } from '../../../core/enums';
 import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums';
@@ -97,6 +97,51 @@ export class RecSlotComponent {
    */
   public onDataTableInit(dataTableComponent: DataTableComponent): void {
     this.dataTable = dataTableComponent;
+  }
+
+  /**
+   * Responsible for map row data to filter options.
+   * @param {RecSlot} item data row
+   * @return {any} any
+   */
+  public onRuleFilterMapper(item: RecSlot): any {
+    if (!item.rules) {
+      return {
+        key: null,
+        value: '-'
+      };
+    }
+
+    return item.rules.map((rule: DropDownDataItem) => {
+      return {
+        key: rule.name,
+        value: rule.name
+      };
+    });
+  }
+
+  /**
+   * Responsible for filter rule names.
+   * @param {RecSlot} item data row
+   * @param {string} field
+   * @param {filterValue} filterValue
+   */
+  public onRuleOptionFilter(item: RecSlot, field: string, filterValue: string): boolean {
+    if (!filterValue || !filterValue.length) {
+      return true;
+    }
+
+    for (let index = 0; index < filterValue.length; index++) {
+      if (!!item.rules.find((rule: DropDownDataItem) => rule.name.toLowerCase().includes(filterValue.toLowerCase()))) {
+        return true;
+      }
+
+      if (status) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   /**

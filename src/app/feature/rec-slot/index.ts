@@ -1,4 +1,4 @@
-import { RecSlotComponent, RecSlotUpsertComponent } from './components';
+import { RecSlotComponent, RecSlotDetailViewComponent, RecSlotUpsertComponent } from './components';
 
 import { RecSlotsService, RecSlotUtilityService } from './services';
 
@@ -9,7 +9,8 @@ import { RecSlotResolver } from './resolver';
  */
 export const COMPONENTS = [
   RecSlotComponent,
-  RecSlotUpsertComponent
+  RecSlotUpsertComponent,
+  RecSlotDetailViewComponent
 ];
 
 /**

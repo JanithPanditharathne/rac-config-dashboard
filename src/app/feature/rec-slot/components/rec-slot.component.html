@@ -19,6 +19,8 @@
                 [showRefreshButton]="true"
                 [showSubstituteRows]="true"
                 [pageable]="true"
+                [expandableRows]="true"
+                [expandOnRowClick]="true"
                 [persistTableState]="false"
                 [showLoadingSpinner]="true"
                 (init)="onDataTableInit($event)"
@@ -66,7 +68,11 @@
             </ng-data-table-column>
             <ng-data-table-column
                     [field]="'rules'"
-                    [title]="'Rules'">
+                    [title]="'Rules'"
+                    [filterable]="true"
+                    [filterPlaceholder]="'Filter'"
+                    [filterFieldMapper]="onRuleFilterMapper"
+                    [filterExpression]="onRuleOptionFilter">
                 <ng-template #ngDataTableCell let-row="row" let-spanIndex="spanIndex">
                     <td>
                         <span>{{ getRuleName(row.item, spanIndex, 'name') }}</span>
@@ -93,6 +99,11 @@
                     </td>
                 </ng-template>
             </ng-data-table-column>
+            <ng-template #ngDataTableRowExpand let-row="row">
+                <app-rec-slot-detail-view *ngIf="row.expanded || row.dataLoaded" [dataRow]="row"
+                                          [bundleID]="row.item.id">
+                </app-rec-slot-detail-view>
+            </ng-template>
         </ng-data-table>
     </div>
 </div>

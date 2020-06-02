@@ -1,0 +1,78 @@
+<app-loading-overlay *ngIf="isLoading"></app-loading-overlay>
+<div class="table-expand-details" *ngIf="recSlot">
+    <div class="row">
+        <div class="col-lg-12">
+            <h4>Rec Slot Details</h4>
+        </div>
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="sub-heading">Channel</div>
+                    <div class="expand-detail-value">{{ recSlot.channel.name }}</div>
+                    <div class="sub-heading">Page</div>
+                    <div class="expand-detail-value">{{ recSlot.page.name }}</div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="sub-heading">Placeholder</div>
+                    <div class="expand-detail-value">{{ recSlot.placeholder.name }}</div>
+                    <div class="sub-heading">Rec Name</div>
+                    <div class="expand-detail-value">{{ recSlot.rec.name }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12" *ngIf="rules && recSlot?.id">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4>Rules <span class="small">(Following rules are included in this Rec slot)</span></h4>
+            </div>
+        </div>
+        <ng-data-table
+                [id]="'recs_data_summary'"
+                [limit]="10"
+                [minContentHeight]="100"
+                [items]="rules">
+            <ng-data-table-column
+                    [field]="'id'"
+                    [title]="'ID'"
+                    [width]="100"
+            >
+            </ng-data-table-column>
+            <ng-data-table-column
+                    [field]="'name'"
+                    [title]="'Name'">
+            </ng-data-table-column>
+            <ng-data-table-column
+                    [field]="'type'"
+                    [title]="'Type'">
+            </ng-data-table-column>
+            <ng-data-table-column [field]="'matchingConditionJson'" [title]="'If(matching) condition'"
+                                  [width]="180">
+                <ng-template #ngDataTableCell let-row="row" let-spanIndex="spanIndex"
+                             let-rowSpan="rowSpan">
+                    <td *ngIf="spanIndex === 0" [attr.rowspan]="rowSpan">
+                        <app-expression-view [expressionData]="row.item.matchingConditionJson">
+                        </app-expression-view>
+                    </td>
+                </ng-template>
+            </ng-data-table-column>
+            <ng-data-table-column [field]="'actionConditionJson'" [title]="'Then(action) condition'"
+                                  [width]="180">
+                <ng-template #ngDataTableCell let-row="row" let-spanIndex="spanIndex"
+                             let-rowSpan="rowSpan">
+                    <td *ngIf="spanIndex === 0" [attr.rowspan]="rowSpan">
+                        <app-expression-view [expressionData]="row.item.actionConditionJson">
+                        </app-expression-view>
+                    </td>
+                </ng-template>
+            </ng-data-table-column>
+            <ng-data-table-column [title]="'Is Global'">
+                <ng-template #ngDataTableCell let-row="row">
+                    <td>
+                        {{row.item.isGlobal ? 'Yes' : 'No'}}
+                    </td>
+                </ng-template>
+            </ng-data-table-column>
+        </ng-data-table>
+    </div>
+</div>
