@@ -54,8 +54,8 @@ export class RecSlotUpsertComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private ruleService: RuleService,
+    public metaDataService: MetaDataService,
     private recSlotsService: RecSlotsService,
-    private metaDataService: MetaDataService,
     private dialogService: ConfirmDialogService,
     private notificationService: NotificationService,
     private recommendationService: RecommendationService
