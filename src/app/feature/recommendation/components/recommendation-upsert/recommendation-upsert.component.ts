@@ -14,7 +14,7 @@ import { BundleSaveEventArgs } from '../../../bundle/models/bundle-save-event-ar
 import { ActionBreadcrumb, ActionClickEventArgs } from '../../../../shared/shared-common/models';
 
 import { AlertType, SuccessStatus } from '../../../../core/enums';
-import { ActionType, FormAction } from 'src/app/shared/shared-common/enums';
+import { ActionButtonType, ActionType, FormAction } from 'src/app/shared/shared-common/enums';
 
 import { BundleFormComponent } from '../../../../shared/shared-bundle/components';
 
@@ -38,6 +38,7 @@ import { RecommendationConstants } from '../../recommendation.constants';
 export class RecommendationUpsertComponent implements OnInit {
   public dropdownSelectMode: DropdownSelectMode = 'single';
   public actionBreadcrumb: ActionBreadcrumb[];
+  public ActionButtonType = ActionButtonType;
   public ActionType = ActionType;
   public FormAction = FormAction;
 

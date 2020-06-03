@@ -2,13 +2,6 @@
     <app-action-bar [breadcrumb]="actionBreadcrumb"></app-action-bar>
     <div class="rac-page-content-pane rac-recommendations">
         <div class="container-fluid relative-parent">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="rac-form-heading-container">
-                        <h2>Recommendation Details</h2>
-                    </div>
-                </div>
-            </div>
             <form [formGroup]="recForm" novalidate>
                 <div class="form-container row">
                     <div class="col-lg-4">
@@ -30,7 +23,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="rac-form-heading-container">
-                            <h2>Bundles</h2>
+                            <h2>Bundle</h2>
                         </div>
                     </div>
                 </div>
@@ -43,6 +36,7 @@
                                     [id]="'bundle-dropdown-data'"
                                     [selectTrackBy]="'id'"
                                     [displayTrackBy]="'name'"
+                                    [menuWidth]="390"
                                     [formControlName]="'selectedBundle'"
                                     [relativeParentElement]="recFormParent"
                                     [options]="bundleDropdownData"
@@ -64,7 +58,8 @@
                         </div>
                     </div>
                     <div class="col-lg-4 d-flex align-items-center">
-                        <app-action [type]="ActionType.ADD"
+                        <app-action [buttonType]="ActionButtonType.BUTTON"
+                                    [type]="ActionType.ADD"
                                     [name]="'Create New Bundle'"
                                     [autoResolve]="true"
                                     (actionClick)="switchSidePaneVisibility()"

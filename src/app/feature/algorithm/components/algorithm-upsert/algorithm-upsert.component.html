@@ -7,15 +7,12 @@
                     <form [formGroup]="algorithmForm" novalidate>
                         <div class="row">
                             <div class="col-lg-4">
-                                <div class="rac-form-heading-container">
-                                    <h2>Algorithm Details</h2>
-                                    <span class="info-label">How would you like to define the new algorithm?</span>
-                                </div>
                                 <div class="form-container">
                                     <div class="form-group" [class.input-error]="isInvalid('algorithmId')">
                                         <label for="algorithmId"
                                         >Algorithm ID<span class="required-label">*</span>
                                             <input
+                                                    [attr.disabled]="isEdit || null"
                                                     class="form-control"
                                                     type="number"
                                                     formControlName="algorithmId"
@@ -23,7 +20,6 @@
                                                     id="algorithmId"
                                                     min="1"
                                                     max="10000"
-                                                    [attr.disabled]="isEdit || null"
                                             />
                                         </label>
                                         <app-range-error
