@@ -641,6 +641,7 @@ select {
 // Footer Action Button Container Styles
 .footer-button-container {
   border-top: .05rem solid $footer-border-styles;
+  margin-top: 2rem;
   padding: 1rem .5rem;
 }
 
@@ -1502,13 +1503,13 @@ app-placement-select-options {
   background: $right-pane-background;
   box-shadow: -1px -1px 2px $box-shadow-color;
   height: calc(100vh - 3rem);
-  margin-right: -70%;
+  margin-right: -80%;
   overflow: auto;
   position: absolute;
   right: 0;
   top: 0;
   transition: margin .3s ease;
-  width: 70%;
+  width: 80%;
   z-index: 10;
 
   @media (max-width: 991px) {
