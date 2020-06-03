@@ -49,8 +49,8 @@ export class RecSlotDetailViewComponent implements OnInit, OnDestroy {
    */
   private fetchRuleDetails(): void {
     this.rulesServiceSubscription = this.ruleService.getRules().subscribe((displayRule: DisplayRule) => {
-      this.recSlot.rules.forEach((ruleItem: DropDownDataItem) => {
-        this.rules.push(displayRule.rules.find((rule: Rule) => rule.id === String(ruleItem.id)));
+      this.rules = displayRule.rules.filter((rule: Rule) => {
+        return this.recSlot.rules.find((ruleItem: DropDownDataItem) => rule.id === String(ruleItem.id));
       });
       this.isLoading = false;
     });
