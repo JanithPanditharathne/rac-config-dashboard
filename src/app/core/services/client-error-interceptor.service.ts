@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ErrorHandler, Injectable } from '@angular/core';
+import { ErrorHandler, Injectable, OnDestroy } from '@angular/core';
 
 import { GlobalRefService } from 'ornamentum';
 
@@ -9,21 +9,21 @@ import { GlobalRefService } from 'ornamentum';
  * Centralized error handler hook.
  */
 @Injectable()
-export class ClientErrorInterceptorService implements ErrorHandler {
+export class ClientErrorInterceptorService implements ErrorHandler, OnDestroy {
+
   private static client_error_holder_identifier = 'client-error-message-holder';
   private static client_error_reload_button_identifier = 'btn-client-error-reload';
   private static client_error_code = 'client-error-codes';
   private static client_error_post_endpoint = '/api/v1/log/client/error';
 
   private lastError: Error;
+  private reloadBtn: HTMLAnchorElement;
 
   constructor(private globalRef: GlobalRefService, private http: HttpClient) {
-    const reloadBtn = <HTMLAnchorElement>(
+    this.reloadBtn = <HTMLAnchorElement>(
       this.globalRef.window.document.getElementById(ClientErrorInterceptorService.client_error_reload_button_identifier)
     );
-    reloadBtn.addEventListener('click', () => {
-      this.globalRef.window.location.reload(true);
-    });
+    this.reloadBtn.addEventListener('click', this.reloadButtonEvent);
   }
 
   /**
@@ -57,7 +57,7 @@ export class ClientErrorInterceptorService implements ErrorHandler {
             };
 
             this.http
-              .post(ClientErrorInterceptorService.client_error_post_endpoint, errorData, { responseType: 'text' })
+              .post(ClientErrorInterceptorService.client_error_post_endpoint, errorData, {responseType: 'text'})
               .subscribe((errorCode: string) => {
                 if (!clientErrorSpan.innerText) {
                   clientErrorSpan.innerText = `Error code: ${errorCode}`;
@@ -71,5 +71,19 @@ export class ClientErrorInterceptorService implements ErrorHandler {
     }
 
     this.globalRef.window.console.error(error);
+  }
+
+  /**
+   * On component destroy event handler.
+   */
+  public ngOnDestroy(): void {
+    this.reloadBtn.removeEventListener('click', this.reloadButtonEvent);
+  }
+
+  /**
+   * Reload button click event handler.
+   */
+  private reloadButtonEvent(): void {
+    this.globalRef.window.location.reload(true);
   }
 }
