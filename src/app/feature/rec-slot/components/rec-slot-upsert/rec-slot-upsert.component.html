@@ -7,17 +7,14 @@
                         <form [formGroup]="recSlotFormGroup">
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="rac-form-heading-container">
-                                    <h2>Rec Slots Details</h2>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
                                 <div class="form-container">
                                     <div class="form-group" [class.input-error]="isInvalid('channel')">
                                         <label>Channel <span class="required-label">*</span>
                                             <ng-dropdown
                                                 [id]="'channel-select-options'"
                                                 [dataSource]="metaDataService.channels"
+                                                [menuWidth]="390"
+                                                [menuHeight]="200"
                                                 [selectTrackBy]="'id'"
                                                 [displayTrackBy]="'name'"
                                                 [filterable]="true"
@@ -37,6 +34,8 @@
                                             <ng-dropdown
                                                 [id]="'page-select-options'"
                                                 [dataSource]="metaDataService.pages"
+                                                [menuWidth]="390"
+                                                [menuHeight]="200"
                                                 [selectTrackBy]="'id'"
                                                 [displayTrackBy]="'name'"
                                                 [filterable]="true"
@@ -56,6 +55,8 @@
                                             <ng-dropdown
                                                 [id]="'placeholder-select-options'"
                                                 [dataSource]="metaDataService.placeholders"
+                                                [menuWidth]="390"
+                                                [menuHeight]="200"
                                                 [selectTrackBy]="'id'"
                                                 [displayTrackBy]="'name'"
                                                 [filterable]="true"
@@ -75,6 +76,8 @@
                                             <ng-dropdown
                                                 [id]="'recommendation-select-options'"
                                                 [dataSource]="recommendationDataSource"
+                                                [menuWidth]="390"
+                                                [menuHeight]="200"
                                                 [selectTrackBy]="'id'"
                                                 [displayTrackBy]="'name'"
                                                 [filterable]="true"
