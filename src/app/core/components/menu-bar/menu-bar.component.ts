@@ -27,7 +27,8 @@ export class MenuBarComponent implements AfterContentInit, OnInit {
   @Output()
   public logout = new EventEmitter();
 
-  constructor(private router: Router, private userProfileService: UserProfileService) {}
+  constructor(private router: Router, private userProfileService: UserProfileService) {
+  }
 
   public toggleMenuCollapse(): void {
     this.menuCollapsed = !this.menuCollapsed;
@@ -148,6 +149,11 @@ export class MenuBarComponent implements AfterContentInit, OnInit {
   }
 
   public goToHomePage() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).then((data: boolean) => {
+      if (data) {
+        this.resetState(this.menuItems, true, false);
+        this.menuItems[0].active = true;
+      }
+    });
   }
 }
