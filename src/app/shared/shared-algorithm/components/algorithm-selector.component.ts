@@ -33,6 +33,9 @@ export class AlgorithmSelectorComponent {
   @Input()
   public algorithmsFormGroup: FormGroup;
 
+  @Input()
+  public isPopupView: boolean;
+
   constructor(
     private modalService: BsModalService,
     private algorithmService: AlgorithmService

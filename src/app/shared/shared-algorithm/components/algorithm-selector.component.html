@@ -14,7 +14,7 @@
                                     [formControlName]="'selectedAlgorithm'"
                                     [relativeParentElement]="algorithmSelectorFormParent"
                                     [options]="algorithmDropdownData"
-                                    [menuWidth]="600"
+                                    [menuWidth]="isPopupView ? 300 : 390"
                                     [selectMode]="dropdownSelectMode"
                                     [filterable]="true"
                                     [closeMenuOnSelect]="true"
@@ -43,7 +43,7 @@
                     <div class="col-lg-6">
                         <div class="form-group" *ngIf="algorithmsFormGroup.get('description').value">
                             <label
-                            >Description:
+                            >Algorithm Description
                                 <span class="algorithm-text form-control display-text">
                             {{ algorithmsFormGroup.get('description').value || '-' }}
                                                   </span>

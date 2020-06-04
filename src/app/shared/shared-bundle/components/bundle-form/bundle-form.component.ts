@@ -40,6 +40,9 @@ export class BundleFormComponent implements OnInit {
   public bundle: Bundle;
 
   @Input()
+  public isPopupView: boolean;
+
+  @Input()
   public formAction: FormAction;
 
   @Output()
