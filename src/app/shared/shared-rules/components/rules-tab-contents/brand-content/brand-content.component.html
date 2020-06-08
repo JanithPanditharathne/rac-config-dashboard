@@ -5,8 +5,15 @@
                 <div class="form-group" [class.input-error]="isInvalid('brand')">
                     <label
                     >Brand
-                        <input class="form-control" type="text" formControlName="brand"
-                               placeholder="Brand Name"/>
+                        <input [typeahead]="brands"
+                               [typeaheadOptionsLimit]="10"
+                               [typeaheadMinLength]="0"
+                               [typeaheadScrollable]="true"
+                               [typeaheadOptionsInScrollableView]="10"
+                               typeaheadOptionField="name"
+                               formControlName="brand"
+                               placeholder="Select Brand"
+                               class="form-control">
                     </label>
                     <app-character-length-range-error
                             [control]="baseFormGroup.get('brand')"

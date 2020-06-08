@@ -5,7 +5,7 @@ import { ReplaySubject } from 'rxjs';
 import { retry } from 'rxjs/operators';
 
 import { DropDownDataItem } from '../models';
-import { ChannelData, PageData, PlaceholderData } from '../../shared-rec/models';
+import { ChannelData, PageData, PlaceholderData, BrandData } from '../../shared-rec/models';
 
 import { environment } from '../../../../environments/environment';
 
@@ -19,17 +19,20 @@ export class MetaDataService {
   private static get_channel_meta_url = '/v1/metadata/channels';
   private static get_page_meta_url = '/v1/metadata/pages';
   private static get_placeholder_meta_url = '/v1/metadata/placeholders';
+  private static get_brand_meta_url = '/v1/metadata/brands';
 
   private static retry_count = 2;
 
   public readonly channels = new ReplaySubject<DropDownDataItem[]>(1);
   public readonly pages = new ReplaySubject<DropDownDataItem[]>(1);
   public readonly placeholders = new ReplaySubject<DropDownDataItem[]>(1);
+  public readonly brands = new ReplaySubject<DropDownDataItem[]>(1);
 
   constructor(private http: HttpClient) {
     this.fetchChannels();
     this.fetchPages();
     this.fetchPlaceholders();
+    this.fetchBrands();
   }
 
   public fetchChannels(): void {
@@ -62,6 +65,17 @@ export class MetaDataService {
       )
       .subscribe((data: PlaceholderData) => {
         this.placeholders.next(data.placeholders);
+      });
+  }
+
+  private fetchBrands(): void {
+    this.http
+      .get<BrandData>(`${environment.baseUrl}${MetaDataService.get_brand_meta_url}`)
+      .pipe(
+        retry(MetaDataService.retry_count)
+      )
+      .subscribe((data: BrandData) => {
+        this.brands.next(data.brands);
       });
   }
 }

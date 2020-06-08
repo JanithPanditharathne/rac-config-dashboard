@@ -3,6 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 
 import { DropdownModule } from 'ornamentum';
@@ -19,7 +20,16 @@ import { COMPONENTS, DIRECTIVES, ENTRY_COMPONENTS, PIPES, SERVICES } from './ind
   declarations: [...COMPONENTS, ...DIRECTIVES, ...PIPES],
   entryComponents: [...ENTRY_COMPONENTS],
   exports: [CommonModule, FormsModule, ReactiveFormsModule, ...COMPONENTS, ...DIRECTIVES, ...PIPES],
-  imports: [BsDatepickerModule.forRoot(), CommonModule, FormsModule, ReactiveFormsModule, PopoverModule.forRoot(), SharedCommonModule.forRoot(), DropdownModule]
+  imports: [
+    BsDatepickerModule.forRoot(),
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PopoverModule.forRoot(),
+    SharedCommonModule.forRoot(),
+    DropdownModule.forRoot(),
+    TypeaheadModule.forRoot()
+  ]
 })
 export class SharedRulesModule {
   static forRoot(): ModuleWithProviders {

@@ -8,9 +8,8 @@ import { DropDownDataItem, RuleBrandDataItem } from '../../../../shared-common/m
 import { ActionType } from '../../../../shared-common/enums';
 import { RuleGeneratorType, RuleTabDisplayDataType } from '../../../enums';
 
-import { RuleContextFormUtility } from '../../../services';
-import { RuleContextDataService } from '../../../services';
-import { FormValidator } from '../../../../shared-common/services';
+import { RuleContextFormUtility, RuleContextDataService } from '../../../services';
+import { FormValidator, MetaDataService } from '../../../../shared-common/services';
 
 /**
  * Component class to represent brand tab content.
@@ -28,6 +27,7 @@ export class BrandContentComponent implements OnInit {
 
   public brandFormGroup: FormGroup;
   public baseFormGroup: FormGroup;
+  public brands: DropDownDataItem[];
 
   @Input()
   public ruleGeneratorType = RuleGeneratorType.MATCHING;
@@ -42,7 +42,13 @@ export class BrandContentComponent implements OnInit {
     return RuleContextFormUtility.buildFormGroup(fb, RuleTabDisplayDataType.Brand, brandData);
   }
 
-  constructor(private ruleContextDataService: RuleContextDataService, private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private metaDataService: MetaDataService,
+    private ruleContextDataService: RuleContextDataService) {
+    metaDataService.brands.subscribe((brands: DropDownDataItem[]) => {
+      this.brands = brands;
+    });
   }
 
   /**
