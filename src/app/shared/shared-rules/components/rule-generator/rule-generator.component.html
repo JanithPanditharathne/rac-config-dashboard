@@ -1,13 +1,3 @@
-<div class="form-heading-container pt-2 pb-3">
-    <ng-container *ngIf="contextType === RuleGeneratorType.MATCHING">
-        <h3>Criteria Summary</h3>
-    </ng-container>
-    <ng-container *ngIf="contextType !== RuleGeneratorType.MATCHING">
-        <h3>Product Criteria
-            Summary {{parentFormGroup.value.ruleType && 'for ' + parentFormGroup.value.ruleType?.name}}</h3>
-    </ng-container>
-</div>
-
 <form [formGroup]="parentFormGroup" novalidate>
     <div formArrayName="{{ contextType }}" class="well well-lg">
         <div class="rule-generator">
