@@ -9,5 +9,5 @@ const keycloakConfig: KeycloakConfig = {
 export const environment = {
   production: false,
   baseUrl: window['baseUrl'],
-  keycloak: keycloakConfig,
+  keycloak: keycloakConfig
 };

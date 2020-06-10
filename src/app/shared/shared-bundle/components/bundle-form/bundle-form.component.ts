@@ -122,9 +122,11 @@ export class BundleFormComponent implements OnInit {
     if (isDefaultLimitEnabled) {
       FormValidator.setControlValidators(this.bundleFormGroup.get('defaultLimit'),
         Validators.compose([
-          Validators.required,
-          Validators.min(1),
-          Validators.max(999)]
+            Validators.required,
+            Validators.min(1),
+            Validators.max(999),
+            CustomFormValidator.regexPattern(CustomFormValidator.integer_regex)
+          ]
         ));
     } else {
       FormValidator.clearControlValidators(this.bundleFormGroup.get('defaultLimit'));
