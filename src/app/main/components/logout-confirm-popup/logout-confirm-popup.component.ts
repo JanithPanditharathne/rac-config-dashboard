@@ -4,10 +4,11 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import { GlobalRefService } from 'ornamentum';
 
-import { AuthService, UserProfileService } from '../../../core/services';
+import { KeycloakService } from 'keycloak-angular';
+
+import { UserProfileService } from '../../../core/services';
 
 import { MainConstants } from '../../main.constants';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logout-confirm-popup',
@@ -19,9 +20,8 @@ export class LogoutConfirmPopupComponent {
   public message = MainConstants.popup_confirmation_message;
 
   constructor(
-    private authService: AuthService,
     public modalRef: BsModalRef,
-    private router: Router,
+    private keycloakAngular: KeycloakService,
     private globalRefService: GlobalRefService,
     private userProfileService: UserProfileService
   ) {
@@ -32,9 +32,11 @@ export class LogoutConfirmPopupComponent {
   }
 
   public onSubmitClick(): void {
-    this.authService.logout();
-    this.router.navigate(['login']);
-    this.modalRef.hide();
+    this.keycloakAngular.logout().then(() => {
+      this.modalRef.hide();
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   public onCloseClick(): void {

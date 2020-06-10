@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
 
+import { KeycloakService } from 'keycloak-angular';
+
 import { MenuItem, UserProfile } from '../../../core/models';
 
 import { LogoutConfirmPopupComponent } from '../logout-confirm-popup/logout-confirm-popup.component';
@@ -26,7 +28,8 @@ export class AppMainComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private keycloakAngular: KeycloakService
   ) {
     this.menuItems = [
       {
@@ -80,6 +83,12 @@ export class AppMainComponent implements OnInit {
    * OnInit event handler.
    */
   public ngOnInit(): void {
-    this.profile = this.authService.currentUserProfile;
+    try {
+      this.profile = {
+        username: this.keycloakAngular.getUsername()
+      };
+    } catch (e){
+      console.log('Failed to load user details', e);
+    }
   }
 }

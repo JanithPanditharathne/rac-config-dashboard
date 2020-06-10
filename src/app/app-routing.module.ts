@@ -12,7 +12,7 @@ import { AppMainComponent } from './main/components';
 
 import { CanDeactivateGuard } from './shared/shared-common/services';
 
-import { AuthGuard, LoginGuard } from './core/guards';
+import { AuthGuard } from './core/guards';
 
 /**
  * Represent application main routes.
@@ -30,11 +30,6 @@ const appRoutes: Routes = [
   {
     component: LoadFailureComponent,
     path: 'load-failure'
-  },
-  {
-    canActivate: [LoginGuard],
-    component: LoginComponent,
-    path: 'login'
   },
   {
     canActivate: [AuthGuard],

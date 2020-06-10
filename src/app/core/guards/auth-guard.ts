@@ -1,33 +1,39 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 
-import { Observable, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
-
-import { AuthService } from '../services';
+import { KeycloakAuthGuard, KeycloakService } from 'keycloak-angular';
 
 /**
  * Class representing auth guard service.
  * AuthGuard.
  */
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthGuard extends KeycloakAuthGuard implements CanActivate {
 
   constructor(
-    public router: Router,
-    private authService: AuthService
+    protected router: Router,
+    protected keycloakAngular: KeycloakService
   ) {
+    super(router, keycloakAngular);
   }
 
-  canActivate(): Observable<boolean> {
-    const profile = this.authService.currentUserProfile || null;
+  public isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      if (!this.authenticated) {
+        this.keycloakAngular.login()
+          .catch(e => console.error(e));
+        return reject(false);
+      }
 
-    if (!!profile && profile.username) {
-      return of(true);
-    }
-
-    return of(false).pipe(tap(() => {
-      this.router.navigate(['login']);
-    }));
+      const requiredRoles: string[] = route.data.roles;
+      if (!requiredRoles || requiredRoles.length === 0) {
+        return resolve(true);
+      } else {
+        if (!this.roles || this.roles.length === 0) {
+          resolve(false);
+        }
+        resolve(requiredRoles.every(role => this.roles.indexOf(role) > -1));
+      }
+    });
   }
 }

@@ -7,7 +7,7 @@
     <a class="navbar-brand app-name">{{ appName }}</a>
     <ul class="navbar-nav user-menu">
       <li class="profile-name">
-        <span *ngIf="profile">{{ profile.username }}</span>
+        <span *ngIf="profile">{{ profile?.username }}</span>
       </li>
       <li class="button-container">
         <button
@@ -98,7 +98,7 @@
     </ul>
     <ul class="navbar-nav user-menu user-menu-container-lg">
       <li class="profile-name">
-        <span *ngIf="profile">{{ profile.username }}</span>
+        <span *ngIf="profile">{{ profile?.username }}</span>
       </li>
       <li class="button-container">
         <button
