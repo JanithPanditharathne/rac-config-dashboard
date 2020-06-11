@@ -126,8 +126,11 @@ body {
   &.input-error {
     position: relative;
 
-    label,
-    h2 {
+    .rac-form-heading-container {
+      margin-bottom: 0;
+    }
+
+    label {
       color: $form-error-color;
     }
 
@@ -149,7 +152,7 @@ body {
       font-style: italic;
       font-weight: 400;
       left: 0;
-      padding: .2rem;
+      padding: .2rem 0;
       position: absolute;
       white-space: nowrap;
     }
@@ -269,6 +272,30 @@ body {
     &:hover {
       i {
         background-image: svg-url-icon($refresh-icon, '#000000', $primary-btn-hover-icon-color);
+      }
+    }
+  }
+
+  &.rac-move-up-icon-parent {
+    i {
+      background-image: svg-url-icon($move-up-icon, '#000000', $primary-btn-icon-color);
+    }
+
+    &:hover {
+      i {
+        background-image: svg-url-icon($move-up-icon, '#000000', $primary-btn-hover-icon-color);
+      }
+    }
+  }
+
+  &.rac-move-down-icon-parent {
+    i {
+      background-image: svg-url-icon($move-down-icon, '#000000', $primary-btn-icon-color);
+    }
+
+    &:hover {
+      i {
+        background-image: svg-url-icon($move-down-icon, '#000000', $primary-btn-hover-icon-color);
       }
     }
   }
@@ -486,7 +513,62 @@ body {
   }
 }
 
+//Rules Conditions
+.rac-conditions {
+  display: flex;
 
+  .rac-condition-item {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+
+    &.form-group {
+      margin-bottom: 0;
+    }
+
+    form {
+      width: 100%;
+    }
+
+    .form-group {
+      margin-bottom: 0;
+      width: 100%;
+    }
+
+    .rac-condition-sub-item {
+      padding-right: 1rem;
+      width: 100%;
+
+      &.small {
+        width: 100px;
+      }
+      &.small-price {
+        width: 380px;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+
+  .rac-condition-button {
+    margin-top: 1.3rem;
+    padding-left: 1rem;
+  }
+
+  &.price-condition {
+    padding: 1.19rem 0 0;
+
+    .rac-condition-button {
+      margin-top: .1rem;
+    }
+  }
+
+  .rac-action-button {
+    padding: .5rem;
+  }
+}
 
 
 // New
@@ -598,23 +680,37 @@ select {
 }
 
 // Headings Label Styles
-.rac-form-heading-container {
-  h2 {
-    @include font-size(1.1, 1.2);
-    color: $form-main-heading-text-color;
-    font-weight: 500;
-    margin: 0;
 
-    span {
-      @include font-size(.9, 1);
-      font-weight: 300;
+.rac-form-container {
+  .rac-form-heading-container {
+    &.form-group {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      @include font-size(1.1, 1.2);
+      color: $form-main-heading-text-color;
+      font-weight: 500;
+      margin: 0;
+
+      span {
+        @include font-size(.9, 1);
+        font-weight: 300;
+      }
+    }
+
+    h3 {
+      @include font-size(.9, 1.2);
+    }
+
+    &.input-error {
+      h2 {
+        color: $form-error-color;
+      }
     }
   }
-
-  h3 {
-    @include font-size(.9, 1.2);
-  }
 }
+
 
 // Headings Info Label Styles
 .info-label {
@@ -639,7 +735,7 @@ select {
 }
 
 // Footer Action Button Container Styles
-.footer-button-container {
+.rac-footer-button-container {
   border-top: .05rem solid $footer-border-styles;
   margin-top: 2rem;
   padding: 1rem .5rem;
@@ -826,7 +922,7 @@ select {
 
 
 // Main Input Forms Styles
-.form-container {
+.rac-form-container {
   padding: 1rem 0;
 
   .form-check {
@@ -1317,12 +1413,18 @@ bs-datepicker-container {
     margin: 2rem;
     padding: 0;
 
-    //.rac-form-heading-container {
-    //  padding-bottom: 1rem;
-    //}
+    .modal-message {
+      .rac-warning {
+        background-image: svg-url-icon($warning-icon, '#000000', $error-color);
+        background-repeat: no-repeat;
+        height: 3rem;
+        margin-right: 1rem;
+        width: 3rem;
+      }
+    }
 
-    .form-container {
-      &.confirmation-window {
+    .rac-form-container {
+      &.rac-confirmation-window {
         label {
           @include font-size(1, 1.4);
           align-items: center;
@@ -1388,6 +1490,90 @@ bs-datepicker-container {
 
 // Tab view
 .tab-pane {
+  .rac-selected-condition-wrapper {
+    app-additional-detail-view {
+      .rac-selected-condition {
+        border-radius: 0;
+
+        &:nth-child(odd) {
+          background: $odd-selected-condition-background;
+        }
+
+        &:nth-child(even) {
+          background: $even-selected-condition-background;
+        }
+
+        &:first-child {
+          border-radius: .2rem .2rem 0 0;
+        }
+
+        &:last-child {
+          border-radius: 0 0 .2rem .2rem;
+        }
+
+        &:only-child {
+          border-radius: .2rem;
+        }
+      }
+    }
+
+    app-price-detail-view {
+      .rac-selected-condition {
+        border-radius: 0;
+      }
+
+      &:nth-child(odd) {
+        .rac-selected-condition {
+          background: $odd-selected-condition-background;
+        }
+      }
+
+      &:nth-child(even) {
+        .rac-selected-condition {
+          background: $even-selected-condition-background;
+        }
+      }
+
+      &:first-child {
+        .rac-selected-condition {
+          border-radius: .2rem .2rem 0 0;
+        }
+      }
+
+      &:last-child {
+        .rac-selected-condition {
+          border-radius: 0 0 .2rem .2rem;
+        }
+      }
+
+      &:only-child {
+        .rac-selected-condition {
+          border-radius: .2rem;
+        }
+      }
+    }
+  }
+
+
+  .rac-selected-condition-label {
+    @include font-size(.9, 1.1);
+    color: $rac-selected-condition-label-color;
+    font-weight: 600;
+    padding-right: .5rem;
+  }
+
+  .rac-selected-condition-value {
+    @include font-size(.8, 1.1);
+    font-weight: 400;
+    padding-left: 0;
+  }
+
+  .rac-selected-condition-action-buttons {
+    display: flex;
+    height: 100%;
+    margin-left: auto;
+  }
+
   .context-select-wrapper {
     align-items: flex-end;
     display: flex;
@@ -1430,26 +1616,6 @@ bs-datepicker-container {
             border-radius: .2rem 0 0 .2rem;
           }
         }
-      }
-    }
-  }
-
-  .tab-content-action-button-container {
-    display: flex;
-    height: 100%;
-    margin-left: -1px;
-
-    .zmdi-plus-parent {
-      border: .05rem solid;
-      border-color: $collapsible-border-left;
-      border-radius: 0 .2rem .2rem 0;
-      box-shadow: none;
-      height: 36px;
-      margin-bottom: 1.45rem;
-      margin-left: 0;
-
-      i {
-        line-height: 2.15rem;
       }
     }
   }
@@ -1677,14 +1843,14 @@ app-bundle-picker {
   //}
 }
 
-.context-generator {
-  .context-pane-wrapper {
+.rac-selected-condition-wrapper {
+  .rac-selected-condition {
     align-items: center;
     border: .05rem solid $context-border;
     color: $context-color;
     display: flex;
     margin-bottom: -.1rem;
-    padding: 0 0 0 .5rem;
+    padding: .2rem .2rem .2rem .5rem;
 
     .context-pane {
       span {
@@ -1696,6 +1862,11 @@ app-bundle-picker {
         font-weight: 700;
         padding: 0 .5rem 0 0;
       }
+    }
+
+    .rac-action-button {
+      margin-right: 0;
+      padding: .5rem;
     }
   }
 
@@ -1778,7 +1949,7 @@ app-bundle-picker {
   }
 }
 
-.rule-generator {
+.rac-conditions-view {
   app-category-detail-view {
     .context-pane-wrapper {
       background: none;

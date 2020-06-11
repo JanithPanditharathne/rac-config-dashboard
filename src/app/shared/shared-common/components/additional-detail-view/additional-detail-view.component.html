@@ -1,11 +1,9 @@
 <ng-container [ngSwitch]="viewType">
     <ng-container *ngSwitchCase="AdditionalDataViewType.INLINE">
         <ng-container *ngFor="let value of data.value">
-            <div class="context-pane-wrapper">
-                <div class="context-pane">
-                    <span class="expression-view-label">{{ data.type }} is</span>
-                    <span class="expand-view-value">{{ value?.name || value }}</span>
-                </div>
+            <div class="rac-selected-condition">
+                <span class="rac-selected-condition-label">{{ data.type }} is</span>
+                <span class="rac-selected-condition-value">{{ value?.name || value }}</span>
                 <ng-container [ngTemplateOutlet]="actionTemplate"
                               [ngTemplateOutletContext]="{ value: value }"></ng-container>
             </div>
@@ -13,9 +11,9 @@
     </ng-container>
 
     <ng-container *ngSwitchDefault>
-        <span class="expression-view-label"> {{ data.type }}{{ data.value?.length > 1 ? '(s) are' : ' is' }} </span>
+        <span class="rac-selected-condition-label"> {{ data.type }}{{ data.value?.length > 1 ? '(s) are' : ' is' }} </span>
         <ng-container *ngFor="let subItem of data.value; let i = index">
-            <span class="expand-view-value">{{ subItem?.name || subItem }}</span>
+            <span class="rac-selected-condition-value">{{ subItem?.name || subItem }}</span>
             <ng-container *ngIf="data.value.length > i + 1">,</ng-container>
         </ng-container>
         <ng-container [ngTemplateOutlet]="actionTemplate" [ngTemplateOutletContext]="{ value: value }"></ng-container>

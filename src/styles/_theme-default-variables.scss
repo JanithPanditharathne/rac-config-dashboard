@@ -174,19 +174,6 @@ $form-heading-text: $primary-text-color;
 $form-info-label-text: #aaa;
 $form-error-color: $secondary-background-color;
 
-//Tab Styles
-$tab-content-color: $primary-text-color;
-$tab-heading-background: none;
-$tab-content-active-color: $primary-background-color;
-$tab-heading-active-background: none;
-$tab-heading-active-border: $primary-background-color;
-$tab-left-pane-background: lighten($primary-text-color, 70%);
-$tab-left-pane-item-background: lighten($primary-text-color, 100%);
-$tab-left-pane-item-color: lighten($primary-text-color, 20%);
-$tab-left-pane-item-active-color: $primary-background-color;
-$tab-content-background: lighten($primary-text-color, 90%);
-$tab-content-border: #ddd;
-
 //Content Styles
 $content-display-background: lighten($primary-text-color, 90%);
 $content-display-border: lighten($primary-text-color, 60%);

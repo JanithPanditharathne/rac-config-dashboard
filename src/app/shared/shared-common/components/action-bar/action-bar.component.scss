@@ -1,7 +1,8 @@
 @import '../../../../../styles/variables';
 @import '../../../../../styles/mixins';
+@import '../../../../../styles/icons';
 
-.action-bar {
+.rac-action-bar {
   align-items: center;
   background: $action-bar-background;
   border-bottom: .05rem solid $light-border;
@@ -10,31 +11,27 @@
   width: 100%;
   z-index: 1001;
 
-  .back-link {
+  .rac-back-link {
     color: $action-bar-title;
 
     &:hover {
       color: $action-bar-title-hover;
       cursor: pointer;
-
-      i {
-        color: $action-bar-title;
-      }
     }
 
-    .back-link-icon {
-      @include font-size(1.4, 2);
-      padding-right: .5rem;
-    }
-
-    .back-link-text {
+    .rac-back-link-text {
       @include font-size(.9, 2.1);
       font-weight: 400;
       text-transform: capitalize;
     }
 
     i {
-      @include font-size(.9, 2.1);
+      background-image: svg-url-icon($right-arrow-icon, '#000000', $error-color);
+      background-repeat: no-repeat;
+      display: block;
+      height: 1.5rem;
+      margin-top: .25rem;
+      width: 1.5rem;
       padding: 0 .5rem;
     }
   }

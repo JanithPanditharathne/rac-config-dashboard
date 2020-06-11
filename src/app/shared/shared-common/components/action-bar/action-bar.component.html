@@ -1,8 +1,8 @@
-<div class="action-bar justify-content-between d-flex">
+<div class="rac-action-bar justify-content-between d-flex">
   <div class="d-flex breadcrumbs">
-    <a class="back-link d-flex" *ngFor="let header of breadcrumb; let i = index" (click)="onHeaderClick(header)">
-      <span *ngIf="i"><i class="zmdi zmdi-chevron-right zmdi-hc-2x"></i></span>
-      <span class="back-link-text">{{ header.title }}</span>
+    <a class="rac-back-link d-flex" *ngFor="let header of breadcrumb; let i = index" (click)="onHeaderClick(header)">
+      <span *ngIf="i"><i></i></span>
+      <span class="rac-back-link-text">{{ header.title }}</span>
     </a>
   </div>
 

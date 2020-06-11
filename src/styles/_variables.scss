@@ -85,18 +85,18 @@ $themes: (
     form-heading-text: $form-heading-text,
     form-info-label-text: $form-info-label-text,
     form-error-color: $form-error-color,
-    tab-content-color: $tab-content-color,
-    tab-heading-background: $tab-heading-background,
-    tab-heading-border: $tab-heading-background,
-    tab-content-active-color: $tab-content-color,
-    tab-heading-active-background: $tab-heading-background,
-    tab-heading-active-border: $tab-heading-active-border,
-    tab-content-background: $tab-content-background,
-    tab-content-border: $tab-content-border,
-    tab-left-pane-background: $tab-left-pane-background,
-    tab-left-pane-item-background: $tab-left-pane-item-background,
-    tab-left-pane-item-color: $tab-left-pane-item-color,
-    tab-left-pane-item-active-color: $tab-left-pane-item-active-color,
+   // tab-content-color: $tab-content-color,
+  //  tab-heading-background: $tab-heading-background,
+  //  tab-heading-border: $tab-heading-background,
+   // tab-content-active-color: $tab-content-color,
+   // tab-heading-active-background: $tab-heading-background,
+    //tab-heading-active-border: $tab-heading-active-border,
+   // tab-content-background: $tab-content-background,
+    //tab-content-border: $tab-content-border,
+    //tab-left-pane-background: $tab-left-pane-background,
+    //tab-left-pane-item-background: $tab-left-pane-item-background,
+    //tab-left-pane-item-color: $tab-left-pane-item-color,
+    //tab-left-pane-item-active-color: $tab-left-pane-item-active-color,
     content-display-background: $content-display-background,
     content-display-border: $content-display-border,
     generated-context-background: $generated-context-background,
@@ -293,8 +293,15 @@ $animation-color: #0f428d;
 $light-border: #ddd;
 $primary-text-color: #444;
 $primary-link-color: #1e58a8;
+$error-color: #c62026;
 $box-shadow-color: rgba(0, 0, 0, .2);
 $box-shadow-color-light: rgba(0, 0, 0, .09);
+
+//Page Content Styles
+$page-content-background: #f4f3f4;
+
+//Loading Window Styles
+$loading-window-background: #fff;
 
 //Internal Server Error Page Styles
 $internal-server-error-main-heading: #fff;
@@ -353,6 +360,27 @@ $action-bar-background: #fff;
 $action-bar-title: $primary-text-color;
 $action-bar-title-hover: $primary-link-color;
 
+//Tab Styles
+$tab-content-color: #444;
+$tab-heading-background: none;
+$tab-content-active-color: #1e58a8;
+$tab-content-active-border: #1e58a8;
+$tab-heading-active-background: none;
+$tab-content-border: #ddd;
+$tab-content-background: #fff;
+$tab-left-pane-background: lighten($primary-text-color, 70%);
+$tab-left-pane-item-background: lighten($primary-text-color, 100%);
+$tab-left-pane-item-color: lighten($primary-text-color, 20%);
+$tab-left-pane-item-active-color: $primary-background-color;
+
+//Conditions Styles
+$odd-selected-condition-background: #eaeaea;
+$even-selected-condition-background: #fff;
+$rac-selected-condition-label-color: #053673;
+
+$conditions-view-background: #fff;
+$conditions-view-border: #ddd;
+$empty-condition-text-color: #053673;
 
 //Form Styles
 $input-border-color: #ced4da;

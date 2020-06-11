@@ -7,7 +7,7 @@
                     <form [formGroup]="algorithmForm" novalidate>
                         <div class="row">
                             <div class="col-lg-4">
-                                <div class="form-container">
+                                <div class="rac-form-container">
                                     <div class="form-group" [class.input-error]="isInvalid('algorithmId')">
                                         <label for="algorithmId"
                                         >Algorithm ID<span class="required-label">*</span>
@@ -82,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer-button-container">
+        <div class="rac-footer-button-container">
             <app-action-button-strap>
                 <app-action [type]="ActionType.SAVE" [name]="isEdit ? 'Save' : 'Create'"
                             [autoResolve]="false"

@@ -2,7 +2,7 @@
     <div class="rac-page-content-pane" *ngIf="bundleFormGroup">
         <form [formGroup]="bundleFormGroup">
             <div class="container-fluid" #bundleFormGroupParent>
-                <div class="form-container row">
+                <div class="rac-form-container row">
                     <div class="col-lg-4">
                         <div class="row">
                             <div class="col-lg-12">
@@ -84,7 +84,7 @@
                 </div>
             </div>
         </form>
-        <div class="footer-button-container">
+        <div class="rac-footer-button-container">
             <app-action-button-strap>
                 <app-action [type]="ActionType.SAVE" [name]="formAction === FormAction.ADD ? 'Create': 'Save'"
                             [autoResolve]="false"

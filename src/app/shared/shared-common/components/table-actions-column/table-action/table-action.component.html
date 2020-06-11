@@ -1,10 +1,10 @@
 <ng-container *ngIf="actionTemplate" [ngTemplateOutlet]="actionTemplate"> </ng-container>
 <button
-  class="btn action-button none-border"
+  class="rac-action-button"
   [attr.title]="tooltip"
   [ngClass]="actionParentCssClass"
   [disabled]="disable"
   (click)="onActionClick($event)"
 >
-  <i class="zmdi" [ngClass]="type"></i>
+  <i [ngClass]="type"></i>
 </button>

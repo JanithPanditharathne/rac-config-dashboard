@@ -1,55 +1,55 @@
-<div class="row">
-    <div class="col-lg-12">
-        <div class="context-select-wrapper">
+<div class="rac-conditions">
+
+        <div class="rac-condition-item">
             <form [formGroup]="baseFormGroup">
-                <div class="form-group" [class.input-error]="isInvalid('brand')">
-                    <label
-                    >Brand
-                        <input [typeahead]="brands"
-                               [typeaheadOptionsLimit]="10"
-                               [typeaheadMinLength]="0"
-                               [typeaheadScrollable]="true"
-                               [typeaheadOptionsInScrollableView]="10"
-                               typeaheadOptionField="name"
-                               formControlName="brand"
-                               placeholder="Select Brand"
-                               class="form-control">
-                    </label>
-                    <app-character-length-range-error
-                            [control]="baseFormGroup.get('brand')"
-                            [lengthError]="'Brand must not be greater than 200 characters long'"
-                            [requiredError]="'Brand is required'"
-                    >
-                    </app-character-length-range-error>
-                </div>
+            <div class="form-group" [class.input-error]="isInvalid('brand')">
+                <label
+                >Brand
+                    <input [typeahead]="brands"
+                           [typeaheadOptionsLimit]="10"
+                           [typeaheadMinLength]="0"
+                           [typeaheadScrollable]="true"
+                           [typeaheadOptionsInScrollableView]="10"
+                           typeaheadOptionField="name"
+                           formControlName="brand"
+                           placeholder="Select Brand"
+                           class="form-control">
+                </label>
+                <app-character-length-range-error
+                    [control]="baseFormGroup.get('brand')"
+                    [lengthError]="'Brand must not be greater than 200 characters long'"
+                    [requiredError]="'Brand is required'"
+                >
+                </app-character-length-range-error>
+            </div>
             </form>
-            <form [formGroup]="brandFormGroup">
-                <div class="form-group">
-                    <span>Equal ignore case
-                        <div class="form-check mt-1 d-inline">
+        </div>
+
+        <div class="rac-condition-button">
+            <app-action-button-strap>
+                <app-action [type]="ActionType.APPLY" [name]=""
+                            [disable]="!baseFormGroup.get('brand').value?.length" (actionClick)="onApply()">
+                </app-action>
+            </app-action-button-strap>
+        </div>
+</div>
+    <div class="rac-condition-item">
+        <form [formGroup]="brandFormGroup">
+            <div class="form-group">
+                        <div class="form-check pl-2">
                             <input [id]="'equalIgnoreCaseEnabled' + ruleGeneratorType"
                                    class="form-check-input checkbox-input"
                                    type="checkbox"
                                    formControlName="operator"/>
                             <label class="combined-enabled-label"
-                                   [for]="'equalIgnoreCaseEnabled' + ruleGeneratorType"></label>
+                                   [for]="'equalIgnoreCaseEnabled' + ruleGeneratorType">Equal ignore case</label>
                         </div>
-                    </span>
-                </div>
-            </form>
-            <div class="tab-content-action-button-container">
-                <app-action-button-strap>
-                    <app-action [type]="ActionType.APPLY" [name]=""
-                                [disable]="!baseFormGroup.get('brand').value?.length" (actionClick)="onApply()">
-                    </app-action>
-                </app-action-button-strap>
             </div>
-        </div>
+        </form>
     </div>
-</div>
-<div class="row">
-    <div class="col-lg-12">
-        <app-rules-tab-content-inline-detail-view [formGroupData]="brandFormGroup.value" (onRemoved)="onRemove($event)">
-        </app-rules-tab-content-inline-detail-view>
-    </div>
-</div>
+
+
+
+<app-rules-tab-content-inline-detail-view [formGroupData]="brandFormGroup.value" (onRemoved)="onRemove($event)">
+</app-rules-tab-content-inline-detail-view>
+

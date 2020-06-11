@@ -1,7 +1,4 @@
-@import '../../../../../styles/variables';
-@import '../../../../../styles/mixins';
-
-.context-generator {
+.rac-selected-condition-wrapper {
   margin: 0 0 .5rem;
 
   &:last-child {
@@ -9,6 +6,6 @@
   }
 
   &:first-child {
-    margin-top: .5rem;
+    margin-top: 1.5rem;
   }
 }

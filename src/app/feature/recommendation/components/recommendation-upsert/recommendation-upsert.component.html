@@ -3,7 +3,7 @@
     <div class="rac-page-content-pane rac-recommendations">
         <div class="container-fluid relative-parent">
             <form [formGroup]="recForm" novalidate>
-                <div class="form-container row">
+                <div class="rac-form-container row">
                     <div class="col-lg-4">
                         <div class="form-group" [class.input-error]="isInvalid('recName')">
                             <label for="recName"
@@ -20,14 +20,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="rac-form-container row">
                     <div class="col-lg-12">
                         <div class="rac-form-heading-container">
                             <h2>Bundle</h2>
                         </div>
                     </div>
                 </div>
-                <div class="form-container row">
+                <div class="rac-form-container row">
                     <div class="col-lg-4">
                         <div class="form-group" [class.input-error]="isInvalid('selectedBundle')">
                             <label
@@ -81,7 +81,7 @@
                 </ng-container>
             </div>
         </app-side-pane>
-        <div class="footer-button-container">
+        <div class="rac-footer-button-container">
             <app-action-button-strap>
                 <app-action [type]="ActionType.SAVE" [name]="formAction === FormAction.ADD ? 'Create': 'Save'"
                             [autoResolve]="false"

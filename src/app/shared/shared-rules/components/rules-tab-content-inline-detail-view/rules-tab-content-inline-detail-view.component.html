@@ -1,8 +1,8 @@
-<div class="context-generator">
+<div class="rac-selected-condition-wrapper">
     <app-additional-detail-view *ngIf="formGroupData?.value?.length" [viewType]="AdditionalDataViewType.INLINE"
                                 [data]="formGroupData">
         <ng-template #actionTemplate let-value="value">
-            <div class="tab-content-action-button-container">
+            <div class="rac-selected-condition-action-buttons">
                 <app-action-button-strap>
                     <app-action [type]="ActionType.DELETE" (actionClick)="onRemoveItem(value)"></app-action>
                 </app-action-button-strap>
@@ -14,7 +14,7 @@
             <ng-container *ngIf="displayType === RuleTabInlineDataGeneratorType.PRICE && isPriceType(item.type)">
                 <app-price-detail-view [priceItem]="item">
                     <ng-template #actionTemplate>
-                        <div class="tab-content-action-button-container">
+                        <div class="rac-selected-condition-action-buttons">
                             <app-action-button-strap>
                                 <app-action [type]="ActionType.DELETE" (click)="onRemoveItem(item)"></app-action>
                             </app-action-button-strap>

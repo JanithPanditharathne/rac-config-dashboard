@@ -1,12 +1,10 @@
-<div class="context-pane-wrapper">
-    <div class="context-pane">
-        <span class="expression-view-label" *ngIf="priceItem.operator">Price</span>
+<div class="rac-selected-condition">
+        <span class="rac-selected-condition-label" *ngIf="priceItem.operator">Price</span>
 
         <app-math-operator-detail-view [operator]="priceItem.operator"></app-math-operator-detail-view>
 
         <ng-container *ngIf="priceItem.value.price">
-            <span>{{ priceItem.value.price }}</span>
+            <span class="rac-selected-condition-value">{{ priceItem.value.price }}</span>
         </ng-container>
-    </div>
     <ng-container [ngTemplateOutlet]="actionTemplate"></ng-container>
 </div>

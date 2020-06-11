@@ -1,4 +1,4 @@
-<form class="form-wrapper algorithm-edit-modal" *ngIf="displayTextForm" [formGroup]="displayTextForm" novalidate>
+<form *ngIf="displayTextForm" [formGroup]="displayTextForm" novalidate>
     <div class="modal-header">
         <h4 class="modal-title pull-left">Edit Algorithm Display Text</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="onCancelClick()">
@@ -6,7 +6,7 @@
         </button>
     </div>
     <div class="modal-body">
-        <div class="row form-container pt-0">
+        <div class="row rac-form-container pt-0">
             <div class="col-lg-12">
                 <div class="form-group">
                     <label

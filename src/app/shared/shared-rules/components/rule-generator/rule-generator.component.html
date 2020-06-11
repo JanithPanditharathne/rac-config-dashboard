@@ -1,6 +1,6 @@
 <form [formGroup]="parentFormGroup" novalidate>
-    <div formArrayName="{{ contextType }}" class="well well-lg">
-        <div class="rule-generator">
+    <div formArrayName="{{ contextType }}">
+        <div class="rac-conditions-view tab-pane">
             <ng-container *ngFor="let rule of parentFormGroup.get(contextType)?.controls; let i = index"
                           [formGroupName]="i">
                 <ng-container *ngIf="!isPriceType(rule.value.type)">
