@@ -5,13 +5,13 @@
             <div class="price-operator">
                 <div class="form-group">
                     <ng-dropdown
-                            [id]="'exact-price-options'"
+                            [id]="'exact-price-options-' + ruleGeneratorType"
                             [options]="operators"
                             [selectTrackBy]="'type'"
                             [displayTrackBy]="'name'"
                             [setFirstOptionSelected]="true"
                             [closeMenuOnSelect]="true"
-                            [menuWidth]="100"
+                            [menuWidth]="250"
                             [menuHeight]="180"
                             [selectMode]="dropdownSelectMode"
                             [relativeParentElement]="parentElement"

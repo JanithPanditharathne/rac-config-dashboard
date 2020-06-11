@@ -15,7 +15,7 @@ import { RuleGeneratorType } from 'src/app/shared/shared-rules/enums';
 import { ActionType, FormAction } from 'src/app/shared/shared-common/enums';
 
 import { NotificationService } from '../../../../core/services';
-import { RuleService } from '../../../../shared/shared-rules/services';
+import { RuleContextFormUtility, RuleService } from '../../../../shared/shared-rules/services';
 import { RuleUtilityService } from '../../../../shared/shared-rules/services';
 import { CustomFormValidator, FormValidator } from '../../../../shared/shared-common/services';
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
@@ -121,8 +121,8 @@ export class RuleUpsertComponent implements OnInit {
       name: formValue.ruleName,
       type: formValue.ruleType.name,
       isGlobal: formValue.isGlobal,
-      matchingConditionJson: formValue.matching || [],
-      actionConditionJson: formValue.action
+      matchingConditionJson: RuleContextFormUtility.setOperatorData(formValue.matching) || [],
+      actionConditionJson: RuleContextFormUtility.setOperatorData(formValue.action)
     };
 
     switch (this.formAction) {
@@ -184,6 +184,7 @@ export class RuleUpsertComponent implements OnInit {
    * @param {ActionClickEventArgs} clickEventArgs click event arguments.
    */
   private editRule(rule: Rule, clickEventArgs: ActionClickEventArgs): void {
+    rule.id = this.rule.id;
     this.ruleService.updateRule(rule).subscribe(
       (response: SuccessResponse) => {
         clickEventArgs.resolve();

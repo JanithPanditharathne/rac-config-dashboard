@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import {
   InternalServerErrorComponent,
   LoadFailureComponent,
-  LoginComponent,
   PageNotFoundComponent,
   UnauthorizedComponent
 } from './core/components';

@@ -13,26 +13,32 @@
                 <app-tab [title]="RulesTabTitle.BRAND" [id]="'tab-1'">
                     <ng-template #tabContent>
                         <app-brand-content [parentElement]="parentElement"
-                                           [formDataArray]="parentFormGroup.get(ruleGeneratorType)"></app-brand-content>
+                                           [formDataArray]="parentFormGroup.get(ruleGeneratorType)"
+                                           [ruleGeneratorType]="ruleGeneratorType">
+                        </app-brand-content>
                     </ng-template>
                 </app-tab>
                 <app-tab [title]="RulesTabTitle.PRODUCT_NUMBER" [id]="'tab-2'">
                     <ng-template #tabContent>
                         <app-product-number-content [parentElement]="parentElement"
-                                                    [formDataArray]="parentFormGroup.get(ruleGeneratorType)">
+                                                    [formDataArray]="parentFormGroup.get(ruleGeneratorType)"
+                                                    [ruleGeneratorType]="ruleGeneratorType">
                         </app-product-number-content>
                     </ng-template>
                 </app-tab>
                 <app-tab [title]="RulesTabTitle.PRICE" [id]="'tab-3'">
                     <ng-template #tabContent>
                         <app-price-content [parentElement]="parentElement"
-                                           [formDataArray]="parentFormGroup.get(ruleGeneratorType)">
+                                           [formDataArray]="parentFormGroup.get(ruleGeneratorType)"
+                                           [ruleGeneratorType]="ruleGeneratorType">
                         </app-price-content>
                     </ng-template>
                 </app-tab>
             </app-tab-set>
             <hr>
-            <app-rule-generator [contextType]="ruleGeneratorType" [parentFormGroup]="parentFormGroup"></app-rule-generator>
+            <app-rule-generator [contextType]="ruleGeneratorType"
+                                [parentFormGroup]="parentFormGroup">
+            </app-rule-generator>
         </div>
     </div>
 </div>

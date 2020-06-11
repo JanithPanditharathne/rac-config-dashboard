@@ -1,5 +1,7 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
 
+import { RuleIfExpressionDataItem } from '../../shared-common/models';
+
 import { RuleTabDisplayDataType } from '../enums';
 import { OperatorType } from '../../shared-common/enums';
 
@@ -11,44 +13,65 @@ export class RuleContextFormUtility {
 
   public static operators = [
     {
-      name: '=',
+      name: 'Equals(=)',
       type: OperatorType.EQUAL
     },
     {
-      name: '<',
+      name: 'Less than(<)',
       type: OperatorType.LOWER_THAN
     },
     {
-      name: '>',
+      name: 'Greater than(>)',
       type: OperatorType.GREATER_THAN
     },
     {
-      name: '>=',
+      name: 'Greater than or equals(>=)',
       type: OperatorType.GREATER_THAN_OR_EQUAL
     },
     {
-      name: '<=',
+      name: 'Less than or equals(<=)',
       type: OperatorType.LOWER_THAN_OR_EQUAL
-    },
-    {
-      name: '#=',
-      type: OperatorType.EQUAL_IGNORE_CASE
     }
   ];
 
   public static buildFormGroup(fb: FormBuilder, type: RuleTabDisplayDataType, data?: any): FormGroup {
     if (data) {
-      return fb.group({
-        condition: [data.condition],
-        type: [type],
-        value: [data.value]
-      });
+      switch (type) {
+        case RuleTabDisplayDataType.Brand:
+          return fb.group({
+            condition: [data.condition],
+            type: [type],
+            operator: [this.mapToCheckboxValue(data.operator)],
+            value: [data.value]
+          });
+        case RuleTabDisplayDataType.Price:
+        case RuleTabDisplayDataType.ProductNumber:
+          return fb.group({
+            condition: [data.condition],
+            type: [type],
+            operator: [data.operator],
+            value: [data.value]
+          });
+      }
     }
-
     return fb.group({
       condition: 'AND',
       type: [type],
+      operator: [false],
       value: [null]
+    });
+  }
+
+  public static mapToCheckboxValue(operator: OperatorType): boolean {
+    return operator !== OperatorType.EQUAL;
+  }
+
+  public static setOperatorData(expressionData: RuleIfExpressionDataItem[]): RuleIfExpressionDataItem[] {
+    return expressionData.map((data: RuleIfExpressionDataItem) => {
+      if (data.type !== RuleTabDisplayDataType.Price) {
+        data.operator = data.operator ? OperatorType.EQUAL_IGNORE_CASE : OperatorType.EQUAL;
+      }
+      return data;
     });
   }
 }

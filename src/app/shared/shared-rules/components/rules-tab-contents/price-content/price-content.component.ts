@@ -68,8 +68,8 @@ export class PriceContentComponent implements OnInit {
     const exactPriceValue = this.priceGroup.value.exactPrice;
 
     exactPriceFormGroup.patchValue({
+      operator: exactPriceValue.operator.type,
       value: {
-        operator: exactPriceValue.operator.type,
         price: exactPriceValue.price
       }
     });

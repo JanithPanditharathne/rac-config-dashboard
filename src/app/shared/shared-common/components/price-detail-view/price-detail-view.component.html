@@ -1,31 +1,11 @@
 <div class="context-pane-wrapper">
     <div class="context-pane">
-        <span class="expression-view-label" *ngIf="priceItem.value.operator">Price</span>
+        <span class="expression-view-label" *ngIf="priceItem.operator">Price</span>
 
-        <ng-container *ngIf="!priceItem.value.operator">
-            <span class="expression-view-label">SalePriceStatus</span>
-            <span>{{ priceItem.value }}</span>
-        </ng-container>
-
-        <app-math-operator-detail-view [operator]="priceItem.value.operator"></app-math-operator-detail-view>
+        <app-math-operator-detail-view [operator]="priceItem.operator"></app-math-operator-detail-view>
 
         <ng-container *ngIf="priceItem.value.price">
             <span>{{ priceItem.value.price }}</span>
-        </ng-container>
-
-        <ng-container *ngIf="priceItem.value.seedPrice">
-            <span class="expression-view-sub-label">{{ priceItem.type }} + {{ priceItem.type }}
-                * </span><span>{{ priceItem.value.seedPrice }} %</span>
-        </ng-container>
-
-        <ng-container *ngIf="priceItem.value.multiplier">
-            <span class="expression-view-sub-label">{{ priceItem.type }} + {{ priceItem.type }}
-                * </span><span>{{ priceItem.value.multiplier }}</span>
-        </ng-container>
-
-        <ng-container *ngIf="priceItem.value.productCount">
-            <span class="expression-view-sub-label">% from Top </span><span>{{ priceItem.value.productCount }}</span>
-            <span class="expression-view-sub-label"> Products</span>
         </ng-container>
     </div>
     <ng-container [ngTemplateOutlet]="actionTemplate"></ng-container>

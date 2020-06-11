@@ -22,7 +22,6 @@ import { FormValidator, MetaDataService } from '../../../../shared-common/servic
   templateUrl: './brand-content.component.html'
 })
 export class BrandContentComponent implements OnInit {
-  public dropdownSelectMode: DropdownSelectMode = 'multi';
   public ActionType = ActionType;
 
   public brandFormGroup: FormGroup;
@@ -67,7 +66,7 @@ export class BrandContentComponent implements OnInit {
   }
 
   /**
-   * Trigger on apply event for the selected data in the dropdown components.
+   * Trigger on apply event for the selected data in the text field components.
    */
   public onApply(): void {
     this.ruleContextDataService.applyTextFieldData(this.formDataArray, this.brandFormGroup, this.baseFormGroup, 'brand');
@@ -75,10 +74,10 @@ export class BrandContentComponent implements OnInit {
 
   /**
    * Responsible for receiving the item to be removed.
-   * @param {DropDownDataItem} data The age appropriation data of the item to be removed.
+   * @param {string} data The age appropriation data of the item to be removed.
    */
-  public onRemove(data: DropDownDataItem): void {
-    this.ruleContextDataService.removeFacetDropDownData(this.formDataArray, this.brandFormGroup, data);
+  public onRemove(data: string): void {
+    this.ruleContextDataService.removeTextFieldData(this.formDataArray, this.brandFormGroup, data);
   }
 
   /**

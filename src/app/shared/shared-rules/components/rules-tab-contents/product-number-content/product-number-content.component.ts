@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { RuleProductNumberDataItem } from '../../../../shared-common/models';
 
-import { RuleTabDisplayDataType } from '../../../enums';
+import { RuleGeneratorType, RuleTabDisplayDataType } from '../../../enums';
 import { ActionType } from '../../../../shared-common/enums';
 
 import { RuleContextDataService } from '../../../services';
@@ -28,6 +28,9 @@ export class ProductNumberContentComponent implements OnInit {
 
   @Input()
   public parentElement: HTMLElement;
+
+  @Input()
+  public ruleGeneratorType = RuleGeneratorType.MATCHING;
 
   @Input()
   public formDataArray: FormArray;

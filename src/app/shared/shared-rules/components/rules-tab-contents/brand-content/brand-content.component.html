@@ -22,14 +22,28 @@
                     >
                     </app-character-length-range-error>
                 </div>
-                <div class="tab-content-action-button-container">
-                    <app-action-button-strap>
-                        <app-action [type]="ActionType.APPLY" [name]=""
-                                    [disable]="!baseFormGroup.get('brand').value?.length" (actionClick)="onApply()">
-                        </app-action>
-                    </app-action-button-strap>
+            </form>
+            <form [formGroup]="brandFormGroup">
+                <div class="form-group">
+                    <span>Equal ignore case
+                        <div class="form-check mt-1 d-inline">
+                            <input [id]="'equalIgnoreCaseEnabled' + ruleGeneratorType"
+                                   class="form-check-input checkbox-input"
+                                   type="checkbox"
+                                   formControlName="operator"/>
+                            <label class="combined-enabled-label"
+                                   [for]="'equalIgnoreCaseEnabled' + ruleGeneratorType"></label>
+                        </div>
+                    </span>
                 </div>
             </form>
+            <div class="tab-content-action-button-container">
+                <app-action-button-strap>
+                    <app-action [type]="ActionType.APPLY" [name]=""
+                                [disable]="!baseFormGroup.get('brand').value?.length" (actionClick)="onApply()">
+                    </app-action>
+                </app-action-button-strap>
+            </div>
         </div>
     </div>
 </div>
