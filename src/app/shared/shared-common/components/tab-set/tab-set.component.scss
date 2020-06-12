@@ -30,7 +30,8 @@
   @include font-size(.9, 1.2);
   background: $tab-content-background;
   border: .05rem solid $tab-content-border;
-  border-radius: .2rem;
+  border-bottom: 0;
+  border-radius: .2rem .2rem 0 0;
   box-shadow: 0 .2rem 1rem $box-shadow-color-light;
   padding: 1rem;
 }

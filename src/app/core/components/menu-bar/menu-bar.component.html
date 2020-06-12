@@ -41,7 +41,6 @@
             <span class="main-nav-label">
               <i [ngClass]="menuItem.iconClasses"></i><span class="menu-title">{{ menuItem.title }}</span>
             </span>
-            <i class="zmdi zmdi-chevron-right expand-icon"></i>
           </a>
           <div *ngIf="hasChildren(menuItem)" [class.expanded]="menuItem.expanded" [hidden]="!menuItem.expanded">
             <ul class="dropdown-menu multi-level" style="display: block;">
