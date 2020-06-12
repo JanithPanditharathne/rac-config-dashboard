@@ -13,23 +13,23 @@ export class RuleContextFormUtility {
 
   public static operators = [
     {
-      name: 'Equals(=)',
+      name: 'Equals (=)',
       type: OperatorType.EQUAL
     },
     {
-      name: 'Less than(<)',
+      name: 'Less than (<)',
       type: OperatorType.LOWER_THAN
     },
     {
-      name: 'Greater than(>)',
+      name: 'Greater than (>)',
       type: OperatorType.GREATER_THAN
     },
     {
-      name: 'Greater than or equals(>=)',
+      name: 'Greater than or equals (>=)',
       type: OperatorType.GREATER_THAN_OR_EQUAL
     },
     {
-      name: 'Less than or equals(<=)',
+      name: 'Less than or equals (<=)',
       type: OperatorType.LOWER_THAN_OR_EQUAL
     }
   ];
