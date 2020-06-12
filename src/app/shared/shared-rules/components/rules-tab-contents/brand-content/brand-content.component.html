@@ -1,7 +1,6 @@
 <div class="rac-conditions">
-
-        <div class="rac-condition-item">
-            <form [formGroup]="baseFormGroup">
+    <div class="rac-condition-item">
+        <form [formGroup]="baseFormGroup">
             <div class="form-group" [class.input-error]="isInvalid('brand')">
                 <label
                 >Brand
@@ -33,23 +32,20 @@
             </app-action-button-strap>
         </div>
 </div>
-    <div class="rac-condition-item">
-        <form [formGroup]="brandFormGroup">
-            <div class="form-group mb-0">
-                        <div class="form-check pl-2">
-                            <input [id]="'equalIgnoreCaseEnabled' + ruleGeneratorType"
-                                   class="form-check-input checkbox-input"
-                                   type="checkbox"
-                                   formControlName="operator"/>
-                            <label class="combined-enabled-label"
-                                   [for]="'equalIgnoreCaseEnabled' + ruleGeneratorType">Equal ignore case</label>
-                        </div>
+<div class="rac-condition-item">
+    <form [formGroup]="brandFormGroup">
+        <div class="form-group">
+            <div class="form-check pl-2">
+                <input [id]="'equalIgnoreCaseEnabled' + ruleGeneratorType"
+                       class="form-check-input checkbox-input"
+                       type="checkbox"
+                       formControlName="operator"/>
+                <label class="combined-enabled-label"
+                       [for]="'equalIgnoreCaseEnabled' + ruleGeneratorType">Equal ignore case</label>
             </div>
-        </form>
-    </div>
-
-
-
+        </div>
+    </form>
+</div>
 <app-rules-tab-content-inline-detail-view [formGroupData]="brandFormGroup.value" (onRemoved)="onRemove($event)">
 </app-rules-tab-content-inline-detail-view>
 

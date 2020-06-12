@@ -1,4 +1,5 @@
-export { RuleContextComponent } from './rule-context/rule-context.component';
+export { RuleMatchingContextComponent } from './rule-matching-context/rule-matching-context.component';
+export { RuleActionContextComponent } from './rule-action-context/rule-action-context.component';
 export {
   RulesTabContentInlineDetailViewComponent
 }from './rules-tab-content-inline-detail-view/rules-tab-content-inline-detail-view.component';

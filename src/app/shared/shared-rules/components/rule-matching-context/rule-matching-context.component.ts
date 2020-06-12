@@ -14,18 +14,20 @@ import {
 } from '../rules-tab-contents';
 
 /**
- * Component class to represent application rule context.
+ * Component class to represent application rule matching context.
  * @implements OnInit
- * @class RuleContextComponent
+ * @class RuleMatchingContextComponent
  */
 @Component({
-  selector: 'app-rule-context',
-  styleUrls: ['./rule-context.component.scss'],
-  templateUrl: './rule-context.component.html'
+  selector: 'app-rule-matching-context',
+  styleUrls: ['./rule-matching-context.component.scss'],
+  templateUrl: './rule-matching-context.component.html'
 })
-export class RuleContextComponent implements OnInit {
+export class RuleMatchingContextComponent implements OnInit {
   public RuleGeneratorType = RuleGeneratorType;
   public RulesTabTitle = RulesTabTitle;
+
+  public ruleGeneratorType = RuleGeneratorType.MATCHING;
 
   @Input()
   public parentElement: HTMLElement;
@@ -35,9 +37,6 @@ export class RuleContextComponent implements OnInit {
 
   @Input()
   public contextData: RuleIfExpressionDataItem[];
-
-  @Input()
-  public ruleGeneratorType: RuleGeneratorType;
 
   constructor(private fb: FormBuilder) {
   }

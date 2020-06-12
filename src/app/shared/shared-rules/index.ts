@@ -5,11 +5,18 @@ import { RuleContextDataService, RuleContextFormUtility, RuleService, RuleUtilit
 
 import {
   RuleConditionGeneratorComponent,
-  RuleContextComponent,
-  RuleGeneratorComponent, RuleNoDataAvailableViewComponent,
-  RulesTabContentInlineDetailViewComponent
+  RuleMatchingContextComponent,
+  RuleGeneratorComponent,
+  RuleNoDataAvailableViewComponent,
+  RulesTabContentInlineDetailViewComponent,
+  RuleActionContextComponent
 } from './components';
-import { BrandContentComponent, PriceContentComponent, ProductNumberContentComponent } from './components/rules-tab-contents';
+
+import {
+  BrandContentComponent,
+  PriceContentComponent,
+  ProductNumberContentComponent
+} from './components/rules-tab-contents';
 
 export const ENTRY_COMPONENTS = [];
 
@@ -17,7 +24,8 @@ export const ENTRY_COMPONENTS = [];
  * Export all shared components.
  */
 export const COMPONENTS = [
-  RuleContextComponent,
+  RuleMatchingContextComponent,
+  RuleActionContextComponent,
   RulesTabContentInlineDetailViewComponent,
   RuleGeneratorComponent,
   RuleConditionGeneratorComponent,

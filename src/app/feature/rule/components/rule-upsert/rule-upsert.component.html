@@ -56,18 +56,16 @@
             </div>
             <div class="row rac-form-container">
                 <div class="col-lg-12">
-                    <app-rule-context
-                            [ruleGeneratorType]="RuleGeneratorType.MATCHING"
+                    <app-rule-matching-context
                             [parentFormGroup]="ruleForm"
                             [contextData]="rule?.matchingConditionJson"
                             [parentElement]="RuleUpsert">
-                    </app-rule-context>
-                    <app-rule-context
-                            [ruleGeneratorType]="RuleGeneratorType.ACTION"
+                    </app-rule-matching-context>
+                    <app-rule-action-context
                             [parentFormGroup]="ruleForm"
                             [contextData]="rule?.actionConditionJson"
                             [parentElement]="RuleUpsert">
-                    </app-rule-context>
+                    </app-rule-action-context>
                 </div>
             </div>
             </form>

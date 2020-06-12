@@ -1,10 +1,5 @@
-<div class="rac-form-heading-container form-group" [class.input-error]="ruleGeneratorType == RuleGeneratorType.ACTION && isInvalid(ruleGeneratorType)">
-    <h2 *ngIf="ruleGeneratorType == RuleGeneratorType.MATCHING">If(matching) condition</h2>
-    <h2 *ngIf="ruleGeneratorType == RuleGeneratorType.ACTION">Then(action) condition<span
-            class="required-label">*</span>
-    </h2>
-    <span class="input-error-label"
-          *ngIf="ruleGeneratorType == RuleGeneratorType.ACTION && isInvalid(ruleGeneratorType)">Then(action) condition is required</span>
+<div class="rac-form-heading-container form-group">
+    <h2>If(matching) condition</h2>
 </div>
 <div class="rac-form-container">
     <app-tab-set [lazyLoad]="true">
@@ -32,5 +27,6 @@
             </ng-template>
         </app-tab>
     </app-tab-set>
+    <hr>
     <app-rule-generator [contextType]="ruleGeneratorType" [parentFormGroup]="parentFormGroup"></app-rule-generator>
 </div>
