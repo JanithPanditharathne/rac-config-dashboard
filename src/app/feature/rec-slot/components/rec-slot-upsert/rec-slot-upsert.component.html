@@ -126,24 +126,26 @@
                                         [sortable]="true"
                                         [filterable]="true"
                                         [showInColumnSelector]="false"
-                                        [width]="100"
+                                        [width]="80"
                                     >
                                     </ng-data-table-column>
                                     <ng-data-table-column
                                         [field]="'name'"
                                         [title]="'Name'"
+                                        [width]="135"
                                         [filterPlaceholder]="'Filter'"
                                         [filterable]="true">
                                     </ng-data-table-column>
                                     <ng-data-table-column
                                         [field]="'type'"
                                         [title]="'Type'"
+                                        [width]="120"
                                         [filterPlaceholder]="'Filter'"
                                         [filterable]="true"
                                         [showDropdownFilter]="true">
                                     </ng-data-table-column>
                                     <ng-data-table-column [field]="'matchingConditionJson'" [title]="'If(matching) condition'"
-                                                          [width]="180">
+                                                          [width]="170">
                                         <ng-template #ngDataTableCell let-row="row" let-spanIndex="spanIndex"
                                                      let-rowSpan="rowSpan">
                                             <td *ngIf="spanIndex === 0" [attr.rowspan]="rowSpan">
@@ -153,7 +155,7 @@
                                         </ng-template>
                                     </ng-data-table-column>
                                     <ng-data-table-column [field]="'actionConditionJson'" [title]="'Then(action) condition'"
-                                                          [width]="180">
+                                                          [width]="170">
                                         <ng-template #ngDataTableCell let-row="row" let-spanIndex="spanIndex"
                                                      let-rowSpan="rowSpan">
                                             <td *ngIf="spanIndex === 0" [attr.rowspan]="rowSpan">
@@ -162,7 +164,7 @@
                                             </td>
                                         </ng-template>
                                     </ng-data-table-column>
-                                    <ng-data-table-column [title]="'Is Global'">
+                                    <ng-data-table-column [title]="'Is Global'" [width]="80">
                                         <ng-template #ngDataTableCell let-row="row">
                                             <td>
                                                 {{row.item.isGlobal ? 'Yes' : 'No'}}

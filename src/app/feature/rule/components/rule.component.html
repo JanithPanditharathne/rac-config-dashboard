@@ -48,7 +48,7 @@
                     [dropDownFilterShowOptionSelectCheckbox]="true">
             </ng-data-table-column>
             <ng-data-table-column [field]="'matchingConditionJson'" [title]="'If(matching) condition'"
-                                  [width]="180">
+                                  [width]="280">
                 <ng-template #ngDataTableCell let-row="row" let-spanIndex="spanIndex"
                              let-rowSpan="rowSpan">
                     <td *ngIf="spanIndex === 0" [attr.rowspan]="rowSpan">
@@ -58,7 +58,7 @@
                 </ng-template>
             </ng-data-table-column>
             <ng-data-table-column [field]="'actionConditionJson'" [title]="'Then(action) condition'"
-                                  [width]="180">
+                                  [width]="280">
                 <ng-template #ngDataTableCell let-row="row" let-spanIndex="spanIndex"
                              let-rowSpan="rowSpan">
                     <td *ngIf="spanIndex === 0" [attr.rowspan]="rowSpan">
@@ -70,6 +70,7 @@
             <ng-data-table-column
                     [title]="'Is Global'"
                     [field]="'isGlobal'"
+                    [width]="80"
             >
                 <ng-template #ngDataTableCell let-row="row">
                     <td>
