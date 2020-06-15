@@ -6,6 +6,7 @@ import { DropdownSelectMode } from 'ornamentum';
 import {
   RuleContextOperatorData, RuleExactPriceDataItem,
 } from '../../../../shared-common/models';
+import { RulePriceDataItem } from '../../../../shared-common/models/rule/rule-price-data-item.model';
 
 import { ActionType } from '../../../../shared-common/enums';
 import { RuleGeneratorType, RuleTabDisplayDataType, RuleTabInlineDataGeneratorType } from '../../../enums';
@@ -66,21 +67,23 @@ export class PriceContentComponent implements OnInit {
     const exactPriceFormGroup = PriceContentComponent.buildExactPriceGroup(this.fb);
 
     const exactPriceValue = this.priceGroup.value.exactPrice;
+    if (!this.isExistingPriceCondition(exactPriceValue)) {
 
-    exactPriceFormGroup.patchValue({
-      operator: exactPriceValue.operator.type,
-      value: {
-        price: exactPriceValue.price
-      }
-    });
+      exactPriceFormGroup.patchValue({
+        operator: exactPriceValue.operator.type,
+        value: {
+          price: exactPriceValue.price
+        }
+      });
 
-    this.formDataArray.push(exactPriceFormGroup);
-    this.formDataArray.markAsDirty();
+      this.formDataArray.push(exactPriceFormGroup);
+      this.formDataArray.markAsDirty();
 
-    this.priceGroup.get('exactPrice').reset({
-      operator: this.operators[0],
-      price: ''
-    });
+      this.priceGroup.get('exactPrice').reset({
+        operator: this.operators[0],
+        price: ''
+      });
+    }
   }
 
   /**
@@ -131,6 +134,20 @@ export class PriceContentComponent implements OnInit {
           ])
         ]
       })
+    });
+  }
+
+  /**
+   * Responsible for check whether exact price value already exists.
+   * @param {any} exactPriceValue
+   * @return {boolean} true or false
+   */
+  private isExistingPriceCondition(exactPriceValue: any): boolean {
+    const formArrayValues: any[] = this.formDataArray.value || [];
+
+    return formArrayValues.some((priceDataItem: RulePriceDataItem) => {
+      return priceDataItem.value.price === exactPriceValue.price &&
+        priceDataItem.operator === exactPriceValue.operator.type;
     });
   }
 }

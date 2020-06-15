@@ -180,6 +180,18 @@ export class RecSlotUpsertComponent implements OnInit {
   }
 
   /**
+   * Responsible for map row data to filter options.
+   * @param {Rule} item data row
+   * @return {any} any
+   */
+  public onIsGlobalFilterMapper(item: Rule): any {
+    return {
+      key: item.isGlobal,
+      value: item.isGlobal ? 'Yes' : 'No'
+    };
+  }
+
+  /**
    * The method to get dialog confirmation will be called by CanDeactivateGuard
    * @return {Observable<boolean> | boolean}
    */

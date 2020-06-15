@@ -43,6 +43,7 @@
             <ng-data-table-column
                     [field]="'type'"
                     [title]="'Type'"
+                    [width]="180"
                     [filterable]="true"
                     [showDropdownFilter]="true"
                     [dropDownFilterShowOptionSelectCheckbox]="true">
@@ -70,7 +71,11 @@
             <ng-data-table-column
                     [title]="'Is Global'"
                     [field]="'isGlobal'"
-                    [width]="80"
+                    [width]="130"
+                    [filterable]="true"
+                    [showDropdownFilter]="true"
+                    [filterFieldMapper]="onIsGlobalFilterMapper"
+                    [dropDownFilterShowOptionSelectCheckbox]="true">
             >
                 <ng-template #ngDataTableCell let-row="row">
                     <td>
@@ -78,7 +83,7 @@
                     </td>
                 </ng-template>
             </ng-data-table-column>
-            <ng-data-table-column [title]="'Action'" [showInColumnSelector]="false" [width]="100">
+            <ng-data-table-column [title]="'Action'" [showInColumnSelector]="false" [width]="80">
                 <ng-template #ngDataTableCell let-row="row" let-rowSpan="rowSpan" let-spanIndex="spanIndex">
                     <td [attr.rowspan]="rowSpan" *ngIf="!spanIndex" (click)="$event.stopPropagation()">
                         <app-table-actions-column>

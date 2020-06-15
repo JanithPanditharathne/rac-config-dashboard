@@ -119,19 +119,23 @@ export class RuleContextDataService {
    * @param {string} type
    */
   public applyTextFieldData(formDataArray: FormArray, group: FormGroup, baseFormGroup: FormGroup, type: string): void {
-    const index = formDataArray.controls.indexOf(group);
+    const currentValues: any[] = group.get('value').value || [];
 
-    if (index === -1) {
-      formDataArray.push(group);
+    if (currentValues && !currentValues.includes(baseFormGroup.value[type])) {
+      const index = formDataArray.controls.indexOf(group);
+
+      if (index === -1) {
+        formDataArray.push(group);
+      }
+
+      formDataArray.markAsDirty();
+
+      const formGroupValueFormControl = group.get('value');
+      const formGroupValue = formGroupValueFormControl.value || [];
+
+      formGroupValueFormControl.setValue([...formGroupValue, baseFormGroup.value[type]]);
+
+      baseFormGroup.get(type).reset();
     }
-
-    formDataArray.markAsDirty();
-
-    const formGroupValueFormControl = group.get('value');
-    const formGroupValue = formGroupValueFormControl.value || [];
-
-    formGroupValueFormControl.setValue([...formGroupValue, baseFormGroup.value[type]]);
-
-    baseFormGroup.get(type).reset();
   }
 }

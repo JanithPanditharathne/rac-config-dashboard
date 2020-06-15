@@ -145,7 +145,7 @@
                                         [showDropdownFilter]="true">
                                     </ng-data-table-column>
                                     <ng-data-table-column [field]="'matchingConditionJson'" [title]="'If(matching) condition'"
-                                                          [width]="170">
+                                                          [width]="160">
                                         <ng-template #ngDataTableCell let-row="row" let-spanIndex="spanIndex"
                                                      let-rowSpan="rowSpan">
                                             <td *ngIf="spanIndex === 0" [attr.rowspan]="rowSpan">
@@ -155,7 +155,7 @@
                                         </ng-template>
                                     </ng-data-table-column>
                                     <ng-data-table-column [field]="'actionConditionJson'" [title]="'Then(action) condition'"
-                                                          [width]="170">
+                                                          [width]="160">
                                         <ng-template #ngDataTableCell let-row="row" let-spanIndex="spanIndex"
                                                      let-rowSpan="rowSpan">
                                             <td *ngIf="spanIndex === 0" [attr.rowspan]="rowSpan">
@@ -164,10 +164,18 @@
                                             </td>
                                         </ng-template>
                                     </ng-data-table-column>
-                                    <ng-data-table-column [title]="'Is Global'" [width]="80">
+                                    <ng-data-table-column
+                                            [title]="'Is Global'"
+                                            [field]="'isGlobal'"
+                                            [width]="110"
+                                            [filterable]="true"
+                                            [showDropdownFilter]="true"
+                                            [filterFieldMapper]="onIsGlobalFilterMapper"
+                                            [dropDownFilterShowOptionSelectCheckbox]="true">
+                                        >
                                         <ng-template #ngDataTableCell let-row="row">
                                             <td>
-                                                {{row.item.isGlobal ? 'Yes' : 'No'}}
+                                                {{ row.item.isGlobal ? 'Yes' : 'No' }}
                                             </td>
                                         </ng-template>
                                     </ng-data-table-column>

@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
-import { DropdownSelectMode } from 'ornamentum';
-
 import { DropDownDataItem, RuleBrandDataItem } from '../../../../shared-common/models';
 
 import { ActionType } from '../../../../shared-common/enums';

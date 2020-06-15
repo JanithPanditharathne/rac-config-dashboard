@@ -130,6 +130,18 @@ export class RuleComponent {
   }
 
   /**
+   * Responsible for map row data to filter options.
+   * @param {Rule} item data row
+   * @return {any} any
+   */
+  public onIsGlobalFilterMapper(item: Rule): any {
+    return {
+      key: item.isGlobal,
+      value: item.isGlobal ? 'Yes' : 'No'
+    };
+  }
+
+  /**
    * Rule delete event handler.
    * @param {string} ruleId rule id.
    * @param {ActionClickEventArgs} actionClickEventArgs click event arguments.
