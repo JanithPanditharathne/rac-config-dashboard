@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { DataTableSelectMode, DropdownSelectMode } from 'ornamentum';
+import { DataTableRow, DataTableSelectMode, DropdownSelectMode } from 'ornamentum';
 
 import { RecSlot } from '../../models';
 import { Rule, DisplayRule } from '../../../rule/models';
@@ -177,6 +177,18 @@ export class RecSlotUpsertComponent implements OnInit {
         return rule.id;
       });
     }
+  }
+
+  /**
+   * Set on dynamic row span extract event handler.
+   * @param {DataTableRow<Rule>} row data row
+   */
+  public onDynamicRowSpanExtract(row: DataTableRow<Rule>) {
+    if (row.item.isGlobal) {
+      row.selected = true;
+      row.disabled = true;
+    }
+    return 1;
   }
 
   /**

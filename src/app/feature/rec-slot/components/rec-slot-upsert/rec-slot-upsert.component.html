@@ -118,6 +118,7 @@
                                     [showLoadingSpinner]="true"
                                     [(ngModel)]="currentSelected"
                                     (selectstart)="onRuleSelect()"
+                                    [onDynamicRowSpanExtract]="onDynamicRowSpanExtract"
                                 >
                                     <ng-data-table-column
                                         [field]="'id'"
