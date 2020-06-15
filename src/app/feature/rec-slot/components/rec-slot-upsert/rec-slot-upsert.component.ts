@@ -174,7 +174,7 @@ export class RecSlotUpsertComponent implements OnInit {
   private setSelectedRules(): void {
     if (this.recSlot && this.recSlot.rules.length) {
       this.currentSelected = this.recSlot.rules.map((rule: DropDownDataItem) => {
-        return String(rule.id);
+        return rule.id;
       });
     }
   }
