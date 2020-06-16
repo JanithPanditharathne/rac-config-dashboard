@@ -4,7 +4,7 @@
         <app-math-operator-detail-view [operator]="priceItem.operator"></app-math-operator-detail-view>
 
         <ng-container *ngIf="priceItem.value.price">
-            <span class="rac-selected-condition-value">{{ priceItem.value.price }}</span>
+            <span class="rac-selected-condition-value"> {{ priceItem.value.price }}</span>
         </ng-container>
     <ng-container [ngTemplateOutlet]="actionTemplate"></ng-container>
 </div>
