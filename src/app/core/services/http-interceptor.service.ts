@@ -6,6 +6,8 @@ import { catchError } from 'rxjs/operators';
 
 import { GlobalRefService } from 'ornamentum';
 
+import { KeycloakService } from 'keycloak-angular';
+
 import { ErrorResponse } from '../models';
 
 import { AlertType, HttpStatus } from '../enums';
@@ -23,12 +25,24 @@ import { CoreConstants } from '../core.constants';
 @Injectable()
 export class AppHttpInterceptorService implements HttpInterceptor {
   constructor(
+    private keycloakAngular: KeycloakService,
+    private globalRefService: GlobalRefService,
     private notificationService: NotificationService,
-    private authErrorHandlerService: AuthErrorHandlerService,
-    private globalRefService: GlobalRefService
+    private authErrorHandlerService: AuthErrorHandlerService
   ) {}
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    try {
+      const user = this.keycloakAngular.getUsername();
+      req = req.clone({
+        setHeaders: {
+          'User-ID': user
+        }
+      });
+    } catch (e) {
+      console.log('Failed to load user details', e);
+    }
+
     return next.handle(req).pipe(
       catchError(err => {
         if (err instanceof HttpErrorResponse) {
