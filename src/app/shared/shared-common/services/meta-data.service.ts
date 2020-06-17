@@ -5,7 +5,7 @@ import { ReplaySubject } from 'rxjs';
 import { retry } from 'rxjs/operators';
 
 import { DropDownDataItem } from '../models';
-import { ChannelData, PageData, PlaceholderData, BrandData } from '../../shared-rec/models';
+import { MetaData } from '../../shared-rec/models';
 
 import { environment } from '../../../../environments/environment';
 
@@ -37,45 +37,45 @@ export class MetaDataService {
 
   public fetchChannels(): void {
     this.http
-      .get<ChannelData>(`${environment.baseUrl}${MetaDataService.get_channel_meta_url}`)
+      .get<MetaData>(`${environment.baseUrl}${MetaDataService.get_channel_meta_url}`)
       .pipe(
         retry(MetaDataService.retry_count)
       )
-      .subscribe((data: ChannelData) => {
-        this.channels.next(data.channels);
+      .subscribe((data: MetaData) => {
+        this.channels.next(data.metadata);
       });
   }
 
   public fetchPages(): void {
     this.http
-      .get<PageData>(`${environment.baseUrl}${MetaDataService.get_page_meta_url}`)
+      .get<MetaData>(`${environment.baseUrl}${MetaDataService.get_page_meta_url}`)
       .pipe(
         retry(MetaDataService.retry_count)
       )
-      .subscribe((data: PageData) => {
-        this.pages.next(data.pages);
+      .subscribe((data: MetaData) => {
+        this.pages.next(data.metadata);
       });
   }
 
   public fetchPlaceholders(): void {
     this.http
-      .get<PlaceholderData>(`${environment.baseUrl}${MetaDataService.get_placeholder_meta_url}`)
+      .get<MetaData>(`${environment.baseUrl}${MetaDataService.get_placeholder_meta_url}`)
       .pipe(
         retry(MetaDataService.retry_count)
       )
-      .subscribe((data: PlaceholderData) => {
-        this.placeholders.next(data.placeholders);
+      .subscribe((data: MetaData) => {
+        this.placeholders.next(data.metadata);
       });
   }
 
   private fetchBrands(): void {
     this.http
-      .get<BrandData>(`${environment.baseUrl}${MetaDataService.get_brand_meta_url}`)
+      .get<MetaData>(`${environment.baseUrl}${MetaDataService.get_brand_meta_url}`)
       .pipe(
         retry(MetaDataService.retry_count)
       )
-      .subscribe((data: BrandData) => {
-        this.brands.next(data.brands);
+      .subscribe((data: MetaData) => {
+        this.brands.next(data.metadata);
       });
   }
 }
