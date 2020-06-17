@@ -1,7 +1,7 @@
 <form [formGroup]="baseFormGroup" novalidate>
     <div class="rac-conditions">
-        <div class="rac-condition-item">
-            <div class="form-group" [class.input-error]="isInvalid('productNumber')">
+        <div class="rac-condition-item col-lg-4">
+            <div class="form-group"  [class.input-error]="isInvalid('productNumber')">
                 <label
                 >Product Number
                     <input class="form-control" type="text" placeholder="Enter Product Number" name="ProductNumber"
@@ -14,7 +14,7 @@
                 </label>
             </div>
         </div>
-        <div class="rac-condition-button">
+        <div class="rac-condition-button col-lg-2">
             <app-action-button-strap>
                 <app-action [type]="ActionType.APPLY" [disable]="isDisabled()"
                             (actionClick)="onApply()"></app-action>

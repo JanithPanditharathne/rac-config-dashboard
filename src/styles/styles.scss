@@ -520,7 +520,7 @@ body {
   .rac-condition-item {
     align-items: center;
     display: flex;
-    flex-grow: 1;
+    padding: 0;
 
     &.form-group {
       margin-bottom: 0;

@@ -1,5 +1,5 @@
 <div class="rac-conditions">
-    <div class="rac-condition-item">
+    <div class="rac-condition-item col-lg-4">
         <form [formGroup]="baseFormGroup">
             <div class="form-group" [class.input-error]="isInvalid('brand')">
                 <label
@@ -24,7 +24,7 @@
             </form>
         </div>
 
-        <div class="rac-condition-button">
+        <div class="rac-condition-button col-lg-2">
             <app-action-button-strap>
                 <app-action [type]="ActionType.APPLY" [name]=""
                             [disable]="!baseFormGroup.get('brand').value?.length" (actionClick)="onApply()">
