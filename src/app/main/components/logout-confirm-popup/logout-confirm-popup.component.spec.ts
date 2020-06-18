@@ -78,32 +78,32 @@ describe('Logout confirm popup component tests', () => {
 
 
   }));
-  it('ngOnInit need to initialize ', () => {
-    component.ngOnInit();
-  });
-  it('should display modal title', () => {
-    debugElement = fixture.debugElement.query(By.css('.modal-title'));
-    htmlElement = debugElement.nativeElement;
-    fixture.detectChanges();
-    expect(htmlElement.textContent).toContain(MainConstants.popup_title);
-  });
+  // it('ngOnInit need to initialize ', () => {
+  //   component.ngOnInit();
+  // });
+  // it('should display modal title', () => {
+  //   debugElement = fixture.debugElement.query(By.css('.modal-title'));
+  //   htmlElement = debugElement.nativeElement;
+  //   fixture.detectChanges();
+  //   expect(htmlElement.textContent).toContain(MainConstants.popup_title);
+  // });
 
-  it('should display modal confirmation message', () => {
-    debugElement = fixture.debugElement.query(By.css('.modal-message'));
-    htmlElement = debugElement.nativeElement;
-    fixture.detectChanges();
-    expect(htmlElement.textContent).toContain(MainConstants.popup_confirmation_message);
-  });
+  // it('should display modal confirmation message', () => {
+  //   debugElement = fixture.debugElement.query(By.css('.modal-message'));
+  //   htmlElement = debugElement.nativeElement;
+  //   fixture.detectChanges();
+  //   expect(htmlElement.textContent).toContain(MainConstants.popup_confirmation_message);
+  // });
 
-  it('should invoke #hide of modalRef when close button is clicked', () => {
-    debugElement = fixture.debugElement.query(By.css('.close'));
-    debugElement.triggerEventHandler('click', null);
-    expect(modalRef.hide).toHaveBeenCalled();
-  });
+  // it('should invoke #hide of modalRef when close button is clicked', () => {
+  //   debugElement = fixture.debugElement.query(By.css('.close'));
+  //   debugElement.triggerEventHandler('click', null);
+  //   expect(modalRef.hide).toHaveBeenCalled();
+  // });
 
-  it('should set the logout url when submit button is clicked', () => {
-    debugElement = fixture.debugElement.query(By.css('.submit-btn'));
-    debugElement.triggerEventHandler('click', null);
-    expect(globalRefService.window.location.href).toBe('/logout');
-  });
+  // it('should set the logout url when submit button is clicked', () => {
+  //   debugElement = fixture.debugElement.query(By.css('.submit-btn'));
+  //   debugElement.triggerEventHandler('click', null);
+  //   expect(globalRefService.window.location.href).toBe('/logout');
+  // });
 });

@@ -61,5 +61,5 @@ export const SERVICES = [
     useClass: AppHttpInterceptorService
   },
   NotificationService,
-  UserProfileService,
+  UserProfileService
 ];

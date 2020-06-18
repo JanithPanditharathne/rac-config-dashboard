@@ -29,7 +29,6 @@ import { ConfirmDialogService } from './services/confirm-dialog.service';
 import { ContainerResponsiveDirective, ErrorFocusDirective } from './directives';
 
 // pipes
-import { DateFormatPipe } from './pipes';
 import { MetaDataService } from './services';
 
 /**
@@ -79,4 +78,4 @@ export const SERVICES = [
 /**
  * Export all shared pipes.
  */
-export const PIPES = [DateFormatPipe];
+export const PIPES = [];

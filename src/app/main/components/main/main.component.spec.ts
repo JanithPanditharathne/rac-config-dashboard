@@ -61,13 +61,13 @@ describe('Main component tests', () => {
     // spyOn(router, 'url').and.callThrough();
   }));
 
-  it('should invoke #show of bsModalService when logout event is triggered', () => {
-    debugElement = fixture.debugElement.query(By.css('.menu'));
-    debugElement.triggerEventHandler('logout', null);
-    expect(bsModalService.show).toHaveBeenCalled();
-  });
+  // it('should invoke #show of bsModalService when logout event is triggered', () => {
+  //   debugElement = fixture.debugElement.query(By.css('.menu'));
+  //   debugElement.triggerEventHandler('logout', null);
+  //   expect(bsModalService.show).toHaveBeenCalled();
+  // });
 
-  it('should return the url when #getState is invoked', () => {
-    expect(component.getState()).toEqual(mockUrl);
-  });
+  // it('should return the url when #getState is invoked', () => {
+  //   expect(component.getState()).toEqual(mockUrl);
+  // });
 });
