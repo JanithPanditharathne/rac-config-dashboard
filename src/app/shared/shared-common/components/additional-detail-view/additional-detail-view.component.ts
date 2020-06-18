@@ -1,6 +1,7 @@
 import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 
-import { RuleAdditionalDataViewType } from '../../../shared-rules/enums';
+import { OperatorType } from '../../enums';
+import { RuleAdditionalDataViewType, RuleTabDisplayDataType } from '../../../shared-rules/enums';
 
 /**
  * Component class to represent additional rule details.
@@ -13,6 +14,7 @@ import { RuleAdditionalDataViewType } from '../../../shared-rules/enums';
 })
 export class AdditionalDetailViewComponent {
   public AdditionalDataViewType = RuleAdditionalDataViewType;
+  public RuleTabDisplayDataType = RuleTabDisplayDataType;
 
   /**
    * Input to represent the additional rule data in a grid row.
@@ -30,5 +32,17 @@ export class AdditionalDetailViewComponent {
   public actionTemplate: TemplateRef<any>;
 
   constructor() {
+  }
+
+  /**
+   * Responsible for return case tag based on operator.
+   * @param {any} operator
+   * @return {string} operator
+   */
+  public getOperatorValue(operator: any): string {
+    if (typeof operator === 'boolean') {
+      return operator ? 'ignore_case' : '';
+    }
+    return operator === OperatorType.EQUAL_IGNORE_CASE ? 'ignore_case' : '';
   }
 }

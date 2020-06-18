@@ -2,8 +2,12 @@
     <ng-container *ngSwitchCase="AdditionalDataViewType.INLINE">
         <ng-container *ngFor="let value of data.value">
             <div class="rac-selected-condition">
-                <span class="rac-selected-condition-label">{{ data.type }} is</span>
-                <span class="rac-selected-condition-value">{{ value?.name || value }}</span>
+                <span class="rac-selected-condition-label">{{ data.type }} </span>
+                <app-math-operator-detail-view [operator]="data.operator ? 'eqic' : 'eq'"
+                                               [hasMultipleValues]="false">
+                </app-math-operator-detail-view>
+                <span class="rac-selected-condition-value">{{ value?.name || value }} </span>
+                <span> {{ getOperatorValue(data.operator) }}</span>
                 <ng-container [ngTemplateOutlet]="actionTemplate"
                               [ngTemplateOutletContext]="{ value: value }"></ng-container>
             </div>
@@ -11,11 +15,15 @@
     </ng-container>
 
     <ng-container *ngSwitchDefault>
-        <span class="rac-selected-condition-label"> {{ data.type }}{{ data.value?.length > 1 ? '(s) are' : ' is' }} </span>
+        <span class="rac-selected-condition-label"> {{ data.type}}{{data.value?.length > 1 ? '(s)' : ''}} </span>
+        <app-math-operator-detail-view [operator]="data.operator ? 'eqic' : 'eq'"
+                                       [hasMultipleValues]="data.value?.length > 1">
+        </app-math-operator-detail-view>
         <ng-container *ngFor="let subItem of data.value; let i = index">
-            <span class="rac-selected-condition-value">{{ subItem?.name || subItem }}</span>
+            <span class="rac-selected-condition-value"> {{ subItem?.name || subItem }} </span>
             <ng-container *ngIf="data.value.length > i + 1">,</ng-container>
         </ng-container>
+        <span>{{ getOperatorValue(data.operator) }}</span>
         <ng-container [ngTemplateOutlet]="actionTemplate" [ngTemplateOutletContext]="{ value: value }"></ng-container>
     </ng-container>
 </ng-container>

@@ -1,0 +1,16 @@
+<div class="rac-selected-condition">
+    <span class="rac-selected-condition-label"
+          *ngIf="customItem.value.key">{{customItem.value.key}}{{customItem.value.values?.length > 1 ? '(s)' : ''}}
+    </span>
+
+    <app-math-operator-detail-view [operator]="customItem.operator"
+                                   [hasMultipleValues]="customItem.value.values?.length > 1">
+    </app-math-operator-detail-view>
+
+    <ng-container *ngIf="customItem.value.values">
+        <span class="rac-selected-condition-value">
+            {{ customItem.value.values }}<span> {{customItem.operator === 'eqic' ? 'ignore_case' : ''}}
+        </span></span>
+    </ng-container>
+    <ng-container [ngTemplateOutlet]="actionTemplate"></ng-container>
+</div>

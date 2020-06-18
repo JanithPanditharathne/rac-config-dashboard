@@ -4,5 +4,6 @@
  */
 export enum RuleTabInlineDataGeneratorType {
   CATEGORY = 'CATEGORY',
-  PRICE = 'PRICE'
+  PRICE = 'PRICE',
+  CUSTOM = 'CUSTOM'
 }

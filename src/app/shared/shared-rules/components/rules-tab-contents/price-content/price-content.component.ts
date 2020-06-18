@@ -29,7 +29,7 @@ export class PriceContentComponent implements OnInit {
   public RuleTabInlineDataGeneratorType = RuleTabInlineDataGeneratorType;
   public ActionType = ActionType;
 
-  public operators: RuleContextOperatorData[] = RuleContextFormUtility.operators;
+  public operators: RuleContextOperatorData[] = RuleContextFormUtility.priceOperators;
 
   public priceGroup: FormGroup;
 

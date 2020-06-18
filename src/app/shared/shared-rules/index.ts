@@ -14,6 +14,7 @@ import {
 
 import {
   BrandContentComponent,
+  CustomContentComponent,
   PriceContentComponent,
   ProductNumberContentComponent
 } from './components/rules-tab-contents';
@@ -31,6 +32,7 @@ export const COMPONENTS = [
   RuleConditionGeneratorComponent,
   RuleNoDataAvailableViewComponent,
   BrandContentComponent,
+  CustomContentComponent,
   ProductNumberContentComponent,
   PriceContentComponent
 ];

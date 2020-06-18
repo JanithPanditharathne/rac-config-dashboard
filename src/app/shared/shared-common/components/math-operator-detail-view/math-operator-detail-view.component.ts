@@ -8,4 +8,7 @@ import { Component, Input } from '@angular/core';
 export class MathOperatorDetailViewComponent {
   @Input()
   public operator: any;
+
+  @Input()
+  public hasMultipleValues: boolean = false;
 }

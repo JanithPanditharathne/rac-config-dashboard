@@ -27,6 +27,18 @@
                     </app-price-detail-view>
                 </ng-container>
 
+                <ng-container *ngIf="isCustomType(rule.value.type)">
+                    <app-custom-detail-view [customItem]="rule.value">
+                        <ng-template #actionTemplate>
+                            <app-rule-condition-generator
+                                    *ngIf="parentFormGroup.get(contextType).controls[i + 1]"
+                                    [formGroup]="rule"
+                                    [identifier]="formatRuleConditionId(i)"
+                            ></app-rule-condition-generator>
+                        </ng-template>
+                    </app-custom-detail-view>
+                </ng-container>
+
             </ng-container>
             <app-rule-no-data-available-view
                     *ngIf="!parentFormGroup.get(contextType)?.controls.length"

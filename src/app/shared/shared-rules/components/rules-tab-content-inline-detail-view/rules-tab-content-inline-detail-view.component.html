@@ -22,6 +22,17 @@
                     </ng-template>
                 </app-price-detail-view>
             </ng-container>
+            <ng-container *ngIf="displayType === RuleTabInlineDataGeneratorType.CUSTOM && isCustomType(item.type)">
+                <app-custom-detail-view [customItem]="item">
+                    <ng-template #actionTemplate>
+                        <div class="rac-selected-condition-action-buttons">
+                            <app-action-button-strap>
+                                <app-action [type]="ActionType.DELETE" (click)="onRemoveItem(item)"></app-action>
+                            </app-action-button-strap>
+                        </div>
+                    </ng-template>
+                </app-custom-detail-view>
+            </ng-container>
         </ng-container>
     </ng-container>
 </div>

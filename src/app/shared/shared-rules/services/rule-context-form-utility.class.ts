@@ -11,7 +11,7 @@ import { OperatorType } from '../../shared-common/enums';
  */
 export class RuleContextFormUtility {
 
-  public static operators = [
+  public static priceOperators = [
     {
       name: 'Equals (=)',
       type: OperatorType.EQUAL
@@ -34,6 +34,44 @@ export class RuleContextFormUtility {
     }
   ];
 
+  public static numericalOperators = [
+    {
+      name: 'Equals (=)',
+      type: OperatorType.EQUAL
+    },
+    {
+      name: 'Less than (<)',
+      type: OperatorType.LOWER_THAN
+    },
+    {
+      name: 'Greater than (>)',
+      type: OperatorType.GREATER_THAN
+    },
+    {
+      name: 'Greater than or equals (>=)',
+      type: OperatorType.GREATER_THAN_OR_EQUAL
+    },
+    {
+      name: 'Less than or equals (<=)',
+      type: OperatorType.LOWER_THAN_OR_EQUAL
+    },
+    {
+      name: 'Equals ignore case (#=)',
+      type: OperatorType.EQUAL_IGNORE_CASE
+    }
+  ];
+
+  public static nonnumericalOperators = [
+    {
+      name: 'Equals (=)',
+      type: OperatorType.EQUAL
+    },
+    {
+      name: 'Equals ignore case (#=)',
+      type: OperatorType.EQUAL_IGNORE_CASE
+    }
+  ];
+
   public static buildFormGroup(fb: FormBuilder, type: RuleTabDisplayDataType, data?: any): FormGroup {
     if (data) {
       switch (type) {
@@ -46,6 +84,7 @@ export class RuleContextFormUtility {
           });
         case RuleTabDisplayDataType.Price:
         case RuleTabDisplayDataType.ProductNumber:
+        case RuleTabDisplayDataType.Custom:
           return fb.group({
             condition: [data.condition],
             type: [type],
@@ -68,7 +107,7 @@ export class RuleContextFormUtility {
 
   public static setOperatorData(expressionData: RuleIfExpressionDataItem[]): RuleIfExpressionDataItem[] {
     return expressionData.map((data: RuleIfExpressionDataItem) => {
-      if (data.type !== RuleTabDisplayDataType.Price) {
+      if (data.type !== RuleTabDisplayDataType.Price && data.type !== RuleTabDisplayDataType.Custom) {
         data.operator = data.operator ? OperatorType.EQUAL_IGNORE_CASE : OperatorType.EQUAL;
       }
       return data;

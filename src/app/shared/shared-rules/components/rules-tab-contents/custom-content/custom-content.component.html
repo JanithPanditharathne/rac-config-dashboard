@@ -1,0 +1,74 @@
+<div class="rac-conditions">
+    <div class="rac-condition-item">
+        <form [formGroup]="customFormGroup" novalidate>
+            <div class="form-group">
+                <div class="form-group">
+                    <label
+                    >Key
+                        <input [id]="'custom-keys-options-' + ruleGeneratorType"
+                               [typeahead]="keys"
+                               [typeaheadOptionsLimit]="10"
+                               [typeaheadMinLength]="0"
+                               [typeaheadScrollable]="true"
+                               [typeaheadOptionsInScrollableView]="10"
+                               [(ngModel)]="selectedKey"
+                               typeaheadOptionField="name"
+                               formControlName="key"
+                               placeholder="Select Key"
+                               class="form-control"
+                               (typeaheadOnSelect)="onKeySelect()">
+                    </label>
+                </div>
+            </div>
+            <div [hidden]="!customFormGroup.get('key').value">
+                <div class="form-group">
+                    <label
+                    >Operator
+                        <ng-dropdown
+                                [id]="'custom-types-options-' + ruleGeneratorType"
+                                [options]="operators"
+                                [selectTrackBy]="'type'"
+                                [displayTrackBy]="'name'"
+                                [closeMenuOnSelect]="true"
+                                [menuWidth]="250"
+                                [menuHeight]="180"
+                                [selectMode]="dropdownSelectMode"
+                                [relativeParentElement]="parentElement"
+                                [formControlName]="'operator'"
+                        >
+                        </ng-dropdown>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label
+                    >Value
+                        <input [id]="'custom-value-options-' + ruleGeneratorType"
+                               [typeahead]="values"
+                               [typeaheadOptionsLimit]="10"
+                               [typeaheadMinLength]="0"
+                               [typeaheadScrollable]="true"
+                               [typeaheadOptionsInScrollableView]="10"
+                               typeaheadOptionField="name"
+                               formControlName="values"
+                               placeholder="Select Value"
+                               class="form-control">
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="rac-condition-button">
+        <app-action-button-strap>
+            <app-action [type]="ActionType.APPLY" [name]=""
+                        [disable]="isDisabled('values')"
+                        (actionClick)="onApply()">
+            </app-action>
+        </app-action-button-strap>
+    </div>
+</div>
+<app-rules-tab-content-inline-detail-view [formArrayData]="formDataArray.value"
+                                          (onRemoved)="onRemove($event)"
+                                          [displayType]="RuleTabInlineDataGeneratorType.CUSTOM">
+</app-rules-tab-content-inline-detail-view>
+

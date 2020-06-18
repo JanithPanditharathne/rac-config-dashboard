@@ -5,12 +5,13 @@ import { RuleThenExpressionDataItem } from '../../../shared-common/models';
 
 import { RuleGeneratorType, RuleTabDisplayDataType, RulesTabTitle } from '../../enums';
 
-import { FormValidator } from '../../../shared-common/services';
+import { FormValidator, MetaDataService } from '../../../shared-common/services';
 
 import {
   BrandContentComponent,
+  CustomContentComponent,
   PriceContentComponent,
-  ProductNumberContentComponent,
+  ProductNumberContentComponent
 } from '../rules-tab-contents';
 
 /**
@@ -28,6 +29,7 @@ export class RuleActionContextComponent implements OnInit {
   public RulesTabTitle = RulesTabTitle;
 
   public ruleGeneratorType = RuleGeneratorType.ACTION;
+  public metadataTypes: string[];
 
   @Input()
   public parentElement: HTMLElement;
@@ -39,7 +41,12 @@ export class RuleActionContextComponent implements OnInit {
   public contextData: RuleThenExpressionDataItem[];
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private metaDataService: MetaDataService
+  ) {
+    metaDataService.metadataTypes.subscribe((types: string[]) => {
+      this.metadataTypes = types;
+    });
   }
 
   /**
@@ -69,6 +76,10 @@ export class RuleActionContextComponent implements OnInit {
 
         case RuleTabDisplayDataType.Price:
           context.push(PriceContentComponent.buildExactPriceGroup(this.fb, item));
+          break;
+
+        case RuleTabDisplayDataType.Custom:
+          context.push(CustomContentComponent.buildFormGroup(this.fb, item));
           break;
       }
     });

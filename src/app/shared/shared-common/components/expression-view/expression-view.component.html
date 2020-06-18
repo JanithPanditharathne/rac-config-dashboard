@@ -10,7 +10,9 @@
                 <ng-container>
                     <app-price-detail-view *ngIf="isPriceType(item.type)" [priceItem]="item"></app-price-detail-view>
 
-                    <app-additional-detail-view *ngIf="!isPriceType(item.type)" [data]="item">
+                    <app-custom-detail-view *ngIf="isCustomType(item.type)" [customItem]="item"></app-custom-detail-view>
+
+                    <app-additional-detail-view *ngIf="!isPriceType(item.type) && !isCustomType(item.type)" [data]="item">
                     </app-additional-detail-view>
 
                     <ng-container *ngIf="i < ruleData.length - 1">

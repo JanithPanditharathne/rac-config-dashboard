@@ -26,6 +26,17 @@ export class RuleContextDataService {
   }
 
   /**
+   * Returns true if the current context child's type item is matched to the Custom type.
+   * @param {string} ruleDisplayType The rule display type.
+   * @returns {boolean} True/False.
+   */
+  public isCustomType(ruleDisplayType: string): boolean {
+    return (
+      ruleDisplayType === RuleTabDisplayDataType.Custom
+    );
+  }
+
+  /**
    * Responsible for find and return facet form group.
    * @param {FormArray} formDataArray
    * @param {RuleTabDisplayDataType} type
@@ -34,6 +45,19 @@ export class RuleContextDataService {
   public findFacetFormGroup(formDataArray: FormArray, type: RuleTabDisplayDataType): FormGroup {
     return formDataArray.controls.find((item: AbstractControl) => {
       return item.value.type === type;
+    }) as FormGroup;
+  }
+
+  /**
+   * Responsible for find and return custom form group.
+   * @param {FormArray} formDataArray
+   * @param {string} key
+   * @param {string} operator
+   * @return {FormGroup} form group
+   */
+  public findCustomFormGroup(formDataArray: FormArray, key: string, operator: string): FormGroup {
+    return formDataArray.controls.find((item: AbstractControl) => {
+      return item.value.value.key && item.value.value.key === key && item.value.operator === operator;
     }) as FormGroup;
   }
 

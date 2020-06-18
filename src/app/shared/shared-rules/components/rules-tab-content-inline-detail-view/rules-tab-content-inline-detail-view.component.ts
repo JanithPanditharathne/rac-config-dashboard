@@ -60,4 +60,13 @@ export class RulesTabContentInlineDetailViewComponent {
   public isPriceType(ruleDisplayType: string): boolean {
     return this.ruleContextDataService.isPriceType(ruleDisplayType);
   }
+
+  /**
+   * Returns true if the current context child's type item is matched to the Custom type.
+   * @param {string} ruleDisplayType The rule display type.
+   * @returns {boolean} True/False.
+   */
+  public isCustomType(ruleDisplayType: string): boolean {
+    return this.ruleContextDataService.isCustomType(ruleDisplayType);
+  }
 }

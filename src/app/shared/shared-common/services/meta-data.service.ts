@@ -7,6 +7,8 @@ import { retry } from 'rxjs/operators';
 import { DropDownDataItem } from '../models';
 import { MetaData } from '../../shared-rec/models';
 
+import { RuleUtilityService } from '../../shared-rules/services';
+
 import { environment } from '../../../../environments/environment';
 
 
@@ -20,6 +22,8 @@ export class MetaDataService {
   private static get_page_meta_url = '/v1/metadata/pages';
   private static get_placeholder_meta_url = '/v1/metadata/placeholders';
   private static get_brand_meta_url = '/v1/metadata/brands';
+  private static get_metadata_types_meta_url = '/v1/metadata/types';
+  private static get_metadata_values_url = '/v1/metadata';
 
   private static retry_count = 2;
 
@@ -27,12 +31,17 @@ export class MetaDataService {
   public readonly pages = new ReplaySubject<DropDownDataItem[]>(1);
   public readonly placeholders = new ReplaySubject<DropDownDataItem[]>(1);
   public readonly brands = new ReplaySubject<DropDownDataItem[]>(1);
+  public readonly metadataTypes = new ReplaySubject<string[]>(1);
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private ruleUtilityService: RuleUtilityService
+  ) {
     this.fetchChannels();
     this.fetchPages();
     this.fetchPlaceholders();
     this.fetchBrands();
+    this.fetchTypes();
   }
 
   public fetchChannels(): void {
@@ -77,5 +86,20 @@ export class MetaDataService {
       .subscribe((data: MetaData) => {
         this.brands.next(data.metadata);
       });
+  }
+
+  private fetchTypes(): void {
+    this.http
+      .get<string[]>(`${environment.baseUrl}${MetaDataService.get_metadata_types_meta_url}`)
+      .pipe(
+        retry(MetaDataService.retry_count)
+      )
+      .subscribe((data: string[]) => {
+        this.metadataTypes.next(this.ruleUtilityService.filterMetadataTypes(data));
+      });
+  }
+
+  public getMetaValues(key: string) {
+    return this.http.get<MetaData>(`${environment.baseUrl}${MetaDataService.get_metadata_values_url}/${key}`);
   }
 }

@@ -19,6 +19,7 @@ import {
   PriceDetailViewComponent,
   MathOperatorDetailViewComponent,
   AdditionalDetailViewComponent,
+  CustomDetailViewComponent,
 } from './components';
 
 // services
@@ -58,6 +59,7 @@ export const COMPONENTS = [
   ConfirmPopupComponent,
   ActionButtonStrapComponent,
   CommonControlErrorViewComponent,
+  CustomDetailViewComponent,
   CharacterLengthRangeErrorComponent
 ];
 
