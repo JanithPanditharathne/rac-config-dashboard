@@ -18,15 +18,7 @@
                 </app-product-number-content>
             </ng-template>
         </app-tab>
-        <app-tab [title]="RulesTabTitle.PRICE" [id]="'tab-3'">
-            <ng-template #tabContent>
-                <app-price-content [parentElement]="parentElement"
-                                   [formDataArray]="parentFormGroup.get(ruleGeneratorType)"
-                                   [ruleGeneratorType]="ruleGeneratorType">
-                </app-price-content>
-            </ng-template>
-        </app-tab>
-        <app-tab *ngIf="metadataTypes?.length" [title]="RulesTabTitle.CUSTOM" [id]="'tab-4'">
+        <app-tab *ngIf="metadataTypes?.length" [title]="RulesTabTitle.CUSTOM" [id]="'tab-3'">
             <ng-template #tabContent>
                 <app-custom-content [parentElement]="parentElement"
                                     [formDataArray]="parentFormGroup.get(ruleGeneratorType)"

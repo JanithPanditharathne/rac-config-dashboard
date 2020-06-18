@@ -73,10 +73,6 @@ export class RuleMatchingContextComponent implements OnInit {
           context.push(ProductNumberContentComponent.buildFormGroup(this.fb, item));
           break;
 
-        case RuleTabDisplayDataType.Price:
-          context.push(PriceContentComponent.buildExactPriceGroup(this.fb, item));
-          break;
-
         case RuleTabDisplayDataType.Custom:
           context.push(CustomContentComponent.buildFormGroup(this.fb, item));
           break;
