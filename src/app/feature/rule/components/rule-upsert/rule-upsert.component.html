@@ -3,71 +3,87 @@
     <div class="rac-page-content-pane">
         <div class="container-fluid relative-parent" #RuleUpsert>
             <form [formGroup]="ruleForm" novalidate>
-            <div class="row rac-form-container">
-                <div class="col-lg-4">
-                    <div class="form-group" [class.input-error]="isInvalid('ruleName')">
-                        <label for="ruleName"
-                        >Rule Name<span class="required-label">*</span>
-                            <input class="form-control" type="text" formControlName="ruleName"
-                                   placeholder="Rule Name" id="ruleName"/>
-                        </label>
-                        <app-character-length-range-error
-                            [control]="ruleForm.get('ruleName')"
-                            [lengthError]="'Rule name must not be greater than 200 characters long'"
-                            [requiredError]="'Rule name is required'"
-                        >
-                        </app-character-length-range-error>
+                <div class="row rac-form-container">
+                    <div *ngIf="isEdit" class="col-lg-4">
+                        <div class="form-group">
+                            <label for="ruleId"
+                            >Rule ID<span *ngIf="!isEdit" class="required-label">*</span>
+                                <input [attr.disabled]="isEdit || null"
+                                       class="form-control"
+                                       type="number"
+                                       formControlName="ruleId"
+                                       placeholder="Rule ID"
+                                       id="ruleId"
+                                       min="1"
+                                       max="10000"
+                                />
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="form-check pt-4">
-                        <input
-                            class="form-check-input checkbox-input"
-                            type="checkbox"
-                            id="isGlobal"
-                            formControlName="isGlobal"/>
-                        <label for="isGlobal">Is Global</label>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="form-group" [class.input-error]="isInvalid('ruleType')">
-                        <label
-                        >Rule Type<span class="required-label">*</span>
-                            <ng-dropdown
-                                *ngIf="ruleTypeDropdownData"
-                                [id]="'rule-type-dropdown-data'"
-                                [selectTrackBy]="'id'"
-                                [displayTrackBy]="'name'"
-                                [formControlName]="'ruleType'"
-                                [relativeParentElement]="ruleFormParent"
-                                [options]="ruleTypeDropdownData"
-                                [selectMode]="dropdownSelectMode"
-                                [filterable]="true"
-                                [closeMenuOnSelect]="true"
+                    <div class="col-lg-4">
+                        <div class="form-group" [class.input-error]="isInvalid('ruleName')">
+                            <label for="ruleName"
+                            >Rule Name<span class="required-label">*</span>
+                                <input class="form-control" type="text" formControlName="ruleName"
+                                       placeholder="Rule Name" id="ruleName"/>
+                            </label>
+                            <app-character-length-range-error
+                                    [control]="ruleForm.get('ruleName')"
+                                    [lengthError]="'Rule name must not be greater than 200 characters long'"
+                                    [requiredError]="'Rule name is required'"
                             >
-                            </ng-dropdown>
-                        </label>
-                        <app-required-error [control]="ruleForm.get('ruleType')"
-                                            [requiredError]="'Rule type is required'"
-                                            [errorType]="'required'">
-                        </app-required-error>
+                            </app-character-length-range-error>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="form-check pt-4">
+                            <input
+                                    class="form-check-input checkbox-input"
+                                    type="checkbox"
+                                    id="isGlobal"
+                                    formControlName="isGlobal"/>
+                            <label for="isGlobal">Is Global</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group" [class.input-error]="isInvalid('ruleType')">
+                            <label
+                            >Rule Type<span class="required-label">*</span>
+                                <ng-dropdown
+                                        *ngIf="ruleTypeDropdownData"
+                                        [id]="'rule-type-dropdown-data'"
+                                        [selectTrackBy]="'id'"
+                                        [displayTrackBy]="'name'"
+                                        [formControlName]="'ruleType'"
+                                        [relativeParentElement]="ruleFormParent"
+                                        [options]="ruleTypeDropdownData"
+                                        [selectMode]="dropdownSelectMode"
+                                        [filterable]="true"
+                                        [closeMenuOnSelect]="true"
+                                >
+                                </ng-dropdown>
+                            </label>
+                            <app-required-error [control]="ruleForm.get('ruleType')"
+                                                [requiredError]="'Rule type is required'"
+                                                [errorType]="'required'">
+                            </app-required-error>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row rac-form-container">
-                <div class="col-lg-12">
-                    <app-rule-matching-context
-                            [parentFormGroup]="ruleForm"
-                            [contextData]="rule?.matchingConditionJson"
-                            [parentElement]="RuleUpsert">
-                    </app-rule-matching-context>
-                    <app-rule-action-context
-                            [parentFormGroup]="ruleForm"
-                            [contextData]="rule?.actionConditionJson"
-                            [parentElement]="RuleUpsert">
-                    </app-rule-action-context>
+                <div class="row rac-form-container">
+                    <div class="col-lg-12">
+                        <app-rule-matching-context
+                                [parentFormGroup]="ruleForm"
+                                [contextData]="rule?.matchingConditionJson"
+                                [parentElement]="RuleUpsert">
+                        </app-rule-matching-context>
+                        <app-rule-action-context
+                                [parentFormGroup]="ruleForm"
+                                [contextData]="rule?.actionConditionJson"
+                                [parentElement]="RuleUpsert">
+                        </app-rule-action-context>
+                    </div>
                 </div>
-            </div>
             </form>
         </div>
         <div class="rac-footer-button-container">

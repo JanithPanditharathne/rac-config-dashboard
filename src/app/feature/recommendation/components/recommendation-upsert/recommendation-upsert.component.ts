@@ -42,6 +42,7 @@ export class RecommendationUpsertComponent implements OnInit {
   public ActionType = ActionType;
   public FormAction = FormAction;
 
+  public isEdit: boolean;
   public recForm: FormGroup;
   public isBundleAdd = false;
   public formAction: FormAction;
@@ -76,6 +77,7 @@ export class RecommendationUpsertComponent implements OnInit {
     this.route.data.subscribe((data: { rec: Recommendation; formAction: FormAction }) => {
       if (data.rec) {
         this.recommendation = data.rec;
+        this.isEdit = true;
       }
 
       this.formAction = data.formAction;
@@ -260,11 +262,13 @@ export class RecommendationUpsertComponent implements OnInit {
   private buildFormGroup(): void {
     if (!this.recommendation) {
       this.recForm = this.fb.group({
+        recId: [null],
         recName: [null, Validators.required],
         selectedBundle: [null, Validators.required]
       });
     } else {
       this.recForm = this.fb.group({
+        recId: [this.recommendation.id],
         recName: [this.recommendation.name, Validators.required],
         selectedBundle: [this.recommendation.bundle, Validators.required]
       });

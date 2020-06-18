@@ -39,6 +39,7 @@ export class RuleUpsertComponent implements OnInit {
   public FormAction = FormAction;
 
   public rule: Rule;
+  public isEdit: boolean;
   public ruleForm: FormGroup;
   public formAction: FormAction;
   public actionBreadcrumb: ActionBreadcrumb[];
@@ -70,6 +71,7 @@ export class RuleUpsertComponent implements OnInit {
     this.route.data.subscribe((data: { rule: Rule; formAction: FormAction }) => {
       if (data.rule) {
         this.rule = data.rule;
+        this.isEdit = true;
       }
 
       this.formAction = data.formAction;
@@ -209,6 +211,7 @@ export class RuleUpsertComponent implements OnInit {
   private buildFormGroup(): void {
     if (this.rule) {
       this.ruleForm = this.fb.group({
+        ruleId: [this.rule.id],
         ruleName: [this.rule.name, Validators.required],
         ruleType: [this.ruleUtilityService.mapRuleTypeDropdownData(this.rule.type), Validators.required],
         isGlobal: [this.rule.isGlobal],
@@ -217,6 +220,7 @@ export class RuleUpsertComponent implements OnInit {
       });
     } else {
       this.ruleForm = this.fb.group({
+        ruleId: [null],
         ruleName: [null, Validators.required],
         ruleType: [null, Validators.required],
         isGlobal: [false],

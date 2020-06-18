@@ -8,6 +8,20 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="rac-form-container">
+                                    <div *ngIf="isEdit" class="form-group">
+                                        <label for="slotId"
+                                        >Rec Slot ID<span *ngIf="!isEdit" class="required-label">*</span>
+                                            <input  [attr.disabled]="isEdit || null"
+                                                    class="form-control"
+                                                    type="number"
+                                                    formControlName="slotId"
+                                                    placeholder="Rec Slot ID"
+                                                    id="slotId"
+                                                    min="1"
+                                                    max="10000"
+                                            />
+                                        </label>
+                                    </div>
                                     <div class="form-group" [class.input-error]="isInvalid('channel')">
                                         <label>Channel <span class="required-label">*</span>
                                             <ng-dropdown

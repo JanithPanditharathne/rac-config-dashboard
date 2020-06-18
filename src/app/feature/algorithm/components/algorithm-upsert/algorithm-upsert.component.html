@@ -10,9 +10,8 @@
                                 <div class="rac-form-container">
                                     <div class="form-group" [class.input-error]="isInvalid('algorithmId')">
                                         <label for="algorithmId"
-                                        >Algorithm ID<span class="required-label">*</span>
-                                            <input
-                                                    [attr.disabled]="isEdit || null"
+                                        >Algorithm ID<span *ngIf="!isEdit" class="required-label">*</span>
+                                            <input  [attr.disabled]="isEdit || null"
                                                     class="form-control"
                                                     type="number"
                                                     formControlName="algorithmId"

@@ -33,6 +33,7 @@ export class BundleFormComponent implements OnInit {
   public FormAction = FormAction;
   public actionBreadcrumb: ActionBreadcrumb[];
 
+  public isEdit: boolean;
   public bundleId: string;
   public bundleFormGroup: FormGroup;
 
@@ -64,6 +65,7 @@ export class BundleFormComponent implements OnInit {
   public ngOnInit(): void {
     if (this.bundle) {
       this.bundleId = this.bundle.id;
+      this.isEdit = true;
     }
     this.initBundleFormGroup();
     this.onCombinedEnabledChange();
@@ -228,6 +230,7 @@ export class BundleFormComponent implements OnInit {
   private initBundleFormGroup(): void {
     if (this.bundle) {
       this.bundleFormGroup = this.fb.group({
+        bundleId: [this.bundle.id],
         bundleName: [this.bundle.name, Validators.required],
         combineEnabled: [this.bundle.combineEnabled],
         combineDisplayText: [this.bundle.combineDisplayText],
@@ -247,6 +250,7 @@ export class BundleFormComponent implements OnInit {
       return;
     }
     this.bundleFormGroup = this.fb.group({
+      bundleId: [null],
       bundleName: [null, Validators.required],
       combineEnabled: [null],
       combineDisplayText: [null],

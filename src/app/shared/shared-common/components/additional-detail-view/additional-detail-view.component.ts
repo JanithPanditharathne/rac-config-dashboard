@@ -41,8 +41,8 @@ export class AdditionalDetailViewComponent {
    */
   public getOperatorValue(operator: any): string {
     if (typeof operator === 'boolean') {
-      return operator ? 'ignore_case' : '';
+      return operator ? 'ignore_case_values' : '';
     }
-    return operator === OperatorType.EQUAL_IGNORE_CASE ? 'ignore_case' : '';
+    return operator === OperatorType.EQUAL_IGNORE_CASE ? 'ignore_case_values' : '';
   }
 }

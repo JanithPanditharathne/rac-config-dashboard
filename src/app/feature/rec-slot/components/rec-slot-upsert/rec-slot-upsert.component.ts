@@ -42,10 +42,11 @@ export class RecSlotUpsertComponent implements OnInit {
   public ActionType = ActionType;
   public FormAction = FormAction;
 
-  public recSlotFormGroup: FormGroup;
-  public formAction: FormAction;
+  public isEdit: boolean;
   public recSlot: RecSlot;
+  public formAction: FormAction;
   public currentSelected: any[];
+  public recSlotFormGroup: FormGroup;
   public recommendationDataSource: Observable<Recommendation[]>;
   public rulesDataSource: Observable<Rule[]>;
 
@@ -77,6 +78,7 @@ export class RecSlotUpsertComponent implements OnInit {
     this.route.data.subscribe((data: { recSlot: RecSlot; formAction: FormAction }) => {
       if (data.recSlot) {
         this.recSlot = data.recSlot;
+        this.isEdit = true;
       }
 
       this.formAction = data.formAction;
@@ -277,6 +279,7 @@ export class RecSlotUpsertComponent implements OnInit {
   private buildFormGroup(): void {
     if (this.recSlot) {
       this.recSlotFormGroup = this.fb.group({
+        slotId: [this.recSlot.id],
         channel: [this.recSlot.channel, Validators.required],
         page: [this.recSlot.page, Validators.required],
         placeholder: [this.recSlot.placeholder, Validators.required],
@@ -285,6 +288,7 @@ export class RecSlotUpsertComponent implements OnInit {
       });
     } else {
       this.recSlotFormGroup = this.fb.group({
+        slotId: [null],
         channel: [null, Validators.required],
         page: [null, Validators.required],
         placeholder: [null, Validators.required],
