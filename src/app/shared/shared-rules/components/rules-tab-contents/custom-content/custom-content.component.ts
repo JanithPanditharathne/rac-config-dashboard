@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { fromEvent, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 
 import { DropdownSelectMode } from 'ornamentum';
 
@@ -11,7 +14,7 @@ import { ActionType } from '../../../../shared-common/enums';
 import { RuleGeneratorType, RulesCustomType, RuleTabDisplayDataType, RuleTabInlineDataGeneratorType } from '../../../enums';
 
 import { RuleContextFormUtility, RuleContextDataService } from '../../../services';
-import { FormValidator, MetaDataService } from '../../../../shared-common/services';
+import { CustomFormValidator, FormValidator, MetaDataService } from '../../../../shared-common/services';
 
 /**
  * Component class to represent custom tab content.
@@ -23,16 +26,20 @@ import { FormValidator, MetaDataService } from '../../../../shared-common/servic
   styleUrls: ['./custom-content.component.scss'],
   templateUrl: './custom-content.component.html'
 })
-export class CustomContentComponent implements OnInit {
+export class CustomContentComponent implements OnInit, AfterViewInit {
+  public valueInputType = 'text';
   public dropdownSelectMode: DropdownSelectMode = 'single';
   public RuleTabInlineDataGeneratorType = RuleTabInlineDataGeneratorType;
   public ActionType = ActionType;
 
-  public operators: RuleContextOperatorData[] = RuleContextFormUtility.priceOperators;
+  public operators: RuleContextOperatorData[] = RuleContextFormUtility.numericalOperators;
 
   public selectedKey: string;
   public customFormGroup: FormGroup;
-  public values: DropDownDataItem[];
+  public values: DropDownDataItem[] = [];
+  private valuesSubscription: Subscription;
+
+  @ViewChild('keyInput', {static: false}) keyInput: ElementRef;
 
   @Input()
   public ruleGeneratorType = RuleGeneratorType.MATCHING;
@@ -61,6 +68,24 @@ export class CustomContentComponent implements OnInit {
    */
   public ngOnInit(): void {
     this.customFormGroup = this.initCustomFormGroup();
+  }
+
+  /**
+   * ngAfterViewInit Event handler.
+   */
+  public ngAfterViewInit(): void {
+    fromEvent(this.keyInput.nativeElement, 'keyup')
+      .pipe(
+        debounceTime(200),
+        distinctUntilChanged(),
+        tap((text) => {
+          this.customFormGroup.patchValue({
+            operator: null,
+            values: null
+          });
+          this.updateValues();
+        })
+      ).subscribe();
   }
 
   /**
@@ -154,18 +179,60 @@ export class CustomContentComponent implements OnInit {
     switch (this.selectedKey) {
       case RulesCustomType.CATEGORY:
       case RulesCustomType.DEPARTMENT:
-        this.operators = RuleContextFormUtility.nonnumericalOperators;
-        break;
-      case RulesCustomType.REVIEW_COUNT:
-      case RulesCustomType.RATING:
-        this.operators = RuleContextFormUtility.numericalOperators;
+        this.addNonNumericalValidators();
         break;
       default:
-        this.operators = RuleContextFormUtility.nonnumericalOperators;
+        this.addNumericalValidators();
         break;
     }
 
-    this.metaDataService.getMetaValues(this.selectedKey).subscribe((data: MetaData) => {
+    this.customFormGroup.patchValue({
+      operator: null,
+      values: null
+    });
+
+    this.updateValues();
+  }
+
+  /**
+   * Responsible to add numerical validators to values field.
+   */
+  private addNumericalValidators(): void {
+    this.valueInputType = 'number';
+    FormValidator.clearControlValidators(this.customFormGroup.get('values'));
+    FormValidator.setControlValidators(this.customFormGroup.get('values'),
+      Validators.compose([
+        Validators.required,
+        CustomFormValidator.regexPattern(CustomFormValidator.integer_with_two_decimal_regex)
+      ]));
+  }
+
+  /**
+   * Responsible to add non-numerical validators to values field.
+   */
+  private addNonNumericalValidators(): void {
+    this.valueInputType = 'text';
+    FormValidator.clearControlValidators(this.customFormGroup.get('values'));
+    FormValidator.setControlValidators(this.customFormGroup.get('values'),
+      Validators.compose([
+        Validators.required
+      ]));
+  }
+
+  /**
+   * Responsible for update values field.
+   */
+  private updateValues(): void {
+    if (this.valuesSubscription) {
+      this.valuesSubscription.unsubscribe();
+    }
+    this.values = [];
+
+    if (!this.selectedKey) {
+      return;
+    }
+
+    this.valuesSubscription = this.metaDataService.getMetaValues(this.selectedKey).subscribe((data: MetaData) => {
       this.values = data.metadata;
     });
   }

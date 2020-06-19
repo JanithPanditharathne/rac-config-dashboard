@@ -24,7 +24,7 @@
             </div>
             <div class="rac-condition-sub-item small-price">
                 <div>
-                    <input type="number" class="form-control" placeholder="Price" step="0.01" formControlName="price"/>
+                    <input type="number" class="form-control" placeholder="Price" step="0.01" min="0" formControlName="price"/>
                     <app-range-error
                         [control]="priceGroup.get('exactPrice.price')"
                         [minError]="'Price should be greater than 0'"

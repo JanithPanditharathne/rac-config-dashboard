@@ -43,11 +43,12 @@
                 </div>
             </div>
                 <div class="rac-condition-custom" [hidden]="!customFormGroup.get('key').value">
-                <div class="form-group" >
+                <div class="form-group" [class.input-error]="isInvalid('values')">
                     <label
                     >Value
                         <span class="rac-max-length">Maximum character length is 200</span>
                         <input [id]="'custom-value-options-' + ruleGeneratorType"
+                               [type]="valueInputType"
                                [typeahead]="values"
                                [typeaheadOptionsLimit]="10"
                                [typeaheadMinLength]="0"
@@ -57,6 +58,7 @@
                                formControlName="values"
                                placeholder="Select Value"
                                maxlength="200"
+                               autocomplete="off"
                                class="form-control">
                     </label>
                 </div>
