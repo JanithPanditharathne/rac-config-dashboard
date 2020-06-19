@@ -17,8 +17,10 @@
                                    formControlName="key"
                                    placeholder="Select Key"
                                    class="form-control"
+                                   autocomplete="off"
                                    maxlength="200"
-                                   (typeaheadOnSelect)="onKeySelect()">
+                                   (typeaheadOnSelect)="onKeySelect()"
+                                   #keyInput>
                         </label>
                 </div>
             </div>
@@ -57,8 +59,8 @@
                                typeaheadOptionField="name"
                                formControlName="values"
                                placeholder="Select Value"
-                               maxlength="200"
                                autocomplete="off"
+                               maxlength="200"
                                class="form-control">
                     </label>
                 </div>
