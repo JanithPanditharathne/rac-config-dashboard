@@ -1,5 +1,6 @@
 import { AfterContentInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router, UrlSegment } from '@angular/router';
+import { PlatformLocation } from '@angular/common';
 
 import { UserProfileService } from '../../services';
 
@@ -28,7 +29,19 @@ export class MenuBarComponent implements AfterContentInit, OnInit {
   @Output()
   public logout = new EventEmitter();
 
-  constructor(private router: Router, private userProfileService: UserProfileService) {
+  constructor(
+    private router: Router,
+    private userProfileService: UserProfileService,
+    private location: PlatformLocation) {
+
+    location.onPopState(() => {
+      this.resetState(this.menuItems, true, false);
+      const routePath = location.hash.split('/')[1];
+      const activeMenuItem = this.menuItems.find((item: MenuItem) => {
+        return item.routePath === routePath;
+      });
+      activeMenuItem.active = true;
+    });
   }
 
   public toggleMenuCollapse(): void {
