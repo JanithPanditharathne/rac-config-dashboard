@@ -934,6 +934,14 @@ select {
     font-weight: 500;
     margin: 0;
     width: 100%;
+
+    .rac-max-length {
+      @include font-size(.6, 1.2);
+      font-style: italic;
+      font-weight: 300;
+      position: absolute;
+      right: 0;
+    }
   }
 
   .form-group {
@@ -1517,7 +1525,8 @@ bs-datepicker-container {
       }
     }
 
-    app-price-detail-view {
+    app-price-detail-view,
+    app-custom-detail-view {
       .rac-selected-condition {
         border-radius: 0;
       }
@@ -1566,6 +1575,14 @@ bs-datepicker-container {
     @include font-size(.8, 1.1);
     font-weight: 400;
     padding-left: 0;
+
+    span {
+      background: $rac-selected-condition-ignore-background;
+      border-radius: .3rem;
+      color: $rac-selected-condition-ignore-color;
+      margin-left: 1rem;
+      padding: .2rem;
+    }
   }
 
   .rac-selected-condition-action-buttons {

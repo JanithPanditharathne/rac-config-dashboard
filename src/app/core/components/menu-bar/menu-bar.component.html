@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg sticky-top" (ngClickOutside)="hideCollapsibleMenu()">
-    <a class="navbar-brand nav-brand-lg app-name-lg pointer-link" (click)="goToHomePage()">{{ appName }}</a>
-    <span style="color: white;">{{ appVersion }}</span>
+    <a class="navbar-brand nav-brand-lg app-name-lg pointer-link" (click)="goToHomePage()">{{ appName }}<span class="rac-app-version">{{ appVersion }}</span></a>
+
     <div class="user-menu-container-sm">
         <button class="navbar-toggler" type="button" (click)="toggleMenuCollapse()">
             <i class="rac-menu-icon"></i>
         </button>
-        <a class="navbar-brand app-name">{{ appName }}</a>
-        <span style="color: white;">{{ appVersion }}</span>
+        <a class="navbar-brand app-name" (click)="goToHomePage()">{{ appName }}<span class="rac-app-version">{{ appVersion }}</span></a>
+
         <ul class="navbar-nav user-menu">
             <li class="profile-name">
                 <span *ngIf="profile">{{ profile?.username }}</span>

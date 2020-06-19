@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="form-group" [class.input-error]="isInvalid('bundleName')">
                                     <label>Bundle Name <span class="required-label">*</span>
-                                        <span>Maximum character length is 200</span>
+                                        <span class="rac-max-length">Maximum character length is 200</span>
                                         <input class="form-control"
                                                formControlName="bundleName"
                                                maxlength="200"
@@ -46,7 +46,7 @@
                              [class.input-error]="isInvalid('combineDisplayText')">
                             <label for="combineDisplayText"
                             >Combine Display Text<span class="required-label">*</span>
-                                <span>Maximum character length is 2000</span>
+                                <span class="rac-max-length">Maximum character length is 2000</span>
                                 <textarea
                                         class="form-control"
                                         formControlName="combineDisplayText"

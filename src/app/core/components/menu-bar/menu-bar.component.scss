@@ -12,6 +12,15 @@
   padding: 0 1rem;
   z-index: 1049;
 
+  .rac-app-version {
+    color: $logo-text-color;;
+    font-size: .7rem;
+    position: absolute;
+    right: 0;
+    text-transform: capitalize;
+    top: 1.2rem;
+  }
+
   .navbar-brand {
     @include font-size(1, 1.6);
     color: $logo-text-color;
