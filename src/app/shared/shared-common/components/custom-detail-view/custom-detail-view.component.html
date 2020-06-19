@@ -9,7 +9,10 @@
 
     <ng-container *ngIf="customItem.value.values">
         <span class="rac-selected-condition-value">
-            {{ customItem.value.values }}<span> {{customItem.operator === 'eqic' ? 'ignore case in values' : ''}}</span>
+            {{ customItem.value.values }}
+        </span>
+        <span [class.equal-ignore-case]="customItem.operator === 'eqic'">
+            {{customItem.operator === 'eqic' ? 'ignore case in values' : ''}}
         </span>
     </ng-container>
     <ng-container [ngTemplateOutlet]="actionTemplate"></ng-container>
