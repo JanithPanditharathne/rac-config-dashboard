@@ -78,7 +78,8 @@ export class CustomContentComponent implements OnInit, AfterViewInit {
       .pipe(
         debounceTime(200),
         distinctUntilChanged(),
-        tap((text) => {
+        tap(() => {
+          this.addNonNumericalValidators();
           this.customFormGroup.patchValue({
             operator: null,
             values: null
