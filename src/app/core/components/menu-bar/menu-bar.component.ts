@@ -11,6 +11,7 @@ import { MenuItem, UserProfile } from '../../models';
   templateUrl: './menu-bar.component.html'
 })
 export class MenuBarComponent implements AfterContentInit, OnInit {
+  public appVersion = `version ${window['appVersion']}`;
   private static MOBILE_BREAKPOINT = 991;
 
   public menuCollapsed = true;

@@ -1,113 +1,117 @@
 <nav class="navbar navbar-expand-lg sticky-top" (ngClickOutside)="hideCollapsibleMenu()">
-  <a class="navbar-brand nav-brand-lg app-name-lg pointer-link" (click)="goToHomePage()">{{ appName }}</a>
-  <div class="user-menu-container-sm">
-    <button class="navbar-toggler" type="button" (click)="toggleMenuCollapse()">
-      <i class="rac-menu-icon"></i>
-    </button>
-    <a class="navbar-brand app-name">{{ appName }}</a>
-    <ul class="navbar-nav user-menu">
-      <li class="profile-name">
-        <span *ngIf="profile">{{ profile?.username }}</span>
-      </li>
-      <li class="button-container">
-        <button
-          title="Logout"
-          type="button"
-          (click)="onLogout()"
-          class="logout-button"
-        >
+    <a class="navbar-brand nav-brand-lg app-name-lg pointer-link" (click)="goToHomePage()">{{ appName }}</a>
+    <span style="color: white;">{{ appVersion }}</span>
+    <div class="user-menu-container-sm">
+        <button class="navbar-toggler" type="button" (click)="toggleMenuCollapse()">
+            <i class="rac-menu-icon"></i>
         </button>
-      </li>
-    </ul>
-  </div>
-  <div class="main-navigation navbar-collapse" id="mainnavbar" [hidden]="menuCollapsed" (mouseleave)="menuItemMouseLeave()">
-    <ul class="navbar-nav mr-auto" (ngClickOutside)="resetState(menuItems, false, true)">
-      <ng-container *ngFor="let menuItem of menuItems">
-        <li
-          class="nav-item"
-          *ngIf="menuItem.visible"
-          [class.active]="menuItem.active"
-          [ngClass]="menuItem.listItemClasses"
-          [class.dropdown]="hasChildren(menuItem)"
-          [class.nav-leaf]="!hasChildren(menuItem)"
-          [class.expanded]="menuItem.expanded"
-        >
-          <a
-            class="nav-link"
-            (click)="onMenuItemClick(menuItem)"
-            (mouseenter)="menuItemMouseEnter(menuItem)"
-            [class.dropdown-toggle]="hasChildren(menuItem)"
-          >
-            <span class="main-nav-label">
-              <i [ngClass]="menuItem.iconClasses"></i><span class="menu-title">{{ menuItem.title }}</span>
-            </span>
-          </a>
-          <div *ngIf="hasChildren(menuItem)" [class.expanded]="menuItem.expanded" [hidden]="!menuItem.expanded">
-            <ul class="dropdown-menu multi-level" style="display: block;">
-              <ng-container *ngFor="let childMenuItem of menuItem.items">
-                <li
-                  class="dropdown-item"
-                  *ngIf="childMenuItem.visible"
-                  [class.active]="childMenuItem.active"
-                  [ngClass]="childMenuItem.listItemClasses"
-                  [class.dropdown]="hasChildren(childMenuItem)"
-                  [class.nav-leaf]="!hasChildren(childMenuItem)"
-                  [class.expanded]="childMenuItem.expanded"
+        <a class="navbar-brand app-name">{{ appName }}</a>
+        <span style="color: white;">{{ appVersion }}</span>
+        <ul class="navbar-nav user-menu">
+            <li class="profile-name">
+                <span *ngIf="profile">{{ profile?.username }}</span>
+            </li>
+            <li class="button-container">
+                <button
+                        title="Logout"
+                        type="button"
+                        (click)="onLogout()"
+                        class="logout-button"
                 >
-                  <a
-                    class="nav-link"
-                    (click)="onMenuItemClick(menuItem, childMenuItem)"
-                    (mouseenter)="menuItemMouseEnter(menuItem, childMenuItem)"
-                    [class.dropdown-toggle]="hasChildren(childMenuItem)"
-                  >
-                    <span class="main-nav-label">
-                      <i [ngClass]="childMenuItem.iconClasses"></i>
-                      <span class="menu-title">{{ childMenuItem.title }}</span>
-                    </span>
-                    <i class="zmdi zmdi-chevron-right expand-icon"></i>
-                  </a>
-                  <div *ngIf="hasChildren(childMenuItem)" [class.expanded]="childMenuItem.expanded" [hidden]="!childMenuItem.expanded">
-                    <ul class="dropdown-menu multi-level" style="display: block;">
-                      <ng-container *ngFor="let grandChildMenuItem of childMenuItem.items">
-                        <li
-                          class="dropdown-item"
-                          *ngIf="grandChildMenuItem.visible"
-                          [class.active]="grandChildMenuItem.active"
-                          [ngClass]="grandChildMenuItem.listItemClasses"
-                          [class.dropdown]="hasChildren(grandChildMenuItem)"
-                          [class.nav-leaf]="!hasChildren(grandChildMenuItem)"
-                          [class.expanded]="grandChildMenuItem.expanded"
-                        >
-                          <a class="nav-link" (click)="onMenuItemClick(menuItem, childMenuItem, grandChildMenuItem)">
-                            <span class="main-nav-label">
-                              <i [ngClass]="grandChildMenuItem.iconClasses"></i>
-                              <span class="menu-title">{{ grandChildMenuItem.title }}</span>
-                            </span>
-                          </a>
-                        </li>
-                      </ng-container>
-                    </ul>
-                  </div>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="main-navigation navbar-collapse"
+         id="mainnavbar" [hidden]="menuCollapsed" (mouseleave)="menuItemMouseLeave()">
+        <ul class="navbar-nav mr-auto" (ngClickOutside)="resetState(menuItems, false, true)">
+            <ng-container *ngFor="let menuItem of menuItems">
+                <li
+                        class="nav-item"
+                        *ngIf="menuItem.visible"
+                        [class.active]="menuItem.active"
+                        [ngClass]="menuItem.listItemClasses"
+                        [class.dropdown]="hasChildren(menuItem)"
+                        [class.nav-leaf]="!hasChildren(menuItem)"
+                        [class.expanded]="menuItem.expanded"
+                >
+                    <a
+                            class="nav-link"
+                            (click)="onMenuItemClick(menuItem)"
+                            (mouseenter)="menuItemMouseEnter(menuItem)"
+                            [class.dropdown-toggle]="hasChildren(menuItem)"
+                    >
+                        <span class="main-nav-label">
+                            <i [ngClass]="menuItem.iconClasses"></i>
+                            <span class="menu-title">{{ menuItem.title }}</span>
+                        </span>
+                    </a>
+                    <div *ngIf="hasChildren(menuItem)" [class.expanded]="menuItem.expanded" [hidden]="!menuItem.expanded">
+                        <ul class="dropdown-menu multi-level" style="display: block;">
+                            <ng-container *ngFor="let childMenuItem of menuItem.items">
+                                <li
+                                        class="dropdown-item"
+                                        *ngIf="childMenuItem.visible"
+                                        [class.active]="childMenuItem.active"
+                                        [ngClass]="childMenuItem.listItemClasses"
+                                        [class.dropdown]="hasChildren(childMenuItem)"
+                                        [class.nav-leaf]="!hasChildren(childMenuItem)"
+                                        [class.expanded]="childMenuItem.expanded"
+                                >
+                                    <a
+                                            class="nav-link"
+                                            (click)="onMenuItemClick(menuItem, childMenuItem)"
+                                            (mouseenter)="menuItemMouseEnter(menuItem, childMenuItem)"
+                                            [class.dropdown-toggle]="hasChildren(childMenuItem)"
+                                    >
+                                        <span class="main-nav-label">
+                                            <i [ngClass]="childMenuItem.iconClasses"></i>
+                                            <span class="menu-title">{{ childMenuItem.title }}</span>
+                                        </span>
+                                        <i class="zmdi zmdi-chevron-right expand-icon"></i>
+                                    </a>
+                                    <div *ngIf="hasChildren(childMenuItem)" [class.expanded]="childMenuItem.expanded" [hidden]="!childMenuItem.expanded">
+                                        <ul class="dropdown-menu multi-level" style="display: block;">
+                                            <ng-container *ngFor="let grandChildMenuItem of childMenuItem.items">
+                                                <li
+                                                        class="dropdown-item"
+                                                        *ngIf="grandChildMenuItem.visible"
+                                                        [class.active]="grandChildMenuItem.active"
+                                                        [ngClass]="grandChildMenuItem.listItemClasses"
+                                                        [class.dropdown]="hasChildren(grandChildMenuItem)"
+                                                        [class.nav-leaf]="!hasChildren(grandChildMenuItem)"
+                                                        [class.expanded]="grandChildMenuItem.expanded"
+                                                >
+                                                    <a class="nav-link" (click)="onMenuItemClick(menuItem, childMenuItem, grandChildMenuItem)">
+                                                        <span class="main-nav-label">
+                                                            <i [ngClass]="grandChildMenuItem.iconClasses"></i>
+                                                            <span class="menu-title">{{ grandChildMenuItem.title }}</span>
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            </ng-container>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ng-container>
+                        </ul>
+                    </div>
                 </li>
-              </ng-container>
-            </ul>
-          </div>
-        </li>
-      </ng-container>
-    </ul>
-    <ul class="navbar-nav user-menu user-menu-container-lg">
-      <li class="profile-name">
-        <span *ngIf="profile">{{ profile?.username }}</span>
-      </li>
-      <li class="button-container">
-        <button
-          title="Logout"
-          type="button"
-          (click)="onLogout()"
-          class="logout-button"
-        >
-        </button>
-      </li>
-    </ul>
-  </div>
+            </ng-container>
+        </ul>
+        <ul class="navbar-nav user-menu user-menu-container-lg">
+            <li class="profile-name">
+                <span *ngIf="profile">{{ profile?.username }}</span>
+            </li>
+            <li class="button-container">
+                <button
+                        title="Logout"
+                        type="button"
+                        (click)="onLogout()"
+                        class="logout-button"
+                >
+                </button>
+            </li>
+        </ul>
+    </div>
 </nav>

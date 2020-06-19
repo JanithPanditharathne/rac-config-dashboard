@@ -8,27 +8,26 @@
                         <div *ngIf="isEdit" class="form-group">
                             <label for="recId"
                             >Rec ID<span *ngIf="!isEdit" class="required-label">*</span>
-                                <input  [attr.disabled]="isEdit || null"
-                                        class="form-control"
-                                        type="number"
-                                        formControlName="recId"
-                                        placeholder="Rec ID"
-                                        id="recId"
-                                        min="1"
-                                        max="10000"
+                                <input [attr.disabled]="isEdit || null"
+                                       class="form-control"
+                                       type="number"
+                                       formControlName="recId"
+                                       placeholder="Rec ID"
+                                       id="recId"
                                 />
                             </label>
                         </div>
                         <div class="form-group" [class.input-error]="isInvalid('recName')">
                             <label for="recName"
                             >Rec Name<span class="required-label">*</span>
+                                <span>Maximum character length is 200</span>
                                 <input class="form-control" type="text" formControlName="recName"
-                                       placeholder="Rec Name" id="recName"/>
+                                       placeholder="Rec Name" id="recName" maxlength="200"/>
                             </label>
                             <app-character-length-range-error
-                                [control]="recForm.get('recName')"
-                                [lengthError]="'Recommendation name must not be greater than 200 characters long'"
-                                [requiredError]="'Recommendation name is required'"
+                                    [control]="recForm.get('recName')"
+                                    [lengthError]="'Recommendation name must not be greater than 200 characters long'"
+                                    [requiredError]="'Recommendation name is required'"
                             >
                             </app-character-length-range-error>
                         </div>
@@ -47,16 +46,16 @@
                             <label
                             >Select existing bundle<span class="required-label">*</span>
                                 <ng-dropdown
-                                    [id]="'bundle-dropdown-data'"
-                                    [selectTrackBy]="'id'"
-                                    [displayTrackBy]="'name'"
-                                    [menuWidth]="390"
-                                    [formControlName]="'selectedBundle'"
-                                    [relativeParentElement]="recFormParent"
-                                    [options]="bundleDropdownData"
-                                    [selectMode]="dropdownSelectMode"
-                                    [filterable]="true"
-                                    [closeMenuOnSelect]="true"
+                                        [id]="'bundle-dropdown-data'"
+                                        [selectTrackBy]="'id'"
+                                        [displayTrackBy]="'name'"
+                                        [menuWidth]="390"
+                                        [formControlName]="'selectedBundle'"
+                                        [relativeParentElement]="recFormParent"
+                                        [options]="bundleDropdownData"
+                                        [selectMode]="dropdownSelectMode"
+                                        [filterable]="true"
+                                        [closeMenuOnSelect]="true"
                                 >
                                 </ng-dropdown>
                             </label>

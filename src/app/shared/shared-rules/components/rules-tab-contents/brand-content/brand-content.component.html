@@ -4,6 +4,7 @@
             <div class="form-group" [class.input-error]="isInvalid('brand')">
                 <label
                 >Brand
+                    <span>Maximum character length is 200</span>
                     <input [typeahead]="brands"
                            [typeaheadOptionsLimit]="10"
                            [typeaheadMinLength]="0"
@@ -12,7 +13,8 @@
                            typeaheadOptionField="name"
                            formControlName="brand"
                            placeholder="Select Brand"
-                           class="form-control">
+                           class="form-control"
+                           maxlength="200">
                 </label>
                 <app-character-length-range-error
                     [control]="baseFormGroup.get('brand')"

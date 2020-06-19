@@ -14,8 +14,6 @@
                                        formControlName="ruleId"
                                        placeholder="Rule ID"
                                        id="ruleId"
-                                       min="1"
-                                       max="10000"
                                 />
                             </label>
                         </div>
@@ -24,8 +22,9 @@
                         <div class="form-group" [class.input-error]="isInvalid('ruleName')">
                             <label for="ruleName"
                             >Rule Name<span class="required-label">*</span>
+                                <span>Maximum character length is 200</span>
                                 <input class="form-control" type="text" formControlName="ruleName"
-                                       placeholder="Rule Name" id="ruleName"/>
+                                       placeholder="Rule Name" id="ruleName" maxlength="200"/>
                             </label>
                             <app-character-length-range-error
                                     [control]="ruleForm.get('ruleName')"

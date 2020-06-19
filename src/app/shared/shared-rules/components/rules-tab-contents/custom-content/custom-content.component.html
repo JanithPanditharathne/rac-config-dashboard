@@ -5,6 +5,7 @@
                 <div class="form-group">
                     <label
                     >Key
+                        <span>Maximum character length is 200</span>
                         <input [id]="'custom-keys-options-' + ruleGeneratorType"
                                [typeahead]="keys"
                                [typeaheadOptionsLimit]="10"
@@ -16,6 +17,7 @@
                                formControlName="key"
                                placeholder="Select Key"
                                class="form-control"
+                               maxlength="200"
                                (typeaheadOnSelect)="onKeySelect()">
                     </label>
                 </div>
@@ -42,6 +44,7 @@
                 <div class="form-group">
                     <label
                     >Value
+                        <span>Maximum character length is 200</span>
                         <input [id]="'custom-value-options-' + ruleGeneratorType"
                                [typeahead]="values"
                                [typeaheadOptionsLimit]="10"
@@ -51,6 +54,7 @@
                                typeaheadOptionField="name"
                                formControlName="values"
                                placeholder="Select Value"
+                               maxlength="200"
                                class="form-control">
                     </label>
                 </div>

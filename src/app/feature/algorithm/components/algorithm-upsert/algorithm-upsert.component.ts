@@ -12,7 +12,7 @@ import { AlertType, SuccessStatus } from '../../../../core/enums';
 import { ActionType, FormAction } from 'src/app/shared/shared-common/enums';
 
 import { NotificationService } from '../../../../core/services';
-import { FormValidator } from '../../../../shared/shared-common/services';
+import { CustomFormValidator, FormValidator } from '../../../../shared/shared-common/services';
 import { AlgorithmService } from '../../../../shared/shared-algorithm/services';
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
 
@@ -197,7 +197,7 @@ export class AlgorithmUpsertComponent implements OnInit {
   private buildFormGroup(): void {
     if (this.algorithm) {
       this.algorithmForm = this.fb.group({
-        algorithmId: [this.algorithm.id, Validators.required],
+        algorithmId: [this.algorithm.id],
         algorithmName: [this.algorithm.name, Validators.required],
         description: [this.algorithm.description, Validators.required],
         displayText: [this.algorithm.defaultDisplayText, Validators.required]
@@ -205,7 +205,13 @@ export class AlgorithmUpsertComponent implements OnInit {
       return;
     }
     this.algorithmForm = this.fb.group({
-      algorithmId: [null, Validators.required],
+      algorithmId: [null, Validators.compose([
+          Validators.required,
+          Validators.min(1),
+          Validators.max(9999),
+          CustomFormValidator.regexPattern(CustomFormValidator.integer_regex)
+        ]
+      )],
       algorithmName: [null, Validators.required],
       description: [null, Validators.required],
       displayText: [null, Validators.required]

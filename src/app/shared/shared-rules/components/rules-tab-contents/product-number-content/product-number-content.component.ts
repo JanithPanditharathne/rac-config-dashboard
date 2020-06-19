@@ -47,7 +47,7 @@ export class ProductNumberContentComponent implements OnInit {
    */
   public ngOnInit(): void {
     this.baseFormGroup = this.fb.group({
-      productNumber: ['', Validators.compose([Validators.maxLength(20), Validators.pattern(CustomFormValidator.alphanumeric_regex)])]
+      productNumber: ['', Validators.pattern(CustomFormValidator.alphanumeric_regex)]
     });
 
     this.productNumberGroup = this.ruleContextDataService.findFacetFormGroup(this.formDataArray, RuleTabDisplayDataType.ProductNumber);
