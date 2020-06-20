@@ -127,11 +127,7 @@ export class PriceContentComponent implements OnInit {
         operator: this.operators[0],
         price: [
           '',
-          Validators.compose([
-            Validators.min(0),
-            Validators.max(1000000),
-            CustomFormValidator.regexPattern(CustomFormValidator.integer_with_two_decimal_regex)
-          ])
+          Validators.required
         ]
       })
     });

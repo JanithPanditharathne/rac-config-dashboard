@@ -51,7 +51,7 @@ export class CustomContentComponent implements OnInit, AfterViewInit {
   public formDataArray: FormArray;
 
   @Input()
-  public keys: string[];
+  public keys: string[] = [];
 
   public static buildFormGroup(fb: FormBuilder, customData?: RuleCustomDataItem): FormGroup {
     return RuleContextFormUtility.buildFormGroup(fb, RuleTabDisplayDataType.Custom, customData);
@@ -79,12 +79,7 @@ export class CustomContentComponent implements OnInit, AfterViewInit {
         debounceTime(200),
         distinctUntilChanged(),
         tap(() => {
-          this.addNonNumericalValidators();
-          this.customFormGroup.patchValue({
-            operator: null,
-            values: null
-          });
-          this.updateValues();
+          this.onKeySelect();
         })
       ).subscribe();
   }
@@ -163,27 +158,16 @@ export class CustomContentComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Responsible for create form group.
-   */
-  private initCustomFormGroup(): FormGroup {
-    return this.fb.group({
-      key: [null, Validators.required],
-      operator: [null, Validators.required],
-      values: [null, Validators.required]
-    });
-  }
-
-  /**
    * Key select event handler.
    */
   public onKeySelect(): void {
     switch (this.selectedKey) {
-      case RulesCustomType.CATEGORY:
-      case RulesCustomType.DEPARTMENT:
-        this.addNonNumericalValidators();
+      case RulesCustomType.REVIEW_COUNT:
+      case RulesCustomType.RATING:
+        this.addNumericalValidators();
         break;
       default:
-        this.addNumericalValidators();
+        this.addNonNumericalValidators();
         break;
     }
 
@@ -196,16 +180,17 @@ export class CustomContentComponent implements OnInit, AfterViewInit {
   }
 
   /**
+   * Responsible for check type of the value input.
+   */
+  public isNumericKey(): boolean {
+    return this.valueInputType === 'number';
+  }
+
+  /**
    * Responsible to add numerical validators to values field.
    */
   private addNumericalValidators(): void {
     this.valueInputType = 'number';
-    FormValidator.clearControlValidators(this.customFormGroup.get('values'));
-    FormValidator.setControlValidators(this.customFormGroup.get('values'),
-      Validators.compose([
-        Validators.required,
-        CustomFormValidator.regexPattern(CustomFormValidator.integer_with_two_decimal_regex)
-      ]));
   }
 
   /**
@@ -213,11 +198,6 @@ export class CustomContentComponent implements OnInit, AfterViewInit {
    */
   private addNonNumericalValidators(): void {
     this.valueInputType = 'text';
-    FormValidator.clearControlValidators(this.customFormGroup.get('values'));
-    FormValidator.setControlValidators(this.customFormGroup.get('values'),
-      Validators.compose([
-        Validators.required
-      ]));
   }
 
   /**
@@ -235,6 +215,17 @@ export class CustomContentComponent implements OnInit, AfterViewInit {
 
     this.valuesSubscription = this.metaDataService.getMetaValues(this.selectedKey).subscribe((data: MetaData) => {
       this.values = data.metadata;
+    });
+  }
+
+  /**
+   * Responsible for create form group.
+   */
+  private initCustomFormGroup(): FormGroup {
+    return this.fb.group({
+      key: [null, Validators.required],
+      operator: [null, Validators.required],
+      values: [null, Validators.required]
     });
   }
 }

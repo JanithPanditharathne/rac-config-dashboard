@@ -26,7 +26,7 @@ import {
 import { ConfirmDialogService } from './services/confirm-dialog.service';
 
 // directives
-import { ContainerResponsiveDirective, ErrorFocusDirective } from './directives';
+import { ContainerResponsiveDirective, ErrorFocusDirective, TwoDigitDecimalDirective } from './directives';
 
 // pipes
 import { MetaDataService } from './services';
@@ -65,7 +65,11 @@ export const COMPONENTS = [
 /**
  * Export all shared directives.
  */
-export const DIRECTIVES = [ContainerResponsiveDirective, ErrorFocusDirective];
+export const DIRECTIVES = [
+  ContainerResponsiveDirective,
+  ErrorFocusDirective,
+  TwoDigitDecimalDirective
+];
 
 /**
  * Export all shared services.
