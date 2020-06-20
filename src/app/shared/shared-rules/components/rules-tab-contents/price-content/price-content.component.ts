@@ -126,7 +126,7 @@ export class PriceContentComponent implements OnInit {
       exactPrice: this.fb.group({
         operator: this.operators[0],
         price: [
-          '',
+          null,
           Validators.required
         ]
       })
