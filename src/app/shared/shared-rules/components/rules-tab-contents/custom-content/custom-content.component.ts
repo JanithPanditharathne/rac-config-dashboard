@@ -209,7 +209,7 @@ export class CustomContentComponent implements OnInit, AfterViewInit {
     }
     this.values = [];
 
-    if (!this.selectedKey) {
+    if (!this.selectedKey || !this.selectedKey.trim().length) {
       return;
     }
 
