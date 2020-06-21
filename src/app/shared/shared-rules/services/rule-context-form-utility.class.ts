@@ -108,7 +108,7 @@ export class RuleContextFormUtility {
   public static setOperatorData(expressionData: RuleIfExpressionDataItem[]): RuleIfExpressionDataItem[] {
     return expressionData.map((data: RuleIfExpressionDataItem) => {
       if (data.type !== RuleTabDisplayDataType.Price && data.type !== RuleTabDisplayDataType.Custom) {
-        data.operator = data.operator ? OperatorType.EQUAL_IGNORE_CASE : OperatorType.EQUAL;
+        data.operator = data.operator && typeof data.operator === 'boolean' ? OperatorType.EQUAL_IGNORE_CASE : OperatorType.EQUAL;
       }
       return data;
     });
