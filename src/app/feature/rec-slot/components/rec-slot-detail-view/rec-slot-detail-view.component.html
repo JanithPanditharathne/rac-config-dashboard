@@ -7,6 +7,8 @@
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-lg-6">
+                    <div class="sub-heading">Rec Slot ID</div>
+                    <div class="expand-detail-value">{{ recSlot.id }}</div>
                     <div class="sub-heading">Channel</div>
                     <div class="expand-detail-value">{{ recSlot.channel.name }}</div>
                     <div class="sub-heading">Page</div>
@@ -15,7 +17,7 @@
                 <div class="col-lg-6">
                     <div class="sub-heading">Placeholder</div>
                     <div class="expand-detail-value">{{ recSlot.placeholder.name }}</div>
-                    <div class="sub-heading">Rec Name</div>
+                    <div class="sub-heading">Recommendation Name</div>
                     <div class="expand-detail-value">{{ recSlot.rec.name }}</div>
                 </div>
             </div>
@@ -36,6 +38,7 @@
                     [field]="'id'"
                     [title]="'ID'"
                     [width]="100"
+                    [sortable]="true"
             >
             </ng-data-table-column>
             <ng-data-table-column

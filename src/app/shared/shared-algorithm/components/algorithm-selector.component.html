@@ -60,7 +60,7 @@
                             [selectTrackBy]="'algorithmID'"
                             [contentHeight]="250"
                     >
-                        <ng-data-table-column [field]="'id'" [title]="'ID'" [width]="100"></ng-data-table-column>
+                        <ng-data-table-column [field]="'id'" [title]="'ID'" [sortable]="true" [width]="100"></ng-data-table-column>
                         <ng-data-table-column [title]="'Algorithm Name'" [field]="'name'"></ng-data-table-column>
                         <ng-data-table-column [title]="'Display Text'">
                             <ng-template #ngDataTableCell let-row="row">

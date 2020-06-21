@@ -212,7 +212,7 @@ export class RuleUpsertComponent implements OnInit {
     if (this.rule) {
       this.ruleForm = this.fb.group({
         ruleId: [this.rule.id],
-        ruleName: [this.rule.name, Validators.required],
+        ruleName: [this.rule.name],
         ruleType: [this.ruleUtilityService.mapRuleTypeDropdownData(this.rule.type), Validators.required],
         isGlobal: [this.rule.isGlobal],
         matching: this.fb.array([]),
@@ -221,7 +221,7 @@ export class RuleUpsertComponent implements OnInit {
     } else {
       this.ruleForm = this.fb.group({
         ruleId: [null],
-        ruleName: [null, Validators.required],
+        ruleName: [null],
         ruleType: [null, Validators.required],
         isGlobal: [false],
         matching: this.fb.array([]),

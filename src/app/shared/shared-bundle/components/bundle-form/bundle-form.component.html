@@ -9,12 +9,12 @@
                                 <div *ngIf="isEdit" class="form-group">
                                     <label for="bundleId"
                                     >Bundle ID<span *ngIf="!isEdit" class="required-label">*</span>
-                                        <input  [attr.disabled]="isEdit || null"
-                                                class="form-control"
-                                                type="number"
-                                                formControlName="bundleId"
-                                                placeholder="Bundle ID"
-                                                id="bundleId"
+                                        <input [attr.disabled]="isEdit || null"
+                                               class="form-control"
+                                               type="number"
+                                               formControlName="bundleId"
+                                               placeholder="Bundle ID"
+                                               id="bundleId"
                                         />
                                     </label>
                                 </div>
@@ -25,11 +25,14 @@
                                                formControlName="bundleName"
                                                maxlength="200"
                                                placeholder="Bundle Name"
+                                               requiredField
                                         />
                                     </label>
-                                    <app-required-error [control]="bundleFormGroup.get('bundleName')"
-                                                        [requiredError]="'Bundle name is required'"
-                                                        [errorType]="'required'"></app-required-error>
+                                    <app-common-control-error-view
+                                            [control]="bundleFormGroup.get('bundleName')"
+                                            [whitespaceError]="'Bundle name is required'"
+                                    >
+                                    </app-common-control-error-view>
                                 </div>
                             </div>
                         </div>
@@ -54,14 +57,14 @@
                                         maxlength="2000"
                                         [rows]="4"
                                         [placeholder]="'Specify Combine Display Text here...'"
+                                        requiredField
                                 ></textarea>
                             </label>
-                            <app-character-length-range-error
+                            <app-common-control-error-view
                                     [control]="bundleFormGroup.get('combineDisplayText')"
-                                    [lengthError]="'Combine Display Text must not be greater than 2000 characters long'"
-                                    [requiredError]="'Combine Display Text is required'"
+                                    [whitespaceError]="'Combine display text is required'"
                             >
-                            </app-character-length-range-error>
+                            </app-common-control-error-view>
                         </div>
                         <div class="form-check">
                             <input
@@ -73,7 +76,8 @@
                             <label class="default-limit-enabled-label" for="defaultLimitEnabled">Default Limit</label>
                             <span>Maximum character length is 999</span>
                         </div>
-                        <div  class="form-group" [class.disabled]="!bundleFormGroup.get('defaultLimitEnabled').value" [class.input-error]="isInvalid('defaultLimit')">
+                        <div class="form-group" [class.disabled]="!bundleFormGroup.get('defaultLimitEnabled').value"
+                             [class.input-error]="isInvalid('defaultLimit')">
                             <input type="number"
                                    min="1"
                                    max="999"

@@ -24,6 +24,9 @@ export class CommonControlErrorViewComponent {
   @Input()
   public lengthError: string;
 
+  @Input()
+  public whitespaceError: string;
+
   public isInvalid(controlName: AbstractControl): boolean {
     return FormValidator.isInvalidControl(controlName);
   }

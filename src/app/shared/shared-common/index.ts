@@ -26,7 +26,12 @@ import {
 import { ConfirmDialogService } from './services/confirm-dialog.service';
 
 // directives
-import { ContainerResponsiveDirective, ErrorFocusDirective, TwoDigitDecimalDirective } from './directives';
+import {
+  ContainerResponsiveDirective,
+  ErrorFocusDirective,
+  NoWhitespaceDirective,
+  TwoDigitDecimalDirective
+} from './directives';
 
 // pipes
 import { MetaDataService } from './services';
@@ -68,7 +73,8 @@ export const COMPONENTS = [
 export const DIRECTIVES = [
   ContainerResponsiveDirective,
   ErrorFocusDirective,
-  TwoDigitDecimalDirective
+  TwoDigitDecimalDirective,
+  NoWhitespaceDirective
 ];
 
 /**

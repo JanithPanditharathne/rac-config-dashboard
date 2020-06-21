@@ -198,9 +198,9 @@ export class AlgorithmUpsertComponent implements OnInit {
     if (this.algorithm) {
       this.algorithmForm = this.fb.group({
         algorithmId: [this.algorithm.id],
-        algorithmName: [this.algorithm.name, Validators.required],
-        description: [this.algorithm.description, Validators.required],
-        displayText: [this.algorithm.defaultDisplayText, Validators.required]
+        algorithmName: [this.algorithm.name],
+        description: [this.algorithm.description],
+        displayText: [this.algorithm.defaultDisplayText]
       });
       return;
     }
@@ -212,9 +212,9 @@ export class AlgorithmUpsertComponent implements OnInit {
           CustomFormValidator.regexPattern(CustomFormValidator.integer_regex)
         ]
       )],
-      algorithmName: [null, Validators.required],
-      description: [null, Validators.required],
-      displayText: [null, Validators.required]
+      algorithmName: [null],
+      description: [null],
+      displayText: [null]
     });
   }
 }

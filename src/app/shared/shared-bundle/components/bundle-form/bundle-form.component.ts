@@ -110,7 +110,7 @@ export class BundleFormComponent implements OnInit {
   public onCombinedEnabledChange(): void {
     const isCombineEnabled = this.bundleFormGroup.get('combineEnabled').value;
     if (isCombineEnabled) {
-      FormValidator.setControlValidators(this.bundleFormGroup.get('combineDisplayText'), Validators.required);
+      FormValidator.setControlValidators(this.bundleFormGroup.get('combineDisplayText'), CustomFormValidator.noWhitespaceValidator());
     } else {
       FormValidator.clearControlValidators(this.bundleFormGroup.get('combineDisplayText'));
     }
@@ -231,7 +231,7 @@ export class BundleFormComponent implements OnInit {
     if (this.bundle) {
       this.bundleFormGroup = this.fb.group({
         bundleId: [this.bundle.id],
-        bundleName: [this.bundle.name, Validators.required],
+        bundleName: [this.bundle.name],
         combineEnabled: [this.bundle.combineEnabled],
         combineDisplayText: [this.bundle.combineDisplayText],
         defaultLimitEnabled: [this.bundle.defaultLimit > 0],
@@ -251,7 +251,7 @@ export class BundleFormComponent implements OnInit {
     }
     this.bundleFormGroup = this.fb.group({
       bundleId: [null],
-      bundleName: [null, Validators.required],
+      bundleName: [null],
       combineEnabled: [null],
       combineDisplayText: [null],
       defaultLimitEnabled: [false],

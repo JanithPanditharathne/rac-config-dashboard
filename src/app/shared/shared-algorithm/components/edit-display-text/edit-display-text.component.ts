@@ -9,6 +9,8 @@ import { ActionClickEventArgs } from '../../../shared-common/models';
 
 import { ActionType } from 'src/app/shared/shared-common/enums';
 
+import { FormValidator } from '../../../shared-common/services';
+
 /**
  * Class representing edit display text component.
  * @class EditDisplayTextComponent
@@ -56,6 +58,15 @@ export class EditDisplayTextComponent {
     this.displayTextForm = this.fb.group({
       defaultText: [currentDisplayText],
     });
+  }
+
+  /**
+   * Responsible for check validity of given form control.
+   * @param {string} controlName control name
+   * @returns {boolean} true or false.
+   */
+  public isInvalid(controlName: string): boolean {
+    return FormValidator.isInvalidControl(this.displayTextForm.get(controlName));
   }
 
   /**

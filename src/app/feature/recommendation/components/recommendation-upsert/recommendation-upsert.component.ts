@@ -263,13 +263,13 @@ export class RecommendationUpsertComponent implements OnInit {
     if (!this.recommendation) {
       this.recForm = this.fb.group({
         recId: [null],
-        recName: [null, Validators.required],
+        recName: [null],
         selectedBundle: [null, Validators.required]
       });
     } else {
       this.recForm = this.fb.group({
         recId: [this.recommendation.id],
-        recName: [this.recommendation.name, Validators.required],
+        recName: [this.recommendation.name],
         selectedBundle: [this.recommendation.bundle, Validators.required]
       });
     }

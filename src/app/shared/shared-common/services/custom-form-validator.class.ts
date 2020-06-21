@@ -30,6 +30,14 @@ export class CustomFormValidator {
     };
   }
 
+  public static noWhitespaceValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+      let isWhitespace = (control.value || '').trim().length === 0;
+      let isValid = !isWhitespace;
+      return isValid ? null : {'whitespace': 'value is only whitespace'};
+    };
+  }
+
   public static regexPattern(regex: RegExp): ValidatorFn {
     return (control: AbstractControl) => {
       const regexp = regex.test(control.value);

@@ -1,7 +1,8 @@
 <div class="errors input-error-label" [hidden]="!isInvalid(control)">
-  <span [hidden]="!control.hasError('required')" class="required">{{requiredError}}</span>
-  <span [hidden]="!control.hasError('min')" class="min">{{minValueError}}</span>
-  <span [hidden]="!control.hasError('max')" class="max">{{maxValueError}}</span>
-  <span [hidden]="!control.hasError('maxlength')" class="max-length">{{lengthError}}</span>
-  <span [hidden]="!control.hasError('minlength')" class="min-length">{{lengthError}}</span>
+    <span [hidden]="!control.hasError('required')" class="required">{{requiredError}}</span>
+    <span [hidden]="!control.hasError('min')" class="min">{{minValueError}}</span>
+    <span [hidden]="!control.hasError('max')" class="max">{{maxValueError}}</span>
+    <span [hidden]="!control.hasError('maxlength')" class="max-length">{{lengthError}}</span>
+    <span [hidden]="!control.hasError('minlength')" class="min-length">{{lengthError}}</span>
+    <span [hidden]="!control.hasError('whitespace')" class="min-length">{{whitespaceError}}</span>
 </div>

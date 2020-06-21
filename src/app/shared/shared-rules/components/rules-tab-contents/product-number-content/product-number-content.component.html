@@ -7,8 +7,13 @@
                     <span class="rac-max-length">Maximum character length is 200</span>
                     <input class="form-control" type="text" placeholder="Enter Product Number" name="ProductNumber"
                            formControlName="productNumber"
-                           maxlength="200"/>
+                           maxlength="200" requiredField/>
                 </label>
+                <app-common-control-error-view
+                        [control]="baseFormGroup.get('productNumber')"
+                        [whitespaceError]="'Product number is required'"
+                >
+                </app-common-control-error-view>
             </div>
         </div>
         <div class="rac-condition-button col-lg-2">

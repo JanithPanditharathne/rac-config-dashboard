@@ -19,9 +19,15 @@
                                class="form-control"
                                autocomplete="off"
                                maxlength="200"
+                               requiredField
                                (typeaheadOnSelect)="onKeySelect()"
                                #keyInput>
                     </label>
+                    <app-common-control-error-view
+                            [control]="customFormGroup.get('key')"
+                            [whitespaceError]="'Key is required'"
+                    >
+                    </app-common-control-error-view>
                 </div>
             </div>
             <div class="rac-condition-custom" [hidden]="!customFormGroup.get('key').value">
@@ -63,8 +69,14 @@
                                autocomplete="off"
                                maxlength="200"
                                min="0"
-                               class="form-control">
+                               class="form-control"
+                               requiredField>
                     </label>
+                    <app-common-control-error-view
+                            [control]="customFormGroup.get('values')"
+                            [whitespaceError]="'Value is required'"
+                    >
+                    </app-common-control-error-view>
                 </div>
             </div>
         </form>

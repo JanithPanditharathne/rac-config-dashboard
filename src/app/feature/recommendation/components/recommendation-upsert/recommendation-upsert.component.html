@@ -7,7 +7,7 @@
                     <div class="col-lg-4">
                         <div *ngIf="isEdit" class="form-group">
                             <label for="recId"
-                            >Rec ID<span *ngIf="!isEdit" class="required-label">*</span>
+                            >Recommendation ID<span *ngIf="!isEdit" class="required-label">*</span>
                                 <input [attr.disabled]="isEdit || null"
                                        class="form-control"
                                        type="number"
@@ -19,17 +19,16 @@
                         </div>
                         <div class="form-group" [class.input-error]="isInvalid('recName')">
                             <label for="recName"
-                            >Rec Name<span class="required-label">*</span>
+                            >Recommendation Name<span class="required-label">*</span>
                                 <span class="rac-max-length">Maximum character length is 200</span>
                                 <input class="form-control" type="text" formControlName="recName"
-                                       placeholder="Rec Name" id="recName" maxlength="200"/>
+                                       placeholder="Rec Name" id="recName" maxlength="200" requiredField/>
                             </label>
-                            <app-character-length-range-error
+                            <app-common-control-error-view
                                     [control]="recForm.get('recName')"
-                                    [lengthError]="'Recommendation name must not be greater than 200 characters long'"
-                                    [requiredError]="'Recommendation name is required'"
+                                    [whitespaceError]="'Recommendation name is required'"
                             >
-                            </app-character-length-range-error>
+                            </app-common-control-error-view>
                         </div>
                     </div>
                 </div>

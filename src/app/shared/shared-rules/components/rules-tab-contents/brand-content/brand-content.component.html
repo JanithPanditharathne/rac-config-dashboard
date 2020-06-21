@@ -15,14 +15,14 @@
                            placeholder="Select Brand"
                            class="form-control"
                            autocomplete="off"
-                           maxlength="200">
+                           maxlength="200"
+                           requiredField>
                 </label>
-                <app-character-length-range-error
-                    [control]="baseFormGroup.get('brand')"
-                    [lengthError]="'Brand must not be greater than 200 characters long'"
-                    [requiredError]="'Brand is required'"
+                <app-common-control-error-view
+                        [control]="baseFormGroup.get('brand')"
+                        [whitespaceError]="'Brand is required'"
                 >
-                </app-character-length-range-error>
+                </app-common-control-error-view>
             </div>
             </form>
         </div>
@@ -30,7 +30,7 @@
         <div class="rac-condition-button col-lg-2">
             <app-action-button-strap>
                 <app-action [type]="ActionType.APPLY" [name]=""
-                            [disable]="!baseFormGroup.get('brand').value?.length" (actionClick)="onApply()">
+                            [disable]="baseFormGroup.invalid" (actionClick)="onApply()">
                 </app-action>
             </app-action-button-strap>
         </div>
