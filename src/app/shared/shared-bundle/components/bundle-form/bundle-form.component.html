@@ -74,7 +74,7 @@
                                     formControlName="defaultLimitEnabled"
                                     (change)="onDefaultLimitEnabledChange()"/>
                             <label class="default-limit-enabled-label" for="defaultLimitEnabled">Default Limit</label>
-                            <span>Maximum character length is 999</span>
+                            <span>Maximum limit is 999</span>
                         </div>
                         <div class="form-group" [class.disabled]="!bundleFormGroup.get('defaultLimitEnabled').value"
                              [class.input-error]="isInvalid('defaultLimit')">
@@ -87,7 +87,7 @@
                                     [control]="bundleFormGroup.get('defaultLimit')"
                                     [minError]="'Default limit should be greater than or equal to 1'"
                                     [maxError]="'Default limit should be less than or equal to 999'"
-                                    [requiredError]="'Default limit is required'"
+                                    [requiredError]="'Default limit missing or invalid'"
                             >
                             </app-range-error>
                         </div>
