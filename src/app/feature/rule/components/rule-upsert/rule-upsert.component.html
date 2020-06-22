@@ -24,7 +24,8 @@
                             >Rule Name<span class="required-label">*</span>
                                 <span class="rac-max-length">Maximum character length is 200</span>
                                 <input class="form-control" type="text" formControlName="ruleName"
-                                       placeholder="Rule Name" id="ruleName" maxlength="200" requiredField/>
+                                       placeholder="Rule Name" id="ruleName" maxlength="200"
+                                       [requiredField]="true"/>
                             </label>
                             <app-common-control-error-view
                                     [control]="ruleForm.get('ruleName')"

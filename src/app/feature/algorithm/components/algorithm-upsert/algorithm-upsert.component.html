@@ -35,7 +35,7 @@
                                             <span class="rac-max-length">Maximum character length is 200</span>
                                             <input class="form-control" type="text" formControlName="algorithmName"
                                                    placeholder="Algorithm Name" id="algorithmName" maxlength="200"
-                                                   requiredField/>
+                                                   [requiredField]="true"/>
                                         </label>
                                         <app-common-control-error-view
                                                 [control]="algorithmForm.get('algorithmName')"
@@ -54,7 +54,7 @@
                                                     maxlength="2000"
                                                     [rows]="4"
                                                     [placeholder]="'Specify description here...'"
-                                                    requiredField
+                                                    [requiredField]="true"
                                             ></textarea>
                                         </label>
                                         <app-common-control-error-view
@@ -69,7 +69,7 @@
                                             <span class="rac-max-length">Maximum character length is 200</span>
                                             <input class="form-control" type="text" formControlName="displayText"
                                                    placeholder="Display Text" id="displayText" maxlength="200"
-                                                   requiredField/>
+                                                   [requiredField]="true"/>
                                         </label>
                                         <app-common-control-error-view
                                                 [control]="algorithmForm.get('displayText')"

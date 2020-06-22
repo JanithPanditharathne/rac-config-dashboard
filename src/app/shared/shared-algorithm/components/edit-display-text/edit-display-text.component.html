@@ -15,7 +15,7 @@
                                formControlName="defaultText"
                                maxlength="200"
                                placeholder="Specify default display text..."
-                               requiredField/>
+                               [requiredField]="true"/>
                     </label>
                     <app-common-control-error-view
                             [control]="displayTextForm.get('defaultText')"

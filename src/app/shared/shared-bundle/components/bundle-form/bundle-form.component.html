@@ -25,7 +25,7 @@
                                                formControlName="bundleName"
                                                maxlength="200"
                                                placeholder="Bundle Name"
-                                               requiredField
+                                               [requiredField]="true"
                                         />
                                     </label>
                                     <app-common-control-error-view
@@ -57,7 +57,7 @@
                                         maxlength="2000"
                                         [rows]="4"
                                         [placeholder]="'Specify Combine Display Text here...'"
-                                        requiredField
+                                        [requiredField]="bundleFormGroup.get('combineEnabled').value"
                                 ></textarea>
                             </label>
                             <app-common-control-error-view

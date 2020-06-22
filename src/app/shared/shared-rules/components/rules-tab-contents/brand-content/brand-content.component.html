@@ -6,6 +6,7 @@
                 >Brand
                     <span class="rac-max-length">Maximum character length is 200</span>
                     <input [typeahead]="brands"
+                           [requiredField]="true"
                            [typeaheadOptionsLimit]="10"
                            [typeaheadMinLength]="0"
                            [typeaheadScrollable]="true"
@@ -15,8 +16,7 @@
                            placeholder="Select Brand"
                            class="form-control"
                            autocomplete="off"
-                           maxlength="200"
-                           requiredField>
+                           maxlength="200">
                 </label>
                 <app-common-control-error-view
                         [control]="baseFormGroup.get('brand')"

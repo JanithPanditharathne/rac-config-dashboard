@@ -7,7 +7,8 @@
                     <span class="rac-max-length">Maximum character length is 200</span>
                     <input class="form-control" type="text" placeholder="Enter Product Number" name="ProductNumber"
                            formControlName="productNumber"
-                           maxlength="200" requiredField/>
+                           maxlength="200"
+                           [requiredField]="true"/>
                 </label>
                 <app-common-control-error-view
                         [control]="baseFormGroup.get('productNumber')"

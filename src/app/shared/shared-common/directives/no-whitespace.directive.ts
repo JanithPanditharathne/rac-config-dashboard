@@ -1,4 +1,4 @@
-import { Directive } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 
 import { CustomFormValidator } from '../services';
@@ -16,9 +16,11 @@ import { CustomFormValidator } from '../services';
 })
 export class NoWhitespaceDirective implements Validator {
 
+  @Input('requiredField') attr: boolean = true;
+
   private valFn = CustomFormValidator.noWhitespaceValidator();
 
   validate(control: AbstractControl): { [key: string]: any } {
-    return this.valFn(control);
+    return this.attr ? this.valFn(control) : null;
   }
 }
