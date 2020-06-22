@@ -31,17 +31,7 @@ export class MenuBarComponent implements AfterContentInit, OnInit {
 
   constructor(
     private router: Router,
-    private userProfileService: UserProfileService,
-    private location: PlatformLocation) {
-
-    location.onPopState(() => {
-      this.resetState(this.menuItems, true, false);
-      const routePath = location.hash.split('/')[1];
-      const activeMenuItem = this.menuItems.find((item: MenuItem) => {
-        return item.routePath === routePath;
-      });
-      activeMenuItem.active = true;
-    });
+    private userProfileService: UserProfileService) {
   }
 
   public toggleMenuCollapse(): void {

@@ -29,7 +29,6 @@
                 <li
                         class="nav-item"
                         *ngIf="menuItem.visible"
-                        [class.active]="menuItem.active"
                         [ngClass]="menuItem.listItemClasses"
                         [class.dropdown]="hasChildren(menuItem)"
                         [class.nav-leaf]="!hasChildren(menuItem)"
@@ -37,6 +36,8 @@
                 >
                     <a
                             class="nav-link"
+                            [routerLinkActive]="'active'"
+                            [routerLink]="'/' + menuItem.routePath"
                             (click)="onMenuItemClick(menuItem)"
                             (mouseenter)="menuItemMouseEnter(menuItem)"
                             [class.dropdown-toggle]="hasChildren(menuItem)"
@@ -52,7 +53,6 @@
                                 <li
                                         class="dropdown-item"
                                         *ngIf="childMenuItem.visible"
-                                        [class.active]="childMenuItem.active"
                                         [ngClass]="childMenuItem.listItemClasses"
                                         [class.dropdown]="hasChildren(childMenuItem)"
                                         [class.nav-leaf]="!hasChildren(childMenuItem)"
@@ -60,6 +60,8 @@
                                 >
                                     <a
                                             class="nav-link"
+                                            [routerLinkActive]="'active'"
+                                            [routerLink]="'/' + childMenuItem.routePath"
                                             (click)="onMenuItemClick(menuItem, childMenuItem)"
                                             (mouseenter)="menuItemMouseEnter(menuItem, childMenuItem)"
                                             [class.dropdown-toggle]="hasChildren(childMenuItem)"
@@ -76,13 +78,15 @@
                                                 <li
                                                         class="dropdown-item"
                                                         *ngIf="grandChildMenuItem.visible"
-                                                        [class.active]="grandChildMenuItem.active"
                                                         [ngClass]="grandChildMenuItem.listItemClasses"
                                                         [class.dropdown]="hasChildren(grandChildMenuItem)"
                                                         [class.nav-leaf]="!hasChildren(grandChildMenuItem)"
                                                         [class.expanded]="grandChildMenuItem.expanded"
                                                 >
-                                                    <a class="nav-link" (click)="onMenuItemClick(menuItem, childMenuItem, grandChildMenuItem)">
+                                                    <a class="nav-link"
+                                                            (click)="onMenuItemClick(menuItem, childMenuItem, grandChildMenuItem)"
+                                                            [routerLinkActive]="'active'"
+                                                            [routerLink]="'/' + grandChildMenuItem.routePath">
                                                         <span class="main-nav-label">
                                                             <i [ngClass]="grandChildMenuItem.iconClasses"></i>
                                                             <span class="menu-title">{{ grandChildMenuItem.title }}</span>
