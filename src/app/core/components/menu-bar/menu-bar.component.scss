@@ -162,8 +162,11 @@
         }
       }
 
-      &.active {
+
         > .nav-link {
+
+          &.active {
+
             @include breakpoint(max991) {
               margin: 0 .5rem;
             }
@@ -195,9 +198,9 @@
                 background-image: svg-url-icon($rule-icon, '#000000', $navigation-item-active-icon-color);
               }
             }
-
         }
-      }
+        }
+
 
       &.dropdown {
         .expand-icon {

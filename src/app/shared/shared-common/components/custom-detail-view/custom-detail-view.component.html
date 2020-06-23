@@ -11,7 +11,7 @@
         <span class="rac-selected-condition-value">
             {{ customItem.value.values }}
         </span>
-        <span [class.equal-ignore-case]="customItem.operator === 'eqic'">
+        <span [class.rac-equal-ignore-case]="customItem.operator === 'eqic'">
             {{customItem.operator === 'eqic' ? 'ignore case in values' : ''}}
         </span>
     </ng-container>

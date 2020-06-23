@@ -1575,14 +1575,14 @@ bs-datepicker-container {
     @include font-size(.8, 1.1);
     font-weight: 400;
     padding-left: 0;
+  }
 
-    span {
-      background: $rac-selected-condition-ignore-background;
-      border-radius: .3rem;
-      color: $rac-selected-condition-ignore-color;
-      margin-left: 1rem;
-      padding: .2rem;
-    }
+  .rac-equal-ignore-case {
+    background: $rac-selected-condition-ignore-background;
+    border-radius: .3rem;
+    color: $rac-selected-condition-ignore-color;
+    margin-left: 1rem;
+    padding: .2rem .5rem;
   }
 
   .rac-selected-condition-action-buttons {

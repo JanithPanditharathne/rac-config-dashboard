@@ -7,7 +7,7 @@
                                                [hasMultipleValues]="false">
                 </app-math-operator-detail-view>
                 <span class="rac-selected-condition-value">{{ value?.name || value }} </span>
-                <span [class.equal-ignore-case]="getOperatorValue(data.operator) === 'ignore case in values'">
+                <span [class.rac-equal-ignore-case]="getOperatorValue(data.operator) === 'ignore case in values'">
                     {{ getOperatorValue(data.operator) }}
                 </span>
                 <ng-container [ngTemplateOutlet]="actionTemplate"
@@ -25,7 +25,7 @@
             <span class="rac-selected-condition-value"> {{ subItem?.name || subItem }} </span>
             <ng-container *ngIf="data.value.length > i + 1">,</ng-container>
         </ng-container>
-        <span [class.equal-ignore-case]="getOperatorValue(data.operator) === 'ignore case in values'">
+        <span [class.rac-equal-ignore-case]="getOperatorValue(data.operator) === 'ignore case in values'">
                     {{ getOperatorValue(data.operator) }}
         </span>
         <ng-container [ngTemplateOutlet]="actionTemplate" [ngTemplateOutletContext]="{ value: value }"></ng-container>
