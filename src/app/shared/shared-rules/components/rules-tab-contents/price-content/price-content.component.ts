@@ -104,7 +104,7 @@ export class PriceContentComponent implements OnInit {
    */
   public isInvalid(controlName: string): boolean {
     const formControl = this.priceGroup.get(controlName);
-    return formControl.value && FormValidator.isInvalidControl(formControl);
+    return FormValidator.isInvalidControl(formControl);
   }
 
   /**
@@ -125,10 +125,7 @@ export class PriceContentComponent implements OnInit {
     return this.fb.group({
       exactPrice: this.fb.group({
         operator: this.operators[0],
-        price: [
-          null,
-          Validators.required
-        ]
+        price: [null, Validators.required]
       })
     });
   }

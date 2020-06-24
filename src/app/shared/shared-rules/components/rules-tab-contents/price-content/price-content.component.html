@@ -33,6 +33,11 @@
                            [appTwoDigitDecimal]="true"/>
                 </div>
             </div>
+            <app-common-control-error-view
+                    [control]="priceGroup.get('exactPrice.price')"
+                    [requiredError]="'Price is missing or invalid'"
+            >
+            </app-common-control-error-view>
         </div>
         <div class="rac-condition-button">
             <app-action-button-strap>
