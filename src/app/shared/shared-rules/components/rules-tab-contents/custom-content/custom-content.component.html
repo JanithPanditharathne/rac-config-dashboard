@@ -2,7 +2,7 @@
     <div class="rac-condition-item" [class.custom]="!customFormGroup.get('key').value">
         <form class="rac-condition-custom-item" [formGroup]="customFormGroup" novalidate>
             <div class="rac-condition-custom">
-                <div class="form-group">
+                <div class="form-group" [class.input-error]="isInvalid('key')">
                     <label
                     >Key
                         <span class="rac-max-length">Maximum character length is 200</span>
