@@ -940,7 +940,7 @@ select {
       font-style: italic;
       font-weight: 300;
       position: absolute;
-      right: .3rem;
+      right: 0;
     }
   }
 
@@ -1496,22 +1496,6 @@ bs-datepicker-container {
   }
 }
 
-.rac-equal-ignore-case {
-  background: $rac-selected-condition-ignore-background;
-  border-radius: .3rem;
-  color: $rac-selected-condition-ignore-color;
-  margin-left: 1rem;
-  padding: .2rem .5rem;
-}
-
-.ng-data-table-content {
-  .rac-equal-ignore-case {
-    display: inline-block;
-    margin-left: 0;
-    padding: .1rem .4rem;
-  }
-}
-
 // Tab view
 .tab-pane {
   .rac-selected-condition-wrapper {
@@ -1591,6 +1575,14 @@ bs-datepicker-container {
     @include font-size(.8, 1.1);
     font-weight: 400;
     padding-left: 0;
+  }
+
+  .rac-equal-ignore-case {
+    background: $rac-selected-condition-ignore-background;
+    border-radius: .3rem;
+    color: $rac-selected-condition-ignore-color;
+    margin-left: 1rem;
+    padding: .2rem .5rem;
   }
 
   .rac-selected-condition-action-buttons {
