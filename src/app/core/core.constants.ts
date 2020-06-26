@@ -30,4 +30,6 @@ export class CoreConstants {
   public static app_username = 'username';
   public static admin_username = 'admin';
   public static admin_pw = 'admin1234';
+  public static access_denied_message =
+    'Access is denied\n-----------------------\nSorry, you do not have enough privileges to access the CONFIGURATION PORTAL.';
 }

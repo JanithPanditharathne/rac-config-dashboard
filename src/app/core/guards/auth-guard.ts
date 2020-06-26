@@ -3,6 +3,8 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 
 import { KeycloakAuthGuard, KeycloakService } from 'keycloak-angular';
 
+import { CoreConstants } from '../core.constants';
+
 /**
  * Class representing auth guard service.
  * AuthGuard.
@@ -26,6 +28,12 @@ export class AuthGuard extends KeycloakAuthGuard implements CanActivate {
       }
 
       const requiredRoles: string[] = route.data.roles;
+
+      if (!this.keycloakAngular.isUserInRole('cp_access')) {
+        alert(CoreConstants.access_denied_message);
+        this.keycloakAngular.logout(document.baseURI);
+        resolve(false);
+      }
       if (!requiredRoles || requiredRoles.length === 0) {
         return resolve(true);
       } else {
