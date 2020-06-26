@@ -49,16 +49,14 @@
                              [class.input-error]="isInvalid('combineDisplayText')">
                             <label for="combineDisplayText"
                             >Combine Display Text<span class="required-label">*</span>
-                                <span class="rac-max-length">Maximum character length is 2000</span>
-                                <textarea
+                                <span class="rac-max-length">Maximum character length is 200</span>
+                                <input
                                         class="form-control"
                                         formControlName="combineDisplayText"
                                         id="combineDisplayText"
-                                        maxlength="2000"
-                                        [rows]="4"
-                                        [placeholder]="'Specify Combine Display Text here...'"
-                                        [requiredField]="bundleFormGroup.get('combineEnabled').value"
-                                ></textarea>
+                                        maxlength="200"
+                                        [placeholder]="'Display Text'"
+                                        [requiredField]="bundleFormGroup.get('combineEnabled').value">
                             </label>
                             <app-common-control-error-view
                                     [control]="bundleFormGroup.get('combineDisplayText')"
