@@ -20,7 +20,7 @@ import { BundleFormComponent } from '../../../../shared/shared-bundle/components
 
 import { NotificationService } from '../../../../core/services';
 import { FormValidator } from '../../../../shared/shared-common/services';
-import { BundleService } from '../../../../shared/shared-bundle/services';
+import { BundleService, BundleUtilityService } from '../../../../shared/shared-bundle/services';
 import { RecommendationService } from '../../../../shared/shared-rec/services';
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
 
@@ -60,6 +60,7 @@ export class RecommendationUpsertComponent implements OnInit {
     private bundleService: BundleService,
     private dialogService: ConfirmDialogService,
     private notificationService: NotificationService,
+    private bundleUtilityService: BundleUtilityService,
     private recommendationService: RecommendationService
   ) {
     this.actionBreadcrumb = [
@@ -108,7 +109,9 @@ export class RecommendationUpsertComponent implements OnInit {
    */
   private fetchBundles(): void {
     this.bundleService.getBundles().subscribe((displayBundle: DisplayBundle) => {
-      this.bundleDropdownData = displayBundle.bundles;
+      this.bundleDropdownData = displayBundle.bundles.map((bundle: Bundle) => {
+        return this.bundleUtilityService.parseBundleDropdownItem(bundle);
+      });
     });
   }
 
@@ -270,7 +273,10 @@ export class RecommendationUpsertComponent implements OnInit {
       this.recForm = this.fb.group({
         recId: [this.recommendation.id],
         recName: [this.recommendation.name],
-        selectedBundle: [this.recommendation.bundle, Validators.required]
+        selectedBundle: [
+          this.bundleUtilityService.parseBundleDropdownItem(this.recommendation.bundle),
+          Validators.required
+        ]
       });
     }
   }

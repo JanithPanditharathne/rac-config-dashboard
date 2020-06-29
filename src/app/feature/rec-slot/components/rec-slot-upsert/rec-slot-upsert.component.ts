@@ -11,17 +11,17 @@ import { RecSlot } from '../../models';
 import { Rule, DisplayRule } from '../../../rule/models';
 import { SuccessResponse } from '../../../../core/models';
 import { Recommendation, DisplayRecommendation } from '../../../recommendation/models';
+import { RecDropdownItemModel } from '../../../../shared/shared-rec/models/rec-dropdown-item.model';
 import { ActionBreadcrumb, ActionClickEventArgs, DropDownDataItem } from '../../../../shared/shared-common/models';
 
 import { AlertType, SuccessStatus } from '../../../../core/enums';
 import { FormAction, ActionType } from '../../../../shared/shared-common/enums';
 
 import { RecSlotsService } from '../../services';
-import { RecSlotUtilityService } from '../../services';
 import { NotificationService } from '../../../../core/services';
 import { RuleService } from '../../../../shared/shared-rules/services';
-import { RecommendationService } from '../../../../shared/shared-rec/services';
 import { FormValidator, MetaDataService } from '../../../../shared/shared-common/services';
+import { RecommendationService, RecSlotUtilityService } from '../../../../shared/shared-rec/services';
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
 
 import { RecSlotConstants } from '../../rec-slot.constants';
@@ -47,7 +47,7 @@ export class RecSlotUpsertComponent implements OnInit {
   public formAction: FormAction;
   public currentSelected: any[];
   public recSlotFormGroup: FormGroup;
-  public recommendationDataSource: Observable<Recommendation[]>;
+  public recommendationDataSource: Observable<RecDropdownItemModel[]>;
   public rulesDataSource: Observable<Rule[]>;
 
   constructor(
@@ -59,6 +59,7 @@ export class RecSlotUpsertComponent implements OnInit {
     private recSlotsService: RecSlotsService,
     private dialogService: ConfirmDialogService,
     private notificationService: NotificationService,
+    private recSlotUtilityService: RecSlotUtilityService,
     private recommendationService: RecommendationService
   ) {
     this.actionBreadcrumb = [
@@ -136,7 +137,7 @@ export class RecSlotUpsertComponent implements OnInit {
 
     const formData = this.recSlotFormGroup.value;
 
-    const recSlotData: RecSlot = RecSlotUtilityService.mapRecSlotValues(formData, this.currentSelected);
+    const recSlotData: RecSlot = this.recSlotUtilityService.mapRecSlotValues(formData, this.currentSelected);
 
     switch (this.formAction) {
       case FormAction.ADD:
@@ -165,7 +166,9 @@ export class RecSlotUpsertComponent implements OnInit {
   private fetchRecData(): void {
     this.recommendationDataSource = this.recommendationService.getRecs().pipe(
       map((data: DisplayRecommendation) => {
-        return data.recs;
+        return data.recs.map((recommendation: Recommendation) => {
+          return this.recSlotUtilityService.parseRecSlotDropdownItem(recommendation);
+        });
       })
     );
   }
@@ -283,7 +286,10 @@ export class RecSlotUpsertComponent implements OnInit {
         channel: [this.recSlot.channel, Validators.required],
         page: [this.recSlot.page, Validators.required],
         placeholder: [this.recSlot.placeholder, Validators.required],
-        recommendation: [this.recSlot.rec, Validators.required],
+        recommendation: [
+          this.recSlotUtilityService.parseRecSlotDropdownItem(this.recSlot.rec),
+          Validators.required
+        ],
         rules: [this.recSlot.rules]
       });
     } else {

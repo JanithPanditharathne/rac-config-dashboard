@@ -1,7 +1,7 @@
 /**
  * Export all shared entry components.
  */
-import { RecommendationService } from './services';
+import { RecommendationService, RecSlotUtilityService } from './services';
 
 export const ENTRY_COMPONENTS = [];
 
@@ -19,7 +19,8 @@ export const DIRECTIVES = [];
  * Export all shared services.
  */
 export const SERVICES = [
-  RecommendationService
+  RecommendationService,
+  RecSlotUtilityService
 ];
 
 /**
