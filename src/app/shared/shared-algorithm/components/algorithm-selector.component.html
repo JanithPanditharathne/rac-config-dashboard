@@ -44,9 +44,7 @@
                         <div class="form-group" *ngIf="algorithmsFormGroup.get('description').value">
                             <label
                             >Algorithm Description
-                                <span class="algorithm-text form-control display-text">
-                            {{ algorithmsFormGroup.get('description').value || '-' }}
-                                                  </span>
+                                <textarea rows="1" class="form-control algorithm-text display-text"  value="{{ algorithmsFormGroup.get('description').value || '-' }}"></textarea>
                             </label>
                         </div>
                     </div>

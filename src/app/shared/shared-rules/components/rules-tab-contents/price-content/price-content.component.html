@@ -1,6 +1,6 @@
 <form [formGroup]="priceGroup" novalidate>
     <div class="rac-conditions price-condition" formGroupName="exactPrice">
-        <div class="rac-condition-item form-group">
+        <div class="rac-condition-item form-group" [class.input-error]="isInvalid('exactPrice.price')">
             <div class="rac-condition-sub-item small">
                 <label>Price</label>
             </div>

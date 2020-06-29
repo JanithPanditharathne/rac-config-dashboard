@@ -373,7 +373,7 @@
           font-weight: 500;
           padding: .3rem 1rem;
           position: relative;
-          text-transform: capitalize;
+          text-transform: none;
 
           &:before {
             background-image: svg-url-icon($user-icon, '#000000', $primary-btn-icon-color);
