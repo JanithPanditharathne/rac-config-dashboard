@@ -14,7 +14,9 @@ import { ActionType } from '../../../../shared-common/enums';
 import { RuleGeneratorType, RulesCustomType, RuleTabDisplayDataType, RuleTabInlineDataGeneratorType } from '../../../enums';
 
 import { RuleContextFormUtility, RuleContextDataService } from '../../../services';
-import { CustomFormValidator, FormValidator, MetaDataService } from '../../../../shared-common/services';
+import { FormValidator, MetaDataService } from '../../../../shared-common/services';
+
+import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants';
 
 /**
  * Component class to represent custom tab content.
@@ -29,6 +31,7 @@ import { CustomFormValidator, FormValidator, MetaDataService } from '../../../..
 export class CustomContentComponent implements OnInit, AfterViewInit {
   public valueInputType = 'text';
   public dropdownSelectMode: DropdownSelectMode = 'single';
+  public SharedCommonConstants = SharedCommonConstants;
   public RuleTabInlineDataGeneratorType = RuleTabInlineDataGeneratorType;
   public ActionType = ActionType;
 

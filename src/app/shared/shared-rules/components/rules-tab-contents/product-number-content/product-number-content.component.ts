@@ -10,6 +10,8 @@ import { RuleContextDataService } from '../../../services';
 import { RuleContextFormUtility } from '../../../services';
 import { FormValidator, CustomFormValidator } from '../../../../shared-common/services';
 
+import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants';
+
 /**
  * Component class to represent tab product number content.
  * @implements OnInit
@@ -22,6 +24,7 @@ import { FormValidator, CustomFormValidator } from '../../../../shared-common/se
 })
 export class ProductNumberContentComponent implements OnInit {
   public ActionType = ActionType;
+  public SharedCommonConstants = SharedCommonConstants;
 
   public productNumberGroup: FormGroup;
   public baseFormGroup: FormGroup;

@@ -21,6 +21,7 @@ import { CustomFormValidator, FormValidator } from '../../../../shared/shared-co
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
 
 import { RuleConstants } from '../../rule.constants';
+import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants';
 
 /**
  * Class representing the Rule component.
@@ -35,6 +36,7 @@ import { RuleConstants } from '../../rule.constants';
 export class RuleUpsertComponent implements OnInit {
   public dropdownSelectMode: DropdownSelectMode = 'single';
   public RuleGeneratorType = RuleGeneratorType;
+  public SharedCommonConstants = SharedCommonConstants;
   public ActionType = ActionType;
   public FormAction = FormAction;
 

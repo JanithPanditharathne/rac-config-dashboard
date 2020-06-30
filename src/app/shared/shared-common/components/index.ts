@@ -18,3 +18,4 @@ export { PriceDetailViewComponent } from './price-detail-view/price-detail-view.
 export { MathOperatorDetailViewComponent } from './math-operator-detail-view/math-operator-detail-view.component';
 export { AdditionalDetailViewComponent } from './additional-detail-view/additional-detail-view.component';
 export { CustomDetailViewComponent } from './custom-detail-view/custom-detail-view.component';
+export { InfoLabelComponent } from './info-label/info-label.component';

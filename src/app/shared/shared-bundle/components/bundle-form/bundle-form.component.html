@@ -20,7 +20,12 @@
                                 </div>
                                 <div class="form-group" [class.input-error]="isInvalid('bundleName')">
                                     <label>Bundle Name <span class="required-label">*</span>
-                                        <span class="rac-max-length">Maximum character length is 200</span>
+                                        <app-info-label
+                                                [description]="SharedCommonConstants.text_field_max_length_message"
+                                                [placement]="'right'"
+                                                [outsideClick]="false"
+                                        >
+                                        </app-info-label>
                                         <input class="form-control"
                                                formControlName="bundleName"
                                                maxlength="200"
@@ -49,7 +54,12 @@
                              [class.input-error]="isInvalid('combineDisplayText')">
                             <label for="combineDisplayText"
                             >Combine Display Text<span class="required-label">*</span>
-                                <span class="rac-max-length">Maximum character length is 200</span>
+                                <app-info-label
+                                        [description]="SharedCommonConstants.text_field_max_length_message"
+                                        [placement]="'right'"
+                                        [outsideClick]="false"
+                                >
+                                </app-info-label>
                                 <input
                                         class="form-control"
                                         formControlName="combineDisplayText"
@@ -72,8 +82,14 @@
                                     formControlName="defaultLimitEnabled"
                                     (change)="onDefaultLimitEnabledChange()"/>
                             <label class="default-limit-enabled-label" for="defaultLimitEnabled">Default Limit
-                                <span class="rac-max-length" [class.disabled]="!bundleFormGroup.get('defaultLimitEnabled').value">Maximum limit is 999</span></label>
-
+                                <app-info-label
+                                        *ngIf="bundleFormGroup.get('defaultLimitEnabled').value"
+                                        [description]="SharedBundleConstants.max_default_limit_message"
+                                        [placement]="'right'"
+                                        [outsideClick]="false"
+                                >
+                                </app-info-label>
+                            </label>
                         </div>
                         <div class="form-group" [class.disabled]="!bundleFormGroup.get('defaultLimitEnabled').value"
                              [class.input-error]="isInvalid('defaultLimit')">

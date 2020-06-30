@@ -17,6 +17,7 @@ import { AlgorithmUtilityService } from '../../../shared-algorithm/services';
 import { CustomFormValidator, FormValidator } from '../../../shared-common/services';
 
 import { SharedBundleConstants } from '../../shared-bundle.constants';
+import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants';
 
 /**
  * Class representing the Bundle form component component.
@@ -31,6 +32,8 @@ import { SharedBundleConstants } from '../../shared-bundle.constants';
 export class BundleFormComponent implements OnInit {
   public ActionType = ActionType;
   public FormAction = FormAction;
+  public SharedCommonConstants = SharedCommonConstants;
+  public SharedBundleConstants = SharedBundleConstants;
   public actionBreadcrumb: ActionBreadcrumb[];
 
   public isEdit: boolean;

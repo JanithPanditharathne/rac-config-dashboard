@@ -17,6 +17,7 @@ import { AlgorithmService } from '../../../../shared/shared-algorithm/services';
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
 
 import { AlgorithmConstants } from '../../algorithm.constants';
+import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants';
 
 /**
  * Component class for showing algorithm upsert view.
@@ -29,6 +30,7 @@ import { AlgorithmConstants } from '../../algorithm.constants';
 })
 export class AlgorithmUpsertComponent implements OnInit {
   public ActionType = ActionType;
+  public SharedCommonConstants = SharedCommonConstants;
   public actionBreadcrumb: ActionBreadcrumb[];
 
   public algorithmForm: FormGroup;

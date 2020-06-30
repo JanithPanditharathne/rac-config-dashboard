@@ -4,7 +4,12 @@
             <div class="form-group"  [class.input-error]="isInvalid('productNumber')">
                 <label
                 >Product Number
-                    <span class="rac-max-length">Maximum character length is 200</span>
+                    <app-info-label
+                            [description]="SharedCommonConstants.text_field_max_length_message"
+                            [placement]="'right'"
+                            [outsideClick]="false"
+                    >
+                    </app-info-label>
                     <input class="form-control" type="text" placeholder="Enter Product Number" name="ProductNumber"
                            formControlName="productNumber"
                            maxlength="200"

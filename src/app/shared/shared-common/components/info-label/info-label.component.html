@@ -1,0 +1,17 @@
+<ng-container>
+  <span *ngIf="title">{{ title }}</span>
+  <span (click)="$event.stopPropagation()">
+                        <button
+                          type="button"
+                          class="btn action-button none-border"
+                          container="body"
+                          [popover]="customDescription || description"
+                          placement="{{ placement }}"
+                          triggers="mouseenter:mouseleave"
+                          [outsideClick]="outsideClick"
+                          [adaptivePosition]="false"
+                        >
+                          <i class="zmdi zmdi-info"></i>
+                        </button>
+                      </span>
+</ng-container>

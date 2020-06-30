@@ -9,6 +9,8 @@ import { RuleGeneratorType, RuleTabDisplayDataType } from '../../../enums';
 import { RuleContextFormUtility, RuleContextDataService } from '../../../services';
 import { FormValidator, MetaDataService } from '../../../../shared-common/services';
 
+import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants';
+
 /**
  * Component class to represent brand tab content.
  * @implements OnInit
@@ -21,6 +23,7 @@ import { FormValidator, MetaDataService } from '../../../../shared-common/servic
 })
 export class BrandContentComponent implements OnInit {
   public ActionType = ActionType;
+  public SharedCommonConstants = SharedCommonConstants;
 
   public brandFormGroup: FormGroup;
   public baseFormGroup: FormGroup;

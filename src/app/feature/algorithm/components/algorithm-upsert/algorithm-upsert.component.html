@@ -32,7 +32,12 @@
                                     <div class="form-group" [class.input-error]="isInvalid('algorithmName')">
                                         <label for="algorithmName"
                                         >Name<span class="required-label">*</span>
-                                            <span class="rac-max-length">Maximum character length is 200</span>
+                                            <app-info-label
+                                                    [description]="SharedCommonConstants.text_field_max_length_message"
+                                                    [placement]="'right'"
+                                                    [outsideClick]="false"
+                                            >
+                                            </app-info-label>
                                             <input class="form-control" type="text" formControlName="algorithmName"
                                                    placeholder="Algorithm Name" id="algorithmName" maxlength="200"
                                                    [requiredField]="true"/>
@@ -46,7 +51,12 @@
                                     <div class="form-group" [class.input-error]="isInvalid('description')">
                                         <label for="description"
                                         >Description<span class="required-label">*</span>
-                                            <span class="rac-max-length">Maximum character length is 2000</span>
+                                            <app-info-label
+                                                    [description]="SharedCommonConstants.textarea_max_length_message"
+                                                    [placement]="'right'"
+                                                    [outsideClick]="false"
+                                            >
+                                            </app-info-label>
                                             <textarea
                                                     class="form-control"
                                                     formControlName="description"
@@ -66,7 +76,12 @@
                                     <div class="form-group" [class.input-error]="isInvalid('displayText')">
                                         <label for="displayText"
                                         >Default Display Text<span class="required-label">*</span>
-                                            <span class="rac-max-length">Maximum character length is 200</span>
+                                            <app-info-label
+                                                    [description]="SharedCommonConstants.text_field_max_length_message"
+                                                    [placement]="'right'"
+                                                    [outsideClick]="false"
+                                            >
+                                            </app-info-label>
                                             <input class="form-control" type="text" formControlName="displayText"
                                                    placeholder="Display Text" id="displayText" maxlength="200"
                                                    [requiredField]="true"/>

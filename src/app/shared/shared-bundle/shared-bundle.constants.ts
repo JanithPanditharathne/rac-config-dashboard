@@ -8,4 +8,7 @@ export class SharedBundleConstants {
   public static bundle_create_invalid_bundle_form = 'Some of the required fields are missing or invalid.';
 
   public static channel_rec_select_existing_bundles = 'Please select a bundle(s).';
+
+  // validation
+  public static max_default_limit_message = 'Maximum limit is 999';
 }

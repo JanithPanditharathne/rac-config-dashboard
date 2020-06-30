@@ -20,7 +20,12 @@
                         <div class="form-group" [class.input-error]="isInvalid('recName')">
                             <label for="recName"
                             >Recommendation Name<span class="required-label">*</span>
-                                <span class="rac-max-length">Maximum character length is 200</span>
+                                <app-info-label
+                                        [description]="SharedCommonConstants.text_field_max_length_message"
+                                        [placement]="'right'"
+                                        [outsideClick]="false"
+                                >
+                                </app-info-label>
                                 <input class="form-control" type="text" formControlName="recName"
                                        placeholder="Recommendation Name" id="recName" maxlength="200"
                                        [requiredField]="true"/>

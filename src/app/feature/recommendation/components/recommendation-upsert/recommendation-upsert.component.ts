@@ -25,6 +25,7 @@ import { RecommendationService } from '../../../../shared/shared-rec/services';
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
 
 import { RecommendationConstants } from '../../recommendation.constants';
+import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants';
 
 /**
  * Class representing the Recommendation upsert component.
@@ -39,6 +40,7 @@ export class RecommendationUpsertComponent implements OnInit {
   public dropdownSelectMode: DropdownSelectMode = 'single';
   public actionBreadcrumb: ActionBreadcrumb[];
   public ActionButtonType = ActionButtonType;
+  public SharedCommonConstants = SharedCommonConstants;
   public ActionType = ActionType;
   public FormAction = FormAction;
 
