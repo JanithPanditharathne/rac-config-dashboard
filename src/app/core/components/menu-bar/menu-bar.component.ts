@@ -1,6 +1,5 @@
 import { AfterContentInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router, UrlSegment } from '@angular/router';
-import { PlatformLocation } from '@angular/common';
 
 import { UserProfileService } from '../../services';
 
@@ -12,7 +11,6 @@ import { MenuItem, UserProfile } from '../../models';
   templateUrl: './menu-bar.component.html'
 })
 export class MenuBarComponent implements AfterContentInit, OnInit {
-  public appVersion = `version ${window['appVersion']}`;
   private static MOBILE_BREAKPOINT = 991;
 
   public menuCollapsed = true;

@@ -22,6 +22,7 @@ import { Animation, AuthService } from '../../../core/services';
   templateUrl: './main.component.html'
 })
 export class AppMainComponent implements OnInit {
+  public appVersion = `version ${window['appVersion']}`;
   public profile: UserProfile;
   public menuItems: MenuItem[] = [];
 

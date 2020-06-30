@@ -3,5 +3,6 @@
   <app-menu-bar class="menu" [appName]="'Config Portal'" [profile]="profile" [menuItems]="menuItems" (logout)="onLogout()"> </app-menu-bar>
   <div class="rac-page-wrapper-content" [@routeFadeIn]="getState()">
     <router-outlet></router-outlet>
+    <app-footer [appName]="'IBRAC - Config portal'" [appVersion]="appVersion"></app-footer>
   </div>
 </div>
