@@ -1,0 +1,10 @@
+@import '../../../../styles/variables';
+
+footer {
+  align-items: center;
+  border-top: 1px solid $footer-border;
+  display: flex;
+  font-size: .7rem;
+  height: 25px;
+  justify-content: center;
+}
