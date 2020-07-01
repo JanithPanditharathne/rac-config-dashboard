@@ -6,7 +6,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { PageNotFoundComponent } from './page-not-found.component';
 
 describe('Page not found component tests', () => {
-  let component: PageNotFoundComponent;
   let fixture: ComponentFixture<PageNotFoundComponent>;
   let debugElement: DebugElement;
   let htmlElement: HTMLElement;
@@ -18,8 +17,6 @@ describe('Page not found component tests', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(PageNotFoundComponent);
-
-    component = fixture.componentInstance;
   }));
 
   it('Should display status text', () => {

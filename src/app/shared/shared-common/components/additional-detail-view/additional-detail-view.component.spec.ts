@@ -5,7 +5,6 @@ import { AdditionalDetailViewComponent } from './additional-detail-view.componen
 
 describe('Rule additional detail view component tests', () => {
   let fixture: ComponentFixture<AdditionalDetailViewComponent>;
-  let component: AdditionalDetailViewComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -14,16 +13,5 @@ describe('Rule additional detail view component tests', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(AdditionalDetailViewComponent);
-    component = fixture.componentInstance;
   }));
-
-  // describe('getDisplayName tests', () => {
-  //   it('should return true when having placements', () => {
-  //     expect(component.getDisplayName(RuleTabDisplayDataType.AgeAppropriation)).toBe(RuleTabDisplayDataType.AgeAppropriation);
-  //   });
-  //
-  //   it('should return true when having placements', () => {
-  //     expect(component.getDisplayName(RuleTabDisplayDataType.Formality)).toBe(RuleTabDisplayDataType.Occasion);
-  //   });
-  // });
 });

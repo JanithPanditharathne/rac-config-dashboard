@@ -61,9 +61,9 @@ export class CustomContentComponent implements OnInit, AfterViewInit {
   }
 
   constructor(
-    private fb: FormBuilder,
-    private metaDataService: MetaDataService,
-    private ruleContextDataService: RuleContextDataService) {
+    private readonly fb: FormBuilder,
+    private readonly metaDataService: MetaDataService,
+    private readonly ruleContextDataService: RuleContextDataService) {
   }
 
   /**

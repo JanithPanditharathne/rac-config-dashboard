@@ -27,9 +27,9 @@ export class AppMainComponent implements OnInit {
   public menuItems: MenuItem[] = [];
 
   constructor(
-    private router: Router,
-    private modalService: BsModalService,
-    private keycloakAngular: KeycloakService
+    private readonly router: Router,
+    private readonly modalService: BsModalService,
+    private readonly keycloakAngular: KeycloakService
   ) {
     this.menuItems = [
       {

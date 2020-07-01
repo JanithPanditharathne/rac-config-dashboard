@@ -11,7 +11,7 @@ export class TwoDigitDecimalDirective {
 
   @Input('appTwoDigitDecimal') attr: boolean;
 
-  constructor(private elementRef: ElementRef) {
+  constructor(private readonly elementRef: ElementRef) {
   }
 
   private check(value: string) {
@@ -31,7 +31,7 @@ export class TwoDigitDecimalDirective {
   private run(oldValue) {
     if (this.attr) {
       setTimeout(() => {
-        let currentValue: string = this.elementRef.nativeElement.value;
+        const currentValue: string = this.elementRef.nativeElement.value;
         if (currentValue !== '' && !this.check(currentValue)) {
           this.elementRef.nativeElement.value = oldValue;
         }

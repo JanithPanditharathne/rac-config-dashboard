@@ -15,9 +15,9 @@ import { environment } from '../../../../environments/environment';
  */
 @Injectable()
 export class BundleService {
-  private static bundles_url = '/v1/bundles';
+  private static readonly bundles_url = '/v1/bundles';
 
-  constructor(private http: HttpClient) {
+  constructor(private readonly http: HttpClient) {
   }
 
   /**

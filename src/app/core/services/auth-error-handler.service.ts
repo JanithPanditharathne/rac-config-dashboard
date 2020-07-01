@@ -9,7 +9,10 @@ import { CoreConstants } from '../core.constants';
 
 @Injectable()
 export class AuthErrorHandlerService {
-  constructor(private router: Router, private notificationService: NotificationService) {}
+  constructor(private readonly router: Router,
+              private readonly notificationService: NotificationService
+  ) {
+  }
 
   public handleError(status: HttpStatus): void {
     if (status === HttpStatus.FORBIDDEN || status === HttpStatus.UNAUTHORIZED) {

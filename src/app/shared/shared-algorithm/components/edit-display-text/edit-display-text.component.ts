@@ -27,7 +27,7 @@ export class EditDisplayTextComponent {
   public displayTextForm: FormGroup;
 
   constructor(
-    private fb: FormBuilder,
+    private readonly fb: FormBuilder,
     public modalRef: BsModalRef
   ) {
   }

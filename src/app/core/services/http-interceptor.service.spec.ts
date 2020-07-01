@@ -14,17 +14,20 @@ import { NotificationService } from './notification.service';
 import { AuthErrorHandlerService } from './auth-error-handler.service';
 
 class MockNotificationService {
-  showNotification(message: string, type: AlertType) {}
+  showNotification(message: string, type: AlertType) {
+  }
 }
 
 class MockAuthErrorHandlerService {
-  handleError(status: HttpStatus): void {}
+  handleError(status: HttpStatus): void {
+  }
 }
 
 const MockGlobalRefService = {
   window: {
     location: {
-      reload: () => {}
+      reload: () => {
+      }
     }
   }
 };
@@ -43,9 +46,9 @@ describe(`AppHttpInterceptorService tests`, () => {
           provide: HTTP_INTERCEPTORS,
           useClass: AppHttpInterceptorService
         },
-        { provide: NotificationService, useClass: MockNotificationService },
-        { provide: AuthErrorHandlerService, useClass: MockAuthErrorHandlerService },
-        { provide: GlobalRefService, useValue: MockGlobalRefService }
+        {provide: NotificationService, useClass: MockNotificationService},
+        {provide: AuthErrorHandlerService, useClass: MockAuthErrorHandlerService},
+        {provide: GlobalRefService, useValue: MockGlobalRefService}
       ]
     });
     httpMock = TestBed.get(HttpTestingController);
@@ -59,157 +62,4 @@ describe(`AppHttpInterceptorService tests`, () => {
   afterEach(() => {
     httpMock.verify();
   });
-
-  // it('should not invoke #showNotification of notification service', inject([HttpClient], (http: HttpClient) => {
-  //   const url = '/testEndPoint/url';
-  //   http.get(url).subscribe(() => {});
-  //
-  //   const req = httpMock.expectOne(url);
-  //
-  //   req.flush({ message: 'Successful' }, { status: 200, statusText: '' });
-  //   httpMock.verify();
-  //
-  //   expect(notificationService.showNotification).not.toHaveBeenCalled();
-  // }));
-
-  // it('should invoke #showNotification of notification service with message NO INTERNET CONNECTION', inject([HttpClient], (http: HttpClient) => {
-  //   const url = '/testEndPoint/url';
-  //   http
-  //     .get(url)
-  //     .pipe(
-  //       catchError(actualError => {
-  //         return of(actualError);
-  //       })
-  //     )
-  //     .subscribe();
-  //
-  //   const req = httpMock.expectOne(url);
-  //
-  //   req.flush({}, { status: 0, statusText: '' });
-  //
-  //   expect(notificationService.showNotification).toHaveBeenCalledWith('NO INTERNET CONNECTION', AlertType.ERROR);
-  //   httpMock.verify();
-  // }));
-
-  // it('should invoke #showNotification of notification service with message REQUEST FAILURE', inject([HttpClient], (http: HttpClient) => {
-  //   const url = '/testEndPoint/url';
-  //   http
-  //     .get(url)
-  //     .pipe(
-  //       catchError(actualError => {
-  //         return of(actualError);
-  //       })
-  //     )
-  //     .subscribe();
-  //
-  //   const req = httpMock.expectOne(url);
-  //
-  //   req.flush({}, { status: 404, statusText: '' });
-  //
-  //   expect(notificationService.showNotification).toHaveBeenCalledWith('REQUEST FAILURE', AlertType.ERROR);
-  //   httpMock.verify();
-  // }));
-
-  // it('should invoke #showNotification with the message INTERNAL SERVER ERROR when response status is not 0 or 404', inject(
-  //   [HttpClient],
-  //   (http: HttpClient) => {
-  //     const url = '/testEndPoint/url';
-  //     http
-  //       .get(url)
-  //       .pipe(
-  //         catchError(actualError => {
-  //           return of(actualError);
-  //         })
-  //       )
-  //       .subscribe();
-  //
-  //     const req = httpMock.expectOne(url);
-  //
-  //     req.flush({}, { status: 400, statusText: '' });
-  //
-  //     expect(notificationService.showNotification).toHaveBeenCalledWith('INTERNAL SERVER ERROR', AlertType.ERROR);
-  //     httpMock.verify();
-  //   }
-  // ));
-
-  // it('should invoke #showNotification of notification service with server error message', inject([HttpClient], (http: HttpClient) => {
-  //   const url = '/testEndPoint/url';
-  //   http
-  //     .get(url)
-  //     .pipe(
-  //       catchError(actualError => {
-  //         return of(actualError);
-  //       })
-  //     )
-  //     .subscribe();
-  //
-  //   const req = httpMock.expectOne(url);
-  //
-  //   req.flush(
-  //     {
-  //       error: {
-  //         code: '5523A',
-  //         message: 'Could not delete this item'
-  //       }
-  //     },
-  //     { status: 408, statusText: '' }
-  //   );
-  //
-  //   expect(notificationService.showNotification).toHaveBeenCalledWith('5523A : Could not delete this item', AlertType.ERROR);
-  //   httpMock.verify();
-  // }));
-
-  // it('should invoke #handleError of authErrorHandlerService when response code is KIRA-4010', inject([HttpClient], (http: HttpClient) => {
-  //   const url = '/testEndPoint/url';
-  //   http
-  //     .get(url)
-  //     .pipe(
-  //       catchError(actualError => {
-  //         return of(actualError);
-  //       })
-  //     )
-  //     .subscribe();
-  //
-  //   const req = httpMock.expectOne(url);
-  //
-  //   req.flush(
-  //     {
-  //       error: {
-  //         code: 'KIRA-4010',
-  //         message: 'Unauthorized'
-  //       }
-  //     },
-  //     { status: 408, statusText: '' }
-  //   );
-  //
-  //   expect(authErrorHandlerService.handleError).not.toHaveBeenCalled();
-  //   httpMock.verify();
-  // }));
-
-  // it('should invoke #handleError of authErrorHandlerService when response code is KIRA-4030', inject([HttpClient], (http: HttpClient) => {
-  //   const url = '/testEndPoint/url';
-  //   http
-  //     .get(url)
-  //     .pipe(
-  //       catchError(actualError => {
-  //         return of(actualError);
-  //       })
-  //     )
-  //     .subscribe();
-  //
-  //   const req = httpMock.expectOne(url);
-  //
-  //   req.flush(
-  //     {
-  //       error: {
-  //         code: 'KIRA-4030',
-  //         message: 'Forbidden'
-  //       }
-  //     },
-  //     { status: 408, statusText: '' }
-  //   );
-  //
-  //   expect(authErrorHandlerService.handleError).toHaveBeenCalled();
-  //   httpMock.verify();
-  // }));
 });

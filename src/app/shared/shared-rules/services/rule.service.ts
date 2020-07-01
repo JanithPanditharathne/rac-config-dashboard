@@ -14,9 +14,9 @@ import { environment } from '../../../../environments/environment';
  */
 @Injectable()
 export class RuleService {
-  private static rules_url = '/v1/rules';
+  private static readonly rules_url = '/v1/rules';
 
-  constructor(private http: HttpClient) {
+  constructor(private readonly http: HttpClient) {
   }
 
   /**

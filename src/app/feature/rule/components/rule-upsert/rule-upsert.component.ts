@@ -48,13 +48,13 @@ export class RuleUpsertComponent implements OnInit {
   public ruleTypeDropdownData: DropDownDataItem[];
 
   constructor(
-    private router: Router,
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private ruleService: RuleService,
-    private dialogService: ConfirmDialogService,
-    private ruleUtilityService: RuleUtilityService,
-    private notificationService: NotificationService
+    private readonly router: Router,
+    private readonly fb: FormBuilder,
+    private readonly route: ActivatedRoute,
+    private readonly ruleService: RuleService,
+    private readonly dialogService: ConfirmDialogService,
+    private readonly ruleUtilityService: RuleUtilityService,
+    private readonly notificationService: NotificationService
   ) {
     this.actionBreadcrumb = [
       {

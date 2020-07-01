@@ -56,14 +56,14 @@ export class RecommendationUpsertComponent implements OnInit {
   public bundleFormComponent: BundleFormComponent;
 
   constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute,
-    private bundleService: BundleService,
-    private dialogService: ConfirmDialogService,
-    private notificationService: NotificationService,
-    private bundleUtilityService: BundleUtilityService,
-    private recommendationService: RecommendationService
+    private readonly fb: FormBuilder,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly bundleService: BundleService,
+    private readonly dialogService: ConfirmDialogService,
+    private readonly notificationService: NotificationService,
+    private readonly bundleUtilityService: BundleUtilityService,
+    private readonly recommendationService: RecommendationService
   ) {
     this.actionBreadcrumb = [
       {

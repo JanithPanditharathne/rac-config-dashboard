@@ -42,10 +42,10 @@ export class RuleComponent {
   public actionBreadcrumb: ActionBreadcrumb[];
 
   constructor(
-    private router: Router,
-    private ruleService: RuleService,
-    private modalService: BsModalService,
-    public notificationService: NotificationService
+    private readonly router: Router,
+    private readonly ruleService: RuleService,
+    private readonly modalService: BsModalService,
+    private readonly notificationService: NotificationService
   ) {
     this.actionBreadcrumb = [
       {

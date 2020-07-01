@@ -14,9 +14,9 @@ import { environment } from '../../../../environments/environment';
  */
 @Injectable()
 export class RecommendationService {
-  private static recs_url = '/v1/recs';
+  private static readonly recs_url = '/v1/recs';
 
-  constructor(private http: HttpClient) {
+  constructor(private readonly http: HttpClient) {
   }
 
   /**

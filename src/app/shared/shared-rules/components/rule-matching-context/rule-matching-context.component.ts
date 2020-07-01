@@ -40,8 +40,8 @@ export class RuleMatchingContextComponent implements OnInit {
   @Input()
   public contextData: RuleIfExpressionDataItem[];
 
-  constructor(private fb: FormBuilder,
-              private metaDataService: MetaDataService
+  constructor(private readonly fb: FormBuilder,
+              private readonly metaDataService: MetaDataService
   ) {
     metaDataService.metadataTypes.subscribe((types: string[]) => {
       this.metadataTypes = types;

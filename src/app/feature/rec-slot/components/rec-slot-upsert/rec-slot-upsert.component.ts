@@ -51,16 +51,16 @@ export class RecSlotUpsertComponent implements OnInit {
   public rulesDataSource: Observable<Rule[]>;
 
   constructor(
-    private router: Router,
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private ruleService: RuleService,
+    private readonly router: Router,
+    private readonly fb: FormBuilder,
+    private readonly route: ActivatedRoute,
     public metaDataService: MetaDataService,
-    private recSlotsService: RecSlotsService,
-    private dialogService: ConfirmDialogService,
-    private notificationService: NotificationService,
-    private recSlotUtilityService: RecSlotUtilityService,
-    private recommendationService: RecommendationService
+    private readonly ruleService: RuleService,
+    private readonly recSlotsService: RecSlotsService,
+    private readonly dialogService: ConfirmDialogService,
+    private readonly notificationService: NotificationService,
+    private readonly recSlotUtilityService: RecSlotUtilityService,
+    private readonly recommendationService: RecommendationService
   ) {
     this.actionBreadcrumb = [
       {

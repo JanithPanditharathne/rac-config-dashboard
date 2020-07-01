@@ -25,10 +25,10 @@ import { CoreConstants } from '../core.constants';
 @Injectable()
 export class AppHttpInterceptorService implements HttpInterceptor {
   constructor(
-    private keycloakAngular: KeycloakService,
-    private globalRefService: GlobalRefService,
-    private notificationService: NotificationService,
-    private authErrorHandlerService: AuthErrorHandlerService
+    private readonly keycloakAngular: KeycloakService,
+    private readonly globalRefService: GlobalRefService,
+    private readonly notificationService: NotificationService,
+    private readonly authErrorHandlerService: AuthErrorHandlerService
   ) {}
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -84,7 +84,7 @@ export class AppHttpInterceptorService implements HttpInterceptor {
       case HttpStatus.NOT_FOUND:
         return CoreConstants.request_failure_error_notification_message;
       default:
-        return;
+        return null;
     }
   }
 
@@ -94,12 +94,12 @@ export class AppHttpInterceptorService implements HttpInterceptor {
       const code = errorResponse.code;
       if (code === CoreConstants.kira_unauthorized_status_code) {
         this.globalRefService.window.location.reload();
-        return;
+        return null;
       }
 
       if (code === CoreConstants.kira_forbidden_status_code) {
         this.authErrorHandlerService.handleError(HttpStatus.FORBIDDEN);
-        return;
+        return null;
       }
 
       message = `${errorResponse.code} : ${errorResponse.message}`;

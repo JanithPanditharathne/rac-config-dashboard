@@ -21,9 +21,9 @@ export class LogoutConfirmPopupComponent {
 
   constructor(
     public modalRef: BsModalRef,
-    private keycloakAngular: KeycloakService,
-    private globalRefService: GlobalRefService,
-    private userProfileService: UserProfileService
+    private readonly keycloakAngular: KeycloakService,
+    private readonly globalRefService: GlobalRefService,
+    private readonly userProfileService: UserProfileService
   ) {
   }
 

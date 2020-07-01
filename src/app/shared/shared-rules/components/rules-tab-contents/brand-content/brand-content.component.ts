@@ -43,9 +43,9 @@ export class BrandContentComponent implements OnInit {
   }
 
   constructor(
-    private fb: FormBuilder,
-    private metaDataService: MetaDataService,
-    private ruleContextDataService: RuleContextDataService) {
+    private readonly fb: FormBuilder,
+    private readonly metaDataService: MetaDataService,
+    private readonly ruleContextDataService: RuleContextDataService) {
     metaDataService.brands.subscribe((brands: DropDownDataItem[]) => {
       this.brands = brands;
     });

@@ -43,10 +43,10 @@ export class AlgorithmComponent {
   public height: number;
 
   constructor(
-    private router: Router,
-    private modalService: BsModalService,
-    private algorithmService: AlgorithmService,
-    private notificationService: NotificationService
+    private readonly router: Router,
+    private readonly modalService: BsModalService,
+    private readonly algorithmService: AlgorithmService,
+    private readonly notificationService: NotificationService
   ) {
     this.actionBreadcrumb = [
       {

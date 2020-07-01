@@ -45,10 +45,10 @@ export class BundleComponent {
   public dataSource: Observable<Bundle[]>;
 
   constructor(
-    private bundleService: BundleService,
-    private router: Router,
-    private modalService: BsModalService,
-    private notificationService: NotificationService
+    private readonly bundleService: BundleService,
+    private readonly router: Router,
+    private readonly modalService: BsModalService,
+    private readonly notificationService: NotificationService
   ) {
     this.actionBreadcrumb = [
       {

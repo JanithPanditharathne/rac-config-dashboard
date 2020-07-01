@@ -43,10 +43,10 @@ export class RecSlotComponent {
   public dataSource: Observable<RecSlot[]>;
 
   constructor(
-    private router: Router,
-    private modalService: BsModalService,
-    private recSlotsService: RecSlotsService,
-    private notificationService: NotificationService
+    private readonly router: Router,
+    private readonly modalService: BsModalService,
+    private readonly recSlotsService: RecSlotsService,
+    private readonly notificationService: NotificationService
   ) {
     this.actionBreadcrumb = [
       {

@@ -16,7 +16,6 @@ describe('Notification component tests', () => {
   describe('Notification subscription test', () => {
     let component: NotificationComponent;
     let fixture: ComponentFixture<NotificationComponent>;
-    let notificationService: NotificationService;
     let mockNotificationService;
     let alertElement: DebugElement;
     let notificationSubject;
@@ -39,7 +38,6 @@ describe('Notification component tests', () => {
 
       fixture = TestBed.createComponent(NotificationComponent);
       component = fixture.componentInstance;
-      notificationService = TestBed.get(NotificationService);
     }));
 
     it('should have a empty notification list', () => {

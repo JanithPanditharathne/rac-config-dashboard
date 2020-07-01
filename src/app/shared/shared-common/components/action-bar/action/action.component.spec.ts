@@ -39,13 +39,6 @@ describe('Action bar component tests', () => {
     });
 
     describe('#actionIconCssClass tests', () => {
-      // it('Should return zmdi-spinner when autoResolve and resolved both are false', () => {
-      //   component.autoResolve = false;
-      //   component.resolved = false;
-      //   fixture.detectChanges();
-      //   expect(component.actionIconCssClass).toBe('zmdi-spinner');
-      // });
-
       it('Should return action type css class name when one of autoResolve and resolved are true', () => {
         component.autoResolve = false;
         component.resolved = true;

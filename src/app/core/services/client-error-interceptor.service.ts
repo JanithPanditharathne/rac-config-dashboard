@@ -11,15 +11,18 @@ import { GlobalRefService } from 'ornamentum';
 @Injectable()
 export class ClientErrorInterceptorService implements ErrorHandler, OnDestroy {
 
-  private static client_error_holder_identifier = 'client-error-message-holder';
-  private static client_error_reload_button_identifier = 'btn-client-error-reload';
-  private static client_error_code = 'client-error-codes';
-  private static client_error_post_endpoint = '/api/v1/log/client/error';
+  private static readonly client_error_holder_identifier = 'client-error-message-holder';
+  private static readonly client_error_reload_button_identifier = 'btn-client-error-reload';
+  private static readonly client_error_code = 'client-error-codes';
+  private static readonly client_error_post_endpoint = '/api/v1/log/client/error';
 
   private lastError: Error;
-  private reloadBtn: HTMLAnchorElement;
+  private readonly reloadBtn: HTMLAnchorElement;
 
-  constructor(private globalRef: GlobalRefService, private http: HttpClient) {
+  constructor(
+    private readonly http: HttpClient,
+    private readonly globalRef: GlobalRefService
+  ) {
     this.reloadBtn = <HTMLAnchorElement>(
       this.globalRef.window.document.getElementById(ClientErrorInterceptorService.client_error_reload_button_identifier)
     );

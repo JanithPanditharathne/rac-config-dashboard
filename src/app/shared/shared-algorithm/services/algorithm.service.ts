@@ -14,9 +14,9 @@ import { environment } from '../../../../environments/environment';
  */
 @Injectable()
 export class AlgorithmService {
-  private static algorithms_url = '/v1/algorithms';
+  private static readonly algorithms_url = '/v1/algorithms';
 
-  constructor(private http: HttpClient) {
+  constructor(private readonly http: HttpClient) {
   }
 
   /**

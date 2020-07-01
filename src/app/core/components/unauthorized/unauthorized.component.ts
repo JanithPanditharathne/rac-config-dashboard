@@ -25,8 +25,8 @@ export class UnauthorizedComponent implements OnInit {
   public profile: UserProfile;
 
   constructor(
-    private router: Router,
-    private userProfileService: UserProfileService
+    private readonly router: Router,
+    private readonly userProfileService: UserProfileService
   ) {
   }
 

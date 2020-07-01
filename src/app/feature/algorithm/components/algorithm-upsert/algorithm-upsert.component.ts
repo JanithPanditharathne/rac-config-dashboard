@@ -39,12 +39,12 @@ export class AlgorithmUpsertComponent implements OnInit {
   public isEdit = false;
 
   constructor(
-    private router: Router,
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private algorithmService: AlgorithmService,
-    private dialogService: ConfirmDialogService,
-    private notificationService: NotificationService
+    private readonly router: Router,
+    private readonly fb: FormBuilder,
+    private readonly route: ActivatedRoute,
+    private readonly algorithmService: AlgorithmService,
+    private readonly dialogService: ConfirmDialogService,
+    private readonly notificationService: NotificationService
   ) {
     this.actionBreadcrumb = [
       {

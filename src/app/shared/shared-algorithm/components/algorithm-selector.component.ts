@@ -38,9 +38,9 @@ export class AlgorithmSelectorComponent {
   public isPopupView: boolean;
 
   constructor(
-    private modalService: BsModalService,
-    private algorithmService: AlgorithmService,
-    private algorithmUtilityService: AlgorithmUtilityService
+    private readonly modalService: BsModalService,
+    private readonly algorithmService: AlgorithmService,
+    private readonly algorithmUtilityService: AlgorithmUtilityService
   ) {
     this.algorithmService.getAlgorithms().subscribe((displayAlgorithm: DisplayAlgorithm) => {
       this.algorithmDropdownData = algorithmUtilityService.mapToAlgorithmDropdownItems(displayAlgorithm.algorithms);

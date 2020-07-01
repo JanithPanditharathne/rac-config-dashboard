@@ -19,13 +19,16 @@ import { NotificationService } from '../../../../core/services';
   templateUrl: './action-bar.component.html'
 })
 export class ActionBarComponent {
-  @ContentChild('actionButtonStrap', { static: false })
+  @ContentChild('actionButtonStrap', {static: false})
   public actionButtonStrap: ActionButtonStrapComponent;
 
   @Input()
   public breadcrumb: ActionBreadcrumb[];
 
-  constructor(private router: Router, private notificationService: NotificationService) {}
+  constructor(private readonly router: Router,
+              private readonly notificationService: NotificationService
+  ) {
+  }
 
   public onHeaderClick(header: ActionBreadcrumb): void {
     this.router.navigate([header.path]).catch(() => {

@@ -18,7 +18,7 @@ export class RuleUtilityService {
     RulesCustomType.BRANDS
   ];
 
-  private ruleTypeList: DropDownDataItem[] = [
+  private readonly ruleTypeList: DropDownDataItem[] = [
     {id: 1, name: 'BOOST'},
     {id: 2, name: 'BURY'},
     {id: 3, name: 'ONLY_RECOMMEND'},
@@ -40,7 +40,7 @@ export class RuleUtilityService {
    */
   public mapRuleTypeDropdownData(ruleType: string): DropDownDataItem {
     return this.ruleTypeList.find((type: DropDownDataItem) => {
-      return type.name == ruleType;
+      return type.name === ruleType;
     });
   }
 

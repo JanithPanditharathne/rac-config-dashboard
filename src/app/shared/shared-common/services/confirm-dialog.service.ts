@@ -16,7 +16,7 @@ import { SharedCommonConstants } from '../shared-common.constants';
  */
 @Injectable()
 export class ConfirmDialogService {
-  constructor(private modalService: BsModalService) {
+  constructor(private readonly modalService: BsModalService) {
   }
 
   public routeDiscardConfirm(message?: string): Observable<boolean> {

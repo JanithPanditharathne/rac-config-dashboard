@@ -13,7 +13,7 @@ import { RuleService } from '../../../shared/shared-rules/services';
  */
 @Injectable()
 export class RuleResolver implements Resolve<Rule> {
-  constructor(private ruleService: RuleService) {
+  constructor(private readonly ruleService: RuleService) {
   }
 
   public resolve(route: ActivatedRouteSnapshot): Observable<Rule> | Promise<Rule> | Rule {

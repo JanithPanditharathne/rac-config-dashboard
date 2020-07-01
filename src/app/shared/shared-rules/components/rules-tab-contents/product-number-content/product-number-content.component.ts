@@ -42,7 +42,9 @@ export class ProductNumberContentComponent implements OnInit {
     return RuleContextFormUtility.buildFormGroup(fb, RuleTabDisplayDataType.ProductNumber, productNumberData);
   }
 
-  constructor(private fb: FormBuilder, private ruleContextDataService: RuleContextDataService) {
+  constructor(private readonly fb: FormBuilder,
+              private readonly ruleContextDataService: RuleContextDataService
+  ) {
   }
 
   /**

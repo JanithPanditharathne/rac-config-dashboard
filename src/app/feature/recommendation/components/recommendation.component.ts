@@ -41,10 +41,10 @@ export class RecommendationComponent {
   public dataSource: Observable<Recommendation[]>;
 
   constructor(
-    private router: Router,
-    private modalService: BsModalService,
-    private notificationService: NotificationService,
-    private recommendationService: RecommendationService,
+    private readonly router: Router,
+    private readonly modalService: BsModalService,
+    private readonly notificationService: NotificationService,
+    private readonly recommendationService: RecommendationService,
   ) {
     this.actionBreadcrumb = [
       {

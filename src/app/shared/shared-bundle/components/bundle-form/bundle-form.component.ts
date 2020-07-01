@@ -56,9 +56,9 @@ export class BundleFormComponent implements OnInit {
   public cancelBundle: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
-    private fb: FormBuilder,
-    private bundleService: BundleService,
-    private notificationService: NotificationService
+    private readonly fb: FormBuilder,
+    private readonly bundleService: BundleService,
+    private readonly notificationService: NotificationService
   ) {
   }
 

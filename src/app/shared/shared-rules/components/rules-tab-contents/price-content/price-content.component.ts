@@ -49,7 +49,7 @@ export class PriceContentComponent implements OnInit {
     return RuleContextFormUtility.buildFormGroup(fb, RuleTabDisplayDataType.Price, exactPriceData);
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private readonly fb: FormBuilder) {
   }
 
   /**

@@ -30,8 +30,8 @@ export class CustomFormValidator {
 
   public static noWhitespaceValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
-      let isWhitespace = (control.value || '').trim().length === 0;
-      let isValid = !isWhitespace;
+      const isWhitespace = (control.value || '').trim().length === 0;
+      const isValid = !isWhitespace;
       return isValid ? null : {'whitespace': 'value is only whitespace'};
     };
   }

@@ -32,7 +32,7 @@ export class RecSlotDetailViewComponent implements OnInit, OnDestroy {
   public dataRow: DataTableRow<RecSlot>;
 
   constructor(
-    private ruleService: RuleService,
+    private readonly ruleService: RuleService,
   ) {
   }
 
@@ -50,7 +50,7 @@ export class RecSlotDetailViewComponent implements OnInit, OnDestroy {
   private fetchRuleDetails(): void {
     this.rulesServiceSubscription = this.ruleService.getRules().subscribe((displayRule: DisplayRule) => {
       this.rules = displayRule.rules.filter((rule: Rule) => {
-        return this.recSlot.rules.find((ruleItem: DropDownDataItem) => rule.id == String(ruleItem.id));
+        return this.recSlot.rules.find((ruleItem: DropDownDataItem) => String(rule.id) === String(ruleItem.id));
       });
       this.isLoading = false;
     });
