@@ -198,7 +198,7 @@ export class AlgorithmSelectorComponent {
   private disableSelectedDropdownItems(): void {
     const currentAlgorithms: Algorithm[] = this.algorithmsFormGroup.get('algorithms').value;
     if (currentAlgorithms && currentAlgorithms.length) {
-      currentAlgorithms.map((algorithm: Algorithm) => {
+      currentAlgorithms.forEach((algorithm: Algorithm) => {
         this.algorithmUtilityService.setAlgorithmDisableState(this.algorithmDropdownData, algorithm);
       });
     }
