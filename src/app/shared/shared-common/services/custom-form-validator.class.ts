@@ -4,9 +4,9 @@ import { NumberRangeValidationArgs } from '../models';
 
 export class CustomFormValidator {
   // regex patterns
-  public static integer_regex: RegExp = /^\d*$/;
-  public static alphanumeric_regex: RegExp = /^[a-zA-Z0-9]+$/;
-  public static integer_with_two_decimal_regex: RegExp = /^\d*(\.\d{0,2})?$/; // NOSONAR
+  public static integerRegex = /^\d*$/;
+  public static alphanumericRegex = /^[a-zA-Z0-9]+$/;
+  public static integerWithTwoDecimalRegex = /^\d*(\.\d{0,2})?$/; // NOSONAR
 
   public static arrayMinLength(length: number): ValidatorFn {
     return (control: AbstractControl) => {

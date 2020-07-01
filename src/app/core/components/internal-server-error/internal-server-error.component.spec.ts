@@ -29,27 +29,27 @@ describe('Internal server error component tests', () => {
   }));
 
   it('Should display internal server error status code', () => {
-    component.errorStatus = CoreConstants.internal_server_error_status;
+    component.errorStatus = CoreConstants.internalServerErrorStatus;
     fixture.detectChanges();
     debugElement = fixture.debugElement.query(By.css('h1'));
     htmlElement = debugElement.nativeElement;
-    expect(htmlElement.textContent).toContain(CoreConstants.internal_server_error_status);
+    expect(htmlElement.textContent).toContain(CoreConstants.internalServerErrorStatus);
   });
 
   it('Should display internal server error header', () => {
-    component.errorHeading = CoreConstants.internal_server_error_message_heading;
+    component.errorHeading = CoreConstants.internalServerErrorMessageHeading;
     fixture.detectChanges();
     debugElement = fixture.debugElement.query(By.css('.error-page-heading'));
     htmlElement = debugElement.nativeElement;
-    expect(htmlElement.textContent).toContain(CoreConstants.internal_server_error_message_heading);
+    expect(htmlElement.textContent).toContain(CoreConstants.internalServerErrorMessageHeading);
   });
 
   it('Should display internal server error message', () => {
-    component.errorHeading = CoreConstants.internal_server_error_message;
+    component.errorHeading = CoreConstants.internalServerErrorMessage;
     fixture.detectChanges();
     debugElement = fixture.debugElement.query(By.css('.error-page-message'));
     htmlElement = debugElement.nativeElement;
-    expect(htmlElement.textContent).toContain(CoreConstants.internal_server_error_message);
+    expect(htmlElement.textContent).toContain(CoreConstants.internalServerErrorMessage);
   });
 
   it('should go to url', async(

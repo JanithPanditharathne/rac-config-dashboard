@@ -84,7 +84,7 @@ export class BundleFormComponent implements OnInit {
 
     if (this.bundleFormGroup.invalid) {
       actionClickArgs.resolve();
-      this.notificationService.showNotification(SharedBundleConstants.bundle_create_invalid_bundle_form, AlertType.ERROR);
+      this.notificationService.showNotification(SharedBundleConstants.bundleCreateInvalidBundleForm, AlertType.ERROR);
       return;
     }
 
@@ -130,7 +130,7 @@ export class BundleFormComponent implements OnInit {
             Validators.required,
             Validators.min(1),
             Validators.max(999),
-            CustomFormValidator.regexPattern(CustomFormValidator.integer_regex)
+            CustomFormValidator.regexPattern(CustomFormValidator.integerRegex)
           ]
         ));
     } else {
@@ -243,7 +243,7 @@ export class BundleFormComponent implements OnInit {
           Validators.compose([
             Validators.min(1),
             Validators.max(999),
-            CustomFormValidator.regexPattern(CustomFormValidator.integer_regex)
+            CustomFormValidator.regexPattern(CustomFormValidator.integerRegex)
           ])
         ],
         algorithms: AlgorithmSelectorComponent.buildFormGroup(this.fb, {
@@ -263,7 +263,7 @@ export class BundleFormComponent implements OnInit {
         Validators.compose([
           Validators.min(1),
           Validators.max(999),
-          CustomFormValidator.regexPattern(CustomFormValidator.integer_regex)
+          CustomFormValidator.regexPattern(CustomFormValidator.integerRegex)
         ])
       ],
       algorithms: AlgorithmSelectorComponent.buildFormGroup(this.fb, {

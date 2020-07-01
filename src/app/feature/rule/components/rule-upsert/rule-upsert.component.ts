@@ -15,8 +15,7 @@ import { RuleGeneratorType } from 'src/app/shared/shared-rules/enums';
 import { ActionType, FormAction } from 'src/app/shared/shared-common/enums';
 
 import { NotificationService } from '../../../../core/services';
-import { RuleContextFormUtility, RuleService } from '../../../../shared/shared-rules/services';
-import { RuleUtilityService } from '../../../../shared/shared-rules/services';
+import { RuleContextFormUtility, RuleService, RuleUtilityService } from '../../../../shared/shared-rules/services';
 import { CustomFormValidator, FormValidator } from '../../../../shared/shared-common/services';
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
 
@@ -116,7 +115,7 @@ export class RuleUpsertComponent implements OnInit {
 
     if (this.ruleForm.invalid) {
       clickEventArgs.resolve();
-      this.notificationService.showNotification(RuleConstants.rule_create_invalid_form, AlertType.ERROR);
+      this.notificationService.showNotification(RuleConstants.ruleCreateInvalidForm, AlertType.ERROR);
       return;
     }
 

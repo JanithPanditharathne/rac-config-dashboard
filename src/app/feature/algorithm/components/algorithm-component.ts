@@ -80,7 +80,7 @@ export class AlgorithmComponent {
       )
       .catch(() => {
         this.isLoading = false;
-        this.notificationService.showNotification(AlgorithmConstants.navigation_failure, AlertType.ERROR);
+        this.notificationService.showNotification(AlgorithmConstants.navigationFailure, AlertType.ERROR);
       });
   }
 
@@ -94,11 +94,11 @@ export class AlgorithmComponent {
       class: 'algorithm-delete-confirm-popup confirmation-popup',
       ignoreBackdropClick: true
     });
-    modalRef.content.title = AlgorithmConstants.algorithm_delete_title;
-    modalRef.content.message = AlgorithmConstants.algorithm_delete_message;
+    modalRef.content.title = AlgorithmConstants.algorithmDeleteTitle;
+    modalRef.content.message = AlgorithmConstants.algorithmDeleteMessage;
     modalRef.content.messageBody = `[${algorithmId}] ${algorithmName}`;
     modalRef.content.actionType = ActionType.DELETE;
-    modalRef.content.actionName = AlgorithmConstants.algorithm_delete_action;
+    modalRef.content.actionName = AlgorithmConstants.algorithmDeleteAction;
     modalRef.content.autoResolve = false;
     modalRef.content.onSubmit.subscribe((actionClickEventArgs: ActionClickEventArgs) => {
       this.deleteAlgorithm(algorithmId, actionClickEventArgs);
@@ -110,7 +110,7 @@ export class AlgorithmComponent {
    */
   public onAddClick(): void {
     this.router.navigate(['algorithms/add']).catch(() => {
-      this.notificationService.showNotification(AlgorithmConstants.navigation_failure, AlertType.ERROR);
+      this.notificationService.showNotification(AlgorithmConstants.navigationFailure, AlertType.ERROR);
     });
   }
 

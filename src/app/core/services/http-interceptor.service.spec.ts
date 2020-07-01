@@ -1,9 +1,6 @@
-import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { inject, TestBed } from '@angular/core/testing';
-
-import { of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { TestBed } from '@angular/core/testing';
 
 import { GlobalRefService } from 'ornamentum';
 

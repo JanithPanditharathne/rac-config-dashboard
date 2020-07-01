@@ -17,11 +17,11 @@ export class AuthErrorHandlerService {
   public handleError(status: HttpStatus): void {
     if (status === HttpStatus.FORBIDDEN || status === HttpStatus.UNAUTHORIZED) {
       this.router.navigate(['/unauthorized']).catch(() => {
-        this.notificationService.showNotification(CoreConstants.navigation_failure, AlertType.ERROR);
+        this.notificationService.showNotification(CoreConstants.navigationFailure, AlertType.ERROR);
       });
     } else {
       this.router.navigate(['/load-failure']).catch(() => {
-        this.notificationService.showNotification(CoreConstants.navigation_failure, AlertType.ERROR);
+        this.notificationService.showNotification(CoreConstants.navigationFailure, AlertType.ERROR);
       });
     }
   }

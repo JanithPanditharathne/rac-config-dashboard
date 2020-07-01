@@ -176,7 +176,7 @@ export class RecommendationUpsertComponent implements OnInit {
 
     if (this.recForm.invalid) {
       clickEventArgs.resolve();
-      this.notificationService.showNotification(RecommendationConstants.recommendation_create_invalid_form, AlertType.ERROR);
+      this.notificationService.showNotification(RecommendationConstants.recommendationCreateInvalidForm, AlertType.ERROR);
       return;
     }
 

@@ -10,5 +10,5 @@ export class MathOperatorDetailViewComponent {
   public operator: any;
 
   @Input()
-  public hasMultipleValues: boolean = false;
+  public hasMultipleValues = false;
 }

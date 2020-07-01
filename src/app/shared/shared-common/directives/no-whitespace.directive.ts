@@ -16,7 +16,7 @@ import { CustomFormValidator } from '../services';
 })
 export class NoWhitespaceDirective implements Validator {
 
-  @Input('requiredField') attr: boolean = true;
+  @Input('requiredField') attr = true;
 
   private readonly valFn = CustomFormValidator.noWhitespaceValidator();
 

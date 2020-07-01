@@ -131,7 +131,7 @@ export class RecSlotUpsertComponent implements OnInit {
 
     if (this.recSlotFormGroup.invalid) {
       clickEventArgs.resolve();
-      this.notificationService.showNotification(RecSlotConstants.rec_slot_create_invalid_form, AlertType.ERROR);
+      this.notificationService.showNotification(RecSlotConstants.recSlotCreateInvalidForm, AlertType.ERROR);
       return;
     }
 

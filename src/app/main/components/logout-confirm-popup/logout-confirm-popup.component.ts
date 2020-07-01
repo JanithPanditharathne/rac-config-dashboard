@@ -16,8 +16,8 @@ import { MainConstants } from '../../main.constants';
   templateUrl: './logout-confirm-popup.component.html'
 })
 export class LogoutConfirmPopupComponent {
-  public title = MainConstants.popup_title;
-  public message = MainConstants.popup_confirmation_message;
+  public title = MainConstants.popupTitle;
+  public message = MainConstants.popupConfirmationMessage;
 
   constructor(
     public modalRef: BsModalRef,

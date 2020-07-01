@@ -12,7 +12,7 @@ import { ActionType } from '../../../../shared-common/enums';
 import { RuleGeneratorType, RuleTabDisplayDataType, RuleTabInlineDataGeneratorType } from '../../../enums';
 
 import { RuleContextFormUtility } from '../../../services';
-import { FormValidator, CustomFormValidator } from '../../../../shared-common/services';
+import { FormValidator } from '../../../../shared-common/services';
 
 /**
  * Component class to represent tab price content.

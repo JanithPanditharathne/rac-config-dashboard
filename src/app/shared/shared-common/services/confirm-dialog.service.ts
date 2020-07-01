@@ -25,10 +25,10 @@ export class ConfirmDialogService {
       class: 'route-discard-confirm-popup confirmation-popup',
       ignoreBackdropClick: true
     });
-    modalRef.content.title = SharedCommonConstants.dialog_title;
-    modalRef.content.message = message || SharedCommonConstants.dialog_message;
+    modalRef.content.title = SharedCommonConstants.dialogTitle;
+    modalRef.content.message = message || SharedCommonConstants.dialogMessage;
     modalRef.content.actionType = ActionType.OK;
-    modalRef.content.actionName = SharedCommonConstants.dialog_action;
+    modalRef.content.actionName = SharedCommonConstants.dialogAction;
     modalRef.content.onSubmit.subscribe(() => {
       routeChangeStream.next(true);
       routeChangeStream.complete();

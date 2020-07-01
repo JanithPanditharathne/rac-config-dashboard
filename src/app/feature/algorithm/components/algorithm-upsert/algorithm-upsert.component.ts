@@ -104,7 +104,7 @@ export class AlgorithmUpsertComponent implements OnInit {
 
     if (this.algorithmForm.invalid) {
       actionClickArgs.resolve();
-      this.notificationService.showNotification(AlgorithmConstants.algorithm_create_invalid_form, AlertType.ERROR);
+      this.notificationService.showNotification(AlgorithmConstants.algorithmCreateInvalidForm, AlertType.ERROR);
       return;
     }
 
@@ -211,7 +211,7 @@ export class AlgorithmUpsertComponent implements OnInit {
           Validators.required,
           Validators.min(1),
           Validators.max(9999),
-          CustomFormValidator.regexPattern(CustomFormValidator.integer_regex)
+          CustomFormValidator.regexPattern(CustomFormValidator.integerRegex)
         ]
       )],
       algorithmName: [null],

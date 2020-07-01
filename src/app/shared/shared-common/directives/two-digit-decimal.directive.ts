@@ -7,7 +7,7 @@ import { CustomFormValidator } from '../services';
 })
 export class TwoDigitDecimalDirective {
 
-  @Input('decimals') decimals: number = 0;
+  @Input('decimals') decimals = 0;
 
   @Input('appTwoDigitDecimal') attr: boolean;
 
@@ -16,14 +16,10 @@ export class TwoDigitDecimalDirective {
 
   private check(value: string) {
     if (this.decimals <= 0) {
-      return String(value).match(new RegExp(CustomFormValidator.integer_with_two_decimal_regex));
+      return String(value).match(new RegExp(CustomFormValidator.integerWithTwoDecimalRegex));
     } else {
       const regExpString =
-        '^\\s*((\\d+(\\.\\d{0,' +
-        this.decimals +
-        '})?)|((\\d*(\\.\\d{1,' +
-        this.decimals +
-        '}))))\\s*$';
+        `^\\s*((\\d+(\\.\\d{0,${this.decimals}})?)|((\\d*(\\.\\d{1,${this.decimals}}))))\\s*$`;
       return String(value).match(new RegExp(regExpString));
     }
   }

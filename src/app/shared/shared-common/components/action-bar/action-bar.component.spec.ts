@@ -3,10 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
-import { AlertType } from '../../../../core/enums';
-
-import { SharedCommonConstants } from '../../shared-common.constants';
-
 import { ActionBarComponent } from './action-bar.component';
 
 import { NotificationService } from '../../../../core/services';

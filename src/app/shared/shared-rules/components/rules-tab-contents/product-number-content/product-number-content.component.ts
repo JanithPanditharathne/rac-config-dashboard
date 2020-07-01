@@ -6,8 +6,7 @@ import { RuleProductNumberDataItem } from '../../../../shared-common/models';
 import { RuleGeneratorType, RuleTabDisplayDataType } from '../../../enums';
 import { ActionType } from '../../../../shared-common/enums';
 
-import { RuleContextDataService } from '../../../services';
-import { RuleContextFormUtility } from '../../../services';
+import { RuleContextDataService, RuleContextFormUtility } from '../../../services';
 import { FormValidator, CustomFormValidator } from '../../../../shared-common/services';
 
 import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants';
@@ -53,7 +52,7 @@ export class ProductNumberContentComponent implements OnInit {
   public ngOnInit(): void {
     this.baseFormGroup = this.fb.group({
       productNumber: ['', Validators.compose([
-        Validators.pattern(CustomFormValidator.alphanumeric_regex),
+        Validators.pattern(CustomFormValidator.alphanumericRegex),
         Validators.required
       ])]
     });

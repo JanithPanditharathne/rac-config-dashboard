@@ -138,7 +138,6 @@ export class CustomContentComponent implements OnInit, AfterViewInit {
     this.customFormGroup.reset({
       key: null
     });
-    return;
   }
 
   /**

@@ -67,7 +67,7 @@ export class RecSlotComponent {
    */
   public onAddClick(): void {
     this.router.navigate(['rec-slots/add']).catch((e) => {
-      this.notificationService.showNotification(RecSlotConstants.navigation_failure, AlertType.ERROR);
+      this.notificationService.showNotification(RecSlotConstants.navigationFailure, AlertType.ERROR);
     });
   }
 
@@ -131,7 +131,7 @@ export class RecSlotComponent {
       return true;
     }
 
-    for (let index = 0; index < filterValue.length; index++) {
+    for (const val of filterValue) {
       if (!!item.rules.find((rule: DropDownDataItem) => rule.name.toLowerCase().includes(filterValue.toLowerCase()))) {
         return true;
       }
@@ -162,7 +162,7 @@ export class RecSlotComponent {
       )
       .catch(() => {
         this.isLoading = false;
-        this.notificationService.showNotification(RecSlotConstants.navigation_failure, AlertType.ERROR);
+        this.notificationService.showNotification(RecSlotConstants.navigationFailure, AlertType.ERROR);
       });
   }
 
@@ -175,11 +175,11 @@ export class RecSlotComponent {
       class: 'rec-slot-delete-confirm-popup confirmation-popup',
       ignoreBackdropClick: true
     });
-    modalRef.content.title = RecSlotConstants.rec_slot_delete_title;
-    modalRef.content.message = RecSlotConstants.rec_slot_delete_message;
+    modalRef.content.title = RecSlotConstants.recSlotDeleteTitle;
+    modalRef.content.message = RecSlotConstants.recSlotDeleteMessage;
     modalRef.content.messageBody = `Rec slot [${recSlotId}]`;
     modalRef.content.actionType = ActionType.DELETE;
-    modalRef.content.actionName = RecSlotConstants.rec_slot_delete_action;
+    modalRef.content.actionName = RecSlotConstants.recSlotDeleteAction;
     modalRef.content.autoResolve = false;
     modalRef.content.onSubmit.subscribe((actionClickEventArgs: ActionClickEventArgs) => {
       this.deleteRecSlot(recSlotId, actionClickEventArgs);

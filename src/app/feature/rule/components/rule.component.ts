@@ -74,7 +74,7 @@ export class RuleComponent {
    */
   public onAddClick(): void {
     this.router.navigate(['rules/add']).catch((e) => {
-      this.notificationService.showNotification(RuleConstants.navigation_failure, AlertType.ERROR);
+      this.notificationService.showNotification(RuleConstants.navigationFailure, AlertType.ERROR);
     });
   }
 
@@ -96,7 +96,7 @@ export class RuleComponent {
       )
       .catch(() => {
         this.isLoading = false;
-        this.notificationService.showNotification(RuleConstants.navigation_failure, AlertType.ERROR);
+        this.notificationService.showNotification(RuleConstants.navigationFailure, AlertType.ERROR);
       });
   }
 
@@ -110,11 +110,11 @@ export class RuleComponent {
       class: 'rule-delete-confirm-popup confirmation-popup',
       ignoreBackdropClick: true
     });
-    modalRef.content.title = RuleConstants.rule_delete_title;
-    modalRef.content.message = RuleConstants.rule_delete_message;
+    modalRef.content.title = RuleConstants.ruleDeleteTitle;
+    modalRef.content.message = RuleConstants.ruleDeleteMessage;
     modalRef.content.messageBody = `[${ruleId}] ${ruleName}`;
     modalRef.content.actionType = ActionType.DELETE;
-    modalRef.content.actionName = RuleConstants.rule_delete_action;
+    modalRef.content.actionName = RuleConstants.ruleDeleteAction;
     modalRef.content.autoResolve = false;
     modalRef.content.onSubmit.subscribe((actionClickEventArgs: ActionClickEventArgs) => {
       this.deleteRule(ruleId, actionClickEventArgs);
