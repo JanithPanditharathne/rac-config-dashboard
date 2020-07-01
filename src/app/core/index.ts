@@ -10,19 +10,16 @@ import {
   MenuBarComponent,
   NotificationComponent,
   PageNotFoundComponent,
-  UnauthorizedComponent,
-  LoginComponent
+  UnauthorizedComponent
 } from './components';
 
 // Guards
-import { AuthGuard, LoginGuard } from './guards';
+import { AuthGuard } from './guards';
 // services
 import {
   AppHttpInterceptorService,
   AuthErrorHandlerService,
-  AuthService,
   ClientErrorInterceptorService,
-  CookieStorageService,
   NotificationService,
   UserProfileService
 } from './services';
@@ -38,8 +35,7 @@ export const COMPONENTS = [
   NotificationComponent,
   UnauthorizedComponent,
   AlertComponent,
-  MenuBarComponent,
-  LoginComponent
+  MenuBarComponent
 ];
 
 /**
@@ -47,10 +43,7 @@ export const COMPONENTS = [
  */
 export const SERVICES = [
   AuthGuard,
-  AuthService,
   AuthErrorHandlerService,
-  CookieStorageService,
-  LoginGuard,
   {
     provide: ErrorHandler,
     useClass: ClientErrorInterceptorService

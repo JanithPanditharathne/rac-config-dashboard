@@ -6,4 +6,3 @@ export { AlertComponent } from './notification/alert/alert.component';
 export { NotificationComponent } from './notification/notification.component';
 export { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 export { UnauthorizedComponent } from './unauthorized/unauthorized.component';
-export { LoginComponent } from './login/login.component';

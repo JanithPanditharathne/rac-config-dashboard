@@ -9,7 +9,7 @@ import { MenuItem, UserProfile } from '../../../core/models';
 
 import { LogoutConfirmPopupComponent } from '../logout-confirm-popup/logout-confirm-popup.component';
 
-import { Animation, AuthService } from '../../../core/services';
+import { Animation } from '../../../core/services';
 
 /**
  * Component class for showing main view.
@@ -28,7 +28,6 @@ export class AppMainComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService,
     private modalService: BsModalService,
     private keycloakAngular: KeycloakService
   ) {

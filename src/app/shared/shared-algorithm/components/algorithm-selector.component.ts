@@ -158,7 +158,7 @@ export class AlgorithmSelectorComponent {
     const currentAlgorithms: Algorithm[] = this.algorithmsFormGroup.get('algorithms').value;
     const newAlgorithm: AlgorithmDropDownItem = this.algorithmsFormGroup.get('selectedAlgorithm').value;
 
-    let algorithms = [...currentAlgorithms, newAlgorithm];
+    const algorithms = [...currentAlgorithms, newAlgorithm];
 
     this.algorithmsFormGroup.patchValue({
       algorithms: algorithms,
@@ -174,9 +174,8 @@ export class AlgorithmSelectorComponent {
    * @param {DataTableRow<Algorithm>} row data table row
    */
   public onEditDisplayText(row: DataTableRow<Algorithm>): void {
-    let modalRef: BsModalRef;
-
-    modalRef = this.modalService.show(EditDisplayTextComponent, {class: 'display-text-edit-confirm-popup', ignoreBackdropClick: true});
+    const modalRef: BsModalRef =
+      this.modalService.show(EditDisplayTextComponent, {class: 'display-text-edit-confirm-popup', ignoreBackdropClick: true});
     modalRef.content.setDisplayTextFormData(row.item.customDisplayText || row.item.defaultDisplayText);
     modalRef.content.autoResolve = false;
     modalRef.content.saveClick.subscribe((text: string) => {
