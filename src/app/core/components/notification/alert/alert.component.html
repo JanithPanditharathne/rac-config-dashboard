@@ -9,7 +9,7 @@
     (onClosed)="onCloseClick($event)"
   >
     <span
-      ><i class="zmdi zmdi-check"></i>{{ notification.message }}
+      ><em class="zmdi zmdi-check"></em>{{ notification.message }}
       <ng-container *ngIf="notification.count">({{ notification.count }})</ng-container>
     </span>
   </alert>
@@ -23,7 +23,7 @@
     (onClosed)="onCloseClick($event)"
   >
     <span
-      ><i class="zmdi zmdi-alert-triangle"></i>{{ notification.message }}
+      ><em class="zmdi zmdi-alert-triangle"></em>{{ notification.message }}
       <ng-container *ngIf="notification.count">({{ notification.count }}) </ng-container>
     </span>
   </alert>
@@ -37,7 +37,7 @@
     (onClosed)="onCloseClick($event)"
   >
     <span
-      ><i class="zmdi zmdi-info"></i>{{ notification.message }}
+      ><em class="zmdi zmdi-info"></em>{{ notification.message }}
       <ng-container *ngIf="notification.count">({{ notification.count }})</ng-container>
     </span>
   </alert>
@@ -51,7 +51,7 @@
     (onClosed)="onCloseClick($event)"
   >
     <span
-      ><i class="zmdi zmdi-alert-circle"></i>{{ notification.message }}
+      ><em class="zmdi zmdi-alert-circle"></em>{{ notification.message }}
       <ng-container *ngIf="notification.count">({{ notification.count }})</ng-container>
     </span>
   </alert>

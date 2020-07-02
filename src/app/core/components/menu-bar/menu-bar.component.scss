@@ -160,46 +160,42 @@
         .menu-title {
           padding: 0 .5rem;
         }
+
+        &.active {
+
+          @include breakpoint(max991) {
+            margin: 0 .5rem;
+          }
+          color: $navigation-item-active-text-color;
+          background: $navigation-item-active-background-color;
+          border-radius: 0.5rem;
+          display: block;
+
+
+
+          .menu-icon {
+            &.rac-rec-slot-icon {
+              background-image: svg-url-icon($rec-slot-icon, '#000000', $navigation-item-active-icon-color);
+            }
+
+            &.recommendation-icon {
+              background-image: svg-url-icon($recommend-icon, '#000000', $navigation-item-active-icon-color);
+            }
+
+            &.algorithm-icon {
+              background-image: svg-url-icon($algorithm-icon, '#000000', $navigation-item-active-icon-color);
+            }
+
+            &.bundle-icon {
+              background-image: svg-url-icon($bundle-icon, '#000000', $navigation-item-active-icon-color);
+            }
+
+            &.rule-icon {
+              background-image: svg-url-icon($rule-icon, '#000000', $navigation-item-active-icon-color);
+            }
+          }
+        }
       }
-
-
-        > .nav-link {
-
-          &.active {
-
-            @include breakpoint(max991) {
-              margin: 0 .5rem;
-            }
-            color: $navigation-item-active-text-color;
-            background: $navigation-item-active-background-color;
-            border-radius: 0.5rem;
-            display: block;
-
-
-
-            .menu-icon {
-              &.rac-rec-slot-icon {
-                background-image: svg-url-icon($rec-slot-icon, '#000000', $navigation-item-active-icon-color);
-              }
-
-              &.recommendation-icon {
-                background-image: svg-url-icon($recommend-icon, '#000000', $navigation-item-active-icon-color);
-              }
-
-              &.algorithm-icon {
-                background-image: svg-url-icon($algorithm-icon, '#000000', $navigation-item-active-icon-color);
-              }
-
-              &.bundle-icon {
-                background-image: svg-url-icon($bundle-icon, '#000000', $navigation-item-active-icon-color);
-              }
-
-              &.rule-icon {
-                background-image: svg-url-icon($rule-icon, '#000000', $navigation-item-active-icon-color);
-              }
-            }
-        }
-        }
 
 
       &.dropdown {

@@ -5,7 +5,7 @@
                 <div class="form-group" [class.input-error]="isInvalid('key')">
                     <label
                     >Key
-                        <app-info-label
+                        <app-info-label class="rac-app-info-label"
                                 [description]="SharedCommonConstants.textFieldMaxLengthMessage"
                                 [placement]="'right'"
                                 [outsideClick]="false"
@@ -59,7 +59,7 @@
                 <div class="form-group" [class.input-error]="isInvalid('values')">
                     <label
                     >Value
-                        <app-info-label *ngIf="!isNumericKey()"
+                        <app-info-label class="rac-app-info-label" *ngIf="!isNumericKey()"
                                 [description]="SharedCommonConstants.textFieldMaxLengthMessage"
                                 [placement]="'right'"
                                 [outsideClick]="false"

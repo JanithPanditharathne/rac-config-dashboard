@@ -82,14 +82,14 @@
             <ng-data-table-column [title]="'Action'" [showInColumnSelector]="false" [width]="100">
                 <ng-template #ngDataTableCell let-row="row" let-rowSpan="rowSpan" let-spanIndex="spanIndex">
                     <td [attr.rowspan]="rowSpan" *ngIf="!spanIndex" (click)="$event.stopPropagation()">
-                        <app-table-actions-column>
-                            <app-table-action
+                        <app-table-actions-column class="rac-table-action-column">
+                            <app-table-action class="rac-table-action"
                                     [type]="ColumnActionType.EDIT"
                                     [tooltip]="'Edit Rec Slot'"
                                     (actionClick)="onEditClick(row.item.id)"
                             >
                             </app-table-action>
-                            <app-table-action
+                            <app-table-action class="rac-table-action"
                                     [type]="ColumnActionType.DELETE"
                                     [tooltip]="'Delete Rec Slot'"
                                     (actionClick)="openDeleteConfirmModal(row.item.id)"

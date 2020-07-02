@@ -1,5 +1,5 @@
 <div class="rac-selected-condition-wrapper">
-    <app-additional-detail-view *ngIf="formGroupData?.value?.length" [viewType]="AdditionalDataViewType.INLINE"
+    <app-additional-detail-view class="rac-app-additional-detail-view" *ngIf="formGroupData?.value?.length" [viewType]="AdditionalDataViewType.INLINE"
                                 [data]="formGroupData">
         <ng-template #actionTemplate let-value="value">
             <div class="rac-selected-condition-action-buttons">
@@ -12,7 +12,7 @@
     <ng-container *ngIf="formArrayData">
         <ng-container *ngFor="let item of formArrayData">
             <ng-container *ngIf="displayType === RuleTabInlineDataGeneratorType.PRICE && isPriceType(item.type)">
-                <app-price-detail-view [priceItem]="item">
+                <app-price-detail-view class="rac-app-price-detail-view" [priceItem]="item">
                     <ng-template #actionTemplate>
                         <div class="rac-selected-condition-action-buttons">
                             <app-action-button-strap>
@@ -23,7 +23,7 @@
                 </app-price-detail-view>
             </ng-container>
             <ng-container *ngIf="displayType === RuleTabInlineDataGeneratorType.CUSTOM && isCustomType(item.type)">
-                <app-custom-detail-view [customItem]="item">
+                <app-custom-detail-view class="rac-app-custom-detail-view" [customItem]="item">
                     <ng-template #actionTemplate>
                         <div class="rac-selected-condition-action-buttons">
                             <app-action-button-strap>

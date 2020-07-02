@@ -4,7 +4,7 @@
             <ng-container *ngFor="let rule of parentFormGroup.get(contextType)?.controls; let i = index"
                           [formGroupName]="i">
                 <ng-container *ngIf="!isPriceType(rule.value.type)">
-                    <app-additional-detail-view *ngIf="rule.value.value.length" [data]="rule.value">
+                    <app-additional-detail-view class="rac-app-additional-detail-view" *ngIf="rule.value.value.length" [data]="rule.value">
                         <ng-template #actionTemplate>
                             <app-rule-condition-generator
                                     *ngIf="parentFormGroup.get(contextType).controls[i + 1]"
@@ -16,7 +16,7 @@
                 </ng-container>
 
                 <ng-container *ngIf="isPriceType(rule.value.type)">
-                    <app-price-detail-view [priceItem]="rule.value">
+                    <app-price-detail-view class="rac-app-price-detail-view" [priceItem]="rule.value">
                         <ng-template #actionTemplate>
                             <app-rule-condition-generator
                                     *ngIf="parentFormGroup.get(contextType).controls[i + 1]"
@@ -28,7 +28,7 @@
                 </ng-container>
 
                 <ng-container *ngIf="isCustomType(rule.value.type)">
-                    <app-custom-detail-view [customItem]="rule.value">
+                    <app-custom-detail-view class="rac-app-custom-detail-view" [customItem]="rule.value">
                         <ng-template #actionTemplate>
                             <app-rule-condition-generator
                                     *ngIf="parentFormGroup.get(contextType).controls[i + 1]"

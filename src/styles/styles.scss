@@ -54,7 +54,7 @@ body {
     cursor: pointer;
   }
 
-  i {
+  em {
     @include font-size(1.2, 1.6);
     padding-right: .5rem;
   }
@@ -201,7 +201,7 @@ body {
   transform: scale(.95);
   transition: .2s background ease, .2s box-shadow ease, .2s transform ease;
 
-  i {
+  em {
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -231,7 +231,7 @@ body {
     box-shadow: $box-shadow-color;
     transform: scale(1);
 
-    i {
+    em {
       color: $primary-btn-hover-icon-color;
     }
 
@@ -241,84 +241,84 @@ body {
   }
 
   &.rac-add-icon-parent {
-    i {
+    em {
       background-image: svg-url-icon($add-icon, '#000000', $primary-btn-icon-color);
     }
 
     &:hover {
-      i {
+      em {
         background-image: svg-url-icon($add-icon, '#000000', $primary-btn-hover-icon-color);
       }
     }
   }
 
   &.rac-apply-icon-parent {
-    i {
+    em {
       background-image: svg-url-icon($apply-icon, '#000000', $primary-btn-icon-color);
     }
 
     &:hover {
-      i {
+      em {
         background-image: svg-url-icon($apply-icon, '#000000', $primary-btn-hover-icon-color);
       }
     }
   }
 
   &.rac-refresh-icon-parent {
-    i {
+    em {
       background-image: svg-url-icon($refresh-icon, '#000000', $primary-btn-icon-color);
     }
 
     &:hover {
-      i {
+      em {
         background-image: svg-url-icon($refresh-icon, '#000000', $primary-btn-hover-icon-color);
       }
     }
   }
 
   &.rac-move-up-icon-parent {
-    i {
+    em {
       background-image: svg-url-icon($move-up-icon, '#000000', $primary-btn-icon-color);
     }
 
     &:hover {
-      i {
+      em {
         background-image: svg-url-icon($move-up-icon, '#000000', $primary-btn-hover-icon-color);
       }
     }
   }
 
   &.rac-move-down-icon-parent {
-    i {
+    em {
       background-image: svg-url-icon($move-down-icon, '#000000', $primary-btn-icon-color);
     }
 
     &:hover {
-      i {
+      em {
         background-image: svg-url-icon($move-down-icon, '#000000', $primary-btn-hover-icon-color);
       }
     }
   }
 
   &.rac-edit-icon-parent {
-    i {
+    em {
       background-image: svg-url-icon($edit-icon, '#000000', $primary-btn-icon-color);
     }
 
     &:hover {
-      i {
+      em {
         background-image: svg-url-icon($edit-icon, '#000000', $primary-btn-hover-icon-color);
       }
     }
   }
 
   &.rac-download-icon-parent {
-    i {
+    em {
       background-image: svg-url-icon($download-icon, '#000000', $primary-btn-icon-color);
     }
 
     &:hover {
-      i {
+      em {
         background-image: svg-url-icon($download-icon, '#000000', $primary-btn-hover-icon-color);
       }
     }
@@ -329,7 +329,7 @@ body {
   &.rac-ok-icon-parent {
     background: $save-btn-background;
 
-    i {
+    em {
       background-image: svg-url-icon($ok-icon, '#000000', $save-btn-icon-color);
     }
 
@@ -342,7 +342,7 @@ body {
       background: $save-btn-hover-background-color;
       box-shadow: $box-shadow-color;
 
-      i {
+      em {
         background-image: svg-url-icon($ok-icon, '#000000', $save-btn-hover-icon-color);
       }
 
@@ -355,7 +355,7 @@ body {
   &.rac-save-icon-parent {
     background: $save-btn-background;
 
-    i {
+    em {
       background-image: svg-url-icon($save-icon, '#000000', $save-btn-icon-color);
     }
 
@@ -368,7 +368,7 @@ body {
       background: $save-btn-hover-background-color;
       box-shadow: $box-shadow-color;
 
-      i {
+      em {
         background-image: svg-url-icon($save-icon, '#000000', $save-btn-hover-icon-color);
       }
 
@@ -381,7 +381,7 @@ body {
   &.rac-delete-icon-parent {
     background: $delete-btn-background;
 
-    i {
+    em {
       background-image: svg-url-icon($delete-icon, '#000000', $delete-btn-icon-color);
     }
 
@@ -392,7 +392,7 @@ body {
     &:hover {
       background: $delete-btn-hover-background-color;
 
-      i {
+      em {
         background-image: svg-url-icon($delete-icon, '#000000', $delete-btn-hover-icon-color);
       }
 
@@ -405,7 +405,7 @@ body {
   &.rac-deactivate-icon-parent {
     background: $delete-btn-background;
 
-    i {
+    em {
       background-image: svg-url-icon($deactivate-icon, '#000000', $delete-btn-icon-color);
     }
 
@@ -416,7 +416,7 @@ body {
     &:hover {
       background: $delete-btn-hover-background-color;
 
-      i {
+      em {
         background-image: svg-url-icon($deactivate-icon, '#000000', $delete-btn-hover-icon-color);
       }
 
@@ -432,7 +432,7 @@ body {
   &.rac-close-icon-parent {
     background: $cancel-btn-background;
 
-    i {
+    em {
       background-image: svg-url-icon($close-icon, '#000000', $cancel-btn-icon-color);
     }
 
@@ -443,7 +443,7 @@ body {
     &:hover {
       background: $cancel-btn-hover-background-color;
 
-      i {
+      em {
         background-image: svg-url-icon($close-icon, '#000000', $cancel-btn-hover-icon-color);
       }
 
@@ -456,7 +456,7 @@ body {
   &.rac-cancel-icon-parent {
     background: $cancel-btn-background;
 
-    i {
+    em {
       background-image: svg-url-icon($cancel-icon, '#000000', $cancel-btn-icon-color);
     }
 
@@ -467,7 +467,7 @@ body {
     &:hover {
       background: $cancel-btn-hover-background-color;
 
-      i {
+      em {
         background-image: svg-url-icon($cancel-icon, '#000000', $cancel-btn-hover-icon-color);
       }
 
@@ -480,7 +480,7 @@ body {
   &.rac-spinner-icon-parent {
     background: $updating-btn-background;
 
-    i {
+    em {
       background-image: svg-url-icon($spinner-icon, '#000000', $updating-btn-icon-color);
     }
 
@@ -492,7 +492,7 @@ body {
     &:hover {
       background: $updating-btn-hover-background-color;
 
-      i {
+      em {
         background-image: svg-url-icon($spinner-icon, '#000000', $updating-btn-hover-icon-color);
       }
 
@@ -580,19 +580,6 @@ body {
   }
 }
 
-
-// New
-.price-container {
-  .form-group {
-    .ng-dropdown {
-
-      .ng-dropdown-toggle {
-        border-radius: .2rem;
-      }
-    }
-  }
-}
-
 // Dropdown Styles
 .form-group {
   .ng-dropdown {
@@ -620,12 +607,6 @@ body {
   }
 }
 
-.tab-pane {
-  .ng-dropdown-toggle {
-   border-radius: 0.2rem 0 0 0.2rem;
-  }
-}
-
 .ng-dropdown-menu-wrapper {
   @include font-size(.8, 1.8);
 }
@@ -635,7 +616,7 @@ body {
   .ng-dropdown-menu-wrapper {
     .ng-dropdown-option-container-wrapper {
       .ng-dropdown-option-container {
-        app-info-label {
+        .rac-app-info-label {
           @include font-size(.8, 1);
           align-items: center;
           display: flex;
@@ -667,7 +648,7 @@ body {
             opacity: .8;
           }
 
-          i {
+          em {
             width: 1rem;
           }
         }
@@ -679,43 +660,11 @@ body {
 select {
   &.form-control {
     &:not([size]) {
-      app-table-actions-column &:not([multiple]) {
+      .rac-table-action-column &:not([multiple]) {
         -webkit-appearance: none;
         border-radius: 0;
         height: auto;
         padding: .3rem .75rem;
-      }
-    }
-  }
-}
-
-// Headings Label Styles
-
-.rac-form-container {
-  .rac-form-heading-container {
-    &.form-group {
-      margin-bottom: 0;
-    }
-
-    h2 {
-      @include font-size(1.1, 1.2);
-      color: $form-main-heading-text-color;
-      font-weight: 500;
-      margin: 0;
-
-      span {
-        @include font-size(.9, 1);
-        font-weight: 300;
-      }
-    }
-
-    h3 {
-      @include font-size(.9, 1.2);
-    }
-
-    &.input-error {
-      h2 {
-        color: $form-error-color;
       }
     }
   }
@@ -735,7 +684,7 @@ select {
   display: flex;
   justify-content: flex-end;
 
-  app-table-action {
+  .rac-table-action {
     &:last-child {
       .action-button {
         margin-right: 0;
@@ -771,8 +720,7 @@ select {
   }
 }
 
-
-// Data Table Box Shadow, Border Radius & Dropdown Styles
+// Data Table Style
 .ng-data-table-container {
   box-shadow: 0 .2rem 1rem $box-shadow-color-light;
 
@@ -789,10 +737,7 @@ select {
       }
     }
   }
-}
 
-// Data Table Style
-.ng-data-table-container {
   .ng-data-table {
     tbody {
       > tr {
@@ -806,7 +751,7 @@ select {
           }
 
           .status-container {
-            i {
+            em {
               @include font-size(1.3, 1.4);
               padding-right: .3rem;
             }
@@ -904,9 +849,6 @@ select {
   }
 }
 
-
-
-
 //.ng-data-table-content {
 //  .form-container {
 //    .form-control {
@@ -916,9 +858,6 @@ select {
 //  }
 //}
 
-
-
-
 .relative-parent {
   position: relative;
 }
@@ -927,13 +866,37 @@ select {
 //  display: flex;
 //}
 
-
-
-
-
 // Main Input Forms Styles
 .rac-form-container {
   padding: 1rem 0;
+
+  .rac-form-heading-container {
+    &.form-group {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      @include font-size(1.1, 1.2);
+      color: $form-main-heading-text-color;
+      font-weight: 500;
+      margin: 0;
+
+      span {
+        @include font-size(.9, 1);
+        font-weight: 300;
+      }
+    }
+
+    h3 {
+      @include font-size(.9, 1.2);
+    }
+
+    &.input-error {
+      h2 {
+        color: $form-error-color;
+      }
+    }
+  }
 
   .form-check {
     padding: .5rem 0;
@@ -957,7 +920,7 @@ select {
       }
     }
 
-    app-info-label {
+    .rac-app-info-label {
       span {
         display: inline-flex;
       }
@@ -1086,7 +1049,7 @@ bs-datepicker-container {
     font-weight: 600;
     transition: 1s color ease;
 
-    i {
+    em {
       padding-right: .3rem;
     }
 
@@ -1466,7 +1429,7 @@ bs-datepicker-container {
           justify-content: left;
           text-align: center;
 
-          i {
+          em {
             color: $popup-warning-color;
             padding: 0 2.5rem 0 1rem;
           }
@@ -1540,8 +1503,13 @@ bs-datepicker-container {
 
 // Tab view
 .tab-pane {
+
+  .ng-dropdown-toggle {
+    border-radius: 0.2rem 0 0 0.2rem;
+  }
+
   .rac-selected-condition-wrapper {
-    app-additional-detail-view {
+    .rac-app-additional-detail-view {
       .rac-selected-condition {
         border-radius: 0;
 
@@ -1567,8 +1535,8 @@ bs-datepicker-container {
       }
     }
 
-    app-price-detail-view,
-    app-custom-detail-view {
+    .rac-app-price-detail-view,
+    .rac-app-custom-detail-view {
       .rac-selected-condition {
         border-radius: 0;
       }
@@ -1633,53 +1601,6 @@ bs-datepicker-container {
     flex-wrap: wrap;
     position: relative;
     width: 100%;
-  }
-
-  app-facet-select-options,
-  app-category-select-options {
-    flex: 1 1 auto;
-    position: relative;
-    width: 1%;
-  }
-
-  .rating-selector {
-    .tab-content-action-button-container {
-      .zmdi-plus-parent {
-        border-radius: .2rem;
-        margin-top: 0;
-
-        i {
-          line-height: 1.7rem;
-        }
-      }
-    }
-  }
-
-  app-category-select-options {
-    .ng-dropdown {
-      .ng-dropdown-toggle {
-        border-radius: .2rem;
-      }
-    }
-
-    .category-item {
-      &:last-child {
-        .ng-dropdown {
-          .ng-dropdown-toggle {
-            border-radius: .2rem 0 0 .2rem;
-          }
-        }
-      }
-    }
-  }
-}
-
-app-placement-select-options {
-
-  .ng-dropdown {
-    .ng-dropdown-toggle {
-      border-radius: .2rem 0 0 .2rem;
-    }
   }
 }
 
@@ -1793,7 +1714,7 @@ app-placement-select-options {
     margin-left: .05rem;
     margin-top: 1.19rem;
 
-    i {
+    em {
       line-height: 2.15rem;
     }
   }
@@ -1807,94 +1728,25 @@ app-placement-select-options {
 }
 
 .price-container {
+  .form-group {
+    .ng-dropdown {
+
+      .ng-dropdown-toggle {
+        border-radius: .2rem;
+      }
+    }
+  }
+
   .tab-content-action-button-container {
     .action-button {
       border-radius: .2rem;
       margin-top: 0;
 
-      i {
+      em {
         @include font-size(1.1, 1.7);
       }
     }
   }
-}
-
-// Warmup Toggle View Styles
-.warm-up-toggle-container {
-  app-date-range-picker {
-    form {
-      pointer-events: none;
-    }
-
-    &.enabled {
-      form {
-        opacity: 1;
-        pointer-events: inherit;
-      }
-    }
-  }
-}
-
-app-warm-up-toggle-view {
-  transition: none;
-
-  &.enabled {
-    .warm-up-toggle-container {
-      opacity: 1;
-      pointer-events: inherit;
-      transition: none;
-    }
-  }
-}
-
-// Rescale Toggle View Styles
-app-rescale-toggle-view {
-  &.enabled {
-    .rescale-toggle-container {
-      opacity: 1;
-      pointer-events: inherit;
-    }
-  }
-}
-
-app-algorithm-mix-mode {
-  &.enabled {
-    .mix-mode-container {
-      opacity: 1;
-      pointer-events: inherit;
-      transition: none;
-    }
-  }
-}
-
-//Key Performance Metrics Styles
-.optimize-metric-container {
-  ng-dropdown {
-    .ng-dropdown {
-      opacity: .5;
-      pointer-events: none;
-    }
-
-    &.enabled {
-      .ng-dropdown {
-        opacity: 1;
-        pointer-events: inherit;
-      }
-    }
-  }
-}
-
-// Bundle Picker Styles
-app-bundle-picker {
-  //.rac-form-heading-container {
-  //  .form-group {
-  //    &.input-error {
-  //      .input-error-label {
-  //        padding-left: 0;
-  //      }
-  //    }
-  //  }
-  //}
 }
 
 .rac-selected-condition-wrapper {
@@ -1955,7 +1807,7 @@ app-bundle-picker {
 .you-viewed-people-viewed-container {
   .remove-button-strap {
     .action-button {
-      i {
+      em {
         padding-right: 0;
       }
     }
@@ -1965,50 +1817,6 @@ app-bundle-picker {
 .status-container {
   display: block;
   text-align: center;
-}
-
-.context-generator {
-  app-price-detail-view,
-  app-ratings-reviews-detail-view,
-  app-category-detail-view {
-    &:first-child {
-      .context-pane-wrapper {
-        border-radius: .2rem .2rem 0 0;
-      }
-    }
-
-    &:last-child {
-      .context-pane-wrapper {
-        border-radius: 0 0 .2rem .2rem;
-      }
-    }
-
-    &:only-child {
-      .context-pane-wrapper {
-        border-radius: .2rem;
-      }
-    }
-
-    &:nth-child(odd) {
-      .context-pane-wrapper {
-        background: $context-background-odd;
-      }
-    }
-
-    &:nth-child(even) {
-      .context-pane-wrapper {
-        background: $context-background-even;
-      }
-    }
-  }
-}
-
-.rac-conditions-view {
-  app-category-detail-view {
-    .context-pane-wrapper {
-      background: none;
-    }
-  }
 }
 
 .table-expand-details {

@@ -9,7 +9,7 @@
     <div class="col-lg-12">
       <div class="rac-form-container rac-confirmation-window">
         <label class="modal-message" *ngIf="!messageBodyTemplate">
-          <i class="rac-warning"></i>
+          <em class="rac-warning"></em>
           <span>{{ message }}<strong>{{ messageBody }}</strong></span>
         </label>
         <ng-container [ngTemplateOutlet]="messageBodyTemplate"></ng-container>
