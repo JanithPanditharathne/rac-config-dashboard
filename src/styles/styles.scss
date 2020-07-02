@@ -994,44 +994,6 @@ a {
   }
 }
 
-// Date Picker Styles
-bs-datepicker-container {
-  position: relative;
-
-  .bs-datepicker-container {
-    @include font-size(.8, 1.2);
-    padding: .5rem;
-
-    .bs-datepicker-head {
-      background: $date-picker-background;
-    }
-
-    .bs-datepicker-body {
-      table {
-        td {
-          span {
-            &.selected {
-              background: $date-picker-background;
-            }
-          }
-
-          &.selected {
-            span {
-              background: $date-picker-background;
-            }
-          }
-
-          &.week {
-            span {
-              color: $date-picker-text-color;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
 // Checkbox Styles
 .form-check-label {
   cursor: pointer;
