@@ -10,7 +10,6 @@ import { FormValidator, MetaDataService } from '../../../shared-common/services'
 import {
   BrandContentComponent,
   CustomContentComponent,
-  PriceContentComponent,
   ProductNumberContentComponent
 } from '../rules-tab-contents';
 
