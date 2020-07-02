@@ -7,7 +7,7 @@ import { ActionBreadcrumb, ActionClickEventArgs } from '../../../shared-common/m
 import { BundleSaveEventArgs } from '../../../../feature/bundle/models/bundle-save-event-args.model';
 
 import { AlertType } from '../../../../core/enums';
-import { FormAction, ActionType } from 'src/app/shared/shared-common/enums';
+import { FormAction, ActionType } from 'src/app/shared/shared-common/enums';  // NOSONAR
 
 import { AlgorithmSelectorComponent } from '../../../shared-algorithm/components';
 
@@ -17,7 +17,7 @@ import { AlgorithmUtilityService } from '../../../shared-algorithm/services';
 import { CustomFormValidator, FormValidator } from '../../../shared-common/services';
 
 import { SharedBundleConstants } from '../../shared-bundle.constants';
-import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants';
+import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants'; // NOSONAR
 
 /**
  * Class representing the Bundle form component component.
@@ -146,15 +146,7 @@ export class BundleFormComponent implements OnInit {
   public addNewBundle(bundle: Bundle, actionClickArgs: ActionClickEventArgs): void {
     this.bundleService.createBundle(bundle).subscribe(
       (response: SuccessResponse) => {
-        this.bundleSaveSuccess(actionClickArgs, bundle, response.message);
-        this.bundleFormGroup.markAsPristine();
-        this.bundleFormGroup.reset({
-            defaultLimit: 5,
-            algorithms: {
-              algorithms: []
-            }
-          }
-        );
+        this.handleResponse(response, bundle, actionClickArgs);
       },
       () => {
         this.bundleSaveFail(actionClickArgs);
@@ -170,19 +162,29 @@ export class BundleFormComponent implements OnInit {
     bundle.id = this.bundle.id;
     this.bundleService.updateBundle(bundle).subscribe(
       (response: SuccessResponse) => {
-        this.bundleSaveSuccess(actionClickArgs, bundle, response.message);
-        this.bundleFormGroup.markAsPristine();
-        this.bundleFormGroup.reset({
-            defaultLimit: 5,
-            algorithms: {
-              algorithms: []
-            }
-          }
-        );
+        this.handleResponse(response, bundle, actionClickArgs);
       },
       () => {
         this.bundleSaveFail(actionClickArgs);
       });
+  }
+
+  /**
+   * Responsible for handle backend response.
+   * @param {SuccessResponse} response
+   * @param {Bundle} bundle
+   * @param {ActionClickEventArgs} actionClickArgs
+   */
+  private handleResponse(response: SuccessResponse, bundle: Bundle, actionClickArgs: ActionClickEventArgs): void {
+    this.bundleSaveSuccess(actionClickArgs, bundle, response.message);
+    this.bundleFormGroup.markAsPristine();
+    this.bundleFormGroup.reset({
+        defaultLimit: 5,
+        algorithms: {
+          algorithms: []
+        }
+      }
+    );
   }
 
   /**

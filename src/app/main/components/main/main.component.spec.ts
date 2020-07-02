@@ -21,7 +21,6 @@ class MockRouter {
 }
 
 describe('Main component tests', () => {
-  let fixture: ComponentFixture<AppMainComponent>;
   let debugElement: DebugElement;
 
   let mockBsModalService;
@@ -43,8 +42,6 @@ describe('Main component tests', () => {
       ],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
-
-    fixture = TestBed.createComponent(AppMainComponent);
 
     bsModalService = TestBed.get(BsModalService);
     spyOn(bsModalService, 'show');

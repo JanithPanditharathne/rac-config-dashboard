@@ -6,27 +6,27 @@
         <app-tab [title]="RulesTabTitle.BRAND" [id]="'tab-1'">
             <ng-template #tabContent>
                 <app-brand-content [parentElement]="parentElement"
-                                   [formDataArray]="parentFormGroup.get(ruleGeneratorType)"
-                                   [ruleGeneratorType]="ruleGeneratorType"></app-brand-content>
+                                   [formDataArray]="matchingParentFormGroup.get(ruleMatchingGeneratorType)"
+                                   [ruleGeneratorType]="ruleMatchingGeneratorType"></app-brand-content>
             </ng-template>
         </app-tab>
         <app-tab [title]="RulesTabTitle.PRODUCT_NUMBER" [id]="'tab-2'">
             <ng-template #tabContent>
                 <app-product-number-content [parentElement]="parentElement"
-                                            [formDataArray]="parentFormGroup.get(ruleGeneratorType)"
-                                            [ruleGeneratorType]="ruleGeneratorType">
+                                            [formDataArray]="matchingParentFormGroup.get(ruleMatchingGeneratorType)"
+                                            [ruleGeneratorType]="ruleMatchingGeneratorType">
                 </app-product-number-content>
             </ng-template>
         </app-tab>
         <app-tab *ngIf="metadataTypes?.length" [title]="RulesTabTitle.CUSTOM" [id]="'tab-3'">
             <ng-template #tabContent>
                 <app-custom-content [parentElement]="parentElement"
-                                    [formDataArray]="parentFormGroup.get(ruleGeneratorType)"
-                                    [ruleGeneratorType]="ruleGeneratorType"
+                                    [formDataArray]="matchingParentFormGroup.get(ruleMatchingGeneratorType)"
+                                    [ruleGeneratorType]="ruleMatchingGeneratorType"
                                     [keys]="metadataTypes">
                 </app-custom-content>
             </ng-template>
         </app-tab>
     </app-tab-set>
-    <app-rule-generator [contextType]="ruleGeneratorType" [parentFormGroup]="parentFormGroup"></app-rule-generator>
+    <app-rule-generator [contextType]="ruleMatchingGeneratorType" [parentFormGroup]="matchingParentFormGroup"></app-rule-generator>
 </div>

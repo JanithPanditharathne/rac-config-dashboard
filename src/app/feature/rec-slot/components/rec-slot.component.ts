@@ -14,7 +14,7 @@ import { SuccessResponse } from '../../../core/models';
 import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions, DropDownDataItem } from '../../../shared/shared-common/models';
 
 import { AlertType, SuccessStatus } from '../../../core/enums';
-import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums';
+import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums'; // NOSONAR
 
 import { ConfirmPopupComponent } from '../../../shared/shared-common/components';
 
@@ -131,17 +131,11 @@ export class RecSlotComponent {
       return true;
     }
 
-    for (const val of filterValue) {
-      if (!!item.rules.find((rule: DropDownDataItem) => rule.name.toLowerCase().includes(filterValue.toLowerCase()))) {
-        return true;
-      }
-
-      if (status) {
-        return true;
-      }
+    if (!!item.rules.find((rule: DropDownDataItem) => rule.name.toLowerCase().includes(filterValue.toLowerCase()))) {
+      return true;
     }
 
-    return false;
+    return !!status;
   }
 
   /**

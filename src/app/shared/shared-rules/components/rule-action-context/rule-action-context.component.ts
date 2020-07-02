@@ -28,8 +28,8 @@ export class RuleActionContextComponent implements OnInit {
   public RuleGeneratorType = RuleGeneratorType;
   public RulesTabTitle = RulesTabTitle;
 
-  public ruleGeneratorType = RuleGeneratorType.ACTION;
-  public metadataTypes: string[];
+  public ruleActionGeneratorType = RuleGeneratorType.ACTION;
+  public ruleMetadataTypes: string[];
 
   @Input()
   public parentElement: HTMLElement;
@@ -38,14 +38,14 @@ export class RuleActionContextComponent implements OnInit {
   public parentFormGroup: FormGroup;
 
   @Input()
-  public contextData: RuleThenExpressionDataItem[];
+  public actionContextData: RuleThenExpressionDataItem[];
 
 
   constructor(private readonly fb: FormBuilder,
               private readonly metaDataService: MetaDataService
   ) {
     metaDataService.metadataTypes.subscribe((types: string[]) => {
-      this.metadataTypes = types;
+      this.ruleMetadataTypes = types;
     });
   }
 
@@ -53,7 +53,7 @@ export class RuleActionContextComponent implements OnInit {
    * ngOnInit Event Handler.
    */
   public ngOnInit(): void {
-    if (this.contextData) {
+    if (this.actionContextData) {
       this.processContext();
     }
   }
@@ -62,9 +62,9 @@ export class RuleActionContextComponent implements OnInit {
    * Process context data and set boost tab content data.
    */
   private processContext(): void {
-    const context = this.parentFormGroup.get(this.ruleGeneratorType) as FormArray;
+    const context = this.parentFormGroup.get(this.ruleActionGeneratorType) as FormArray;
 
-    this.contextData.forEach((item: any) => {
+    this.actionContextData.forEach((item: any) => {
       switch (item.type) {
         case RuleTabDisplayDataType.Brand:
           context.push(BrandContentComponent.buildFormGroup(this.fb, item));

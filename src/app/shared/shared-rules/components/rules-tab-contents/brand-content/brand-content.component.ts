@@ -9,7 +9,7 @@ import { RuleGeneratorType, RuleTabDisplayDataType } from '../../../enums';
 import { RuleContextFormUtility, RuleContextDataService } from '../../../services';
 import { FormValidator, MetaDataService } from '../../../../shared-common/services';
 
-import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants';
+import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants'; // NOSONAR
 
 /**
  * Component class to represent brand tab content.

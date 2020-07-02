@@ -32,17 +32,8 @@ describe('Alert popup component tests', () => {
     spyOn(modalRef, 'hide');
   }));
 
-  it('should display a correct title', () => {
-    const testTitle = 'Test title';
-    component.title = testTitle;
-    fixture.detectChanges();
-    debugElement = fixture.debugElement.query(By.css('.modal-title'));
-    htmlElement = debugElement.nativeElement;
-    expect(htmlElement.textContent).toContain(testTitle);
-  });
-
-  it('should display a correct message', () => {
-    const testMessage = 'Test title';
+  it('should display a correct message as an alert', () => {
+    const testMessage = 'Test title 1';
     component.message = testMessage;
     fixture.detectChanges();
     debugElement = fixture.debugElement.query(By.css('.modal-message'));

@@ -11,8 +11,8 @@ import { SuccessResponse } from '../../../../core/models';
 import { ActionBreadcrumb, ActionClickEventArgs, DropDownDataItem } from '../../../../shared/shared-common/models';
 
 import { AlertType, SuccessStatus } from '../../../../core/enums';
-import { RuleGeneratorType } from 'src/app/shared/shared-rules/enums';
-import { ActionType, FormAction } from 'src/app/shared/shared-common/enums';
+import { RuleGeneratorType } from 'src/app/shared/shared-rules/enums'; // NOSONAR
+import { ActionType, FormAction } from 'src/app/shared/shared-common/enums'; // NOSONAR
 
 import { NotificationService } from '../../../../core/services';
 import { RuleContextFormUtility, RuleService, RuleUtilityService } from '../../../../shared/shared-rules/services';
@@ -20,7 +20,7 @@ import { CustomFormValidator, FormValidator } from '../../../../shared/shared-co
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
 
 import { RuleConstants } from '../../rule.constants';
-import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants';
+import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants'; // NOSONAR
 
 /**
  * Class representing the Rule component.
@@ -165,15 +165,7 @@ export class RuleUpsertComponent implements OnInit {
   private addNewRule(rule: Rule, clickEventArgs: ActionClickEventArgs): void {
     this.ruleService.createRule(rule).subscribe(
       (response: SuccessResponse) => {
-        clickEventArgs.resolve();
-
-        if (response.status === SuccessStatus.FAIL) {
-          this.notificationService.showNotification(response.message, AlertType.ERROR);
-          return;
-        }
-        this.notificationService.showNotification(response.message, AlertType.SUCCESS);
-        this.ruleForm.markAsPristine();
-        this.redirectToRulesView();
+        this.handleResponse(response, clickEventArgs);
       },
       (error) => {
         clickEventArgs.resolve();
@@ -190,20 +182,29 @@ export class RuleUpsertComponent implements OnInit {
     rule.id = this.rule.id;
     this.ruleService.updateRule(rule).subscribe(
       (response: SuccessResponse) => {
-        clickEventArgs.resolve();
-
-        if (response.status === SuccessStatus.FAIL) {
-          this.notificationService.showNotification(response.message, AlertType.ERROR);
-          return;
-        }
-        this.notificationService.showNotification(response.message, AlertType.SUCCESS);
-        this.ruleForm.markAsPristine();
-        this.redirectToRulesView();
+        this.handleResponse(response, clickEventArgs);
       },
       (error) => {
         clickEventArgs.resolve();
       }
     );
+  }
+
+  /**
+   * Responsible for handle backend response.
+   * @param {SuccessResponse} response
+   * @param {ActionClickEventArgs} actionClickArgs
+   */
+  private handleResponse(response: SuccessResponse, actionClickArgs: ActionClickEventArgs): void {
+    actionClickArgs.resolve();
+
+    if (response.status === SuccessStatus.FAIL) {
+      this.notificationService.showNotification(response.message, AlertType.ERROR);
+      return;
+    }
+    this.notificationService.showNotification(response.message, AlertType.SUCCESS);
+    this.ruleForm.markAsPristine();
+    this.redirectToRulesView();
   }
 
   /**

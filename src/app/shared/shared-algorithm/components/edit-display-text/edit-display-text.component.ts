@@ -7,7 +7,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 
 import { ActionClickEventArgs } from '../../../shared-common/models';
 
-import { ActionType } from 'src/app/shared/shared-common/enums';
+import { ActionType } from 'src/app/shared/shared-common/enums'; // NOSONAR
 
 import { FormValidator } from '../../../shared-common/services';
 

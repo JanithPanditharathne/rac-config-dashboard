@@ -15,7 +15,6 @@ const mockUserProfileService  = {
 
 describe('Logout confirm popup component tests', () => {
   let component: LogoutConfirmPopupComponent;
-  let fixture: ComponentFixture<LogoutConfirmPopupComponent>;
   let debugElement: DebugElement;
   let htmlElement: HTMLElement;
 
@@ -47,8 +46,6 @@ describe('Logout confirm popup component tests', () => {
         { provide: GlobalRefService, useValue: mockglobalRefService }
         ]
     }).compileComponents();
-
-    fixture = TestBed.createComponent(LogoutConfirmPopupComponent);
 
     modalRef = TestBed.get(BsModalRef);
     spyOn(modalRef, 'hide');

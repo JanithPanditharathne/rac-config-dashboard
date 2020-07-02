@@ -20,7 +20,7 @@ describe('Range error component tests', () => {
     component = fixture.componentInstance;
   }));
 
-  it('should display  required error when control is required and not valid', () => {
+  it('should display required error when control is required and not valid', () => {
     const formControl = new FormControl('Test');
     formControl.setErrors({ required: true });
     formControl.markAsTouched();

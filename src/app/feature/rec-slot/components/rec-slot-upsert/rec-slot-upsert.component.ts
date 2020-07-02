@@ -61,7 +61,7 @@ export class RecSlotUpsertComponent implements OnInit {
     private readonly notificationService: NotificationService,
     private readonly recSlotUtilityService: RecSlotUtilityService,
     private readonly recommendationService: RecommendationService
-  ) {
+  ) {  // NOSONAR
     this.actionBreadcrumb = [
       {
         path: 'rec-slots/list',
@@ -235,15 +235,7 @@ export class RecSlotUpsertComponent implements OnInit {
   private addNewRecSlot(recSlotData: RecSlot, clickEventArgs: ActionClickEventArgs): void {
     this.recSlotsService.createRecSlot(recSlotData).subscribe(
       (response: SuccessResponse) => {
-        clickEventArgs.resolve();
-
-        if (response.status === SuccessStatus.FAIL) {
-          this.notificationService.showNotification(response.message, AlertType.ERROR);
-          return;
-        }
-        this.notificationService.showNotification(response.message, AlertType.SUCCESS);
-        this.recSlotFormGroup.markAsPristine();
-        this.redirectToRecSlots();
+        this.handleResponse(response, clickEventArgs);
       },
       (error) => {
         clickEventArgs.resolve();
@@ -260,20 +252,29 @@ export class RecSlotUpsertComponent implements OnInit {
     recSlotData.id = this.recSlot.id;
     this.recSlotsService.updateRecSlot(recSlotData).subscribe(
       (response: SuccessResponse) => {
-        clickEventArgs.resolve();
-
-        if (response.status === SuccessStatus.FAIL) {
-          this.notificationService.showNotification(response.message, AlertType.ERROR);
-          return;
-        }
-        this.notificationService.showNotification(response.message, AlertType.SUCCESS);
-        this.recSlotFormGroup.markAsPristine();
-        this.redirectToRecSlots();
+        this.handleResponse(response, clickEventArgs);
       },
       (error) => {
         clickEventArgs.resolve();
       }
     );
+  }
+
+  /**
+   * Responsible for handle backend response.
+   * @param {SuccessResponse} response
+   * @param {ActionClickEventArgs} actionClickArgs
+   */
+  private handleResponse(response: SuccessResponse, actionClickArgs: ActionClickEventArgs): void {
+    actionClickArgs.resolve();
+
+    if (response.status === SuccessStatus.FAIL) {
+      this.notificationService.showNotification(response.message, AlertType.ERROR);
+      return;
+    }
+    this.notificationService.showNotification(response.message, AlertType.SUCCESS);
+    this.recSlotFormGroup.markAsPristine();
+    this.redirectToRecSlots();
   }
 
   /**

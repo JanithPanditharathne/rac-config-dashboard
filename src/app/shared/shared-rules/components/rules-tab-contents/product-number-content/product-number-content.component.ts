@@ -9,7 +9,7 @@ import { ActionType } from '../../../../shared-common/enums';
 import { RuleContextDataService, RuleContextFormUtility } from '../../../services';
 import { FormValidator, CustomFormValidator } from '../../../../shared-common/services';
 
-import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants';
+import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants'; // NOSONAR
 
 /**
  * Component class to represent tab product number content.
