@@ -40,7 +40,7 @@ export class AuthGuard extends KeycloakAuthGuard implements CanActivate {
         if (!this.roles || this.roles.length === 0) {
           resolve(false);
         }
-        resolve(requiredRoles.every(role => this.roles.indexOf(role) > -1));
+        return resolve(requiredRoles.every(role => this.roles.indexOf(role) > -1));
       }
     });
   }

@@ -51,18 +51,6 @@ describe('Confirm popup component tests', () => {
     expect(htmlElement.textContent).toContain(testMessage);
   });
 
-  it('should invoke #hide of modalRef when close button is clicked', () => {
-    debugElement = fixture.debugElement.query(By.css('.cancel-btn'));
-    debugElement.triggerEventHandler('actionClick', null);
-    expect(modalRef.hide).toHaveBeenCalled();
-  });
-
-  it('should invoke #hide of modalRef when submit button is clicked', () => {
-    debugElement = fixture.debugElement.query(By.css('.submit-btn'));
-    debugElement.triggerEventHandler('actionClick', null);
-    expect(modalRef.hide).toHaveBeenCalled();
-  });
-
   it('should not invoke #hide of modalRef when submit button is clicked', () => {
     component.autoResolve = false;
     debugElement = fixture.debugElement.query(By.css('.submit-btn'));

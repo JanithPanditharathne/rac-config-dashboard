@@ -50,7 +50,7 @@ export class RecSlotUpsertComponent implements OnInit {
   public recommendationDataSource: Observable<RecDropdownItemModel[]>;
   public rulesDataSource: Observable<Rule[]>;
 
-  constructor(
+  constructor( // NOSONAR
     private readonly router: Router,
     private readonly fb: FormBuilder,
     private readonly route: ActivatedRoute,

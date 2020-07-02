@@ -33,12 +33,12 @@ describe('Alert popup component tests', () => {
   }));
 
   it('should display a correct message as an alert', () => {
-    const testMessage = 'Test title 1';
-    component.message = testMessage;
+    const mockMessage = 'Test title 1';
+    component.message = mockMessage;
     fixture.detectChanges();
     debugElement = fixture.debugElement.query(By.css('.modal-message'));
     htmlElement = debugElement.nativeElement;
-    expect(htmlElement.textContent).toContain(testMessage);
+    expect(htmlElement.textContent).toContain(mockMessage);
   });
 
   it('should invoke #hide of modalRef when close button is clicked', () => {

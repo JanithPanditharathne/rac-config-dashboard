@@ -55,7 +55,7 @@ export class RecommendationUpsertComponent implements OnInit {
   @ViewChild(BundleFormComponent, {static: true})
   public bundleFormComponent: BundleFormComponent;
 
-  constructor(
+  constructor( // NOSONAR
     private readonly fb: FormBuilder,
     private readonly router: Router,
     private readonly route: ActivatedRoute,
