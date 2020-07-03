@@ -8,14 +8,14 @@ import { UserProfile } from '../models';
 
 @Injectable()
 export class UserProfileService {
-  private static USER_PROFILE_GET = '/api/v1/profile';
-  private static RETRY_COUNT = 2;
+  private static readonly USER_PROFILE_GET = '/api/v1/profile';
+  private static readonly RETRY_COUNT = 2;
 
   private userProfile: Observable<UserProfile>;
 
   private showLogoutConfirm = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   public getUserProfile(): Observable<UserProfile> {
     if (!this.userProfile) {

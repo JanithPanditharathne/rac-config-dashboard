@@ -20,8 +20,8 @@
                                 </div>
                                 <div class="form-group" [class.input-error]="isInvalid('bundleName')">
                                     <label>Bundle Name <span class="required-label">*</span>
-                                        <app-info-label
-                                                [description]="SharedCommonConstants.text_field_max_length_message"
+                                        <app-info-label class="rac-app-info-label"
+                                                [description]="SharedCommonConstants.textFieldMaxLengthMessage"
                                                 [placement]="'right'"
                                                 [outsideClick]="false"
                                         >
@@ -54,8 +54,8 @@
                              [class.input-error]="isInvalid('combineDisplayText')">
                             <label for="combineDisplayText"
                             >Combine Display Text<span class="required-label">*</span>
-                                <app-info-label
-                                        [description]="SharedCommonConstants.text_field_max_length_message"
+                                <app-info-label class="rac-app-info-label"
+                                        [description]="SharedCommonConstants.textFieldMaxLengthMessage"
                                         [placement]="'right'"
                                         [outsideClick]="false"
                                 >
@@ -82,9 +82,9 @@
                                     formControlName="defaultLimitEnabled"
                                     (change)="onDefaultLimitEnabledChange()"/>
                             <label class="default-limit-enabled-label" for="defaultLimitEnabled">Default Limit
-                                <app-info-label
+                                <app-info-label class="rac-app-info-label"
                                         *ngIf="bundleFormGroup.get('defaultLimitEnabled').value"
-                                        [description]="SharedBundleConstants.max_default_limit_message"
+                                        [description]="SharedBundleConstants.maxDefaultLimitMessage"
                                         [placement]="'right'"
                                         [outsideClick]="false"
                                 >

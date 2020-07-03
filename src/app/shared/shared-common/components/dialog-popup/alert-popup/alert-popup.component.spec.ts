@@ -32,22 +32,13 @@ describe('Alert popup component tests', () => {
     spyOn(modalRef, 'hide');
   }));
 
-  it('should display a correct title', () => {
-    const testTitle = 'Test title';
-    component.title = testTitle;
-    fixture.detectChanges();
-    debugElement = fixture.debugElement.query(By.css('.modal-title'));
-    htmlElement = debugElement.nativeElement;
-    expect(htmlElement.textContent).toContain(testTitle);
-  });
-
-  it('should display a correct message', () => {
-    const testMessage = 'Test title';
-    component.message = testMessage;
+  it('should display a correct message as an alert', () => {
+    const mockMessage = 'Test title 1';
+    component.message = mockMessage;
     fixture.detectChanges();
     debugElement = fixture.debugElement.query(By.css('.modal-message'));
     htmlElement = debugElement.nativeElement;
-    expect(htmlElement.textContent).toContain(testMessage);
+    expect(htmlElement.textContent).toContain(mockMessage);
   });
 
   it('should invoke #hide of modalRef when close button is clicked', () => {

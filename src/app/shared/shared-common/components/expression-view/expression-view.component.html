@@ -8,11 +8,11 @@
         <div class="col-lg-12">
             <ng-container *ngFor="let item of ruleData; let i = index">
                 <ng-container>
-                    <app-price-detail-view *ngIf="isPriceType(item.type)" [priceItem]="item"></app-price-detail-view>
+                    <app-price-detail-view class="rac-app-price-detail-view" *ngIf="isPriceType(item.type)" [priceItem]="item"></app-price-detail-view>
 
-                    <app-custom-detail-view *ngIf="isCustomType(item.type)" [customItem]="item"></app-custom-detail-view>
+                    <app-custom-detail-view class="rac-app-custom-detail-view" *ngIf="isCustomType(item.type)" [customItem]="item"></app-custom-detail-view>
 
-                    <app-additional-detail-view *ngIf="!isPriceType(item.type) && !isCustomType(item.type)" [data]="item">
+                    <app-additional-detail-view class="rac-app-additional-detail-view" *ngIf="!isPriceType(item.type) && !isCustomType(item.type)" [data]="item">
                     </app-additional-detail-view>
 
                     <ng-container *ngIf="i < ruleData.length - 1">

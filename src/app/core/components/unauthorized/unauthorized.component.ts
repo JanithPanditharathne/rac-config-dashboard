@@ -17,16 +17,16 @@ import { UserProfileService } from '../../services';
   templateUrl: './unauthorized.component.html'
 })
 export class UnauthorizedComponent implements OnInit {
-  public errorHeading = CoreConstants.unauthorized_error_message_heading;
-  public errorMessage = CoreConstants.unauthorized_error_message;
-  public redirectPath = CoreConstants.unauthorized_redirect_path;
-  public routeMessage = CoreConstants.unauthorized_route_message;
+  public errorHeading = CoreConstants.unauthorizedErrorMessageHeading;
+  public errorMessage = CoreConstants.unauthorizedErrorMessage;
+  public redirectPath = CoreConstants.unauthorizedRedirectPath;
+  public routeMessage = CoreConstants.unauthorizedRouteMessage;
 
   public profile: UserProfile;
 
   constructor(
-    private router: Router,
-    private userProfileService: UserProfileService
+    private readonly router: Router,
+    private readonly userProfileService: UserProfileService
   ) {
   }
 

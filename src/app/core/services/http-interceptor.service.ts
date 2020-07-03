@@ -25,10 +25,10 @@ import { CoreConstants } from '../core.constants';
 @Injectable()
 export class AppHttpInterceptorService implements HttpInterceptor {
   constructor(
-    private keycloakAngular: KeycloakService,
-    private globalRefService: GlobalRefService,
-    private notificationService: NotificationService,
-    private authErrorHandlerService: AuthErrorHandlerService
+    private readonly keycloakAngular: KeycloakService,
+    private readonly globalRefService: GlobalRefService,
+    private readonly notificationService: NotificationService,
+    private readonly authErrorHandlerService: AuthErrorHandlerService
   ) {}
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -80,11 +80,11 @@ export class AppHttpInterceptorService implements HttpInterceptor {
   private handleClientSideError(status: number): string {
     switch (status) {
       case HttpStatus.NO_INTERNET_CONNECTION:
-        return CoreConstants.no_internet_connection_error_notification_message;
+        return CoreConstants.noInternetConnectionErrorNotificationMessage;
       case HttpStatus.NOT_FOUND:
-        return CoreConstants.request_failure_error_notification_message;
+        return CoreConstants.requestFailureErrorNotificationMessage;
       default:
-        return;
+        return null;
     }
   }
 
@@ -92,19 +92,19 @@ export class AppHttpInterceptorService implements HttpInterceptor {
     let message: string;
     if (errorResponse && errorResponse.code) {
       const code = errorResponse.code;
-      if (code === CoreConstants.kira_unauthorized_status_code) {
+      if (code === CoreConstants.kiraUnauthorizedStatusCode) {
         this.globalRefService.window.location.reload();
-        return;
+        return null;
       }
 
-      if (code === CoreConstants.kira_forbidden_status_code) {
+      if (code === CoreConstants.kiraForbiddenStatusCode) {
         this.authErrorHandlerService.handleError(HttpStatus.FORBIDDEN);
-        return;
+        return null;
       }
 
       message = `${errorResponse.code} : ${errorResponse.message}`;
     } else {
-      message = CoreConstants.internal_server_error_notification_message;
+      message = CoreConstants.internalServerErrorNotificationMessage;
     }
 
     return message;

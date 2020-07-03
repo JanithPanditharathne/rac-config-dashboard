@@ -63,7 +63,7 @@ describe('Auth error handler service tests', () => {
         authErrorHandlerService.handleError(HttpStatus.UNAUTHORIZED);
 
         promise.catch(() => {
-          expect(notificationService.showNotification).toHaveBeenCalledWith(CoreConstants.navigation_failure, AlertType.ERROR);
+          expect(notificationService.showNotification).toHaveBeenCalledWith(CoreConstants.navigationFailure, AlertType.ERROR);
         });
       });
 
@@ -71,7 +71,7 @@ describe('Auth error handler service tests', () => {
         authErrorHandlerService.handleError(HttpStatus.NO_INTERNET_CONNECTION);
 
         promise.catch(() => {
-          expect(notificationService.showNotification).toHaveBeenCalledWith(CoreConstants.navigation_failure, AlertType.ERROR);
+          expect(notificationService.showNotification).toHaveBeenCalledWith(CoreConstants.navigationFailure, AlertType.ERROR);
         });
       });
     });

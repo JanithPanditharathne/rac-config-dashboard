@@ -36,7 +36,7 @@ export class ExpressionViewComponent {
   @Input()
   public showTitle: boolean;
 
-  constructor(private ruleContextDataService: RuleContextDataService) {
+  constructor(private readonly ruleContextDataService: RuleContextDataService) {
   }
 
   /**

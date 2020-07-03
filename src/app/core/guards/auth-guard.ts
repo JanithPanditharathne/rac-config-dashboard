@@ -30,7 +30,7 @@ export class AuthGuard extends KeycloakAuthGuard implements CanActivate {
       const requiredRoles: string[] = route.data.roles;
 
       if (!this.keycloakAngular.isUserInRole('cp_access')) {
-        alert(CoreConstants.access_denied_message);
+        alert(CoreConstants.accessDeniedMessage);
         this.keycloakAngular.logout(document.baseURI);
         resolve(false);
       }
@@ -40,7 +40,7 @@ export class AuthGuard extends KeycloakAuthGuard implements CanActivate {
         if (!this.roles || this.roles.length === 0) {
           resolve(false);
         }
-        resolve(requiredRoles.every(role => this.roles.indexOf(role) > -1));
+        return resolve(requiredRoles.every(role => this.roles.indexOf(role) > -1));
       }
     });
   }

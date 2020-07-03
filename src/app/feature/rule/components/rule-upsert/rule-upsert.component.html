@@ -22,8 +22,8 @@
                         <div class="form-group" [class.input-error]="isInvalid('ruleName')">
                             <label for="ruleName"
                             >Rule Name<span class="required-label">*</span>
-                                <app-info-label
-                                        [description]="SharedCommonConstants.text_field_max_length_message"
+                                <app-info-label class="rac-app-info-label"
+                                        [description]="SharedCommonConstants.textFieldMaxLengthMessage"
                                         [placement]="'right'"
                                         [outsideClick]="false"
                                 >
@@ -77,13 +77,13 @@
                 <div class="row rac-form-container">
                     <div class="col-lg-12">
                         <app-rule-matching-context
-                                [parentFormGroup]="ruleForm"
-                                [contextData]="rule?.matchingConditionJson"
+                                [matchingParentFormGroup]="ruleForm"
+                                [matchingContextData]="rule?.matchingConditionJson"
                                 [parentElement]="RuleUpsert">
                         </app-rule-matching-context>
                         <app-rule-action-context
                                 [parentFormGroup]="ruleForm"
-                                [contextData]="rule?.actionConditionJson"
+                                [actionContextData]="rule?.actionConditionJson"
                                 [parentElement]="RuleUpsert">
                         </app-rule-action-context>
                     </div>

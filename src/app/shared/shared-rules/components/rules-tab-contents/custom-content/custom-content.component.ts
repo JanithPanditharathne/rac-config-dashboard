@@ -16,7 +16,7 @@ import { RuleGeneratorType, RulesCustomType, RuleTabDisplayDataType, RuleTabInli
 import { RuleContextFormUtility, RuleContextDataService } from '../../../services';
 import { FormValidator, MetaDataService } from '../../../../shared-common/services';
 
-import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants';
+import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants'; // NOSONAR
 
 /**
  * Component class to represent custom tab content.
@@ -61,9 +61,9 @@ export class CustomContentComponent implements OnInit, AfterViewInit {
   }
 
   constructor(
-    private fb: FormBuilder,
-    private metaDataService: MetaDataService,
-    private ruleContextDataService: RuleContextDataService) {
+    private readonly fb: FormBuilder,
+    private readonly metaDataService: MetaDataService,
+    private readonly ruleContextDataService: RuleContextDataService) {
   }
 
   /**
@@ -138,7 +138,6 @@ export class CustomContentComponent implements OnInit, AfterViewInit {
     this.customFormGroup.reset({
       key: null
     });
-    return;
   }
 
   /**

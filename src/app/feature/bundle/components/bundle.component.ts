@@ -14,7 +14,7 @@ import { DisplayBundle } from '../models/display-bundle.model';
 import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions } from '../../../shared/shared-common/models';
 
 import { AlertType, SuccessStatus } from '../../../core/enums';
-import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums';
+import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums'; // NOSONAR
 
 import { ConfirmPopupComponent } from '../../../shared/shared-common/components';
 
@@ -45,10 +45,10 @@ export class BundleComponent {
   public dataSource: Observable<Bundle[]>;
 
   constructor(
-    private bundleService: BundleService,
-    private router: Router,
-    private modalService: BsModalService,
-    private notificationService: NotificationService
+    private readonly bundleService: BundleService,
+    private readonly router: Router,
+    private readonly modalService: BsModalService,
+    private readonly notificationService: NotificationService
   ) {
     this.actionBreadcrumb = [
       {
@@ -90,7 +90,7 @@ export class BundleComponent {
       )
       .catch(() => {
         this.isLoading = false;
-        this.notificationService.showNotification(BundleConstants.navigation_failure, AlertType.ERROR);
+        this.notificationService.showNotification(BundleConstants.navigationFailure, AlertType.ERROR);
       });
   }
 
@@ -112,11 +112,11 @@ export class BundleComponent {
       class: 'bundle-delete-confirm-popup confirmation-popup',
       ignoreBackdropClick: true
     });
-    modalRef.content.title = BundleConstants.bundle_delete_title;
-    modalRef.content.message = BundleConstants.bundle_delete_message;
+    modalRef.content.title = BundleConstants.bundleDeleteTitle;
+    modalRef.content.message = BundleConstants.bundleDeleteMessage;
     modalRef.content.messageBody = `[${bundleId}] ${bundleName}`;
     modalRef.content.actionType = ActionType.DELETE;
-    modalRef.content.actionName = BundleConstants.bundle_delete_action;
+    modalRef.content.actionName = BundleConstants.bundleDeleteAction;
     modalRef.content.autoResolve = false;
     modalRef.content.onSubmit.subscribe((actionClickEventArgs: ActionClickEventArgs) => {
       this.deleteAlgorithm(bundleId, actionClickEventArgs);
@@ -128,7 +128,7 @@ export class BundleComponent {
    */
   public onAddClick(): void {
     this.router.navigate(['bundles/add']).catch(() => {
-      this.notificationService.showNotification(AlgorithmConstants.navigation_failure, AlertType.ERROR);
+      this.notificationService.showNotification(AlgorithmConstants.navigationFailure, AlertType.ERROR);
     });
   }
 

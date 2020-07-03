@@ -35,37 +35,7 @@ export class RuleContextFormUtility {
   ];
 
   public static numericalOperators = [
-    {
-      name: 'Equals (=)',
-      type: OperatorType.EQUAL
-    },
-    {
-      name: 'Less than (<)',
-      type: OperatorType.LOWER_THAN
-    },
-    {
-      name: 'Greater than (>)',
-      type: OperatorType.GREATER_THAN
-    },
-    {
-      name: 'Greater than or equals (>=)',
-      type: OperatorType.GREATER_THAN_OR_EQUAL
-    },
-    {
-      name: 'Less than or equals (<=)',
-      type: OperatorType.LOWER_THAN_OR_EQUAL
-    },
-    {
-      name: 'Equals ignore case (#=)',
-      type: OperatorType.EQUAL_IGNORE_CASE
-    }
-  ];
-
-  public static nonnumericalOperators = [
-    {
-      name: 'Equals (=)',
-      type: OperatorType.EQUAL
-    },
+    ...RuleContextFormUtility.priceOperators,
     {
       name: 'Equals ignore case (#=)',
       type: OperatorType.EQUAL_IGNORE_CASE

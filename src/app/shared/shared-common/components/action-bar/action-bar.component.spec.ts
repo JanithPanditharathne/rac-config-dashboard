@@ -3,10 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
-import { AlertType } from '../../../../core/enums';
-
-import { SharedCommonConstants } from '../../shared-common.constants';
-
 import { ActionBarComponent } from './action-bar.component';
 
 import { NotificationService } from '../../../../core/services';
@@ -20,7 +16,6 @@ describe('Action bar component tests', () => {
   let mockNotificatoinService;
   let notificationService: NotificationService;
   let mockRouter;
-  let router: Router;
 
   const breadcrumbs = [
     {
@@ -53,7 +48,6 @@ describe('Action bar component tests', () => {
     component = fixture.componentInstance;
 
     notificationService = TestBed.get(NotificationService);
-    router = TestBed.get(Router);
 
     spyOn(notificationService, 'showNotification');
 
@@ -66,27 +60,4 @@ describe('Action bar component tests', () => {
     htmlElement = debugElement.nativeElement;
     expect(htmlElement.children.length).toBe(2);
   });
-
-  // it('should display correct title for the breadcrumb', () => {
-  //   debugElement = fixture.debugElement.query(By.css('.back-link-text'));
-  //   htmlElement = debugElement.nativeElement;
-  //   expect(htmlElement.textContent).toContain(breadcrumbs[0].title);
-  // });
-
-  // it('should invoke #navigate of router when breadcrumb is clicked', () => {
-  //   spyOn(router, 'navigate');
-  //   debugElement = fixture.debugElement.query(By.css('.back-link'));
-  //   debugElement.triggerEventHandler('click', null);
-  //   expect(router.navigate).toHaveBeenCalledWith([breadcrumbs[0].path]);
-  // });
-
-  // it('should invoke #showNotification of notification service when navigation failed', () => {
-  //   const promise = Promise.reject('');
-  //   spyOn(router, 'navigate').and.returnValue(promise);
-  //   debugElement = fixture.debugElement.query(By.css('.back-link'));
-  //   debugElement.triggerEventHandler('click', null);
-  //   promise.catch(() => {
-  //     expect(notificationService.showNotification).toHaveBeenCalledWith(SharedCommonConstants.navigation_failure, AlertType.ERROR);
-  //   });
-  // });
 });

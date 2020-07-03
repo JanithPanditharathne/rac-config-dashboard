@@ -23,7 +23,7 @@ export class RuleGeneratorComponent {
   @Input()
   public contextType: RuleGeneratorType;
 
-  constructor(private ruleContextDataService: RuleContextDataService) {
+  constructor(private readonly ruleContextDataService: RuleContextDataService) {
   }
 
   /**

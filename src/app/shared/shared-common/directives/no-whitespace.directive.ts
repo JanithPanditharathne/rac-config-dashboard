@@ -16,9 +16,9 @@ import { CustomFormValidator } from '../services';
 })
 export class NoWhitespaceDirective implements Validator {
 
-  @Input('requiredField') attr: boolean = true;
+  @Input('requiredField') attr = true;
 
-  private valFn = CustomFormValidator.noWhitespaceValidator();
+  private readonly valFn = CustomFormValidator.noWhitespaceValidator();
 
   validate(control: AbstractControl): { [key: string]: any } {
     return this.attr ? this.valFn(control) : null;

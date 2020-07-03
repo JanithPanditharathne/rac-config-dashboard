@@ -1,6 +1,5 @@
 // components
-import { BundleFormComponent } from './components';
-import { BundleDetailViewComponent } from './components';
+import { BundleFormComponent, BundleDetailViewComponent } from './components';
 
 // directives
 

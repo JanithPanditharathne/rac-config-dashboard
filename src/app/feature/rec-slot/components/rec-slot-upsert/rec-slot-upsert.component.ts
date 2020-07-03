@@ -50,18 +50,18 @@ export class RecSlotUpsertComponent implements OnInit {
   public recommendationDataSource: Observable<RecDropdownItemModel[]>;
   public rulesDataSource: Observable<Rule[]>;
 
-  constructor(
-    private router: Router,
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private ruleService: RuleService,
+  constructor( // NOSONAR
+    private readonly router: Router,
+    private readonly fb: FormBuilder,
+    private readonly route: ActivatedRoute,
     public metaDataService: MetaDataService,
-    private recSlotsService: RecSlotsService,
-    private dialogService: ConfirmDialogService,
-    private notificationService: NotificationService,
-    private recSlotUtilityService: RecSlotUtilityService,
-    private recommendationService: RecommendationService
-  ) {
+    private readonly ruleService: RuleService,
+    private readonly recSlotsService: RecSlotsService,
+    private readonly dialogService: ConfirmDialogService,
+    private readonly notificationService: NotificationService,
+    private readonly recSlotUtilityService: RecSlotUtilityService,
+    private readonly recommendationService: RecommendationService
+  ) {  // NOSONAR
     this.actionBreadcrumb = [
       {
         path: 'rec-slots/list',
@@ -131,7 +131,7 @@ export class RecSlotUpsertComponent implements OnInit {
 
     if (this.recSlotFormGroup.invalid) {
       clickEventArgs.resolve();
-      this.notificationService.showNotification(RecSlotConstants.rec_slot_create_invalid_form, AlertType.ERROR);
+      this.notificationService.showNotification(RecSlotConstants.recSlotCreateInvalidForm, AlertType.ERROR);
       return;
     }
 
@@ -235,15 +235,7 @@ export class RecSlotUpsertComponent implements OnInit {
   private addNewRecSlot(recSlotData: RecSlot, clickEventArgs: ActionClickEventArgs): void {
     this.recSlotsService.createRecSlot(recSlotData).subscribe(
       (response: SuccessResponse) => {
-        clickEventArgs.resolve();
-
-        if (response.status === SuccessStatus.FAIL) {
-          this.notificationService.showNotification(response.message, AlertType.ERROR);
-          return;
-        }
-        this.notificationService.showNotification(response.message, AlertType.SUCCESS);
-        this.recSlotFormGroup.markAsPristine();
-        this.redirectToRecSlots();
+        this.handleResponse(response, clickEventArgs);
       },
       (error) => {
         clickEventArgs.resolve();
@@ -260,20 +252,29 @@ export class RecSlotUpsertComponent implements OnInit {
     recSlotData.id = this.recSlot.id;
     this.recSlotsService.updateRecSlot(recSlotData).subscribe(
       (response: SuccessResponse) => {
-        clickEventArgs.resolve();
-
-        if (response.status === SuccessStatus.FAIL) {
-          this.notificationService.showNotification(response.message, AlertType.ERROR);
-          return;
-        }
-        this.notificationService.showNotification(response.message, AlertType.SUCCESS);
-        this.recSlotFormGroup.markAsPristine();
-        this.redirectToRecSlots();
+        this.handleResponse(response, clickEventArgs);
       },
       (error) => {
         clickEventArgs.resolve();
       }
     );
+  }
+
+  /**
+   * Responsible for handle backend response.
+   * @param {SuccessResponse} response
+   * @param {ActionClickEventArgs} actionClickArgs
+   */
+  private handleResponse(response: SuccessResponse, actionClickArgs: ActionClickEventArgs): void {
+    actionClickArgs.resolve();
+
+    if (response.status === SuccessStatus.FAIL) {
+      this.notificationService.showNotification(response.message, AlertType.ERROR);
+      return;
+    }
+    this.notificationService.showNotification(response.message, AlertType.SUCCESS);
+    this.recSlotFormGroup.markAsPristine();
+    this.redirectToRecSlots();
   }
 
   /**

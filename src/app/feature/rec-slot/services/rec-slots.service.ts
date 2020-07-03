@@ -4,8 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { SuccessResponse } from '../../../core/models';
-import { DisplayRecSlot } from '../models';
-import { RecSlot } from '../models';
+import { DisplayRecSlot, RecSlot } from '../models';
 
 import { environment } from '../../../../environments/environment';
 
@@ -15,9 +14,9 @@ import { environment } from '../../../../environments/environment';
  */
 @Injectable()
 export class RecSlotsService {
-  private static rec_slots_url = '/v1/rec-slots';
+  private static readonly recSlotsUrl = '/v1/rec-slots';
 
-  constructor(private http: HttpClient) {
+  constructor(private readonly http: HttpClient) {
   }
 
   /**
@@ -25,7 +24,7 @@ export class RecSlotsService {
    * @returns {Observable<DisplayRecSlot[]>} - rec slots array.
    */
   public getRecSlots(): Observable<DisplayRecSlot> {
-    return this.http.get<DisplayRecSlot>(`${environment.baseUrl}${RecSlotsService.rec_slots_url}`);
+    return this.http.get<DisplayRecSlot>(`${environment.baseUrl}${RecSlotsService.recSlotsUrl}`);
   }
 
   /**
@@ -34,7 +33,7 @@ export class RecSlotsService {
    * @returns {Observable<RecSlot>} Rec slot details.
    */
   public getRecSlotDetails(recSlotId: number): Observable<RecSlot> {
-    return this.http.get<RecSlot>(`${environment.baseUrl}${RecSlotsService.rec_slots_url}/${recSlotId}`);
+    return this.http.get<RecSlot>(`${environment.baseUrl}${RecSlotsService.recSlotsUrl}/${recSlotId}`);
   }
 
   /**
@@ -43,7 +42,7 @@ export class RecSlotsService {
    * @returns {Observable<SuccessResponse>} Response.
    */
   public createRecSlot(recSlot: RecSlot) {
-    return this.http.post<SuccessResponse>(`${environment.baseUrl}${RecSlotsService.rec_slots_url}`, recSlot);
+    return this.http.post<SuccessResponse>(`${environment.baseUrl}${RecSlotsService.recSlotsUrl}`, recSlot);
   }
 
   /**
@@ -52,7 +51,7 @@ export class RecSlotsService {
    * @returns {Observable<SuccessResponse>} Response.
    */
   public updateRecSlot(recSlot: RecSlot) {
-    return this.http.put<SuccessResponse>(`${environment.baseUrl}${RecSlotsService.rec_slots_url}/${recSlot.id}`, recSlot);
+    return this.http.put<SuccessResponse>(`${environment.baseUrl}${RecSlotsService.recSlotsUrl}/${recSlot.id}`, recSlot);
   }
 
   /**
@@ -61,6 +60,6 @@ export class RecSlotsService {
    * @returns {Observable<SuccessResponse>} Response
    */
   public deleteRecSlot(recSlotId: string) {
-    return this.http.delete<SuccessResponse>(`${environment.baseUrl}${RecSlotsService.rec_slots_url}/${recSlotId}`);
+    return this.http.delete<SuccessResponse>(`${environment.baseUrl}${RecSlotsService.recSlotsUrl}/${recSlotId}`);
   }
 }

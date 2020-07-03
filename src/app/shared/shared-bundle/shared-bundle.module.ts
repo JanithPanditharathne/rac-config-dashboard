@@ -5,8 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
-import { DropdownModule } from 'ornamentum';
-import { DataTableModule } from 'ornamentum';
+import { DropdownModule, DataTableModule } from 'ornamentum';
 
 import { SharedCommonModule } from '../shared-common/shared-common.module';
 import { SharedAlgorithmModule } from '../shared-algorithm/shared-algorithm.module';

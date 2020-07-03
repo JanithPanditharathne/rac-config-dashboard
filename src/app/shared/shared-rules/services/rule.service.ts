@@ -14,9 +14,9 @@ import { environment } from '../../../../environments/environment';
  */
 @Injectable()
 export class RuleService {
-  private static rules_url = '/v1/rules';
+  private static readonly rulesUrl = '/v1/rules';
 
-  constructor(private http: HttpClient) {
+  constructor(private readonly http: HttpClient) {
   }
 
   /**
@@ -24,7 +24,7 @@ export class RuleService {
    * @returns {Observable<DisplayRule>} - rules array.
    */
   public getRules(): Observable<DisplayRule> {
-    return this.http.get<DisplayRule>(`${environment.baseUrl}${RuleService.rules_url}`);
+    return this.http.get<DisplayRule>(`${environment.baseUrl}${RuleService.rulesUrl}`);
   }
 
   /**
@@ -33,7 +33,7 @@ export class RuleService {
    * @returns {Observable<Rule>} rule details.
    */
   public getRuleDetails(ruleId: number): Observable<Rule> {
-    return this.http.get<Rule>(`${environment.baseUrl}${RuleService.rules_url}/${ruleId}`);
+    return this.http.get<Rule>(`${environment.baseUrl}${RuleService.rulesUrl}/${ruleId}`);
   }
 
   /**
@@ -42,7 +42,7 @@ export class RuleService {
    * @returns {Observable<SuccessResponse>} Response.
    */
   public createRule(rule: Rule) {
-    return this.http.post<SuccessResponse>(`${environment.baseUrl}${RuleService.rules_url}`, rule);
+    return this.http.post<SuccessResponse>(`${environment.baseUrl}${RuleService.rulesUrl}`, rule);
   }
 
   /**
@@ -51,7 +51,7 @@ export class RuleService {
    * @returns {Observable<SuccessResponse>} Response.
    */
   public updateRule(rule: Rule) {
-    return this.http.put<SuccessResponse>(`${environment.baseUrl}${RuleService.rules_url}/${rule.id}`, rule);
+    return this.http.put<SuccessResponse>(`${environment.baseUrl}${RuleService.rulesUrl}/${rule.id}`, rule);
   }
 
   /**
@@ -60,6 +60,6 @@ export class RuleService {
    * @returns {Observable<SuccessResponse>} Response
    */
   public deleteRule(ruleId: string) {
-    return this.http.delete<SuccessResponse>(`${environment.baseUrl}${RuleService.rules_url}/${ruleId}`);
+    return this.http.delete<SuccessResponse>(`${environment.baseUrl}${RuleService.rulesUrl}/${ruleId}`);
   }
 }

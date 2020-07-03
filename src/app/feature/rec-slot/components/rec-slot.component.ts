@@ -14,7 +14,7 @@ import { SuccessResponse } from '../../../core/models';
 import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions, DropDownDataItem } from '../../../shared/shared-common/models';
 
 import { AlertType, SuccessStatus } from '../../../core/enums';
-import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums';
+import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums'; // NOSONAR
 
 import { ConfirmPopupComponent } from '../../../shared/shared-common/components';
 
@@ -43,10 +43,10 @@ export class RecSlotComponent {
   public dataSource: Observable<RecSlot[]>;
 
   constructor(
-    private router: Router,
-    private modalService: BsModalService,
-    private recSlotsService: RecSlotsService,
-    private notificationService: NotificationService
+    private readonly router: Router,
+    private readonly modalService: BsModalService,
+    private readonly recSlotsService: RecSlotsService,
+    private readonly notificationService: NotificationService
   ) {
     this.actionBreadcrumb = [
       {
@@ -67,7 +67,7 @@ export class RecSlotComponent {
    */
   public onAddClick(): void {
     this.router.navigate(['rec-slots/add']).catch((e) => {
-      this.notificationService.showNotification(RecSlotConstants.navigation_failure, AlertType.ERROR);
+      this.notificationService.showNotification(RecSlotConstants.navigationFailure, AlertType.ERROR);
     });
   }
 
@@ -131,17 +131,11 @@ export class RecSlotComponent {
       return true;
     }
 
-    for (let index = 0; index < filterValue.length; index++) {
-      if (!!item.rules.find((rule: DropDownDataItem) => rule.name.toLowerCase().includes(filterValue.toLowerCase()))) {
-        return true;
-      }
-
-      if (status) {
-        return true;
-      }
+    if (!!item.rules.find((rule: DropDownDataItem) => rule.name.toLowerCase().includes(filterValue.toLowerCase()))) {
+      return true;
     }
 
-    return false;
+    return !!status;
   }
 
   /**
@@ -162,7 +156,7 @@ export class RecSlotComponent {
       )
       .catch(() => {
         this.isLoading = false;
-        this.notificationService.showNotification(RecSlotConstants.navigation_failure, AlertType.ERROR);
+        this.notificationService.showNotification(RecSlotConstants.navigationFailure, AlertType.ERROR);
       });
   }
 
@@ -175,11 +169,11 @@ export class RecSlotComponent {
       class: 'rec-slot-delete-confirm-popup confirmation-popup',
       ignoreBackdropClick: true
     });
-    modalRef.content.title = RecSlotConstants.rec_slot_delete_title;
-    modalRef.content.message = RecSlotConstants.rec_slot_delete_message;
+    modalRef.content.title = RecSlotConstants.recSlotDeleteTitle;
+    modalRef.content.message = RecSlotConstants.recSlotDeleteMessage;
     modalRef.content.messageBody = `Rec slot [${recSlotId}]`;
     modalRef.content.actionType = ActionType.DELETE;
-    modalRef.content.actionName = RecSlotConstants.rec_slot_delete_action;
+    modalRef.content.actionName = RecSlotConstants.recSlotDeleteAction;
     modalRef.content.autoResolve = false;
     modalRef.content.onSubmit.subscribe((actionClickEventArgs: ActionClickEventArgs) => {
       this.deleteRecSlot(recSlotId, actionClickEventArgs);

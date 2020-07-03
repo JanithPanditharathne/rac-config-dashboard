@@ -40,7 +40,7 @@ export class RulesTabContentInlineDetailViewComponent {
   @Output()
   public onRemoved = new EventEmitter<any>();
 
-  constructor(private ruleContextDataService: RuleContextDataService) {
+  constructor(private readonly ruleContextDataService: RuleContextDataService) {
   }
 
   /**

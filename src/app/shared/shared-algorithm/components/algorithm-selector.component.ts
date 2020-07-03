@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -38,9 +38,9 @@ export class AlgorithmSelectorComponent {
   public isPopupView: boolean;
 
   constructor(
-    private modalService: BsModalService,
-    private algorithmService: AlgorithmService,
-    private algorithmUtilityService: AlgorithmUtilityService
+    private readonly modalService: BsModalService,
+    private readonly algorithmService: AlgorithmService,
+    private readonly algorithmUtilityService: AlgorithmUtilityService
   ) {
     this.algorithmService.getAlgorithms().subscribe((displayAlgorithm: DisplayAlgorithm) => {
       this.algorithmDropdownData = algorithmUtilityService.mapToAlgorithmDropdownItems(displayAlgorithm.algorithms);
@@ -158,7 +158,7 @@ export class AlgorithmSelectorComponent {
     const currentAlgorithms: Algorithm[] = this.algorithmsFormGroup.get('algorithms').value;
     const newAlgorithm: AlgorithmDropDownItem = this.algorithmsFormGroup.get('selectedAlgorithm').value;
 
-    let algorithms = [...currentAlgorithms, newAlgorithm];
+    const algorithms = [...currentAlgorithms, newAlgorithm];
 
     this.algorithmsFormGroup.patchValue({
       algorithms: algorithms,
@@ -174,9 +174,8 @@ export class AlgorithmSelectorComponent {
    * @param {DataTableRow<Algorithm>} row data table row
    */
   public onEditDisplayText(row: DataTableRow<Algorithm>): void {
-    let modalRef: BsModalRef;
-
-    modalRef = this.modalService.show(EditDisplayTextComponent, {class: 'display-text-edit-confirm-popup', ignoreBackdropClick: true});
+    const modalRef: BsModalRef =
+      this.modalService.show(EditDisplayTextComponent, {class: 'display-text-edit-confirm-popup', ignoreBackdropClick: true});
     modalRef.content.setDisplayTextFormData(row.item.customDisplayText || row.item.defaultDisplayText);
     modalRef.content.autoResolve = false;
     modalRef.content.saveClick.subscribe((text: string) => {
@@ -199,7 +198,7 @@ export class AlgorithmSelectorComponent {
   private disableSelectedDropdownItems(): void {
     const currentAlgorithms: Algorithm[] = this.algorithmsFormGroup.get('algorithms').value;
     if (currentAlgorithms && currentAlgorithms.length) {
-      currentAlgorithms.map((algorithm: Algorithm) => {
+      currentAlgorithms.forEach((algorithm: Algorithm) => {
         this.algorithmUtilityService.setAlgorithmDisableState(this.algorithmDropdownData, algorithm);
       });
     }

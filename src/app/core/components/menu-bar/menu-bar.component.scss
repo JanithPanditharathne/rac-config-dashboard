@@ -13,7 +13,7 @@
   z-index: 1049;
 
   .rac-app-version {
-    color: $logo-text-color;;
+    color: $logo-text-color;
     font-size: .6rem;
     position: absolute;
     right: 0;
@@ -160,46 +160,42 @@
         .menu-title {
           padding: 0 .5rem;
         }
+
+        &.active {
+
+          @include breakpoint(max991) {
+            margin: 0 .5rem;
+          }
+          color: $navigation-item-active-text-color;
+          background: $navigation-item-active-background-color;
+          border-radius: 0.5rem;
+          display: block;
+
+
+
+          .menu-icon {
+            &.rac-rec-slot-icon {
+              background-image: svg-url-icon($rec-slot-icon, '#000000', $navigation-item-active-icon-color);
+            }
+
+            &.recommendation-icon {
+              background-image: svg-url-icon($recommend-icon, '#000000', $navigation-item-active-icon-color);
+            }
+
+            &.algorithm-icon {
+              background-image: svg-url-icon($algorithm-icon, '#000000', $navigation-item-active-icon-color);
+            }
+
+            &.bundle-icon {
+              background-image: svg-url-icon($bundle-icon, '#000000', $navigation-item-active-icon-color);
+            }
+
+            &.rule-icon {
+              background-image: svg-url-icon($rule-icon, '#000000', $navigation-item-active-icon-color);
+            }
+          }
+        }
       }
-
-
-        > .nav-link {
-
-          &.active {
-
-            @include breakpoint(max991) {
-              margin: 0 .5rem;
-            }
-            color: $navigation-item-active-text-color;
-            background: $navigation-item-active-background-color;
-            border-radius: 0.5rem;
-            display: block;
-
-
-
-            .menu-icon {
-              &.rac-rec-slot-icon {
-                background-image: svg-url-icon($rec-slot-icon, '#000000', $navigation-item-active-icon-color);
-              }
-
-              &.recommendation-icon {
-                background-image: svg-url-icon($recommend-icon, '#000000', $navigation-item-active-icon-color);
-              }
-
-              &.algorithm-icon {
-                background-image: svg-url-icon($algorithm-icon, '#000000', $navigation-item-active-icon-color);
-              }
-
-              &.bundle-icon {
-                background-image: svg-url-icon($bundle-icon, '#000000', $navigation-item-active-icon-color);
-              }
-
-              &.rule-icon {
-                background-image: svg-url-icon($rule-icon, '#000000', $navigation-item-active-icon-color);
-              }
-            }
-        }
-        }
 
 
       &.dropdown {
@@ -248,7 +244,7 @@
 
               > .nav-link {
                 @include font-size(.8, 2);
-                color: $navigation-item-text-color;;
+                color: $navigation-item-text-color;
                 cursor: pointer;
                 font-weight: 300;
                 letter-spacing: .03rem;
