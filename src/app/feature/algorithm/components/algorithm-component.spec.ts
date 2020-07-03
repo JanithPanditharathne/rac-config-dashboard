@@ -34,7 +34,7 @@ describe('AlgorithmComponent tests', () => {
 
   const mockAlgorithmService = jasmine.createSpyObj('AlgorithmService', ['getAlgorithms', 'deleteAlgorithm']);
 
-  let mockDisplayAlgorithmResource: DisplayAlgorithm = {
+  const mockDisplayAlgorithmResource: DisplayAlgorithm = {
     algorithms: [
       {
         id: '102',
@@ -49,12 +49,6 @@ describe('AlgorithmComponent tests', () => {
         description: 'description'
       }
     ]
-  };
-
-  let mockSuccessResponse: SuccessResponse = {
-    message: 'Algorithm deleted successfully',
-    status: 'success',
-    code: '13232',
   };
 
   beforeEach(async(() => {
