@@ -11,6 +11,8 @@ import { LogoutConfirmPopupComponent } from '../logout-confirm-popup/logout-conf
 
 import { Animation } from '../../../core/services';
 
+import { version } from '../../../../../package.json';
+
 /**
  * Component class for showing main view.
  * @class AppMainComponent
@@ -22,7 +24,7 @@ import { Animation } from '../../../core/services';
   templateUrl: './main.component.html'
 })
 export class AppMainComponent implements OnInit {
-  public appVersion = `version ${window['appVersion']}`;
+  public appVersion = version;
   public profile: UserProfile;
   public menuItems: MenuItem[] = [];
 

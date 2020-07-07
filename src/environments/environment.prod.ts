@@ -3,7 +3,7 @@ import { KeycloakConfig } from 'keycloak-angular';
 const keycloakConfig: KeycloakConfig = {
   url: 'http://dev-79.zone24x7.lk:8080/auth',
   realm: 'config_portal',
-  clientId: 'ibrac-cp-admin'
+  clientId: window['keycloakClientID']
 };
 
 export const environment = {
