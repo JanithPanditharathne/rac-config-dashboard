@@ -7,6 +7,7 @@ import { Algorithm } from '../../algorithm/models';
 export interface Bundle {
   id?: string;
   name?: string;
+  displayName?: string;
   defaultLimit?: number;
   algorithms?: Algorithm[]
   combineEnabled?: boolean;

@@ -12,7 +12,7 @@ import { Recommendation, DisplayRecommendation } from '../models';
 import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions } from '../../../shared/shared-common/models';
 
 import { AlertType, SuccessStatus } from '../../../core/enums';
-import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums';
+import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums'; // NOSONAR
 
 import { ConfirmPopupComponent } from '../../../shared/shared-common/components';
 
@@ -41,10 +41,10 @@ export class RecommendationComponent {
   public dataSource: Observable<Recommendation[]>;
 
   constructor(
-    private router: Router,
-    private modalService: BsModalService,
-    private notificationService: NotificationService,
-    private recommendationService: RecommendationService,
+    private readonly router: Router,
+    private readonly modalService: BsModalService,
+    private readonly notificationService: NotificationService,
+    private readonly recommendationService: RecommendationService,
   ) {
     this.actionBreadcrumb = [
       {
@@ -73,7 +73,7 @@ export class RecommendationComponent {
    */
   public onAddClick(): void {
     this.router.navigate(['recommendations/add']).catch((e) => {
-      this.notificationService.showNotification(RecommendationConstants.navigation_failure, AlertType.ERROR);
+      this.notificationService.showNotification(RecommendationConstants.navigationFailure, AlertType.ERROR);
     });
   }
 
@@ -103,7 +103,7 @@ export class RecommendationComponent {
       )
       .catch(() => {
         this.isLoading = false;
-        this.notificationService.showNotification(RecommendationConstants.navigation_failure, AlertType.ERROR);
+        this.notificationService.showNotification(RecommendationConstants.navigationFailure, AlertType.ERROR);
       });
   }
 
@@ -117,11 +117,11 @@ export class RecommendationComponent {
       class: 'recommendation-delete-confirm-popup confirmation-popup',
       ignoreBackdropClick: true
     });
-    modalRef.content.title = RecommendationConstants.recommendation_delete_title;
-    modalRef.content.message = RecommendationConstants.recommendation_delete_message;
+    modalRef.content.title = RecommendationConstants.recommendationDeleteTitle;
+    modalRef.content.message = RecommendationConstants.recommendationDeleteMessage;
     modalRef.content.messageBody = `[${recId}] ${recName}`;
     modalRef.content.actionType = ActionType.DELETE;
-    modalRef.content.actionName = RecommendationConstants.recommendation_delete_action;
+    modalRef.content.actionName = RecommendationConstants.recommendationDeleteAction;
     modalRef.content.autoResolve = false;
     modalRef.content.onSubmit.subscribe((actionClickEventArgs: ActionClickEventArgs) => {
       this.deleteRecommendation(recId, actionClickEventArgs);

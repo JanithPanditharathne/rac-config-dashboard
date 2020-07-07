@@ -16,11 +16,13 @@ describe('Notification component tests', () => {
   describe('Notification subscription test', () => {
     let component: NotificationComponent;
     let fixture: ComponentFixture<NotificationComponent>;
-    let notificationService: NotificationService;
     let mockNotificationService;
     let alertElement: DebugElement;
     let notificationSubject;
+    let testMessage;
+
     beforeEach(async(() => {
+      testMessage = 'Test Message';
       notificationSubject = new Subject<NotificationItem>();
       mockNotificationService = {
         getNotificationObservable: () => {
@@ -36,7 +38,6 @@ describe('Notification component tests', () => {
 
       fixture = TestBed.createComponent(NotificationComponent);
       component = fixture.componentInstance;
-      notificationService = TestBed.get(NotificationService);
     }));
 
     it('should have a empty notification list', () => {
@@ -44,24 +45,26 @@ describe('Notification component tests', () => {
     });
 
     it('should have a notification', () => {
-      notificationSubject.next({ message: 'Test Message', type: AlertType.SUCCESS });
+      notificationSubject.next({ message: testMessage, type: AlertType.SUCCESS });
       fixture.detectChanges();
-      expect(component.notificationsList[0]).toEqual({ message: 'Test Message', type: AlertType.SUCCESS });
+      expect(component.notificationsList[0]).toEqual({ message: testMessage, type: AlertType.SUCCESS });
     });
 
     it('should have multiple notifications', () => {
-      notificationSubject.next({ message: 'Test Message1', type: AlertType.SUCCESS });
+      const testMessage1 = 'Test Message1';
+      const testMessage4 = 'Test Message4';
+      notificationSubject.next({ message: testMessage1, type: AlertType.SUCCESS });
       notificationSubject.next({ message: 'Test Message2', type: AlertType.ERROR });
       notificationSubject.next({ message: 'Test Message3', type: AlertType.INFO });
-      notificationSubject.next({ message: 'Test Message4', type: AlertType.WARNING });
+      notificationSubject.next({ message: testMessage4, type: AlertType.WARNING });
       fixture.detectChanges();
       expect(component.notificationsList.length).toEqual(4);
-      expect(component.notificationsList[0]).toEqual({ message: 'Test Message4', type: AlertType.WARNING });
-      expect(component.notificationsList[3]).toEqual({ message: 'Test Message1', type: AlertType.SUCCESS });
+      expect(component.notificationsList[0]).toEqual({ message: testMessage4, type: AlertType.WARNING });
+      expect(component.notificationsList[3]).toEqual({ message: testMessage1, type: AlertType.SUCCESS });
     });
 
     it('should remove notification from notification list', () => {
-      const notificationToBeRemoved = { message: 'Test Message', type: AlertType.SUCCESS };
+      const notificationToBeRemoved = { message: testMessage, type: AlertType.SUCCESS };
       notificationSubject.next(notificationToBeRemoved);
       fixture.detectChanges();
       alertElement = fixture.debugElement.query(By.css('.app-alert'));
@@ -71,7 +74,7 @@ describe('Notification component tests', () => {
 
     it('should not remove notification from notification list', () => {
       const notificationToBeRemoved = { message: 'Test Message for removing', type: AlertType.SUCCESS };
-      notificationSubject.next({ message: 'Test Message4', type: AlertType.WARNING });
+      notificationSubject.next({ message: testMessage, type: AlertType.WARNING });
       fixture.detectChanges();
       alertElement = fixture.debugElement.query(By.css('.app-alert'));
       alertElement.triggerEventHandler('dismiss', notificationToBeRemoved);
@@ -79,9 +82,10 @@ describe('Notification component tests', () => {
     });
 
     it('should increment the count of the notification when the same notification is rendered', () => {
-      notificationSubject.next({ message: 'Same Message', type: AlertType.SUCCESS });
-      notificationSubject.next({ message: 'Same Message', type: AlertType.SUCCESS });
-      notificationSubject.next({ message: 'Same Message', type: AlertType.SUCCESS });
+      const mockMessage = 'Same Message';
+      notificationSubject.next({ message: mockMessage, type: AlertType.SUCCESS });
+      notificationSubject.next({ message: mockMessage, type: AlertType.SUCCESS });
+      notificationSubject.next({ message: mockMessage, type: AlertType.SUCCESS });
       fixture.detectChanges();
       expect(component.notificationsList[0].count).toBe(3);
     });

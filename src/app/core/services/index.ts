@@ -4,5 +4,3 @@ export { AppHttpInterceptorService } from './http-interceptor.service';
 export { NotificationService } from './notification.service';
 export { UserProfileService } from './user-profile.service';
 export { Animation } from './animation.class';
-export { AuthService } from './auth.service';
-export { CookieStorageService } from './cookie-storage.service';

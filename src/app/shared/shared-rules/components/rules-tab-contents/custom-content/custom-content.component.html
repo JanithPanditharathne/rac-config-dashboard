@@ -2,10 +2,15 @@
     <div class="rac-condition-item" [class.custom]="!customFormGroup.get('key').value">
         <form class="rac-condition-custom-item" [formGroup]="customFormGroup" novalidate>
             <div class="rac-condition-custom">
-                <div class="form-group">
+                <div class="form-group" [class.input-error]="isInvalid('key')">
                     <label
                     >Key
-                        <span class="rac-max-length">Maximum character length is 200</span>
+                        <app-info-label class="rac-app-info-label"
+                                [description]="SharedCommonConstants.textFieldMaxLengthMessage"
+                                [placement]="'right'"
+                                [outsideClick]="false"
+                        >
+                        </app-info-label>
                         <input [id]="'custom-keys-options-' + ruleGeneratorType"
                                [typeahead]="keys"
                                [requiredField]="true"
@@ -54,7 +59,12 @@
                 <div class="form-group" [class.input-error]="isInvalid('values')">
                     <label
                     >Value
-                        <span class="rac-max-length">Maximum character length is 200</span>
+                        <app-info-label class="rac-app-info-label" *ngIf="!isNumericKey()"
+                                [description]="SharedCommonConstants.textFieldMaxLengthMessage"
+                                [placement]="'right'"
+                                [outsideClick]="false"
+                        >
+                        </app-info-label>
                         <input [id]="'custom-value-options-' + ruleGeneratorType"
                                [type]="valueInputType"
                                [typeahead]="values"

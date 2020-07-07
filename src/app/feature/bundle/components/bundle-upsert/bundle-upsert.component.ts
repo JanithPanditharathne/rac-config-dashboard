@@ -35,10 +35,10 @@ export class BundleUpsertComponent implements OnInit {
   public bundleFormComponent: BundleFormComponent;
 
   constructor(
-    private router: Router,
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private dialogService: ConfirmDialogService
+    private readonly router: Router,
+    private readonly fb: FormBuilder,
+    private readonly route: ActivatedRoute,
+    private readonly dialogService: ConfirmDialogService
   ) {
     this.actionBreadcrumb = [
       {

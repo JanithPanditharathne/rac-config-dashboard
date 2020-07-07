@@ -12,7 +12,7 @@ import { ActionType } from '../../../../shared-common/enums';
 import { RuleGeneratorType, RuleTabDisplayDataType, RuleTabInlineDataGeneratorType } from '../../../enums';
 
 import { RuleContextFormUtility } from '../../../services';
-import { FormValidator, CustomFormValidator } from '../../../../shared-common/services';
+import { FormValidator } from '../../../../shared-common/services';
 
 /**
  * Component class to represent tab price content.
@@ -49,7 +49,7 @@ export class PriceContentComponent implements OnInit {
     return RuleContextFormUtility.buildFormGroup(fb, RuleTabDisplayDataType.Price, exactPriceData);
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private readonly fb: FormBuilder) {
   }
 
   /**
@@ -104,7 +104,7 @@ export class PriceContentComponent implements OnInit {
    */
   public isInvalid(controlName: string): boolean {
     const formControl = this.priceGroup.get(controlName);
-    return formControl.value && FormValidator.isInvalidControl(formControl);
+    return FormValidator.isInvalidControl(formControl);
   }
 
   /**
@@ -125,10 +125,7 @@ export class PriceContentComponent implements OnInit {
     return this.fb.group({
       exactPrice: this.fb.group({
         operator: this.operators[0],
-        price: [
-          null,
-          Validators.required
-        ]
+        price: [null, Validators.required]
       })
     });
   }

@@ -13,7 +13,7 @@ import { RecommendationService } from '../../../shared/shared-rec/services';
  */
 @Injectable()
 export class RecommendationResolver implements Resolve<Recommendation> {
-  constructor(private recommendationService: RecommendationService) {
+  constructor(private readonly recommendationService: RecommendationService) {
   }
 
   public resolve(route: ActivatedRouteSnapshot): Observable<Recommendation> | Promise<Recommendation> | Recommendation {

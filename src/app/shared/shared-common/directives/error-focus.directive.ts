@@ -13,7 +13,7 @@ export class ErrorFocusDirective implements OnChanges {
   @HostBinding('class.auth-error')
   public errorClass: boolean;
 
-  constructor(private elementRef: ElementRef) {
+  constructor(private readonly elementRef: ElementRef) {
   }
 
   public ngOnChanges() {

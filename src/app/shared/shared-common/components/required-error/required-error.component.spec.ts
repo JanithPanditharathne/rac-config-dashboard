@@ -1,5 +1,5 @@
-import { DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
@@ -20,20 +20,19 @@ describe('Required error component tests', () => {
     component = fixture.componentInstance;
   }));
 
-  it('should display required error when control is required and not valid', () => {
-    const formControl = new FormControl('Test');
-    formControl.setErrors({ required: true });
-    formControl.markAsTouched();
-    component.control = formControl;
+  it('should display required error message when control is required and not valid', () => {
+    const control = new FormControl('Test1');
+    control.setErrors({ required: true });
+    control.markAsTouched();
+    component.control = control;
 
-    const requiredMessage = 'Test required error';
-    component.requiredError = requiredMessage;
+    const mockRequiredstring = 'Test required error ';
+    component.requiredError = mockRequiredstring;
 
     fixture.detectChanges();
 
     debugElement = fixture.debugElement.query(By.css('.required'));
     htmlElement = debugElement.nativeElement;
-
-    expect(htmlElement.textContent).toBe(requiredMessage);
+    expect(htmlElement.textContent).toBe(mockRequiredstring);
   });
 });

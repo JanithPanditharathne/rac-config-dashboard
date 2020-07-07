@@ -10,7 +10,6 @@ import { FormValidator, MetaDataService } from '../../../shared-common/services'
 import {
   BrandContentComponent,
   CustomContentComponent,
-  PriceContentComponent,
   ProductNumberContentComponent
 } from '../rules-tab-contents';
 
@@ -28,20 +27,20 @@ export class RuleMatchingContextComponent implements OnInit {
   public RuleGeneratorType = RuleGeneratorType;
   public RulesTabTitle = RulesTabTitle;
 
-  public ruleGeneratorType = RuleGeneratorType.MATCHING;
+  public ruleMatchingGeneratorType = RuleGeneratorType.MATCHING;
   public metadataTypes: string[];
 
   @Input()
   public parentElement: HTMLElement;
 
   @Input()
-  public parentFormGroup: FormGroup;
+  public matchingParentFormGroup: FormGroup;
 
   @Input()
-  public contextData: RuleIfExpressionDataItem[];
+  public matchingContextData: RuleIfExpressionDataItem[];
 
-  constructor(private fb: FormBuilder,
-              private metaDataService: MetaDataService
+  constructor(private readonly fb: FormBuilder,
+              private readonly metaDataService: MetaDataService
   ) {
     metaDataService.metadataTypes.subscribe((types: string[]) => {
       this.metadataTypes = types;
@@ -52,7 +51,7 @@ export class RuleMatchingContextComponent implements OnInit {
    * ngOnInit Event Handler.
    */
   public ngOnInit(): void {
-    if (this.contextData) {
+    if (this.matchingContextData) {
       this.processContext();
     }
   }
@@ -61,9 +60,9 @@ export class RuleMatchingContextComponent implements OnInit {
    * Process context data and set boost tab content data.
    */
   private processContext(): void {
-    const context = this.parentFormGroup.get(this.ruleGeneratorType) as FormArray;
+    const context = this.matchingParentFormGroup.get(this.ruleMatchingGeneratorType) as FormArray;
 
-    this.contextData.forEach((item: any) => {
+    this.matchingContextData.forEach((item: any) => {
       switch (item.type) {
         case RuleTabDisplayDataType.Brand:
           context.push(BrandContentComponent.buildFormGroup(this.fb, item));
@@ -86,6 +85,6 @@ export class RuleMatchingContextComponent implements OnInit {
    * @returns {boolean} true or false.
    */
   public isInvalid(controlName: string): boolean {
-    return FormValidator.isInvalidControl(this.parentFormGroup.get(controlName));
+    return FormValidator.isInvalidControl(this.matchingParentFormGroup.get(controlName));
   }
 }

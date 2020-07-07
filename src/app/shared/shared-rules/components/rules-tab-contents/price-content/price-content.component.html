@@ -1,6 +1,6 @@
 <form [formGroup]="priceGroup" novalidate>
     <div class="rac-conditions price-condition" formGroupName="exactPrice">
-        <div class="rac-condition-item form-group">
+        <div class="rac-condition-item form-group" [class.input-error]="isInvalid('exactPrice.price')">
             <div class="rac-condition-sub-item small">
                 <label>Price</label>
             </div>
@@ -33,6 +33,11 @@
                            [appTwoDigitDecimal]="true"/>
                 </div>
             </div>
+            <app-common-control-error-view
+                    [control]="priceGroup.get('exactPrice.price')"
+                    [requiredError]="'Price is missing or invalid'"
+            >
+            </app-common-control-error-view>
         </div>
         <div class="rac-condition-button">
             <app-action-button-strap>

@@ -14,24 +14,25 @@ import { BundleSaveEventArgs } from '../../../bundle/models/bundle-save-event-ar
 import { ActionBreadcrumb, ActionClickEventArgs } from '../../../../shared/shared-common/models';
 
 import { AlertType, SuccessStatus } from '../../../../core/enums';
-import { ActionButtonType, ActionType, FormAction } from 'src/app/shared/shared-common/enums';
+import { ActionButtonType, ActionType, FormAction } from 'src/app/shared/shared-common/enums'; // NOSONAR
 
 import { BundleFormComponent } from '../../../../shared/shared-bundle/components';
 
 import { NotificationService } from '../../../../core/services';
 import { FormValidator } from '../../../../shared/shared-common/services';
-import { BundleService } from '../../../../shared/shared-bundle/services';
+import { BundleService, BundleUtilityService } from '../../../../shared/shared-bundle/services';
 import { RecommendationService } from '../../../../shared/shared-rec/services';
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
 
 import { RecommendationConstants } from '../../recommendation.constants';
+import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants'; // NOSONAR
 
 /**
  * Class representing the Recommendation upsert component.
  * @class RecommendationUpsertComponent.
  */
 @Component({
-  selector: 'app-recommendation',
+  selector: 'app-recommendation-upsert',
   styleUrls: ['./recommendation-upsert.component.scss'],
   templateUrl: './recommendation-upsert.component.html'
 })
@@ -39,6 +40,7 @@ export class RecommendationUpsertComponent implements OnInit {
   public dropdownSelectMode: DropdownSelectMode = 'single';
   public actionBreadcrumb: ActionBreadcrumb[];
   public ActionButtonType = ActionButtonType;
+  public SharedCommonConstants = SharedCommonConstants;
   public ActionType = ActionType;
   public FormAction = FormAction;
 
@@ -53,15 +55,16 @@ export class RecommendationUpsertComponent implements OnInit {
   @ViewChild(BundleFormComponent, {static: true})
   public bundleFormComponent: BundleFormComponent;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute,
-    private bundleService: BundleService,
-    private dialogService: ConfirmDialogService,
-    private notificationService: NotificationService,
-    private recommendationService: RecommendationService
-  ) {
+  constructor( // NOSONAR
+    private readonly fb: FormBuilder,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly bundleService: BundleService,
+    private readonly dialogService: ConfirmDialogService,
+    private readonly notificationService: NotificationService,
+    private readonly bundleUtilityService: BundleUtilityService,
+    private readonly recommendationService: RecommendationService
+  ) { // NOSONAR
     this.actionBreadcrumb = [
       {
         path: 'recommendations/list',
@@ -108,7 +111,9 @@ export class RecommendationUpsertComponent implements OnInit {
    */
   private fetchBundles(): void {
     this.bundleService.getBundles().subscribe((displayBundle: DisplayBundle) => {
-      this.bundleDropdownData = displayBundle.bundles;
+      this.bundleDropdownData = displayBundle.bundles.map((bundle: Bundle) => {
+        return this.bundleUtilityService.parseBundleDropdownItem(bundle);
+      });
     });
   }
 
@@ -171,7 +176,7 @@ export class RecommendationUpsertComponent implements OnInit {
 
     if (this.recForm.invalid) {
       clickEventArgs.resolve();
-      this.notificationService.showNotification(RecommendationConstants.recommendation_create_invalid_form, AlertType.ERROR);
+      this.notificationService.showNotification(RecommendationConstants.recommendationCreateInvalidForm, AlertType.ERROR);
       return;
     }
 
@@ -213,15 +218,7 @@ export class RecommendationUpsertComponent implements OnInit {
   private addNewRecommendation(recommendation: Recommendation, clickEventArgs: ActionClickEventArgs): void {
     this.recommendationService.createRec(recommendation).subscribe(
       (response: SuccessResponse) => {
-        clickEventArgs.resolve();
-
-        if (response.status === SuccessStatus.FAIL) {
-          this.notificationService.showNotification(response.message, AlertType.ERROR);
-          return;
-        }
-        this.notificationService.showNotification(response.message, AlertType.SUCCESS);
-        this.recForm.markAsPristine();
-        this.redirectToRecsView();
+        this.handleResponse(response, clickEventArgs);
       },
       (error) => {
         this.notificationService.showNotification(error.message, AlertType.ERROR);
@@ -239,21 +236,30 @@ export class RecommendationUpsertComponent implements OnInit {
     recommendation.id = this.recommendation.id;
     this.recommendationService.updateRec(recommendation).subscribe(
       (response: SuccessResponse) => {
-        clickEventArgs.resolve();
-
-        if (response.status === SuccessStatus.FAIL) {
-          this.notificationService.showNotification(response.message, AlertType.ERROR);
-          return;
-        }
-        this.notificationService.showNotification(response.message, AlertType.SUCCESS);
-        this.recForm.markAsPristine();
-        this.redirectToRecsView();
+        this.handleResponse(response, clickEventArgs);
       },
       (error) => {
         this.notificationService.showNotification(error.message, AlertType.ERROR);
         clickEventArgs.resolve();
       }
     );
+  }
+
+  /**
+   * Responsible for handle backend response.
+   * @param {SuccessResponse} response
+   * @param {ActionClickEventArgs} actionClickArgs
+   */
+  private handleResponse(response: SuccessResponse, actionClickArgs: ActionClickEventArgs): void {
+    actionClickArgs.resolve();
+
+    if (response.status === SuccessStatus.FAIL) {
+      this.notificationService.showNotification(response.message, AlertType.ERROR);
+      return;
+    }
+    this.notificationService.showNotification(response.message, AlertType.SUCCESS);
+    this.recForm.markAsPristine();
+    this.redirectToRecsView();
   }
 
   /**
@@ -270,7 +276,10 @@ export class RecommendationUpsertComponent implements OnInit {
       this.recForm = this.fb.group({
         recId: [this.recommendation.id],
         recName: [this.recommendation.name],
-        selectedBundle: [this.recommendation.bundle, Validators.required]
+        selectedBundle: [
+          this.bundleUtilityService.parseBundleDropdownItem(this.recommendation.bundle),
+          Validators.required
+        ]
       });
     }
   }

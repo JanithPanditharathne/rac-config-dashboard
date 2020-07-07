@@ -20,6 +20,7 @@ import {
   MathOperatorDetailViewComponent,
   AdditionalDetailViewComponent,
   CustomDetailViewComponent,
+  InfoLabelComponent
 } from './components';
 
 // services
@@ -55,6 +56,7 @@ export const COMPONENTS = [
   TableActionComponent,
   ActionComponent,
   TabComponent,
+  InfoLabelComponent,
   ExpressionViewComponent,
   PriceDetailViewComponent,
   MathOperatorDetailViewComponent,

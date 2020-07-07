@@ -9,7 +9,7 @@ import { SuccessResponse } from '../../../../core/models';
 import { ActionBreadcrumb, ActionClickEventArgs } from '../../../../shared/shared-common/models';
 
 import { AlertType, SuccessStatus } from '../../../../core/enums';
-import { ActionType, FormAction } from 'src/app/shared/shared-common/enums';
+import { ActionType, FormAction } from 'src/app/shared/shared-common/enums'; // NOSONAR
 
 import { NotificationService } from '../../../../core/services';
 import { CustomFormValidator, FormValidator } from '../../../../shared/shared-common/services';
@@ -17,6 +17,7 @@ import { AlgorithmService } from '../../../../shared/shared-algorithm/services';
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
 
 import { AlgorithmConstants } from '../../algorithm.constants';
+import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants'; // NOSONAR
 
 /**
  * Component class for showing algorithm upsert view.
@@ -29,6 +30,7 @@ import { AlgorithmConstants } from '../../algorithm.constants';
 })
 export class AlgorithmUpsertComponent implements OnInit {
   public ActionType = ActionType;
+  public SharedCommonConstants = SharedCommonConstants;
   public actionBreadcrumb: ActionBreadcrumb[];
 
   public algorithmForm: FormGroup;
@@ -37,12 +39,12 @@ export class AlgorithmUpsertComponent implements OnInit {
   public isEdit = false;
 
   constructor(
-    private router: Router,
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private algorithmService: AlgorithmService,
-    private dialogService: ConfirmDialogService,
-    private notificationService: NotificationService
+    private readonly router: Router,
+    private readonly fb: FormBuilder,
+    private readonly route: ActivatedRoute,
+    private readonly algorithmService: AlgorithmService,
+    private readonly dialogService: ConfirmDialogService,
+    private readonly notificationService: NotificationService
   ) {
     this.actionBreadcrumb = [
       {
@@ -102,7 +104,7 @@ export class AlgorithmUpsertComponent implements OnInit {
 
     if (this.algorithmForm.invalid) {
       actionClickArgs.resolve();
-      this.notificationService.showNotification(AlgorithmConstants.algorithm_create_invalid_form, AlertType.ERROR);
+      this.notificationService.showNotification(AlgorithmConstants.algorithmCreateInvalidForm, AlertType.ERROR);
       return;
     }
 
@@ -151,15 +153,7 @@ export class AlgorithmUpsertComponent implements OnInit {
   private addNewAlgorithm(algorithm: Algorithm, actionClickArgs: ActionClickEventArgs): void {
     this.algorithmService.createAlgorithm(algorithm).subscribe(
       (response: SuccessResponse) => {
-        actionClickArgs.resolve();
-
-        if (response.status === SuccessStatus.FAIL) {
-          this.notificationService.showNotification(response.message, AlertType.ERROR);
-          return;
-        }
-        this.notificationService.showNotification(response.message, AlertType.SUCCESS);
-        this.algorithmForm.markAsPristine();
-        this.redirectToAlgorithmView();
+        this.handleResponse(response, actionClickArgs);
       },
       (error) => {
         actionClickArgs.resolve();
@@ -175,20 +169,29 @@ export class AlgorithmUpsertComponent implements OnInit {
   private editAlgorithm(algorithm: Algorithm, actionClickArgs: ActionClickEventArgs): void {
     this.algorithmService.updateAlgorithm(algorithm).subscribe(
       (response: SuccessResponse) => {
-        actionClickArgs.resolve();
-
-        if (response.status === SuccessStatus.FAIL) {
-          this.notificationService.showNotification(response.message, AlertType.ERROR);
-          return;
-        }
-        this.notificationService.showNotification(response.message, AlertType.SUCCESS);
-        this.algorithmForm.markAsPristine();
-        this.redirectToAlgorithmView();
+        this.handleResponse(response, actionClickArgs);
       },
       (error) => {
         actionClickArgs.resolve();
       }
     );
+  }
+
+  /**
+   * Responsible for handle backend response.
+   * @param {SuccessResponse} response
+   * @param {ActionClickEventArgs} actionClickArgs
+   */
+  private handleResponse(response: SuccessResponse, actionClickArgs: ActionClickEventArgs): void {
+    actionClickArgs.resolve();
+
+    if (response.status === SuccessStatus.FAIL) {
+      this.notificationService.showNotification(response.message, AlertType.ERROR);
+      return;
+    }
+    this.notificationService.showNotification(response.message, AlertType.SUCCESS);
+    this.algorithmForm.markAsPristine();
+    this.redirectToAlgorithmView();
   }
 
   /**
@@ -209,7 +212,7 @@ export class AlgorithmUpsertComponent implements OnInit {
           Validators.required,
           Validators.min(1),
           Validators.max(9999),
-          CustomFormValidator.regexPattern(CustomFormValidator.integer_regex)
+          CustomFormValidator.regexPattern(CustomFormValidator.integerRegex)
         ]
       )],
       algorithmName: [null],

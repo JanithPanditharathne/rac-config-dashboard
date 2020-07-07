@@ -1,13 +1,12 @@
 // components
-import { BundleFormComponent } from './components';
-import { BundleDetailViewComponent } from './components';
+import { BundleFormComponent, BundleDetailViewComponent } from './components';
 
 // directives
 
 // pipes
 
 // services
-import { BundleService } from './services';
+import { BundleService, BundleUtilityService } from './services';
 
 /**
  * Export all shared entry components.
@@ -31,7 +30,8 @@ export const DIRECTIVES = [];
  * Export all shared services.
  */
 export const SERVICES = [
-  BundleService
+  BundleService,
+  BundleUtilityService
 ];
 
 /**

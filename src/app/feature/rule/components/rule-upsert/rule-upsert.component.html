@@ -22,7 +22,12 @@
                         <div class="form-group" [class.input-error]="isInvalid('ruleName')">
                             <label for="ruleName"
                             >Rule Name<span class="required-label">*</span>
-                                <span class="rac-max-length">Maximum character length is 200</span>
+                                <app-info-label class="rac-app-info-label"
+                                        [description]="SharedCommonConstants.textFieldMaxLengthMessage"
+                                        [placement]="'right'"
+                                        [outsideClick]="false"
+                                >
+                                </app-info-label>
                                 <input class="form-control" type="text" formControlName="ruleName"
                                        placeholder="Rule Name" id="ruleName" maxlength="200"
                                        [requiredField]="true"/>
@@ -72,13 +77,13 @@
                 <div class="row rac-form-container">
                     <div class="col-lg-12">
                         <app-rule-matching-context
-                                [parentFormGroup]="ruleForm"
-                                [contextData]="rule?.matchingConditionJson"
+                                [matchingParentFormGroup]="ruleForm"
+                                [matchingContextData]="rule?.matchingConditionJson"
                                 [parentElement]="RuleUpsert">
                         </app-rule-matching-context>
                         <app-rule-action-context
                                 [parentFormGroup]="ruleForm"
-                                [contextData]="rule?.actionConditionJson"
+                                [actionContextData]="rule?.actionConditionJson"
                                 [parentElement]="RuleUpsert">
                         </app-rule-action-context>
                     </div>

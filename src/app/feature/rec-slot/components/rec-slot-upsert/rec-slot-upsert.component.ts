@@ -11,17 +11,17 @@ import { RecSlot } from '../../models';
 import { Rule, DisplayRule } from '../../../rule/models';
 import { SuccessResponse } from '../../../../core/models';
 import { Recommendation, DisplayRecommendation } from '../../../recommendation/models';
+import { RecDropdownItemModel } from '../../../../shared/shared-rec/models/rec-dropdown-item.model';
 import { ActionBreadcrumb, ActionClickEventArgs, DropDownDataItem } from '../../../../shared/shared-common/models';
 
 import { AlertType, SuccessStatus } from '../../../../core/enums';
 import { FormAction, ActionType } from '../../../../shared/shared-common/enums';
 
 import { RecSlotsService } from '../../services';
-import { RecSlotUtilityService } from '../../services';
 import { NotificationService } from '../../../../core/services';
 import { RuleService } from '../../../../shared/shared-rules/services';
-import { RecommendationService } from '../../../../shared/shared-rec/services';
 import { FormValidator, MetaDataService } from '../../../../shared/shared-common/services';
+import { RecommendationService, RecSlotUtilityService } from '../../../../shared/shared-rec/services';
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
 
 import { RecSlotConstants } from '../../rec-slot.constants';
@@ -47,20 +47,21 @@ export class RecSlotUpsertComponent implements OnInit {
   public formAction: FormAction;
   public currentSelected: any[];
   public recSlotFormGroup: FormGroup;
-  public recommendationDataSource: Observable<Recommendation[]>;
+  public recommendationDataSource: Observable<RecDropdownItemModel[]>;
   public rulesDataSource: Observable<Rule[]>;
 
-  constructor(
-    private router: Router,
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private ruleService: RuleService,
+  constructor( // NOSONAR
+    private readonly router: Router,
+    private readonly fb: FormBuilder,
+    private readonly route: ActivatedRoute,
     public metaDataService: MetaDataService,
-    private recSlotsService: RecSlotsService,
-    private dialogService: ConfirmDialogService,
-    private notificationService: NotificationService,
-    private recommendationService: RecommendationService
-  ) {
+    private readonly ruleService: RuleService,
+    private readonly recSlotsService: RecSlotsService,
+    private readonly dialogService: ConfirmDialogService,
+    private readonly notificationService: NotificationService,
+    private readonly recSlotUtilityService: RecSlotUtilityService,
+    private readonly recommendationService: RecommendationService
+  ) {  // NOSONAR
     this.actionBreadcrumb = [
       {
         path: 'rec-slots/list',
@@ -130,13 +131,13 @@ export class RecSlotUpsertComponent implements OnInit {
 
     if (this.recSlotFormGroup.invalid) {
       clickEventArgs.resolve();
-      this.notificationService.showNotification(RecSlotConstants.rec_slot_create_invalid_form, AlertType.ERROR);
+      this.notificationService.showNotification(RecSlotConstants.recSlotCreateInvalidForm, AlertType.ERROR);
       return;
     }
 
     const formData = this.recSlotFormGroup.value;
 
-    const recSlotData: RecSlot = RecSlotUtilityService.mapRecSlotValues(formData, this.currentSelected);
+    const recSlotData: RecSlot = this.recSlotUtilityService.mapRecSlotValues(formData, this.currentSelected);
 
     switch (this.formAction) {
       case FormAction.ADD:
@@ -165,7 +166,9 @@ export class RecSlotUpsertComponent implements OnInit {
   private fetchRecData(): void {
     this.recommendationDataSource = this.recommendationService.getRecs().pipe(
       map((data: DisplayRecommendation) => {
-        return data.recs;
+        return data.recs.map((recommendation: Recommendation) => {
+          return this.recSlotUtilityService.parseRecSlotDropdownItem(recommendation);
+        });
       })
     );
   }
@@ -232,15 +235,7 @@ export class RecSlotUpsertComponent implements OnInit {
   private addNewRecSlot(recSlotData: RecSlot, clickEventArgs: ActionClickEventArgs): void {
     this.recSlotsService.createRecSlot(recSlotData).subscribe(
       (response: SuccessResponse) => {
-        clickEventArgs.resolve();
-
-        if (response.status === SuccessStatus.FAIL) {
-          this.notificationService.showNotification(response.message, AlertType.ERROR);
-          return;
-        }
-        this.notificationService.showNotification(response.message, AlertType.SUCCESS);
-        this.recSlotFormGroup.markAsPristine();
-        this.redirectToRecSlots();
+        this.handleResponse(response, clickEventArgs);
       },
       (error) => {
         clickEventArgs.resolve();
@@ -257,20 +252,29 @@ export class RecSlotUpsertComponent implements OnInit {
     recSlotData.id = this.recSlot.id;
     this.recSlotsService.updateRecSlot(recSlotData).subscribe(
       (response: SuccessResponse) => {
-        clickEventArgs.resolve();
-
-        if (response.status === SuccessStatus.FAIL) {
-          this.notificationService.showNotification(response.message, AlertType.ERROR);
-          return;
-        }
-        this.notificationService.showNotification(response.message, AlertType.SUCCESS);
-        this.recSlotFormGroup.markAsPristine();
-        this.redirectToRecSlots();
+        this.handleResponse(response, clickEventArgs);
       },
       (error) => {
         clickEventArgs.resolve();
       }
     );
+  }
+
+  /**
+   * Responsible for handle backend response.
+   * @param {SuccessResponse} response
+   * @param {ActionClickEventArgs} actionClickArgs
+   */
+  private handleResponse(response: SuccessResponse, actionClickArgs: ActionClickEventArgs): void {
+    actionClickArgs.resolve();
+
+    if (response.status === SuccessStatus.FAIL) {
+      this.notificationService.showNotification(response.message, AlertType.ERROR);
+      return;
+    }
+    this.notificationService.showNotification(response.message, AlertType.SUCCESS);
+    this.recSlotFormGroup.markAsPristine();
+    this.redirectToRecSlots();
   }
 
   /**
@@ -283,7 +287,10 @@ export class RecSlotUpsertComponent implements OnInit {
         channel: [this.recSlot.channel, Validators.required],
         page: [this.recSlot.page, Validators.required],
         placeholder: [this.recSlot.placeholder, Validators.required],
-        recommendation: [this.recSlot.rec, Validators.required],
+        recommendation: [
+          this.recSlotUtilityService.parseRecSlotDropdownItem(this.recSlot.rec),
+          Validators.required
+        ],
         rules: [this.recSlot.rules]
       });
     } else {

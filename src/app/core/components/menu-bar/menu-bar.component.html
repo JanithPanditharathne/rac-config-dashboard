@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-lg sticky-top" (ngClickOutside)="hideCollapsibleMenu()">
-    <a class="navbar-brand nav-brand-lg app-name-lg pointer-link" (click)="goToHomePage()">{{ appName }}<span class="rac-app-version">{{ appVersion }}</span></a>
+    <a class="navbar-brand nav-brand-lg app-name-lg pointer-link" (click)="goToHomePage()">{{ appName }}</a>
 
     <div class="user-menu-container-sm">
         <button class="navbar-toggler" type="button" (click)="toggleMenuCollapse()">
-            <i class="rac-menu-icon"></i>
+            <em class="rac-menu-icon"></em>
         </button>
-        <a class="navbar-brand app-name" (click)="goToHomePage()">{{ appName }}<span class="rac-app-version">{{ appVersion }}</span></a>
+        <a class="navbar-brand app-name" (click)="goToHomePage()">{{ appName }}</a>
 
         <ul class="navbar-nav user-menu">
             <li class="profile-name">
@@ -43,7 +43,7 @@
                             [class.dropdown-toggle]="hasChildren(menuItem)"
                     >
                         <span class="main-nav-label">
-                            <i [ngClass]="menuItem.iconClasses"></i>
+                            <em [ngClass]="menuItem.iconClasses"></em>
                             <span class="menu-title">{{ menuItem.title }}</span>
                         </span>
                     </a>
@@ -67,10 +67,10 @@
                                             [class.dropdown-toggle]="hasChildren(childMenuItem)"
                                     >
                                         <span class="main-nav-label">
-                                            <i [ngClass]="childMenuItem.iconClasses"></i>
+                                            <em [ngClass]="childMenuItem.iconClasses"></em>
                                             <span class="menu-title">{{ childMenuItem.title }}</span>
                                         </span>
-                                        <i class="zmdi zmdi-chevron-right expand-icon"></i>
+                                        <em class="zmdi zmdi-chevron-right expand-icon"></em>
                                     </a>
                                     <div *ngIf="hasChildren(childMenuItem)" [class.expanded]="childMenuItem.expanded" [hidden]="!childMenuItem.expanded">
                                         <ul class="dropdown-menu multi-level" style="display: block;">
@@ -88,7 +88,7 @@
                                                             [routerLinkActive]="'active'"
                                                             [routerLink]="'/' + grandChildMenuItem.routePath">
                                                         <span class="main-nav-label">
-                                                            <i [ngClass]="grandChildMenuItem.iconClasses"></i>
+                                                            <em [ngClass]="grandChildMenuItem.iconClasses"></em>
                                                             <span class="menu-title">{{ grandChildMenuItem.title }}</span>
                                                         </span>
                                                     </a>

@@ -13,7 +13,7 @@
     align-items: center;
     display: flex;
 
-    i {
+    em {
       @include font-size(2.3, 2.4);
       padding-right: 1rem;
     }

@@ -1,4 +1,5 @@
 import { DropDownDataItem } from '../../../shared/shared-common/models';
+import { RecDropdownItemModel } from '../../../shared/shared-rec/models/rec-dropdown-item.model';
 
 /**
  * Interface representing rec slot model.
@@ -9,6 +10,6 @@ export interface RecSlot {
   channel: DropDownDataItem;
   page: DropDownDataItem;
   placeholder: DropDownDataItem;
-  rec: DropDownDataItem;
+  rec: RecDropdownItemModel;
   rules: DropDownDataItem[];
 }

@@ -1,5 +1,5 @@
 <div [ngClass]="{ 'page-notifications': showNotifications }">
   <ng-container *ngFor="let notification of notificationsList">
-    <app-alert [notification]="notification" [timeOut]="timeOut" (dismiss)="onDismiss($event)" class="app-alert"> </app-alert>
+    <app-alert class="rac-app-alert" [notification]="notification" [timeOut]="timeOut" (dismiss)="onDismiss($event)" class="app-alert"> </app-alert>
   </ng-container>
 </div>

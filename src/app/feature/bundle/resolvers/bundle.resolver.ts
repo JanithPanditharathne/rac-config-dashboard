@@ -13,7 +13,7 @@ import { BundleService } from '../../../shared/shared-bundle/services';
  */
 @Injectable()
 export class BundleResolver implements Resolve<Bundle> {
-  constructor(private bundleService: BundleService) {
+  constructor(private readonly bundleService: BundleService) {
   }
 
   public resolve(route: ActivatedRouteSnapshot): Observable<Bundle> | Promise<Bundle> | Bundle {

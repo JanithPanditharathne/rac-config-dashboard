@@ -21,9 +21,9 @@ export class NotificationComponent implements OnDestroy {
   public timeOut = 5500;
   public showNotifications = false;
 
-  private subscription: Subscription;
+  private readonly subscription: Subscription;
 
-  constructor(private notificationService: NotificationService) {
+  constructor(private readonly notificationService: NotificationService) {
     this.subscription = this.notificationService.getNotificationObservable().subscribe((notification: NotificationItem) => {
       this.validateNotification(notification);
     });
@@ -65,7 +65,11 @@ export class NotificationComponent implements OnDestroy {
     });
 
     if (existingNotification) {
-      !existingNotification.count ? (existingNotification.count = 2) : existingNotification.count++;
+      if (!existingNotification.count) {
+        existingNotification.count = 2;
+      } else {
+        ++existingNotification.count;
+      }
       this.showNotifications = true;
       return;
     }

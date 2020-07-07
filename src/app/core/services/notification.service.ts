@@ -12,7 +12,7 @@ import { AlertType } from '../enums';
  */
 @Injectable()
 export class NotificationService {
-  private notification = new Subject<NotificationItem>();
+  private readonly notification = new Subject<NotificationItem>();
 
   /**
    * Show notification.

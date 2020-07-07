@@ -14,7 +14,7 @@ import { Algorithm, DisplayAlgorithm } from '../models';
 import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions } from '../../../shared/shared-common/models';
 
 import { AlertType, SuccessStatus } from '../../../core/enums';
-import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums';
+import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums'; // NOSONAR
 
 import { ConfirmPopupComponent } from '../../../shared/shared-common/components';
 
@@ -43,10 +43,10 @@ export class AlgorithmComponent {
   public height: number;
 
   constructor(
-    private router: Router,
-    private modalService: BsModalService,
-    private algorithmService: AlgorithmService,
-    private notificationService: NotificationService
+    private readonly router: Router,
+    private readonly modalService: BsModalService,
+    private readonly algorithmService: AlgorithmService,
+    private readonly notificationService: NotificationService
   ) {
     this.actionBreadcrumb = [
       {
@@ -80,7 +80,7 @@ export class AlgorithmComponent {
       )
       .catch(() => {
         this.isLoading = false;
-        this.notificationService.showNotification(AlgorithmConstants.navigation_failure, AlertType.ERROR);
+        this.notificationService.showNotification(AlgorithmConstants.navigationFailure, AlertType.ERROR);
       });
   }
 
@@ -94,11 +94,11 @@ export class AlgorithmComponent {
       class: 'algorithm-delete-confirm-popup confirmation-popup',
       ignoreBackdropClick: true
     });
-    modalRef.content.title = AlgorithmConstants.algorithm_delete_title;
-    modalRef.content.message = AlgorithmConstants.algorithm_delete_message;
+    modalRef.content.title = AlgorithmConstants.algorithmDeleteTitle;
+    modalRef.content.message = AlgorithmConstants.algorithmDeleteMessage;
     modalRef.content.messageBody = `[${algorithmId}] ${algorithmName}`;
     modalRef.content.actionType = ActionType.DELETE;
-    modalRef.content.actionName = AlgorithmConstants.algorithm_delete_action;
+    modalRef.content.actionName = AlgorithmConstants.algorithmDeleteAction;
     modalRef.content.autoResolve = false;
     modalRef.content.onSubmit.subscribe((actionClickEventArgs: ActionClickEventArgs) => {
       this.deleteAlgorithm(algorithmId, actionClickEventArgs);
@@ -110,7 +110,7 @@ export class AlgorithmComponent {
    */
   public onAddClick(): void {
     this.router.navigate(['algorithms/add']).catch(() => {
-      this.notificationService.showNotification(AlgorithmConstants.navigation_failure, AlertType.ERROR);
+      this.notificationService.showNotification(AlgorithmConstants.navigationFailure, AlertType.ERROR);
     });
   }
 

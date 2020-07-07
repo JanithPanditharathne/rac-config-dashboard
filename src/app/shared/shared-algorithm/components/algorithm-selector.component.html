@@ -10,7 +10,8 @@
                                 <ng-dropdown
                                     [id]="'algorithm-dropdown-data'"
                                     [selectTrackBy]="'id'"
-                                    [displayTrackBy]="'name'"
+                                    [disabledTrackBy]="'disabled'"
+                                    [displayTrackBy]="'mappedAlgorithmName'"
                                     [formControlName]="'selectedAlgorithm'"
                                     [relativeParentElement]="algorithmSelectorFormParent"
                                     [options]="algorithmDropdownData"
@@ -44,9 +45,7 @@
                         <div class="form-group" *ngIf="algorithmsFormGroup.get('description').value">
                             <label
                             >Algorithm Description
-                                <span class="algorithm-text form-control display-text">
-                            {{ algorithmsFormGroup.get('description').value || '-' }}
-                                                  </span>
+                                <textarea rows="1" class="form-control algorithm-text display-text"  value="{{ algorithmsFormGroup.get('description').value || '-' }}"></textarea>
                             </label>
                         </div>
                     </div>
@@ -72,28 +71,28 @@
                         <ng-data-table-column [title]="'Action'" [width]="140">
                             <ng-template let-row="row" #ngDataTableCell>
                                 <td>
-                                    <app-table-actions-column>
-                                        <app-table-action
+                                    <app-table-actions-column class="rac-table-action-column">
+                                        <app-table-action class="rac-table-action"
                                                 [type]="ColumnActionType.MOVE_UP"
                                                 [tooltip]="'Move Up'"
                                                 [disable]="isMoveUpButtonDisabled(row)"
                                                 (actionClick)="onAlgorithmOrderChange(row.index - 1, false)"
                                         >
                                         </app-table-action>
-                                        <app-table-action
+                                        <app-table-action class="rac-table-action"
                                                 [type]="ColumnActionType.MOVE_DOWN"
                                                 [tooltip]="'Move Down'"
                                                 [disable]="isMoveDownButtonDisabled(row)"
                                                 (actionClick)="onAlgorithmOrderChange(row.index - 1, true)"
                                         >
                                         </app-table-action>
-                                        <app-table-action
+                                        <app-table-action class="rac-table-action"
                                                 [type]="ColumnActionType.EDIT"
                                                 [tooltip]="'Edit Display Text'"
                                                 (actionClick)="onEditDisplayText(row)"
                                         >
                                         </app-table-action>
-                                        <app-table-action
+                                        <app-table-action class="rac-table-action"
                                                 [type]="ColumnActionType.DELETE"
                                                 [tooltip]="'Delete Algorithm'"
                                                 (actionClick)="onAlgorithmDelete(row)"

@@ -20,7 +20,12 @@
                         <div class="form-group" [class.input-error]="isInvalid('recName')">
                             <label for="recName"
                             >Recommendation Name<span class="required-label">*</span>
-                                <span class="rac-max-length">Maximum character length is 200</span>
+                                <app-info-label class="rac-app-info-label"
+                                        [description]="SharedCommonConstants.textFieldMaxLengthMessage"
+                                        [placement]="'right'"
+                                        [outsideClick]="false"
+                                >
+                                </app-info-label>
                                 <input class="form-control" type="text" formControlName="recName"
                                        placeholder="Recommendation Name" id="recName" maxlength="200"
                                        [requiredField]="true"/>
@@ -48,7 +53,7 @@
                                 <ng-dropdown
                                         [id]="'bundle-dropdown-data'"
                                         [selectTrackBy]="'id'"
-                                        [displayTrackBy]="'name'"
+                                        [displayTrackBy]="'displayName'"
                                         [menuWidth]="390"
                                         [formControlName]="'selectedBundle'"
                                         [relativeParentElement]="recFormParent"

@@ -11,18 +11,21 @@ import { GlobalRefService } from 'ornamentum';
 @Injectable()
 export class ClientErrorInterceptorService implements ErrorHandler, OnDestroy {
 
-  private static client_error_holder_identifier = 'client-error-message-holder';
-  private static client_error_reload_button_identifier = 'btn-client-error-reload';
-  private static client_error_code = 'client-error-codes';
-  private static client_error_post_endpoint = '/api/v1/log/client/error';
+  private static readonly clientErrorHolderIdentifier = 'client-error-message-holder';
+  private static readonly clientErrorReloadButtonIdentifier = 'btn-client-error-reload';
+  private static readonly clientErrorCode = 'client-error-codes';
+  private static readonly clientErrorPostEndpoint = '/api/v1/log/client/error';
 
   private lastError: Error;
-  private reloadBtn: HTMLAnchorElement;
+  private readonly reloadBtn: HTMLAnchorElement;
 
-  constructor(private globalRef: GlobalRefService, private http: HttpClient) {
-    this.reloadBtn = <HTMLAnchorElement>(
-      this.globalRef.window.document.getElementById(ClientErrorInterceptorService.client_error_reload_button_identifier)
-    );
+  constructor(
+    private readonly http: HttpClient,
+    private readonly globalRef: GlobalRefService
+  ) {
+    this.reloadBtn =
+      (this.globalRef.window.document.getElementById(ClientErrorInterceptorService.clientErrorReloadButtonIdentifier) as HTMLAnchorElement
+      );
     this.reloadBtn.addEventListener('click', this.reloadButtonEvent);
   }
 
@@ -45,8 +48,8 @@ export class ClientErrorInterceptorService implements ErrorHandler, OnDestroy {
       if (error instanceof Error) {
         if (!this.lastError || !this.isSameError(error)) {
           this.lastError = error;
-          const clientErrorDiv = this.globalRef.window.document.getElementById(ClientErrorInterceptorService.client_error_holder_identifier);
-          const clientErrorSpan = this.globalRef.window.document.getElementById(ClientErrorInterceptorService.client_error_code);
+          const clientErrorDiv = this.globalRef.window.document.getElementById(ClientErrorInterceptorService.clientErrorHolderIdentifier);
+          const clientErrorSpan = this.globalRef.window.document.getElementById(ClientErrorInterceptorService.clientErrorCode);
           if (clientErrorDiv && clientErrorSpan) {
             clientErrorDiv.style.display = 'block';
             const errorData = {
@@ -57,7 +60,7 @@ export class ClientErrorInterceptorService implements ErrorHandler, OnDestroy {
             };
 
             this.http
-              .post(ClientErrorInterceptorService.client_error_post_endpoint, errorData, {responseType: 'text'})
+              .post(ClientErrorInterceptorService.clientErrorPostEndpoint, errorData, {responseType: 'text'})
               .subscribe((errorCode: string) => {
                 if (!clientErrorSpan.innerText) {
                   clientErrorSpan.innerText = `Error code: ${errorCode}`;
@@ -84,6 +87,6 @@ export class ClientErrorInterceptorService implements ErrorHandler, OnDestroy {
    * Reload button click event handler.
    */
   private reloadButtonEvent(): void {
-    this.globalRef.window.location.reload(true);
+    this.globalRef.window.location.reload(true); // NOSONAR
   }
 }

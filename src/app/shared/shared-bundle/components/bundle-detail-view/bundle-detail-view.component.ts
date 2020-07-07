@@ -29,7 +29,7 @@ export class BundleDetailViewComponent implements OnInit, OnDestroy {
   public dataRow: DataTableRow<Bundle>;
 
   constructor(
-    private bundleService: BundleService
+    private readonly bundleService: BundleService
   ) {
   }
 

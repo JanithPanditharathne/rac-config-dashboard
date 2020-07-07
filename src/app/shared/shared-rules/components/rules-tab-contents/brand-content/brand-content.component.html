@@ -4,7 +4,12 @@
             <div class="form-group" [class.input-error]="isInvalid('brand')">
                 <label
                 >Brand
-                    <span class="rac-max-length">Maximum character length is 200</span>
+                    <app-info-label class="rac-app-info-label"
+                            [description]="SharedCommonConstants.textFieldMaxLengthMessage"
+                            [placement]="'right'"
+                            [outsideClick]="false"
+                    >
+                    </app-info-label>
                     <input [typeahead]="brands"
                            [requiredField]="true"
                            [typeaheadOptionsLimit]="10"
@@ -38,7 +43,7 @@
 <div class="rac-condition-item">
     <form [formGroup]="brandFormGroup">
         <div class="form-group">
-            <div class="form-check pl-2">
+            <div class="form-check pt-4 pl-1">
                 <input [id]="'equalIgnoreCaseEnabled' + ruleGeneratorType"
                        class="form-check-input checkbox-input"
                        type="checkbox"

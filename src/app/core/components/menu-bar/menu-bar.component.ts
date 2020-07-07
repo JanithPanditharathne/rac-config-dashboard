@@ -1,6 +1,5 @@
 import { AfterContentInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router, UrlSegment } from '@angular/router';
-import { PlatformLocation } from '@angular/common';
 
 import { UserProfileService } from '../../services';
 
@@ -12,8 +11,7 @@ import { MenuItem, UserProfile } from '../../models';
   templateUrl: './menu-bar.component.html'
 })
 export class MenuBarComponent implements AfterContentInit, OnInit {
-  public appVersion = `version ${window['appVersion']}`;
-  private static MOBILE_BREAKPOINT = 991;
+  private static readonly MOBILE_BREAKPOINT = 991;
 
   public menuCollapsed = true;
 
@@ -30,8 +28,8 @@ export class MenuBarComponent implements AfterContentInit, OnInit {
   public logout = new EventEmitter();
 
   constructor(
-    private router: Router,
-    private userProfileService: UserProfileService) {
+    private readonly router: Router,
+    private readonly userProfileService: UserProfileService) {
   }
 
   public toggleMenuCollapse(): void {

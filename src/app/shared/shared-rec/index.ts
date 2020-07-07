@@ -1,28 +1,12 @@
 /**
  * Export all shared entry components.
  */
-import { RecommendationService } from './services';
-
-export const ENTRY_COMPONENTS = [];
-
-/**
- * Export all shared components.
- */
-export const COMPONENTS = [];
-
-/**
- * Export all shared directives.
- */
-export const DIRECTIVES = [];
+import { RecommendationService, RecSlotUtilityService } from './services';
 
 /**
  * Export all shared services.
  */
 export const SERVICES = [
-  RecommendationService
+  RecommendationService,
+  RecSlotUtilityService
 ];
-
-/**
- * Export all shared pipes.
- */
-export const PIPES = [];

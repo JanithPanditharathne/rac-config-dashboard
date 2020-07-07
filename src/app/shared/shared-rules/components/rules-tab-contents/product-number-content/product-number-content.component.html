@@ -4,7 +4,12 @@
             <div class="form-group"  [class.input-error]="isInvalid('productNumber')">
                 <label
                 >Product Number
-                    <span class="rac-max-length">Maximum character length is 200</span>
+                    <app-info-label class="rac-app-info-label"
+                            [description]="SharedCommonConstants.textFieldMaxLengthMessage"
+                            [placement]="'right'"
+                            [outsideClick]="false"
+                    >
+                    </app-info-label>
                     <input class="form-control" type="text" placeholder="Enter Product Number" name="ProductNumber"
                            formControlName="productNumber"
                            maxlength="200"
@@ -12,7 +17,7 @@
                 </label>
                 <app-common-control-error-view
                         [control]="baseFormGroup.get('productNumber')"
-                        [whitespaceError]="'Product number is required'"
+                        [requiredError]="'Product number is required'"
                 >
                 </app-common-control-error-view>
             </div>

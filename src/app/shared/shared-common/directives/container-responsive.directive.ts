@@ -27,7 +27,7 @@ export class ContainerResponsiveDirective implements OnInit, OnDestroy {
   @Input()
   public debounceTime = 500;
 
-  constructor(private globalRef: GlobalRefService) {}
+  constructor(private readonly globalRef: GlobalRefService) {}
 
   public ngOnInit(): void {
     this.windowResizeSubscription = fromEvent(this.globalRef.window, 'resize')

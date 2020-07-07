@@ -13,7 +13,7 @@ import { SuccessResponse } from '../../../core/models';
 import { ActionBreadcrumb, ActionClickEventArgs, ContainerDimensions } from '../../../shared/shared-common/models';
 
 import { AlertType, SuccessStatus } from '../../../core/enums';
-import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums';
+import { ActionType, ColumnActionType } from 'src/app/shared/shared-common/enums'; // NOSONAR
 
 import { ConfirmPopupComponent } from '../../../shared/shared-common/components';
 
@@ -42,10 +42,10 @@ export class RuleComponent {
   public actionBreadcrumb: ActionBreadcrumb[];
 
   constructor(
-    private router: Router,
-    private ruleService: RuleService,
-    private modalService: BsModalService,
-    public notificationService: NotificationService
+    private readonly router: Router,
+    private readonly ruleService: RuleService,
+    private readonly modalService: BsModalService,
+    private readonly notificationService: NotificationService
   ) {
     this.actionBreadcrumb = [
       {
@@ -74,7 +74,7 @@ export class RuleComponent {
    */
   public onAddClick(): void {
     this.router.navigate(['rules/add']).catch((e) => {
-      this.notificationService.showNotification(RuleConstants.navigation_failure, AlertType.ERROR);
+      this.notificationService.showNotification(RuleConstants.navigationFailure, AlertType.ERROR);
     });
   }
 
@@ -96,7 +96,7 @@ export class RuleComponent {
       )
       .catch(() => {
         this.isLoading = false;
-        this.notificationService.showNotification(RuleConstants.navigation_failure, AlertType.ERROR);
+        this.notificationService.showNotification(RuleConstants.navigationFailure, AlertType.ERROR);
       });
   }
 
@@ -110,11 +110,11 @@ export class RuleComponent {
       class: 'rule-delete-confirm-popup confirmation-popup',
       ignoreBackdropClick: true
     });
-    modalRef.content.title = RuleConstants.rule_delete_title;
-    modalRef.content.message = RuleConstants.rule_delete_message;
+    modalRef.content.title = RuleConstants.ruleDeleteTitle;
+    modalRef.content.message = RuleConstants.ruleDeleteMessage;
     modalRef.content.messageBody = `[${ruleId}] ${ruleName}`;
     modalRef.content.actionType = ActionType.DELETE;
-    modalRef.content.actionName = RuleConstants.rule_delete_action;
+    modalRef.content.actionName = RuleConstants.ruleDeleteAction;
     modalRef.content.autoResolve = false;
     modalRef.content.onSubmit.subscribe((actionClickEventArgs: ActionClickEventArgs) => {
       this.deleteRule(ruleId, actionClickEventArgs);

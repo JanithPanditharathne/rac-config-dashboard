@@ -11,16 +11,16 @@ import { SuccessResponse } from '../../../../core/models';
 import { ActionBreadcrumb, ActionClickEventArgs, DropDownDataItem } from '../../../../shared/shared-common/models';
 
 import { AlertType, SuccessStatus } from '../../../../core/enums';
-import { RuleGeneratorType } from 'src/app/shared/shared-rules/enums';
-import { ActionType, FormAction } from 'src/app/shared/shared-common/enums';
+import { RuleGeneratorType } from 'src/app/shared/shared-rules/enums'; // NOSONAR
+import { ActionType, FormAction } from 'src/app/shared/shared-common/enums'; // NOSONAR
 
 import { NotificationService } from '../../../../core/services';
-import { RuleContextFormUtility, RuleService } from '../../../../shared/shared-rules/services';
-import { RuleUtilityService } from '../../../../shared/shared-rules/services';
+import { RuleContextFormUtility, RuleService, RuleUtilityService } from '../../../../shared/shared-rules/services';
 import { CustomFormValidator, FormValidator } from '../../../../shared/shared-common/services';
 import { ConfirmDialogService } from '../../../../shared/shared-common/services/confirm-dialog.service';
 
 import { RuleConstants } from '../../rule.constants';
+import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants'; // NOSONAR
 
 /**
  * Class representing the Rule component.
@@ -35,6 +35,7 @@ import { RuleConstants } from '../../rule.constants';
 export class RuleUpsertComponent implements OnInit {
   public dropdownSelectMode: DropdownSelectMode = 'single';
   public RuleGeneratorType = RuleGeneratorType;
+  public SharedCommonConstants = SharedCommonConstants;
   public ActionType = ActionType;
   public FormAction = FormAction;
 
@@ -46,13 +47,13 @@ export class RuleUpsertComponent implements OnInit {
   public ruleTypeDropdownData: DropDownDataItem[];
 
   constructor(
-    private router: Router,
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private ruleService: RuleService,
-    private dialogService: ConfirmDialogService,
-    private ruleUtilityService: RuleUtilityService,
-    private notificationService: NotificationService
+    private readonly router: Router,
+    private readonly fb: FormBuilder,
+    private readonly route: ActivatedRoute,
+    private readonly ruleService: RuleService,
+    private readonly dialogService: ConfirmDialogService,
+    private readonly ruleUtilityService: RuleUtilityService,
+    private readonly notificationService: NotificationService
   ) {
     this.actionBreadcrumb = [
       {
@@ -114,7 +115,7 @@ export class RuleUpsertComponent implements OnInit {
 
     if (this.ruleForm.invalid) {
       clickEventArgs.resolve();
-      this.notificationService.showNotification(RuleConstants.rule_create_invalid_form, AlertType.ERROR);
+      this.notificationService.showNotification(RuleConstants.ruleCreateInvalidForm, AlertType.ERROR);
       return;
     }
 
@@ -164,15 +165,7 @@ export class RuleUpsertComponent implements OnInit {
   private addNewRule(rule: Rule, clickEventArgs: ActionClickEventArgs): void {
     this.ruleService.createRule(rule).subscribe(
       (response: SuccessResponse) => {
-        clickEventArgs.resolve();
-
-        if (response.status === SuccessStatus.FAIL) {
-          this.notificationService.showNotification(response.message, AlertType.ERROR);
-          return;
-        }
-        this.notificationService.showNotification(response.message, AlertType.SUCCESS);
-        this.ruleForm.markAsPristine();
-        this.redirectToRulesView();
+        this.handleResponse(response, clickEventArgs);
       },
       (error) => {
         clickEventArgs.resolve();
@@ -189,20 +182,29 @@ export class RuleUpsertComponent implements OnInit {
     rule.id = this.rule.id;
     this.ruleService.updateRule(rule).subscribe(
       (response: SuccessResponse) => {
-        clickEventArgs.resolve();
-
-        if (response.status === SuccessStatus.FAIL) {
-          this.notificationService.showNotification(response.message, AlertType.ERROR);
-          return;
-        }
-        this.notificationService.showNotification(response.message, AlertType.SUCCESS);
-        this.ruleForm.markAsPristine();
-        this.redirectToRulesView();
+        this.handleResponse(response, clickEventArgs);
       },
       (error) => {
         clickEventArgs.resolve();
       }
     );
+  }
+
+  /**
+   * Responsible for handle backend response.
+   * @param {SuccessResponse} response
+   * @param {ActionClickEventArgs} actionClickArgs
+   */
+  private handleResponse(response: SuccessResponse, actionClickArgs: ActionClickEventArgs): void {
+    actionClickArgs.resolve();
+
+    if (response.status === SuccessStatus.FAIL) {
+      this.notificationService.showNotification(response.message, AlertType.ERROR);
+      return;
+    }
+    this.notificationService.showNotification(response.message, AlertType.SUCCESS);
+    this.ruleForm.markAsPristine();
+    this.redirectToRulesView();
   }
 
   /**

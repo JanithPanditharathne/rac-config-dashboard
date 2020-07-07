@@ -7,12 +7,13 @@ import { DataTableRow, DropdownSelectMode } from 'ornamentum';
 
 import { AlgorithmSelector } from '../models';
 import { Algorithm, DisplayAlgorithm } from '../../../feature/algorithm/models';
+import { AlgorithmDropDownItem } from '../models/algorithm-dropdown-item.model';
 
-import { ColumnActionType, ActionType } from '../../shared-common/enums';
+import { ActionType, ColumnActionType } from '../../shared-common/enums';
 
 import { EditDisplayTextComponent } from './edit-display-text/edit-display-text.component';
 
-import { AlgorithmService } from '../services';
+import { AlgorithmService, AlgorithmUtilityService } from '../services';
 import { CustomFormValidator, FormValidator } from '../../shared-common/services';
 
 /**
@@ -28,7 +29,7 @@ export class AlgorithmSelectorComponent {
   public dropdownSelectMode: DropdownSelectMode = 'single';
   public ActionType = ActionType;
   public ColumnActionType = ColumnActionType;
-  public algorithmDropdownData: Algorithm[];
+  public algorithmDropdownData: AlgorithmDropDownItem[];
 
   @Input()
   public algorithmsFormGroup: FormGroup;
@@ -37,11 +38,13 @@ export class AlgorithmSelectorComponent {
   public isPopupView: boolean;
 
   constructor(
-    private modalService: BsModalService,
-    private algorithmService: AlgorithmService
+    private readonly modalService: BsModalService,
+    private readonly algorithmService: AlgorithmService,
+    private readonly algorithmUtilityService: AlgorithmUtilityService
   ) {
     this.algorithmService.getAlgorithms().subscribe((displayAlgorithm: DisplayAlgorithm) => {
-      this.algorithmDropdownData = displayAlgorithm.algorithms;
+      this.algorithmDropdownData = algorithmUtilityService.mapToAlgorithmDropdownItems(displayAlgorithm.algorithms);
+      this.disableSelectedDropdownItems();
     });
   }
 
@@ -52,7 +55,8 @@ export class AlgorithmSelectorComponent {
   public static buildFormGroup(fb: FormBuilder, algorithmSelector?: AlgorithmSelector): FormGroup {
     if (algorithmSelector) {
       return fb.group({
-        algorithms: [algorithmSelector.algorithms, CustomFormValidator.arrayMinLength(1)],
+        algorithms: [algorithmSelector.algorithms,
+          CustomFormValidator.arrayMinLength(1)],
         selectedAlgorithm: [null],
         description: ['']
       });
@@ -109,7 +113,7 @@ export class AlgorithmSelectorComponent {
    * @param {DataTableRow<Algorithm>} row data table row
    */
   public onAlgorithmDelete(row: DataTableRow<Algorithm>): void {
-    const selectedAlgorithms: Algorithm[] = this.algorithmsFormGroup.get('algorithms').value;
+    const selectedAlgorithms: AlgorithmDropDownItem[] = this.algorithmsFormGroup.get('algorithms').value;
     const selectedItemsCopy = [...selectedAlgorithms];
 
     selectedItemsCopy.splice(row.index - 1, 1);
@@ -117,6 +121,8 @@ export class AlgorithmSelectorComponent {
     this.algorithmsFormGroup.patchValue({
       algorithms: selectedItemsCopy
     });
+
+    this.algorithmDropdownData = this.algorithmUtilityService.setAlgorithmDisableState(this.algorithmDropdownData, row.item);
 
     FormValidator.markFormArrayDirty(this.algorithmsFormGroup);
   }
@@ -150,17 +156,17 @@ export class AlgorithmSelectorComponent {
    */
   public onAlgorithmAdd(): void {
     const currentAlgorithms: Algorithm[] = this.algorithmsFormGroup.get('algorithms').value;
-    const newAlgorithm: Algorithm = this.algorithmsFormGroup.get('selectedAlgorithm').value;
+    const newAlgorithm: AlgorithmDropDownItem = this.algorithmsFormGroup.get('selectedAlgorithm').value;
 
-    if (!this.hasSameAlgorithm(currentAlgorithms, newAlgorithm)) {
-      let algorithms = [...currentAlgorithms, newAlgorithm];
+    const algorithms = [...currentAlgorithms, newAlgorithm];
 
-      this.algorithmsFormGroup.patchValue({
-        algorithms: algorithms,
-        selectedAlgorithm: null,
-        description: null
-      });
-    }
+    this.algorithmsFormGroup.patchValue({
+      algorithms: algorithms,
+      selectedAlgorithm: null,
+      description: null
+    });
+
+    this.algorithmDropdownData = this.algorithmUtilityService.setAlgorithmDisableState(this.algorithmDropdownData, newAlgorithm);
   }
 
   /**
@@ -168,9 +174,8 @@ export class AlgorithmSelectorComponent {
    * @param {DataTableRow<Algorithm>} row data table row
    */
   public onEditDisplayText(row: DataTableRow<Algorithm>): void {
-    let modalRef: BsModalRef;
-
-    modalRef = this.modalService.show(EditDisplayTextComponent, {class: 'display-text-edit-confirm-popup', ignoreBackdropClick: true});
+    const modalRef: BsModalRef =
+      this.modalService.show(EditDisplayTextComponent, {class: 'display-text-edit-confirm-popup', ignoreBackdropClick: true});
     modalRef.content.setDisplayTextFormData(row.item.customDisplayText || row.item.defaultDisplayText);
     modalRef.content.autoResolve = false;
     modalRef.content.saveClick.subscribe((text: string) => {
@@ -188,12 +193,14 @@ export class AlgorithmSelectorComponent {
   }
 
   /**
-   * Check whether algorithm already exists in list.
-   * @param {Algorithm[]} currentAlgorithms list of algorithms
-   * @param {Algorithm} newAlgorithm algorithm to add
-   * @return {boolean} true or false
+   * Responsible for disable selected algorithms from the dropdown.
    */
-  private hasSameAlgorithm(currentAlgorithms: Algorithm[], newAlgorithm: Algorithm): boolean {
-    return !!currentAlgorithms.find((algorithm: Algorithm) => algorithm.id === newAlgorithm.id);
+  private disableSelectedDropdownItems(): void {
+    const currentAlgorithms: Algorithm[] = this.algorithmsFormGroup.get('algorithms').value;
+    if (currentAlgorithms && currentAlgorithms.length) {
+      currentAlgorithms.forEach((algorithm: Algorithm) => {
+        this.algorithmUtilityService.setAlgorithmDisableState(this.algorithmDropdownData, algorithm);
+      });
+    }
   }
 }
