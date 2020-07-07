@@ -22,7 +22,7 @@ export class AuthGuard extends KeycloakAuthGuard implements CanActivate {
   public isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise((resolve, reject) => {
       if (!this.authenticated) {
-        this.keycloakAngular.login()
+        this.keycloakAngular.login({redirectUri: document.baseURI})
           .catch(e => console.error(e));
         return reject(false);
       }
@@ -31,7 +31,7 @@ export class AuthGuard extends KeycloakAuthGuard implements CanActivate {
 
       if (!this.keycloakAngular.isUserInRole('cp_access')) {
         alert(CoreConstants.accessDeniedMessage);
-        this.keycloakAngular.logout(document.baseURI);
+        this.keycloakAngular.logout();
         resolve(false);
       }
       if (!requiredRoles || requiredRoles.length === 0) {
