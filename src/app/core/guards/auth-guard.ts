@@ -31,7 +31,7 @@ export class AuthGuard extends KeycloakAuthGuard implements CanActivate {
 
       if (!this.keycloakAngular.isUserInRole('cp_access')) {
         alert(CoreConstants.accessDeniedMessage);
-        this.keycloakAngular.logout();
+        this.keycloakAngular.logout(document.baseURI);
         resolve(false);
       }
       if (!requiredRoles || requiredRoles.length === 0) {
