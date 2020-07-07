@@ -32,7 +32,7 @@ export class LogoutConfirmPopupComponent {
   }
 
   public onSubmitClick(): void {
-    this.keycloakAngular.logout().then(() => {
+    this.keycloakAngular.logout(document.baseURI).then(() => {
       this.modalRef.hide();
     }, (err) => {
       console.log(err);
