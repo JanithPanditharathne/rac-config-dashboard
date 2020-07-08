@@ -11,14 +11,10 @@ import { DisplayAlgorithm } from '../models';
 import { SuccessResponse } from '../../../core/models';
 import { ActionClickEventArgs, ContainerDimensions } from '../../../shared/shared-common/models';
 
-import { AlertType } from '../../../core/enums';
-
 import { AlgorithmComponent } from './algorithm-component';
 
 import { NotificationService } from '../../../core/services';
 import { AlgorithmService } from '../../../shared/shared-algorithm/services';
-
-import { AlgorithmConstants } from '../algorithm.constants';
 
 describe('AlgorithmComponent tests', () => {
   let fixture: ComponentFixture<AlgorithmComponent>, component: AlgorithmComponent;
@@ -130,16 +126,6 @@ describe('AlgorithmComponent tests', () => {
       component.onAddClick();
       expect(router.navigate).toHaveBeenCalledWith(expectedPath);
     });
-
-    it('should invoke the showNotification method and display the error on fail add click event', () => {
-      const rejectPromise = Promise.reject('');
-      (router as any).navigate.and.returnValue(rejectPromise);
-      component.onAddClick();
-
-      rejectPromise.catch(() => {
-        expect(notificationService.showNotification).toHaveBeenCalledWith(AlgorithmConstants.navigationFailure, AlertType.ERROR);
-      });
-    });
   });
 
   describe('#onEditClick tests', () => {
@@ -148,19 +134,6 @@ describe('AlgorithmComponent tests', () => {
     it('should navigate to edit algorithm window on a success edit click event', () => {
       component.onEditClick('100');
       expect(router.navigate).toHaveBeenCalledWith(expectedPath);
-    });
-
-    it('should invoke the showNotification method and display the error on fail edit click event', () => {
-      const rejectPromise = Promise.reject(new Error('abc'));
-      (router as any).navigate.and.returnValue(rejectPromise);
-      component.onEditClick('100');
-
-      rejectPromise.catch(() => {
-        expect(component.isLoading).toBeFalsy();
-        rejectPromise.catch(() => {
-          expect(notificationService.showNotification).toHaveBeenCalledWith(AlgorithmConstants.navigationFailure, AlertType.ERROR);
-        });
-      });
     });
   });
 
