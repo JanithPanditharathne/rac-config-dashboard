@@ -19,7 +19,7 @@ import { AlgorithmService } from '../../../shared/shared-algorithm/services';
 describe('AlgorithmComponent tests', () => {
   let fixture: ComponentFixture<AlgorithmComponent>, component: AlgorithmComponent;
 
-  let modalService: BsModalService, notificationService: NotificationService, router: Router;
+  let modalService: BsModalService, router: Router;
 
   let spyAlgorithmService: jasmine.SpyObj<AlgorithmService>, spyModalService: jasmine.SpyObj<BsModalService>;
 
@@ -93,7 +93,6 @@ describe('AlgorithmComponent tests', () => {
     component = fixture.componentInstance;
 
     modalService = TestBed.get(BsModalService);
-    notificationService = TestBed.get(NotificationService);
     router = TestBed.get(Router);
 
     component.onDataTableInit(spyDataTable);
