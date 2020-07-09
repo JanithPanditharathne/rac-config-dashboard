@@ -1425,6 +1425,12 @@ a {
       }
     }
 
+    .rac-app-info-label {
+      span {
+        display: inline-block;
+      }
+    }
+
     p {
       @include font-size(1, 1.1);
       margin-bottom: 0;
