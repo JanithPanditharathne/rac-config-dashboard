@@ -9,8 +9,13 @@
         <div class="row rac-form-container pt-0">
             <div class="col-lg-12">
                 <div class="form-group" [class.input-error]="isInvalid('defaultText')">
-                    <label
-                    >Default display text:
+                    <label>Default display text:
+                        <app-info-label class="rac-app-info-label"
+                                        [description]="SharedCommonConstants.textFieldMaxLengthMessage"
+                                        [placement]="'right'"
+                                        [outsideClick]="false"
+                        >
+                        </app-info-label>
                         <input class="form-control"
                                formControlName="defaultText"
                                maxlength="200"

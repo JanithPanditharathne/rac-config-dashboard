@@ -11,6 +11,8 @@ import { ActionType } from 'src/app/shared/shared-common/enums'; // NOSONAR
 
 import { FormValidator } from '../../../shared-common/services';
 
+import { SharedCommonConstants } from 'src/app/shared/shared-common/shared-common.constants'; // NOSONAR
+
 /**
  * Class representing edit display text component.
  * @class EditDisplayTextComponent
@@ -22,6 +24,7 @@ import { FormValidator } from '../../../shared-common/services';
 })
 export class EditDisplayTextComponent {
   public ActionType = ActionType;
+  public SharedCommonConstants = SharedCommonConstants;
 
   public saveClick = new Subject();
   public displayTextForm: FormGroup;
